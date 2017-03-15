@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
+
+#include "global.h"
+#include "controller/gui_manager.h"
+#include "controller/gameManager.h"
+
+int main(int argc, char *argv[])
+{
+    // Init game data
+    CurrGameManager = initGameManager("./data/settings/gameSettings.txt");
+    SDL_Window* p_window = NULL;
+
+    // SDL initialisation
+    if (SDL_Init(SDL_INIT_VIDEO) != 0 || TTF_Init()==-1){
+        fprintf(stdout,"Échec de l'initialisation de la SDL (%s)\n",SDL_GetError());
+        return -1;
+    }
+    // Openning a new window
+    p_window = SDL_CreateWindow("piTux", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL_WINDOW_SHOWN);
+    if (p_window){
+        //launchGuiManager(p_window);
+    }
+    else{
+        fprintf(stderr,"Error: cannot open a new window %s\n",SDL_GetError());
+    }
+
+    SDL_DestroyWindow(p_window);
+    TTF_Quit();
+    SDL_Quit();
+    destroyGameManager(CurrGameManager);
+    printf("Game has ended \n");
+    return 1;
+}

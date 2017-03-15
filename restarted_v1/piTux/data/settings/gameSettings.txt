@@ -1,0 +1,6 @@
+[Header];
+[AllTranslations];./data/settings/translations.txt;
+[AllBlocks];./data/settings/allBlocks.txt;
+[AllEnemies];./data/settings/allEnemies.txt;
+[Heros];./data/img/tux/heros.txt;
+[AllBonus];./data/settings/allBonus.txt;

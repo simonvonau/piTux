@@ -1,0 +1,1694 @@
+# depslib dependency file v1.0
+1446671344 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1483554157 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\main.c
+	<stdio.h>
+	<stdlib.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_thread.h>
+	<SDL2/SDL_mixer.h>
+	"global.h"
+	"controller/gui_manager.h"
+	"controller/gameManager.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_assert.h"
+	"SDL_atomic.h"
+	"SDL_audio.h"
+	"SDL_clipboard.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_filesystem.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_haptic.h"
+	"SDL_hints.h"
+	"SDL_loadso.h"
+	"SDL_log.h"
+	"SDL_messagebox.h"
+	"SDL_mutex.h"
+	"SDL_power.h"
+	"SDL_render.h"
+	"SDL_rwops.h"
+	"SDL_system.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_version.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<math.h>
+	<float.h>
+	<iconv.h>
+	<sal.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_config.h
+	"SDL_platform.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_platform.h
+	"AvailabilityMacros.h"
+	"TargetConditionals.h"
+	<winapifamily.h>
+	"begin_code.h"
+	"close_code.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\begin_code.h
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\close_code.h
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_assert.h
+	"SDL_config.h"
+	"begin_code.h"
+	<signal.h>
+	"close_code.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_atomic.h
+	"SDL_stdinc.h"
+	"SDL_platform.h"
+	"begin_code.h"
+	<mbarrier.h>
+	"close_code.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_endian.h
+	"SDL_stdinc.h"
+	<endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_atomic.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	"close_code.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_clipboard.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<intrin.h>
+	<altivec.h>
+	<mmintrin.h>
+	<mm3dnow.h>
+	<xmmintrin.h>
+	<emmintrin.h>
+	"begin_code.h"
+	"close_code.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_quit.h"
+	"SDL_gesture.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_pixels.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_rect.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_pixels.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_surface.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_blendmode.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_blendmode.h
+	"begin_code.h"
+	"close_code.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keycode.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_keycode.h
+	"SDL_stdinc.h"
+	"SDL_scancode.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_scancode.h
+	"SDL_stdinc.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_gamecontroller.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_gesture.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_touch.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_filesystem.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_haptic.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_hints.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_log.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_messagebox.h
+	"SDL_stdinc.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_power.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_render.h
+	"SDL_stdinc.h"
+	"SDL_rect.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_system.h
+	"SDL_stdinc.h"
+	"SDL_keyboard.h"
+	"SDL_render.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1451800374 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_image.h
+	"SDL.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1454362934 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_ttf.h
+	"SDL.h"
+	"begin_code.h"
+	"close_code.h"
+
+1483557070 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\collidermanager.c
+	"colliderManager.h"
+
+1483137031 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\collidermanager.h
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"../utils/reporting.h"
+	"../model/collider.h"
+	"../model/collision.h"
+
+1473852402 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\utils\reporting.h
+	<stdlib.h>
+	<stdio.h>
+
+1483557210 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\collider.h
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"../utils/reporting.h"
+
+1476207357 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\collision.h
+	<stdlib.h>
+	<stdio.h>
+	"../utils/reporting.h"
+
+1476906829 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\enemymanager.c
+	"enemyManager.h"
+
+1476905040 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\enemymanager.h
+	<stdlib.h>
+	<stdio.h>
+	"../utils/reporting.h"
+	"../model/enemy.h"
+	"../model/enemyInstance.h"
+
+1483106060 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\enemy.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	"../global.h"
+	"../utils/reporting.h"
+	"../utils/loadImage.h"
+	"../model/collider.h"
+	"../utils/arrayProcessing.h"
+
+1474129618 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\utils\loadimage.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+
+1483643210 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\enemyinstance.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	"../global.h"
+	"../utils/reporting.h"
+	"../model/enemy.h"
+	"../model/collider.h"
+
+1483643610 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\gamemanager.c
+	"gameManager.h"
+
+1483643486 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\gamemanager.h
+	<stdlib.h>
+	<stdio.h>
+	"../utils/reporting.h"
+	"../controller/enemyBehaviour.h"
+	"../controller/translationManager.h"
+	"../controller/herosManager.h"
+	"../controller/levelManager.h"
+	"../controller/colliderManager.h"
+	"../model/game.h"
+	"../model/block.h"
+	"../model/bonus.h"
+
+1482757757 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\translationmanager.h
+	<stdlib.h>
+	<stdio.h>
+	"../utils/reporting.h"
+	"../controller/translationManager.h"
+	"../model/translation.h"
+
+1482762729 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\translation.h
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"../utils/reporting.h"
+	"../utils/arrayProcessing.h"
+
+1482078773 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\game.h
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"../utils/reporting.h"
+	"../global.h"
+	"../utils/arrayProcessing.h"
+
+1482763281 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\block.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	"../global.h"
+	"../utils/reporting.h"
+	"../utils/loadImage.h"
+	"../model/collider.h"
+	"../utils/arrayProcessing.h"
+
+1482078699 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\bonus.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	"../global.h"
+	"../utils/reporting.h"
+	"../utils/loadImage.h"
+	"../model/collider.h"
+	"../utils/arrayProcessing.h"
+
+1483040908 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\gui_manager.c
+	"gui_manager.h"
+
+1483031636 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\gui_manager.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	"gameManager.h"
+	"../utils/reporting.h"
+	"../pages/mainPage.h"
+	"../pages/creditsPage.h"
+	"../pages/gamePage.h"
+	"../pages/levelEditorPage.h"
+	"../pages/levelSelectionPage.h"
+	"../pages/quitPage.h"
+	"../pages/settingsPage.h"
+
+1482771147 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\mainpage.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	"../global.h"
+	"../utils/reporting.h"
+	"../utils/loadImage.h"
+	"../controller/gameManager.h"
+	"../pages/textLayout.h"
+
+1483556361 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\global.h
+	<stdlib.h>
+	<stdio.h>
+
+1477512785 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\textlayout.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	"../global.h"
+	"../utils/arrayProcessing.h"
+
+1474123528 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\utils\arrayprocessing.h
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"../model/block.h"
+
+1483026247 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\creditspage.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	"../utils/reporting.h"
+	"../utils/loadImage.h"
+	"../controller/gameManager.h"
+	"../pages/textLayout.h"
+	"../global.h"
+
+1483031387 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\gamepage.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	"../global.h"
+	"../utils/reporting.h"
+	"../utils/loadImage.h"
+	"../pages/textLayout.h"
+	"../pages/sub_pages/break_page.h"
+	"../controller/levelManager.h"
+	"../controller/gameManager.h"
+	"../model/enemy.h"
+	"../model/heros.h"
+	"../model/block.h"
+	"../model/level.h"
+	"../model/button.h"
+
+1483125508 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\levelmanager.h
+	<stdlib.h>
+	<stdio.h>
+	"../utils/reporting.h"
+	"../utils/arrayProcessing.h"
+	"../controller/enemyBehaviour.h"
+	"../controller/colliderManager.h"
+	"../model/level.h"
+	"../model/block.h"
+	"../model/bonus.h"
+	"../model/enemy.h"
+	"../model/blockInstance.h"
+	"../model/bonusInstance.h"
+	"../model/enemyInstance.h"
+
+1483035437 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\level.h
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"../utils/reporting.h"
+	"../utils/arrayProcessing.h"
+	"../model/block.h"
+	"../model/bonus.h"
+	"../model/enemy.h"
+	"../model/blockInstance.h"
+	"../model/bonusInstance.h"
+	"../model/enemyInstance.h"
+
+1480198196 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\blockinstance.h
+	<stdlib.h>
+	<stdio.h>
+	"../utils/reporting.h"
+	"../model/block.h"
+	"../model/collider.h"
+
+1476448468 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\bonusinstance.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	"../utils/reporting.h"
+	"../model/collider.h"
+	"../model/bonus.h"
+
+1482872102 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\leveleditorpage.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	"../global.h"
+	"../utils/reporting.h"
+	"../utils/loadImage.h"
+	"../pages/textLayout.h"
+	"../pages/sub_pages/help_page.h"
+	"../controller/levelManager.h"
+	"../controller/gameManager.h"
+	"../model/enemy.h"
+	"../model/heros.h"
+	"../model/block.h"
+	"../model/level.h"
+	"../model/button.h"
+
+1482944360 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\sub_pages\help_page.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	"../../global.h"
+	"../../utils/reporting.h"
+	"../../utils/loadImage.h"
+	"../../controller/gameManager.h"
+	"../../pages/textLayout.h"
+	"../../model/button.h"
+
+1482078681 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\button.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	"../utils/reporting.h"
+	"../utils/loadImage.h"
+	"../utils/arrayProcessing.h"
+
+1482078544 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\heros.h
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	"../model/collider.h"
+	"../utils/reporting.h"
+	"../global.h"
+	"../utils/arrayProcessing.h"
+
+1482771961 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\levelselectionpage.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	"../global.h"
+	"../utils/reporting.h"
+	"../utils/loadImage.h"
+	"../controller/gameManager.h"
+	"../model/levelIcon.h"
+	"../pages/textLayout.h"
+
+1482078558 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\levelicon.h
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"../utils/reporting.h"
+	"../utils/arrayProcessing.h"
+
+1483026463 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\quitpage.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	"../global.h"
+	"../utils/reporting.h"
+	"../utils/loadImage.h"
+	"../controller/gameManager.h"
+	"../pages/textLayout.h"
+
+1483025747 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\settingspage.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	"../global.h"
+	"../utils/reporting.h"
+	"../utils/loadImage.h"
+	"../controller/gameManager.h"
+	"../pages/textLayout.h"
+
+1480444578 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\herosmanager.c
+	"herosManager.h"
+
+1480444569 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\herosmanager.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	"../utils/reporting.h"
+	"../model/heros.h"
+	"../model/bonusInstance.h"
+
+1476298371 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\leveliconmanager.c
+
+1483126609 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\levelmanager.c
+	"levelManager.h"
+
+1482762839 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\translationmanager.c
+	"translationManager.h"
+
+1483105815 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\block.c
+	"block.h"
+
+1480198620 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\blockinstance.c
+	"blockInstance.h"
+
+1481566525 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\bonus.c
+	"bonus.h"
+
+1480198699 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\bonusinstance.c
+	"bonusInstance.h"
+
+1479755090 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\button.c
+	"button.h"
+
+1483557292 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\collider.c
+	"collider.h"
+
+1476207350 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\collision.c
+	"collision.h"
+
+1481566525 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\enemy.c
+	"enemy.h"
+
+1483643639 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\enemyinstance.c
+	"enemyInstance.h"
+
+1480443556 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\game.c
+	"game.h"
+
+1480444979 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\heros.c
+	"heros.h"
+
+1482952176 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\level.c
+	"level.h"
+
+1480446623 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\levelicon.c
+	"levelIcon.h"
+
+1482762829 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\translation.c
+	"translation.h"
+
+1483043151 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\creditspage.c
+	"creditsPage.h"
+
+1483642741 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\gamepage.c
+	"gamePage.h"
+
+1483043068 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\leveleditorpage.c
+	"levelEditorPage.h"
+
+1482772137 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\levelselectionpage.c
+	"levelSelectionPage.h"
+
+1482771447 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\mainpage.c
+	"mainPage.h"
+
+1483026497 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\quitpage.c
+	"quitPage.h"
+
+1483026099 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\settingspage.c
+	"mainPage.h"
+
+1483040940 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\sub_pages\break_page.c
+	"break_page.h"
+
+1483036434 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\sub_pages\break_page.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	"../../global.h"
+	"../../utils/reporting.h"
+	"../../utils/loadImage.h"
+	"../../pages/textLayout.h"
+	"../../controller/gameManager.h"
+	"../../model/button.h"
+
+1482944518 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\sub_pages\help_page.c
+	"help_page.h"
+
+1477513571 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\textlayout.c
+	"textLayout.h"
+
+1476809893 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\utils\arrayprocessing.c
+	"arrayProcessing.h"
+
+1477509357 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\utils\reporting.c
+	"reporting.h"
+
+1476736263 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\utils\loadimage.c
+	"loadImage.h"
+
+1483964652 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\collidermanager.c
+	"colliderManager.h"
+
+1488804370 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\collidermanager.h
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"../utils/reporting.h"
+	"../model/collider.h"
+	"../model/collision.h"
+
+1476773754 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\utils\reporting.h
+	<stdlib.h>
+	<stdio.h>
+
+1483964652 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\collider.h
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"../utils/reporting.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\collision.h
+	<stdlib.h>
+	<stdio.h>
+	"../utils/reporting.h"
+
+1477480579 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\enemymanager.c
+	"enemyManager.h"
+
+1477480579 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\enemymanager.h
+	<stdlib.h>
+	<stdio.h>
+	"../utils/reporting.h"
+	"../model/enemy.h"
+	"../model/enemyInstance.h"
+
+1482148223 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\enemy.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	"../global.h"
+	"../utils/reporting.h"
+	"../utils/loadImage.h"
+	"../model/collider.h"
+	"../utils/arrayProcessing.h"
+
+1476773754 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\utils\loadimage.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+
+1476773752 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_assert.h"
+	"SDL_atomic.h"
+	"SDL_audio.h"
+	"SDL_clipboard.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_filesystem.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_haptic.h"
+	"SDL_hints.h"
+	"SDL_loadso.h"
+	"SDL_log.h"
+	"SDL_messagebox.h"
+	"SDL_mutex.h"
+	"SDL_power.h"
+	"SDL_render.h"
+	"SDL_rwops.h"
+	"SDL_system.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_version.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<math.h>
+	<float.h>
+	<iconv.h>
+	<sal.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1476773752 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_config.h
+	"SDL_platform.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_platform.h
+	"AvailabilityMacros.h"
+	"TargetConditionals.h"
+	<winapifamily.h>
+	"begin_code.h"
+	"close_code.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\begin_code.h
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\close_code.h
+
+1476773752 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_assert.h
+	"SDL_config.h"
+	"begin_code.h"
+	<signal.h>
+	"close_code.h"
+
+1476773752 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_atomic.h
+	"SDL_stdinc.h"
+	"SDL_platform.h"
+	"begin_code.h"
+	<mbarrier.h>
+	"close_code.h"
+
+1476773752 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_endian.h
+	"SDL_stdinc.h"
+	<endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_atomic.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	"close_code.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1476773752 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_clipboard.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<intrin.h>
+	<altivec.h>
+	<mmintrin.h>
+	<mm3dnow.h>
+	<xmmintrin.h>
+	<emmintrin.h>
+	"begin_code.h"
+	"close_code.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_quit.h"
+	"SDL_gesture.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"begin_code.h"
+	"close_code.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_pixels.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_rect.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_pixels.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_surface.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_blendmode.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1476773752 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_blendmode.h
+	"begin_code.h"
+	"close_code.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keycode.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_keycode.h
+	"SDL_stdinc.h"
+	"SDL_scancode.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_scancode.h
+	"SDL_stdinc.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_gamecontroller.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_gesture.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_touch.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_filesystem.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_haptic.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_hints.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_log.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_messagebox.h
+	"SDL_stdinc.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_power.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_render.h
+	"SDL_stdinc.h"
+	"SDL_rect.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_system.h
+	"SDL_stdinc.h"
+	"SDL_keyboard.h"
+	"SDL_render.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_image.h
+	"SDL.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_ttf.h
+	"SDL.h"
+	"begin_code.h"
+	"close_code.h"
+
+1483964652 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\enemyinstance.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	"../global.h"
+	"../utils/reporting.h"
+	"../model/enemy.h"
+	"../model/collider.h"
+
+1489495821 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\gamemanager.c
+	"gameManager.h"
+
+1488804405 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\gamemanager.h
+	<stdlib.h>
+	<stdio.h>
+	"../utils/reporting.h"
+	"../controller/enemyBehaviour.h"
+	"../controller/translationManager.h"
+	"../controller/herosManager.h"
+	"../controller/levelManager.h"
+	"../controller/colliderManager.h"
+	"../model/game.h"
+	"../model/block.h"
+	"../model/bonus.h"
+
+1482323427 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\translationmanager.h
+	<stdlib.h>
+	<stdio.h>
+	"../utils/reporting.h"
+	"../controller/translationManager.h"
+	"../model/translation.h"
+
+1483445638 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\translation.h
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"../utils/reporting.h"
+	"../utils/arrayProcessing.h"
+
+1482148223 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\game.h
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"../utils/reporting.h"
+	"../global.h"
+	"../utils/arrayProcessing.h"
+
+1483445638 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\block.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	"../global.h"
+	"../utils/reporting.h"
+	"../utils/loadImage.h"
+	"../model/collider.h"
+	"../utils/arrayProcessing.h"
+
+1482148223 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\bonus.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	"../global.h"
+	"../utils/reporting.h"
+	"../utils/loadImage.h"
+	"../model/collider.h"
+	"../utils/arrayProcessing.h"
+
+1483446898 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\gui_manager.c
+	"gui_manager.h"
+
+1483445638 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\gui_manager.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	"gameManager.h"
+	"../utils/reporting.h"
+	"../pages/mainPage.h"
+	"../pages/creditsPage.h"
+	"../pages/gamePage.h"
+	"../pages/levelEditorPage.h"
+	"../pages/levelSelectionPage.h"
+	"../pages/quitPage.h"
+	"../pages/settingsPage.h"
+
+1483445638 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\mainpage.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	"../global.h"
+	"../utils/reporting.h"
+	"../utils/loadImage.h"
+	"../controller/gameManager.h"
+	"../pages/textLayout.h"
+
+1483964652 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\global.h
+	<stdlib.h>
+	<stdio.h>
+
+1477550941 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\textlayout.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	"../global.h"
+	"../utils/arrayProcessing.h"
+
+1476773754 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\utils\arrayprocessing.h
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"../model/block.h"
+
+1483445638 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\creditspage.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	"../utils/reporting.h"
+	"../utils/loadImage.h"
+	"../controller/gameManager.h"
+	"../pages/textLayout.h"
+	"../global.h"
+
+1483445638 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\gamepage.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	"../global.h"
+	"../utils/reporting.h"
+	"../utils/loadImage.h"
+	"../pages/textLayout.h"
+	"../pages/sub_pages/break_page.h"
+	"../controller/levelManager.h"
+	"../controller/gameManager.h"
+	"../model/enemy.h"
+	"../model/heros.h"
+	"../model/block.h"
+	"../model/level.h"
+	"../model/button.h"
+
+1483445638 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\levelmanager.h
+	<stdlib.h>
+	<stdio.h>
+	"../utils/reporting.h"
+	"../utils/arrayProcessing.h"
+	"../controller/enemyBehaviour.h"
+	"../controller/colliderManager.h"
+	"../model/level.h"
+	"../model/block.h"
+	"../model/bonus.h"
+	"../model/enemy.h"
+	"../model/blockInstance.h"
+	"../model/bonusInstance.h"
+	"../model/enemyInstance.h"
+
+1483445638 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\level.h
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"../utils/reporting.h"
+	"../utils/arrayProcessing.h"
+	"../model/block.h"
+	"../model/bonus.h"
+	"../model/enemy.h"
+	"../model/blockInstance.h"
+	"../model/bonusInstance.h"
+	"../model/enemyInstance.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\blockinstance.h
+	<stdlib.h>
+	<stdio.h>
+	"../utils/reporting.h"
+	"../model/block.h"
+	"../model/collider.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\bonusinstance.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	"../utils/reporting.h"
+	"../model/collider.h"
+	"../model/bonus.h"
+
+1483445638 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\leveleditorpage.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	"../global.h"
+	"../utils/reporting.h"
+	"../utils/loadImage.h"
+	"../pages/textLayout.h"
+	"../pages/sub_pages/help_page.h"
+	"../controller/levelManager.h"
+	"../controller/gameManager.h"
+	"../model/enemy.h"
+	"../model/heros.h"
+	"../model/block.h"
+	"../model/level.h"
+	"../model/button.h"
+
+1483445639 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\sub_pages\help_page.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	"../../global.h"
+	"../../utils/reporting.h"
+	"../../utils/loadImage.h"
+	"../../controller/gameManager.h"
+	"../../pages/textLayout.h"
+	"../../model/button.h"
+
+1482148223 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\button.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	"../utils/reporting.h"
+	"../utils/loadImage.h"
+	"../utils/arrayProcessing.h"
+
+1489496012 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\heros.h
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	"../model/collider.h"
+	"../utils/reporting.h"
+	"../global.h"
+	"../utils/arrayProcessing.h"
+
+1483445638 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\levelselectionpage.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	"../global.h"
+	"../utils/reporting.h"
+	"../utils/loadImage.h"
+	"../controller/gameManager.h"
+	"../model/levelIcon.h"
+	"../pages/textLayout.h"
+
+1482148223 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\levelicon.h
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"../utils/reporting.h"
+	"../utils/arrayProcessing.h"
+
+1483445638 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\quitpage.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	"../global.h"
+	"../utils/reporting.h"
+	"../utils/loadImage.h"
+	"../controller/gameManager.h"
+	"../pages/textLayout.h"
+
+1483445638 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\settingspage.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	"../global.h"
+	"../utils/reporting.h"
+	"../utils/loadImage.h"
+	"../controller/gameManager.h"
+	"../pages/textLayout.h"
+
+1489495767 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\herosmanager.c
+	"herosManager.h"
+
+1480940270 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\herosmanager.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	"../utils/reporting.h"
+	"../model/heros.h"
+	"../model/bonusInstance.h"
+
+1476773753 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\leveliconmanager.c
+
+1488801998 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\levelmanager.c
+	"levelManager.h"
+
+1483445638 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\translationmanager.c
+	"translationManager.h"
+
+1485951647 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\main.c
+	<stdio.h>
+	<stdlib.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_thread.h>
+	<SDL2/SDL_mixer.h>
+	"global.h"
+	"controller/gui_manager.h"
+	"controller/gameManager.h"
+
+1481546278 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\block.c
+	"block.h"
+
+1480334438 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\blockinstance.c
+	"blockInstance.h"
+
+1481546297 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\bonus.c
+	"bonus.h"
+
+1480334438 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\bonusinstance.c
+	"bonusInstance.h"
+
+1479818541 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\button.c
+	"button.h"
+
+1488801355 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\collider.c
+	"collider.h"
+
+1476773753 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\collision.c
+	"collision.h"
+
+1481546312 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\enemy.c
+	"enemy.h"
+
+1485780862 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\enemyinstance.c
+	"enemyInstance.h"
+
+1480940270 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\game.c
+	"game.h"
+
+1489493811 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\heros.c
+	"heros.h"
+
+1485779078 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\level.c
+	"level.h"
+
+1480940270 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\levelicon.c
+	"levelIcon.h"
+
+1483445638 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\translation.c
+	"translation.h"
+
+1483445638 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\creditspage.c
+	"creditsPage.h"
+
+1489409614 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\gamepage.c
+	"gamePage.h"
+
+1485779797 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\leveleditorpage.c
+	"levelEditorPage.h"
+
+1483445638 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\levelselectionpage.c
+	"levelSelectionPage.h"
+
+1483445638 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\mainpage.c
+	"mainPage.h"
+
+1483445638 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\quitpage.c
+	"quitPage.h"
+
+1483445638 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\settingspage.c
+	"mainPage.h"
+
+1489407067 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\sub_pages\break_page.c
+	"break_page.h"
+
+1489407076 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\sub_pages\break_page.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	"../../global.h"
+	"../../utils/reporting.h"
+	"../../utils/loadImage.h"
+	"../../pages/textLayout.h"
+	"../../controller/gameManager.h"
+	"../../model/button.h"
+
+1483445639 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\sub_pages\help_page.c
+	"help_page.h"
+
+1477550941 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\textlayout.c
+	"textLayout.h"
+
+1476789950 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\utils\arrayprocessing.c
+	"arrayProcessing.h"
+
+1476773754 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\utils\loadimage.c
+	"loadImage.h"
+
+1477550941 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\utils\reporting.c
+	"reporting.h"
+
+1451801792 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_mixer.h
+	"SDL_stdinc.h"
+	"SDL_rwops.h"
+	"SDL_audio.h"
+	"SDL_endian.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1478544753 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\musicmanager.c
+	"musicManager.h"
+
+1478544004 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\musicmanager.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL_mixer.h>
+	"../utils/reporting.h"
+
+1478520875 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\musicmanager.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL_mixer.h>
+	"../utils/reporting.h"
+
+1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_mixer.h
+	"SDL_stdinc.h"
+	"SDL_rwops.h"
+	"SDL_audio.h"
+	"SDL_endian.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1478521642 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\musicmanager.c
+	"musicManager.h"
+
+1482078327 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\collidermanager.h
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"../utils/reporting.h"
+	"../model/collider.h"
+	"../model/collision.h"
+
+1482323427 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\translationmanager.h
+	<stdlib.h>
+	<stdio.h>
+	"../utils/reporting.h"
+	"../controller/translationManager.h"
+	"../model/translation.h"
+
+1483556319 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\enemybehaviour.h
+	<stdlib.h>
+	<stdio.h>
+	"../global.h"
+	"../model/enemy.h"
+	"../model/enemyInstance.h"
+	"../controller/colliderManager.h"
+
+1483645113 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\enemybehaviour.c
+	"enemyBehaviour.h"
+
+1485780292 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\enemybehaviour.c
+	"enemyBehaviour.h"
+
+1483964652 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\enemybehaviour.h
+	<stdlib.h>
+	<stdio.h>
+	"../global.h"
+	"../model/enemy.h"
+	"../model/enemyInstance.h"
+	"../controller/colliderManager.h"
+
