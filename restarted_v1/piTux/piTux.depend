@@ -1206,7 +1206,7 @@
 	"../model/enemy.h"
 	"../model/collider.h"
 
-1489495821 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\gamemanager.c
+1489581750 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\gamemanager.c
 	"gameManager.h"
 
 1488804405 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\gamemanager.h
@@ -1495,7 +1495,7 @@
 1489495767 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\herosmanager.c
 	"herosManager.h"
 
-1480940270 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\herosmanager.h
+1489581823 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\herosmanager.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -1504,6 +1504,7 @@
 	"../utils/reporting.h"
 	"../model/heros.h"
 	"../model/bonusInstance.h"
+	"../controller/colliderManager.h"
 
 1476773753 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\leveliconmanager.c
 
@@ -1555,7 +1556,7 @@
 1480940270 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\game.c
 	"game.h"
 
-1489493811 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\heros.c
+1489496169 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\heros.c
 	"heros.h"
 
 1485779078 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\level.c

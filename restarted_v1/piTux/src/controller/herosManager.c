@@ -7,15 +7,21 @@
 HerosManager *initHerosManager(char path[FILE_PATH_SIZE_MAX]){
 // Init a new HerosManager
     HerosManager *res = malloc(sizeof(HerosManager));
+    strncpy(res->path, path, FILE_PATH_SIZE_MAX);
+
     if(res == NULL){
         reportErreur("initHerosManager():error malloc()");
     }
-    res->heros = initHeros(path);
     return res;
 }//------------------------------------------------------------------------------------------------------------------------
 
-void refreshHerosManager(Heros *currHeros, int timeLoop){
-    refreshHeros(currHeros, timeLoop);
+void initHerosByManager(HerosManager *herosMgr){
+// Initialize a new hero, have to call 1 time per level
+    herosMgr->heros = initHeros(herosMgr->path);
+}//------------------------------------------------------------------------------------------------------------------------
+
+void updateHeroBehaviour(Heros *currHeros, ColliderManager *collMgr, int loopTime){
+
 }//------------------------------------------------------------------------------------------------------------------------
 
 void jumpHeros(Heros *currHeros){

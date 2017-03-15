@@ -172,7 +172,8 @@ void refreshGameByGameManager(GameManager *currGameMgr, int loopTime, int screen
     int margin = 200;
     int i;
 
-    refreshHerosManager(currGameMgr->herosMgr->heros, loopTime);
+    refreshHeros(currGameMgr->herosMgr->heros, loopTime);
+    updateHeroBehaviour(currGameMgr->herosMgr->heros, currGameMgr->collMgr, loopTime);
 
     refreshLevelByLevelManager(currGameMgr->levelManager->currLevel, currGameMgr->collMgr, loopTime
                     ,currGameMgr->allBlocks, currGameMgr->allBonus, currGameMgr->allEnemies);

@@ -62,6 +62,7 @@ int displayGamePage(SDL_Window *p_window, char *levelPath, int levelPathSize, Ga
             if (exitStatut == 1000){
                 //Just keep playing
             }
+            //lastTime = SDL_GetTicks() - 5;
         }
         if(event.type == SDL_QUIT){
             exitStatut = 0;// Leave the game
@@ -107,9 +108,10 @@ int displayGamePage(SDL_Window *p_window, char *levelPath, int levelPathSize, Ga
             }*/
         }else{
             // Pause mode if game windows is not focus
-            /*if (!(exitStatut=displayBreakSubPage(p_window, currGameMgr))){
-                break;
-            }*/
+            // Conflict problem after break mode
+            //if (!(exitStatut=displayBreakSubPage(p_window, currGameMgr))){
+              //  break;
+            //}
         }
 
 
