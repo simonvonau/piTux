@@ -18,6 +18,7 @@
 #define TAG_COLL_WEAK_BLOCK 2
 #define TAG_COLL_ENEMY 3
 #define TAG_COLL_FIRE_BALL 4
+#define TAG_COLL_TUX 10
 
 // Game settings
 #define GRAVITY_SPEED 200 // Speed in pixel/second

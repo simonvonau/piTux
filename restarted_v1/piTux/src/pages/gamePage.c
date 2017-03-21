@@ -129,9 +129,9 @@ int displayGamePage(SDL_Window *p_window, char *levelPath, int levelPathSize, Ga
         SDL_BlitSurface(lifesLeft, NULL, SDL_GetWindowSurface(p_window), &lifeLeftPos);
         SDL_BlitSurface(coinLeft, NULL, SDL_GetWindowSurface(p_window), &coinPos);
         SDL_BlitSurface(timeLeft, NULL, SDL_GetWindowSurface(p_window), &timeLeftPos);
-        sprintf(temp_str, "%d", currGameMgr->herosMgr->heros->lifesLeft);
+        sprintf(temp_str, "%d", currGameMgr->herosMgr->heroInstance->lifesLeft);
         setTextLayout(p_window, temp_str, 5, font1, textColor, lifeLeftPosText);
-        sprintf(temp_str, "%d", currGameMgr->herosMgr->heros->nbCoins);
+        sprintf(temp_str, "%d", currGameMgr->herosMgr->heroInstance->nbCoins);
         setTextLayout(p_window, temp_str, 5, font1, textColor, coinPosText);
         //setTextLayout(p_window, setTimeLayout(currLevelManager->currLevel->currTime,4)
                       //, 4, font1, timeLeftColor, timeLeftPosText);

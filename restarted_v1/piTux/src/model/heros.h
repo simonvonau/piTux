@@ -15,32 +15,19 @@
 
 
 typedef struct{
-    SDL_Surface **** sprites; // [currState][currActionId][currSpriteId]
-    int **spriteDuration; // Time between 2 sprites of an action
-    Collider *** herosColl;//[currState][currActionid]
+    int id; // Each type of Hero is referenced by it's id
+    SDL_Surface **** sprites; // [State][actionId][SpriteId]
+    int **spriteDuration; //[State][Actionid] Time between 2 sprites of an action
+    Collider *** herosColl;//[State][Actionid] Collider (1collider per action)
     int stateSize;// currently 2 but can change if i want add more states (like invicible, fly mode, ...)
     int *actionSize;
     int **spriteSize;
-    int currState;// Is tux big(1) or small(0)
-    int currAction;
-    int currSprite;
-    int isDead;
     int speed, jumpSpeed;
-    int lifesLeft;
-    int nbCoins;
-    int lastMovementTime;// Last time when tux move
     int timeBeforeIdle;// Time before going to idle mode
-    int isTouchingGround;
-    int jumpKeyPressed;// (0 or 1)When player press the jump key
-    int jumpStartTime;// Time at jump start
     int jumpDuration;// Time between jump start and jump max height
-    int posX, posY, lastX, lastY;
-    int currentTime;
 }Heros;
 
 Heros *initHeros(char path[FILE_PATH_SIZE_MAX]);
-void refreshHeros(Heros * p_heros, int loopTime);
-void dieHeros(Heros * currHeros);
 void destroyHeros(Heros *currHeros);
 
 

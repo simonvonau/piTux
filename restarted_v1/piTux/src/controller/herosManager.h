@@ -10,12 +10,14 @@
 
 #include "../utils/reporting.h"
 #include "../model/heros.h"
+#include "../model/heroInstance.h"
 #include "../model/bonusInstance.h"
 #include "../controller/colliderManager.h"
 
 
 typedef struct{
     Heros *heros;
+    HeroInstance *heroInstance;
     char path[FILE_PATH_SIZE_MAX];
 }HerosManager;
 

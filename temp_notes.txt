@@ -3,11 +3,14 @@ This file help me to keep something in mind when i'm not on my private computer
 ---------------------------------------------------------------------------------------------
 
 TODO List for next time:
+	0)Create a "HeroInstance" Object to have the possibility of multiples heros in the same game
 	1)Hero collisions with the level
 	2)Gravity on hero
 	3)hero jump
 	4)Gather bonus
 	5)Die on enemy collisions or kill the enemy
+	
+	100) Check GameManager.loadLevelByGameMgr(...) (especiallty memory leaks)
 
 NB:
 	Update UML diagram

@@ -136,6 +136,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/model/game.h" />
+		<Unit filename="src/model/heroInstance.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/model/heroInstance.h" />
 		<Unit filename="src/model/heros.c">
 			<Option compilerVar="CC" />
 		</Unit>

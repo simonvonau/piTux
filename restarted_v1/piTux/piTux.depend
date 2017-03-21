@@ -1206,7 +1206,7 @@
 	"../model/enemy.h"
 	"../model/collider.h"
 
-1489581750 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\gamemanager.c
+1490099041 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\gamemanager.c
 	"gameManager.h"
 
 1488804405 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\gamemanager.h
@@ -1299,7 +1299,7 @@
 	"../controller/gameManager.h"
 	"../pages/textLayout.h"
 
-1483964652 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\global.h
+1490012005 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\global.h
 	<stdlib.h>
 	<stdio.h>
 
@@ -1436,7 +1436,7 @@
 	"../utils/loadImage.h"
 	"../utils/arrayProcessing.h"
 
-1489496012 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\heros.h
+1490100639 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\heros.h
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -1492,10 +1492,10 @@
 	"../controller/gameManager.h"
 	"../pages/textLayout.h"
 
-1489495767 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\herosmanager.c
+1490100313 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\herosmanager.c
 	"herosManager.h"
 
-1489581823 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\herosmanager.h
+1490099633 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\herosmanager.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -1503,6 +1503,7 @@
 	<SDL2/SDL_ttf.h>
 	"../utils/reporting.h"
 	"../model/heros.h"
+	"../model/heroInstance.h"
 	"../model/bonusInstance.h"
 	"../controller/colliderManager.h"
 
@@ -1556,7 +1557,7 @@
 1480940270 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\game.c
 	"game.h"
 
-1489496169 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\heros.c
+1490099319 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\heros.c
 	"heros.h"
 
 1485779078 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\level.c
@@ -1571,7 +1572,7 @@
 1483445638 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\creditspage.c
 	"creditsPage.h"
 
-1489409614 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\gamepage.c
+1490099239 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\gamepage.c
 	"gamePage.h"
 
 1485779797 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\leveleditorpage.c
@@ -1692,4 +1693,16 @@
 	"../model/enemy.h"
 	"../model/enemyInstance.h"
 	"../controller/colliderManager.h"
+
+1490100945 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\heroinstance.h
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"../model/collider.h"
+	"../utils/reporting.h"
+	"../global.h"
+	"../utils/arrayProcessing.h"
+
+1490099344 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\heroinstance.c
+	"heroInstance.h"
 

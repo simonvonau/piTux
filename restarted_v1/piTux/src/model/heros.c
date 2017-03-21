@@ -23,10 +23,11 @@ Heros *initHeros(char path[FILE_PATH_SIZE_MAX]){
             buff = splitString(line, ';', lineSizeMax, nbMaxElemPerLine, lineSizeMax);
 
             if(strcmp(buff[0], "[Header]") == 0){
-                res->stateSize = atoi(buff[1]);
-                res->speed = atoi(buff[2]);
-                res->jumpSpeed = atoi(buff[3]);
-                res->jumpDuration = atoi(buff[4]);
+                res->id = atoi(buff[1]);
+                res->stateSize = atoi(buff[2]);
+                res->speed = atoi(buff[3]);
+                res->jumpSpeed = atoi(buff[4]);
+                res->jumpDuration = atoi(buff[5]);
 
                 res->sprites = malloc(res->stateSize * sizeof(SDL_Surface ***));
                 res->spriteDuration = malloc(res->stateSize * sizeof(int *));
@@ -53,6 +54,7 @@ Heros *initHeros(char path[FILE_PATH_SIZE_MAX]){
             }else if(strcmp(buff[0], "[Action]") == 0){
                 res->spriteDuration[currentTuxState - 1][atoi(buff[1])] = atoi(buff[3]);
                 res->spriteSize[currentTuxState - 1][atoi(buff[1])] = atoi(buff[2]);
+                res->herosColl[currentTuxState - 1][atoi(buff[1])] = initNonRegisteredCollider(atoi(buff[4]), atoi(buff[5]), 0, 0, 0, TAG_COLL_TUX);
 
                 res->sprites[currentTuxState - 1][atoi(buff[1])] = malloc(atoi(buff[2]) * sizeof(SDL_Surface *));
                 if (res->sprites [currentTuxState - 1][atoi(buff[1])] == NULL){
@@ -75,7 +77,7 @@ Heros *initHeros(char path[FILE_PATH_SIZE_MAX]){
 
 
 
-    res->currState = 0;
+    /*res->currState = 0;
     res->currAction = 0;
     res->currSprite = 0;
     res->isDead = 0;
@@ -86,29 +88,12 @@ Heros *initHeros(char path[FILE_PATH_SIZE_MAX]){
     res->isTouchingGround = 0;
     res->jumpKeyPressed = 0;
     res->jumpStartTime = 0;
-    res->posX = 200;
-    res->posY = 200;
+    res->posX = 100;
+    res->posY = 400;
     res->lastX = 0;
     res->lastY = 0;
-    res->currentTime = 0;
+    res->currentTime = 0;*/
     return res;
-}//------------------------------------------------------------------------------------------------------------------------
-
-void refreshHeros(Heros * p_heros, int loopTime){
-// Refresh hero's sprites
-    p_heros->currentTime += loopTime;
-    // Changing sprite
-    if(p_heros->currentTime >= p_heros->spriteDuration[p_heros->currState][p_heros->currAction]){
-        p_heros->currentTime = 0;
-        p_heros->currSprite += 1;
-        p_heros->currSprite = p_heros->currSprite % p_heros->spriteSize[p_heros->currState][p_heros->currAction];
-    }
-
-}//------------------------------------------------------------------------------------------------------------------------
-
-void dieHeros(Heros * currHeros){
-// Kill a Heros
-    currHeros->isDead = 1;
 }//------------------------------------------------------------------------------------------------------------------------
 
 void destroyHeros(Heros *currHeros){
