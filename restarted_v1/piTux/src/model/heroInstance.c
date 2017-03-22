@@ -24,27 +24,50 @@ HeroInstance * initHeroInstance(){
     res->posY = 300;
     res->lastPosX = 150;
     res->lastPosY = 300;
+    res->movementProgressX = 0;
+    res->movementProgressY = 0;
     res->currentTime = 0;
     return res;
 }//------------------------------------------------------------------------------------------------------------------------
 
-/*void refreshHeroInstance(Heros * p_heros, int loopTime){
+void refreshHeroInstance(HeroInstance * p_heroInstance, Heros *p_heros, int loopTime){
 // Refresh hero's sprites
-    p_heros->currentTime += loopTime;
+    int movementY;
+    p_heroInstance->currentTime += loopTime;
     // Changing sprite
-    if(p_heros->currentTime >= p_heros->spriteDuration[p_heros->currState][p_heros->currAction]){
-        p_heros->currentTime = 0;
-        p_heros->currSprite += 1;
-        p_heros->currSprite = p_heros->currSprite % p_heros->spriteSize[p_heros->currState][p_heros->currAction];
+    if(p_heroInstance->currentTime >= p_heros->spriteDuration[p_heroInstance->currState][p_heroInstance->currAction]){
+        p_heroInstance->currentTime = 0;
+        p_heroInstance->currSprite += 1;
+        p_heroInstance->currSprite = p_heroInstance->currSprite % p_heros->spriteSize[p_heroInstance->currState][p_heroInstance->currAction];
+    }
+
+    // Gravity
+    p_heroInstance->movementProgressY -= loopTime / 1000.0 * GRAVITY_SPEED;
+    movementY = (int) p_heroInstance->movementProgressY;
+    if ( movementY >= 1 || movementY <= -1){
+        p_heroInstance->posY += movementY;
+        p_heroInstance->movementProgressY -= movementY;
     }
 
 }//------------------------------------------------------------------------------------------------------------------------
-*/
+
 /*void killHeroInstance(Hero s * currHeros){
 // Kill a Heros
     currHeros->isDead = 1;
 }//------------------------------------------------------------------------------------------------------------------------
 */
+void destroyHeroInstanceColliders(HeroInstance *p_heroInstance, Heros *p_heros){
+// Free HeroInstance's colliders
+    int i, j;
+    for(i = 0; i < p_heros->stateSize; i++){
+        for(j = 0; j < p_heros->actionSize[i]; j++){
+            destroyCollider(p_heroInstance->herosColl[i][j]);
+        }
+        free(p_heroInstance->herosColl[i]);
+    }
+    free(p_heroInstance->herosColl);
+
+}//------------------------------------------------------------------------------------------------------------------------
 
 void destroyHeroInstance(HeroInstance *p_heroInstance){
 // Free HeroInstance memory

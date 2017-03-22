@@ -27,11 +27,11 @@ void loadLevelByGameMgr(GameManager *currGameMgr, char *path, int pathSize){
     int i, j;
 
     //Destroying previous level if exists
-    //if(currGameMgr->levelManager->currLevel != NULL){destroyLevel(currGameMgr->levelManager->currLevel);}
+    if(currGameMgr->levelManager->currLevel != NULL){destroyLevel(currGameMgr->levelManager->currLevel);}
     loadLevelByLevelMgr(currGameMgr->levelManager, path, pathSize);
 
     // Destroying previous collisions if exists
-    //if(currGameMgr->collMgr != NULL){destroyColliderManager(currGameMgr->collMgr);}
+    if(currGameMgr->collMgr != NULL){destroyColliderManager(currGameMgr->collMgr);}
     currGameMgr->collMgr = initColliderManager();
 
     // Put Collider on each BlockInstance
@@ -44,6 +44,7 @@ void loadLevelByGameMgr(GameManager *currGameMgr, char *path, int pathSize){
         currGameMgr->levelManager->currLevel->blockInstances[i]->coll->posX = currGameMgr->levelManager->currLevel->blockInstances[i]->posX;
         currGameMgr->levelManager->currLevel->blockInstances[i]->coll->posY = currGameMgr->levelManager->currLevel->blockInstances[i]->posY;
     }
+
     // Put Collider on each BonusInstance
     for( i = 0; i < currGameMgr->levelManager->currLevel->bonusInstancesSize; i++){
         currGameMgr->levelManager->currLevel->bonusInstances[i]->coll = colliderDeepCopyByColliderManager(
@@ -54,6 +55,7 @@ void loadLevelByGameMgr(GameManager *currGameMgr, char *path, int pathSize){
         currGameMgr->levelManager->currLevel->bonusInstances[i]->coll->posX = currGameMgr->levelManager->currLevel->bonusInstances[i]->posX;
         currGameMgr->levelManager->currLevel->bonusInstances[i]->coll->posY = currGameMgr->levelManager->currLevel->bonusInstances[i]->posY;
     }
+
     // Put Collider on each EnemyInstance
     for( i = 0; i < currGameMgr->levelManager->currLevel->enemyInstancesSize; i++){
         currGameMgr->levelManager->currLevel->enemyInstances[i]->coll = colliderArrayDeepCopyByColliderManager(
@@ -71,8 +73,17 @@ void loadLevelByGameMgr(GameManager *currGameMgr, char *path, int pathSize){
             }else{
                 currGameMgr->levelManager->currLevel->enemyInstances[i]->coll[j]->isEnabled = 0;
             }
-
         }
+    }
+
+    // Put collider on the HeroInstance
+    currGameMgr->herosMgr->heroInstance->herosColl = malloc(sizeof(Collider **) * currGameMgr->herosMgr->heros->stateSize);
+    if(currGameMgr->herosMgr->heroInstance->herosColl == NULL) {reportErreur("GameManager.loadLevelByGameMgr():Cannot add collider to heroInstance");}
+    for( i = 0; i < currGameMgr->herosMgr->heros->stateSize; i++){
+       currGameMgr->herosMgr->heroInstance->herosColl[i] = colliderArrayDeepCopyByColliderManager(
+            currGameMgr->collMgr
+            ,currGameMgr->herosMgr->heros->herosColl[i]
+            ,currGameMgr->herosMgr->heros->actionSize[i]);
     }
 
 }//--------------------------------------------------------------------------------------------------------------------
@@ -172,8 +183,8 @@ void refreshGameByGameManager(GameManager *currGameMgr, int loopTime, int screen
     int margin = 200;
     int i;
 
-    //refreshHeros(currGameMgr->herosMgr->heros, loopTime);
-    //updateHeroBehaviour(currGameMgr->herosMgr->heros, currGameMgr->collMgr, loopTime);
+    refreshHeroInstance(currGameMgr->herosMgr->heroInstance, currGameMgr->herosMgr->heros, loopTime);
+    updateHeroBehaviour(currGameMgr->herosMgr->heroInstance, currGameMgr->collMgr, loopTime);
 
     refreshLevelByLevelManager(currGameMgr->levelManager->currLevel, currGameMgr->collMgr, loopTime
                     ,currGameMgr->allBlocks, currGameMgr->allBonus, currGameMgr->allEnemies);
@@ -203,6 +214,8 @@ void destroyLevelByGameManager(GameManager *currGameManager){
 
     destroyLevel(currGameManager->levelManager->currLevel);
     currGameManager->levelManager->currLevel = NULL;
+
+    destroyHeroInstanceColliders(currGameManager->herosMgr->heroInstance, currGameManager->herosMgr->heros);
 
 }//------------------------------------------------------------------------------------------------------------------------
 

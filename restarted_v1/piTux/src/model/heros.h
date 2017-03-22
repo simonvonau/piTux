@@ -19,7 +19,7 @@ typedef struct{
     SDL_Surface **** sprites; // [State][actionId][SpriteId]
     int **spriteDuration; //[State][Actionid] Time between 2 sprites of an action
     Collider *** herosColl;//[State][Actionid] Collider (1collider per action)
-    int stateSize;// currently 2 but can change if i want add more states (like invicible, fly mode, ...)
+    int stateSize;// currently 2 but can change if i want add more states (like invincible, fly mode, ...)
     int *actionSize;
     int **spriteSize;
     int speed, jumpSpeed;

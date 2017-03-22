@@ -13,7 +13,7 @@ _______________________
 [Sprite];0;data/img/tux/small/gameover-0.png;
 [Sprite];1;data/img/tux/small/gameover-1.png;
 _______________________
-[Action];3;8;300;49;48;
+[Action];3;8;80;49;48;
 [Sprite];0;data/img/tux/small/walk-0.png;
 [Sprite];1;data/img/tux/small/walk-1.png;
 [Sprite];2;data/img/tux/small/walk-2.png;

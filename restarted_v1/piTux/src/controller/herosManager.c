@@ -26,7 +26,7 @@ void initHerosByManager(HerosManager *herosMgr){
 
 }//------------------------------------------------------------------------------------------------------------------------
 
-void updateHeroBehaviour(Heros *currHeros, ColliderManager *collMgr, int loopTime){
+void updateHeroBehaviour(HeroInstance *currHeroInstance, ColliderManager *collMgr, int loopTime){
 // Update the hero behaviour (especially when he is touching something)
 
 }//------------------------------------------------------------------------------------------------------------------------
@@ -39,13 +39,15 @@ void moveHeros(Heros *currHeros, int direction, int timeLoop){
 
 }//------------------------------------------------------------------------------------------------------------------------
 
-void displayHeros(Heros *currHeros, SDL_Window *p_window){
+void displayHeros(HerosManager *currHerosMgr, SDL_Window *p_window){
 // Display the hero
-    /*SDL_Rect objectPos = { currHeros->posX, currHeros->posX + currHeros->herosColl[currHeros->currState][currHeros->currAction]->width
-                            , currHeros->posY, currHeros->posY + currHeros->herosColl[currHeros->currState][currHeros->currAction]->height};
+    SDL_Rect objectPos = { currHerosMgr->heroInstance->posX
+    , currHerosMgr->heroInstance->posX + currHerosMgr->heroInstance->herosColl[currHerosMgr->heroInstance->currState][currHerosMgr->heroInstance->currAction]->width
+    , currHerosMgr->heroInstance->posY
+    , currHerosMgr->heroInstance->posY + currHerosMgr->heroInstance->herosColl[currHerosMgr->heroInstance->currState][currHerosMgr->heroInstance->currAction]->height};
 
-    SDL_BlitSurface(currHeros->sprites[currHeros->currState][currHeros->currAction][currHeros->currSprite],
-                             NULL, SDL_GetWindowSurface(p_window), &objectPos);*/
+    SDL_BlitSurface(currHerosMgr->heros->sprites[currHerosMgr->heroInstance->currState][currHerosMgr->heroInstance->currAction][currHerosMgr->heroInstance->currSprite],
+                             NULL, SDL_GetWindowSurface(p_window), &objectPos);
 }//------------------------------------------------------------------------------------------------------------------------
 
 void testHerosCollisions(Heros *currHeros){

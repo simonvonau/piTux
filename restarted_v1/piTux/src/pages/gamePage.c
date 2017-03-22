@@ -123,7 +123,7 @@ int displayGamePage(SDL_Window *p_window, char *levelPath, int levelPathSize, Ga
         displayLevelByLevelManager(currGameMgr->levelManager->currLevel, p_window, 1, deplaX, deplaY
                      ,currGameMgr->allBlocks, currGameMgr->allBonus, currGameMgr->allEnemies);
 
-        displayHeros(currGameMgr->herosMgr->heros, p_window);
+        displayHeros(currGameMgr->herosMgr, p_window);
 
         // Lifes, coins and timeleft
         SDL_BlitSurface(lifesLeft, NULL, SDL_GetWindowSurface(p_window), &lifeLeftPos);
@@ -146,7 +146,7 @@ int displayGamePage(SDL_Window *p_window, char *levelPath, int levelPathSize, Ga
         lastEvent = event;
     }
 //-------------------------------- Free memory--------------------------------------------
-    destroyLevel(currGameMgr->levelManager->currLevel);
+    destroyLevelByGameManager(currGameMgr);
     SDL_FreeSurface(background1);
     SDL_FreeSurface(redBackground);
     SDL_FreeSurface(lifesLeft);
