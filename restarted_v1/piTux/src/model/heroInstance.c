@@ -48,7 +48,6 @@ void refreshHeroInstance(HeroInstance * p_heroInstance, Heros *p_heros, int loop
         p_heroInstance->posY += movementY;
         p_heroInstance->movementProgressY -= movementY;
     }
-
 }//------------------------------------------------------------------------------------------------------------------------
 
 /*void killHeroInstance(Hero s * currHeros){

@@ -84,7 +84,18 @@ void loadLevelByGameMgr(GameManager *currGameMgr, char *path, int pathSize){
             currGameMgr->collMgr
             ,currGameMgr->herosMgr->heros->herosColl[i]
             ,currGameMgr->herosMgr->heros->actionSize[i]);
+        // Update HeroInstance collider
+        for(j = 0; j < currGameMgr->herosMgr->heros->actionSize[i]; j++){
+            currGameMgr->herosMgr->heroInstance->herosColl[i][j]->posX = currGameMgr->herosMgr->heroInstance->posX;
+            currGameMgr->herosMgr->heroInstance->herosColl[i][j]->posY = currGameMgr->herosMgr->heroInstance->posY;
+            if (i == currGameMgr->herosMgr->heroInstance->currState && j == currGameMgr->herosMgr->heroInstance->currAction){
+                currGameMgr->herosMgr->heroInstance->herosColl[i][j]->isEnabled = 1;
+            }else{
+                currGameMgr->herosMgr->heroInstance->herosColl[i][j]->isEnabled = 0;
+            }
+        }
     }
+
 
 }//--------------------------------------------------------------------------------------------------------------------
 
@@ -184,7 +195,6 @@ void refreshGameByGameManager(GameManager *currGameMgr, int loopTime, int screen
     int i;
 
     refreshHeroInstance(currGameMgr->herosMgr->heroInstance, currGameMgr->herosMgr->heros, loopTime);
-    updateHeroBehaviour(currGameMgr->herosMgr->heroInstance, currGameMgr->collMgr, loopTime);
 
     refreshLevelByLevelManager(currGameMgr->levelManager->currLevel, currGameMgr->collMgr, loopTime
                     ,currGameMgr->allBlocks, currGameMgr->allBonus, currGameMgr->allEnemies);
@@ -195,8 +205,9 @@ void refreshGameByGameManager(GameManager *currGameMgr, int loopTime, int screen
                     , deplaY - margin
                     , deplaY + margin + screenHeight);
 
-    // Problem: Multiples calls of updateEnemyBehaviour() => spends process time
+    updateHeroBehaviour(currGameMgr->herosMgr->heroInstance, currGameMgr->collMgr, loopTime);
 
+    // Problem: Multiples calls of updateEnemyBehaviour() => spends process time
     for(i = 0; i < currGameMgr->levelManager->currLevel->enemyInstancesSize; i++){
         updateEnemyBehaviour(currGameMgr->levelManager->currLevel->enemyInstances[i]
                              ,*currGameMgr->allEnemies[currGameMgr->levelManager->currLevel->enemyInstances[i]->idEnemy]

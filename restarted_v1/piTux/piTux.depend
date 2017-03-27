@@ -811,10 +811,10 @@
 1476736263 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\utils\loadimage.c
 	"loadImage.h"
 
-1483964652 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\collidermanager.c
+1490618963 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\collidermanager.c
 	"colliderManager.h"
 
-1488804370 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\collidermanager.h
+1488807970 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\collidermanager.h
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -822,17 +822,17 @@
 	"../model/collider.h"
 	"../model/collision.h"
 
-1476773754 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\utils\reporting.h
+1476777354 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\utils\reporting.h
 	<stdlib.h>
 	<stdio.h>
 
-1483964652 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\collider.h
+1483968252 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\collider.h
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
 	"../utils/reporting.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\collision.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\collision.h
 	<stdlib.h>
 	<stdio.h>
 	"../utils/reporting.h"
@@ -847,7 +847,7 @@
 	"../model/enemy.h"
 	"../model/enemyInstance.h"
 
-1482148223 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\enemy.h
+1482151823 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\enemy.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -859,14 +859,14 @@
 	"../model/collider.h"
 	"../utils/arrayProcessing.h"
 
-1476773754 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\utils\loadimage.h
+1476777354 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\utils\loadimage.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
 
-1476773752 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl.h
+1476777352 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl.h
 	"SDL_main.h"
 	"SDL_stdinc.h"
 	"SDL_assert.h"
@@ -897,12 +897,12 @@
 	"begin_code.h"
 	"close_code.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_main.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_main.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_stdinc.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_stdinc.h
 	"SDL_config.h"
 	<sys/types.h>
 	<stdio.h>
@@ -931,34 +931,34 @@
 	<stdlib.h>
 	"close_code.h"
 
-1476773752 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_config.h
+1476777352 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_config.h
 	"SDL_platform.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_platform.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_platform.h
 	"AvailabilityMacros.h"
 	"TargetConditionals.h"
 	<winapifamily.h>
 	"begin_code.h"
 	"close_code.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\begin_code.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\begin_code.h
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\close_code.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\close_code.h
 
-1476773752 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_assert.h
+1476777352 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_assert.h
 	"SDL_config.h"
 	"begin_code.h"
 	<signal.h>
 	"close_code.h"
 
-1476773752 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_atomic.h
+1476777352 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_atomic.h
 	"SDL_stdinc.h"
 	"SDL_platform.h"
 	"begin_code.h"
 	<mbarrier.h>
 	"close_code.h"
 
-1476773752 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_audio.h
+1476777352 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_audio.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_endian.h"
@@ -968,24 +968,24 @@
 	"begin_code.h"
 	"close_code.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_error.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_error.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_endian.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_endian.h
 	"SDL_stdinc.h"
 	<endian.h>
 	"begin_code.h"
 	"close_code.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_mutex.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_mutex.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_thread.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_thread.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_atomic.h"
@@ -994,18 +994,18 @@
 	<process.h>
 	"close_code.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_rwops.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_rwops.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476773752 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_clipboard.h
+1476777352 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_clipboard.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_cpuinfo.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_cpuinfo.h
 	"SDL_stdinc.h"
 	<intrin.h>
 	<intrin.h>
@@ -1017,7 +1017,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_events.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_events.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
@@ -1031,7 +1031,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_video.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_video.h
 	"SDL_stdinc.h"
 	"SDL_pixels.h"
 	"SDL_rect.h"
@@ -1039,12 +1039,12 @@
 	"begin_code.h"
 	"close_code.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_pixels.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_pixels.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_rect.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_rect.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_pixels.h"
@@ -1052,7 +1052,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_surface.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_surface.h
 	"SDL_stdinc.h"
 	"SDL_pixels.h"
 	"SDL_rect.h"
@@ -1061,11 +1061,11 @@
 	"begin_code.h"
 	"close_code.h"
 
-1476773752 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_blendmode.h
+1476777352 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_blendmode.h
 	"begin_code.h"
 	"close_code.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_keyboard.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_keyboard.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_keycode.h"
@@ -1073,27 +1073,27 @@
 	"begin_code.h"
 	"close_code.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_keycode.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_keycode.h
 	"SDL_stdinc.h"
 	"SDL_scancode.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_scancode.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_scancode.h
 	"SDL_stdinc.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_mouse.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_mouse.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_joystick.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_joystick.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_gamecontroller.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_gamecontroller.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_rwops.h"
@@ -1101,11 +1101,11 @@
 	"begin_code.h"
 	"close_code.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_quit.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_quit.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_gesture.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_gesture.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
@@ -1113,60 +1113,60 @@
 	"begin_code.h"
 	"close_code.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_touch.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_touch.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_filesystem.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_filesystem.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_haptic.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_haptic.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_joystick.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_hints.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_hints.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_loadso.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_loadso.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_log.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_log.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_messagebox.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_messagebox.h
 	"SDL_stdinc.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_power.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_power.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_render.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_render.h
 	"SDL_stdinc.h"
 	"SDL_rect.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_system.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_system.h
 	"SDL_stdinc.h"
 	"SDL_keyboard.h"
 	"SDL_render.h"
@@ -1174,29 +1174,29 @@
 	"begin_code.h"
 	"close_code.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_timer.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_timer.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_version.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_version.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_image.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_image.h
 	"SDL.h"
 	"SDL_version.h"
 	"begin_code.h"
 	"close_code.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_ttf.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_ttf.h
 	"SDL.h"
 	"begin_code.h"
 	"close_code.h"
 
-1483964652 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\enemyinstance.h
+1483968252 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\enemyinstance.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -1206,10 +1206,10 @@
 	"../model/enemy.h"
 	"../model/collider.h"
 
-1490186960 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\gamemanager.c
+1490618275 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\gamemanager.c
 	"gameManager.h"
 
-1488804405 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\gamemanager.h
+1488808005 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\gamemanager.h
 	<stdlib.h>
 	<stdio.h>
 	"../utils/reporting.h"
@@ -1222,21 +1222,21 @@
 	"../model/block.h"
 	"../model/bonus.h"
 
-1482323427 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\translationmanager.h
+1482327027 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\translationmanager.h
 	<stdlib.h>
 	<stdio.h>
 	"../utils/reporting.h"
 	"../controller/translationManager.h"
 	"../model/translation.h"
 
-1483445638 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\translation.h
+1483449238 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\translation.h
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
 	"../utils/reporting.h"
 	"../utils/arrayProcessing.h"
 
-1482148223 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\game.h
+1482151823 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\game.h
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -1244,7 +1244,7 @@
 	"../global.h"
 	"../utils/arrayProcessing.h"
 
-1483445638 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\block.h
+1483449238 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\block.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -1256,7 +1256,7 @@
 	"../model/collider.h"
 	"../utils/arrayProcessing.h"
 
-1482148223 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\bonus.h
+1482151823 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\bonus.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -1268,10 +1268,10 @@
 	"../model/collider.h"
 	"../utils/arrayProcessing.h"
 
-1483446898 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\gui_manager.c
+1483450498 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\gui_manager.c
 	"gui_manager.h"
 
-1483445638 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\gui_manager.h
+1483449238 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\gui_manager.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -1287,7 +1287,7 @@
 	"../pages/quitPage.h"
 	"../pages/settingsPage.h"
 
-1483445638 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\mainpage.h
+1483449238 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\mainpage.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -1299,11 +1299,11 @@
 	"../controller/gameManager.h"
 	"../pages/textLayout.h"
 
-1490012005 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\global.h
+1490015605 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\global.h
 	<stdlib.h>
 	<stdio.h>
 
-1477550941 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\textlayout.h
+1477554541 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\textlayout.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -1312,13 +1312,13 @@
 	"../global.h"
 	"../utils/arrayProcessing.h"
 
-1476773754 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\utils\arrayprocessing.h
+1476777354 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\utils\arrayprocessing.h
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
 	"../model/block.h"
 
-1483445638 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\creditspage.h
+1483449238 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\creditspage.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -1330,7 +1330,7 @@
 	"../pages/textLayout.h"
 	"../global.h"
 
-1483445638 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\gamepage.h
+1483449238 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\gamepage.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -1349,7 +1349,7 @@
 	"../model/level.h"
 	"../model/button.h"
 
-1483445638 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\levelmanager.h
+1483449238 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\levelmanager.h
 	<stdlib.h>
 	<stdio.h>
 	"../utils/reporting.h"
@@ -1364,7 +1364,7 @@
 	"../model/bonusInstance.h"
 	"../model/enemyInstance.h"
 
-1483445638 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\level.h
+1483449238 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\level.h
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -1377,14 +1377,14 @@
 	"../model/bonusInstance.h"
 	"../model/enemyInstance.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\blockinstance.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\blockinstance.h
 	<stdlib.h>
 	<stdio.h>
 	"../utils/reporting.h"
 	"../model/block.h"
 	"../model/collider.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\bonusinstance.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\bonusinstance.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -1394,7 +1394,7 @@
 	"../model/collider.h"
 	"../model/bonus.h"
 
-1483445638 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\leveleditorpage.h
+1483449238 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\leveleditorpage.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -1413,7 +1413,7 @@
 	"../model/level.h"
 	"../model/button.h"
 
-1483445639 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\sub_pages\help_page.h
+1483449239 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\sub_pages\help_page.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -1426,7 +1426,7 @@
 	"../../pages/textLayout.h"
 	"../../model/button.h"
 
-1482148223 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\button.h
+1482151823 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\button.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -1436,7 +1436,7 @@
 	"../utils/loadImage.h"
 	"../utils/arrayProcessing.h"
 
-1490185550 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\heros.h
+1490189150 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\heros.h
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -1448,7 +1448,7 @@
 	"../global.h"
 	"../utils/arrayProcessing.h"
 
-1483445638 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\levelselectionpage.h
+1483449238 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\levelselectionpage.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -1461,14 +1461,14 @@
 	"../model/levelIcon.h"
 	"../pages/textLayout.h"
 
-1482148223 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\levelicon.h
+1482151823 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\levelicon.h
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
 	"../utils/reporting.h"
 	"../utils/arrayProcessing.h"
 
-1483445638 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\quitpage.h
+1483449238 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\quitpage.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -1480,7 +1480,7 @@
 	"../controller/gameManager.h"
 	"../pages/textLayout.h"
 
-1483445638 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\settingspage.h
+1483449238 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\settingspage.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -1492,10 +1492,10 @@
 	"../controller/gameManager.h"
 	"../pages/textLayout.h"
 
-1490187055 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\herosmanager.c
+1490617893 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\herosmanager.c
 	"herosManager.h"
 
-1490186942 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\herosmanager.h
+1490190542 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\herosmanager.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -1509,13 +1509,13 @@
 
 1476773753 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\leveliconmanager.c
 
-1488801998 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\levelmanager.c
+1488805598 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\levelmanager.c
 	"levelManager.h"
 
-1483445638 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\translationmanager.c
+1483449238 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\translationmanager.c
 	"translationManager.h"
 
-1485951647 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\main.c
+1485955247 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\main.c
 	<stdio.h>
 	<stdlib.h>
 	<SDL2/SDL.h>
@@ -1527,73 +1527,73 @@
 	"controller/gui_manager.h"
 	"controller/gameManager.h"
 
-1481546278 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\block.c
+1481549878 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\block.c
 	"block.h"
 
-1480334438 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\blockinstance.c
+1480338038 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\blockinstance.c
 	"blockInstance.h"
 
-1481546297 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\bonus.c
+1481549897 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\bonus.c
 	"bonus.h"
 
-1480334438 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\bonusinstance.c
+1480338038 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\bonusinstance.c
 	"bonusInstance.h"
 
-1479818541 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\button.c
+1479822141 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\button.c
 	"button.h"
 
-1488801355 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\collider.c
+1488804955 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\collider.c
 	"collider.h"
 
-1476773753 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\collision.c
+1476777353 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\collision.c
 	"collision.h"
 
-1481546312 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\enemy.c
+1481549912 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\enemy.c
 	"enemy.h"
 
-1485780862 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\enemyinstance.c
+1485784462 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\enemyinstance.c
 	"enemyInstance.h"
 
-1480940270 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\game.c
+1480943870 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\game.c
 	"game.h"
 
-1490100520 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\heros.c
+1490104120 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\heros.c
 	"heros.h"
 
-1485779078 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\level.c
+1485782678 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\level.c
 	"level.h"
 
-1480940270 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\levelicon.c
+1480943870 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\levelicon.c
 	"levelIcon.h"
 
-1483445638 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\translation.c
+1483449238 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\translation.c
 	"translation.h"
 
-1483445638 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\creditspage.c
+1483449238 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\creditspage.c
 	"creditsPage.h"
 
-1490186001 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\gamepage.c
+1490189601 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\gamepage.c
 	"gamePage.h"
 
-1485779797 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\leveleditorpage.c
+1485783397 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\leveleditorpage.c
 	"levelEditorPage.h"
 
-1483445638 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\levelselectionpage.c
+1483449238 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\levelselectionpage.c
 	"levelSelectionPage.h"
 
-1483445638 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\mainpage.c
+1483449238 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\mainpage.c
 	"mainPage.h"
 
-1483445638 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\quitpage.c
+1483449238 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\quitpage.c
 	"quitPage.h"
 
-1483445638 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\settingspage.c
+1483449238 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\settingspage.c
 	"mainPage.h"
 
-1489407067 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\sub_pages\break_page.c
+1489410667 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\sub_pages\break_page.c
 	"break_page.h"
 
-1489407076 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\sub_pages\break_page.h
+1489410676 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\sub_pages\break_page.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -1606,19 +1606,19 @@
 	"../../controller/gameManager.h"
 	"../../model/button.h"
 
-1483445639 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\sub_pages\help_page.c
+1483449239 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\sub_pages\help_page.c
 	"help_page.h"
 
-1477550941 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\textlayout.c
+1477554541 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\pages\textlayout.c
 	"textLayout.h"
 
-1476789950 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\utils\arrayprocessing.c
+1476793550 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\utils\arrayprocessing.c
 	"arrayProcessing.h"
 
-1476773754 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\utils\loadimage.c
+1476777354 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\utils\loadimage.c
 	"loadImage.h"
 
-1477550941 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\utils\reporting.c
+1477554541 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\utils\reporting.c
 	"reporting.h"
 
 1451801792 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_mixer.h
@@ -1645,7 +1645,7 @@
 	<SDL2/SDL_mixer.h>
 	"../utils/reporting.h"
 
-1476773753 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_mixer.h
+1476777353 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\include\sdl2\sdl_mixer.h
 	"SDL_stdinc.h"
 	"SDL_rwops.h"
 	"SDL_audio.h"
@@ -1683,10 +1683,10 @@
 1483645113 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\enemybehaviour.c
 	"enemyBehaviour.h"
 
-1485780292 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\enemybehaviour.c
+1485783892 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\enemybehaviour.c
 	"enemyBehaviour.h"
 
-1483964652 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\enemybehaviour.h
+1483968252 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\enemybehaviour.h
 	<stdlib.h>
 	<stdio.h>
 	"../global.h"
@@ -1694,7 +1694,7 @@
 	"../model/enemyInstance.h"
 	"../controller/colliderManager.h"
 
-1490187400 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\heroinstance.h
+1490191000 c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\heroinstance.h
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -1704,6 +1704,6 @@
 	"../global.h"
 	"../utils/arrayProcessing.h"
 
-1490187529 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\heroinstance.c
+1490616618 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\heroinstance.c
 	"heroInstance.h"
 

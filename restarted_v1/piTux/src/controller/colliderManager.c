@@ -204,6 +204,12 @@ void updateCollisions(ColliderManager *currColliderManager, int leftLimit, int r
 
 
     for(i = 0; i < currColliderManager->allCollidersSize; i++){
+        //*** Temporary
+        if (currColliderManager->allColliders[i]->isEnabled){
+            printf("collider enabled (x, y, w, h): %d,%d,%d,%d \n",
+                   currColliderManager->allColliders[i]->posX, currColliderManager->allColliders[i]->posY
+                   , currColliderManager->allColliders[i]->width, currColliderManager->allColliders[i]->height);
+        }
         // Only takes collider enabled and inside the screen (leftLimit, rightLimit, bottomLimit, topLimit)
         if (currColliderManager->allColliders[i]->isEnabled
         && currColliderManager->allColliders[i]->posX < rightLimit
@@ -247,7 +253,9 @@ void getColliderTouching(ColliderManager *collMgr,int colliderId, Collider ***re
         }
     }
     // Reduce res length
-    realloc(*res, *resSize * sizeof(Collider *));
+    if(*resSize < collMgr->allCollisionsSize){
+        realloc(*res, *resSize * sizeof(Collider *));
+    }
 }//------------------------------------------------------------------------------------------------------------------------
 
 void destroyColliderManager(ColliderManager *currColliderManager){

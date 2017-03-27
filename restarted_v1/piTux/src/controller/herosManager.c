@@ -28,7 +28,24 @@ void initHerosByManager(HerosManager *herosMgr){
 
 void updateHeroBehaviour(HeroInstance *currHeroInstance, ColliderManager *collMgr, int loopTime){
 // Update the hero behaviour (especially when he is touching something)
+    Collider **contactPoints;
+    int contactPointsSize;
+    int i;
 
+    // Collision detection
+    getColliderTouching(collMgr, currHeroInstance->herosColl[currHeroInstance->currState][currHeroInstance->currAction]
+                        , &contactPoints, &contactPointsSize);
+    printf("contactpointsSize: %d \n", contactPointsSize);
+    for (i = 0; i < contactPointsSize; i++){
+        // Testing if vertical collision
+        if( currHeroInstance->herosColl[currHeroInstance->currState][currHeroInstance->currAction]->lastPosY >= contactPoints[i]->posY + contactPoints[i]->height){
+            //printf("vertical collision \n");
+            currHeroInstance->posY = contactPoints[i]->posY + contactPoints[i]->height;
+        }
+    }
+    // Update Collider position
+    currHeroInstance->herosColl[currHeroInstance->currState][currHeroInstance->currAction]->posX = currHeroInstance->posX;
+    currHeroInstance->herosColl[currHeroInstance->currState][currHeroInstance->currAction]->posY = currHeroInstance->posY;
 }//------------------------------------------------------------------------------------------------------------------------
 
 void jumpHeros(Heros *currHeros){
@@ -41,10 +58,10 @@ void moveHeros(Heros *currHeros, int direction, int timeLoop){
 
 void displayHeros(HerosManager *currHerosMgr, SDL_Window *p_window){
 // Display the hero
-    SDL_Rect objectPos = { currHerosMgr->heroInstance->posX
-    , currHerosMgr->heroInstance->posX + currHerosMgr->heroInstance->herosColl[currHerosMgr->heroInstance->currState][currHerosMgr->heroInstance->currAction]->width
-    , currHerosMgr->heroInstance->posY
-    , currHerosMgr->heroInstance->posY + currHerosMgr->heroInstance->herosColl[currHerosMgr->heroInstance->currState][currHerosMgr->heroInstance->currAction]->height};
+    SDL_Rect objectPos = {0, 0, 0, 0};
+    objectPos.x = currHerosMgr->heroInstance->posX;
+    objectPos.y = SDL_GetWindowSurface(p_window)->h - currHerosMgr->heroInstance->posY
+        - currHerosMgr->heroInstance->herosColl[currHerosMgr->heroInstance->currState][currHerosMgr->heroInstance->currAction]->height;
 
     SDL_BlitSurface(currHerosMgr->heros->sprites[currHerosMgr->heroInstance->currState][currHerosMgr->heroInstance->currAction][currHerosMgr->heroInstance->currSprite],
                              NULL, SDL_GetWindowSurface(p_window), &objectPos);
