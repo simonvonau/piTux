@@ -72,20 +72,24 @@ Collider ** colliderArrayDeepCopyByColliderManager(ColliderManager *currCollider
         if (res == NULL){
             reportErreur("Error malloc colliderArrayDeepCopy()");
         }
-        for(i=0; i < currSize; i++){
+        for(i = 0; i < currSize; i++){
             res[i] = colliderDeepCopyByColliderManager(currColliderManager, coll[i]);
         }
     }
     return res;
 }//------------------------------------------------------------------------------------------------------------------------
 
-int removeCollider(ColliderManager *currColliderManager, int idCollider){
+int removeCollider(ColliderManager *currColliderManager, int idCollider, int p_freeMemory){
 // Destroy a collider
     int i;
     int wasFounded = 0;
+    Collider **res;
     for(i = 0; i < currColliderManager->allCollidersSize; i++){
         if(currColliderManager->allColliders[i]->id == idCollider){
-            destroyCollider(currColliderManager->allColliders[i]);
+            // In most of the case the memory is deallocated from the hero/eemy/bonus Instance object
+            if(p_freeMemory){
+                destroyCollider(currColliderManager->allColliders[i]);
+            }
             if (wasFounded){
                 reportErreur("destroyCollider(): Error multiple occurence of this ID");
             }
@@ -94,13 +98,20 @@ int removeCollider(ColliderManager *currColliderManager, int idCollider){
         // Put the collider to delete at the end
         if (wasFounded && i < currColliderManager->allCollidersSize - 1){
             currColliderManager->allColliders[i] = currColliderManager->allColliders[i + 1];
-            i -= 1;
         }
     }
-
-    if( realloc(currColliderManager->allColliders, (currColliderManager->allCollidersSize - 1) * sizeof(Collider *)) == NULL){
-        reportErreur("colliderManager:destroyCollider(...): error realloc()");
+    res = malloc((currColliderManager->allCollidersSize - 1) * sizeof(Collider *));
+    if(res == NULL){reportErreur("colliderManager:destroyCollider(...): error malloc()");}
+    for(i = 0; i < currColliderManager->allCollidersSize - 1; i++){
+        res[i] = currColliderManager->allColliders[i];
     }
+    free(currColliderManager->allColliders);
+    currColliderManager->allColliders = res;
+
+    //*** Realloc doesn't work... (weird)
+    /*if( realloc(currColliderManager->allColliders, (currColliderManager->allCollidersSize - 1) * sizeof(Collider *)) == NULL){
+        reportErreur("colliderManager:destroyCollider(...): error realloc()");
+    }*/
     currColliderManager->allCollidersSize -= 1;
     return wasFounded;
 }//------------------------------------------------------------------------------------------------------------------------
@@ -167,6 +178,7 @@ void createCollision(ColliderManager *currCollMgr, int coll1Id, int coll2Id){
         currCollMgr->allCollisionsSize += 1;
         // Create the new Collision
         currCollMgr->allCollisions[currCollMgr->allCollisionsSize - 1] = initCollision(availableId, coll1Id, coll2Id);
+
     }
 }//------------------------------------------------------------------------------------------------------------------------
 
@@ -205,12 +217,12 @@ void updateCollisions(ColliderManager *currColliderManager, int leftLimit, int r
 
     for(i = 0; i < currColliderManager->allCollidersSize; i++){
         //*** Temporary
-        if (currColliderManager->allColliders[i]->isEnabled){
+        /*if (currColliderManager->allColliders[i]->isEnabled){
             printf("collider enabled (x, y, w, h): %d,%d,%d,%d \n",
                    currColliderManager->allColliders[i]->posX, currColliderManager->allColliders[i]->posY
                    , currColliderManager->allColliders[i]->width, currColliderManager->allColliders[i]->height);
-        }
-        // Only takes collider enabled and inside the screen (leftLimit, rightLimit, bottomLimit, topLimit)
+        }*/
+        // Only takes collider enabled and inside the screen (leftLimit, rightLimit, bottomLimit, topLimit) to decrease the processing time
         if (currColliderManager->allColliders[i]->isEnabled
         && currColliderManager->allColliders[i]->posX < rightLimit
         && currColliderManager->allColliders[i]->posX + currColliderManager->allColliders[i]->width > leftLimit
@@ -224,7 +236,6 @@ void updateCollisions(ColliderManager *currColliderManager, int leftLimit, int r
                         if(currColliderManager->allColliders[i]->posY < currColliderManager->allColliders[j]->posY + currColliderManager->allColliders[j]->height
                         && currColliderManager->allColliders[i]->posY + currColliderManager->allColliders[i]->height > currColliderManager->allColliders[j]->posY){
                             createCollision(currColliderManager, currColliderManager->allColliders[i]->id, currColliderManager->allColliders[j]->id);
-
                         }
                     }
                 }
@@ -234,7 +245,7 @@ void updateCollisions(ColliderManager *currColliderManager, int leftLimit, int r
 }//------------------------------------------------------------------------------------------------------------------------
 
 void getColliderTouching(ColliderManager *collMgr,int colliderId, Collider ***res, int *resSize){
-// Find Colliders which collide with given id Collider
+// Find Colliders which collides with given id Collider
     int i;
 
     *res = malloc(collMgr->allCollisionsSize * sizeof(Collider *));
@@ -244,6 +255,7 @@ void getColliderTouching(ColliderManager *collMgr,int colliderId, Collider ***re
     }
 
     for(i = 0; i < collMgr->allCollisionsSize; i++){
+        // If one of the 2 colliders has the right id
         if(collMgr->allCollisions[i]->coll1Id == colliderId){
             (*res)[*resSize] = getColliderById(collMgr, collMgr->allCollisions[i]->coll2Id);
             *resSize += 1;
@@ -252,7 +264,7 @@ void getColliderTouching(ColliderManager *collMgr,int colliderId, Collider ***re
             *resSize += 1;
         }
     }
-    // Reduce res length
+    // Reduce res allocated memory
     if(*resSize < collMgr->allCollisionsSize){
         realloc(*res, *resSize * sizeof(Collider *));
     }

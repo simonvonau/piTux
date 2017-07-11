@@ -23,11 +23,11 @@ typedef struct{
 
 
 HerosManager *initHerosManager(char path[FILE_PATH_SIZE_MAX]);
-
-void updateHeroBehaviour(HeroInstance *currHeroInstance, ColliderManager *collMgr, int loopTime);
+void initHerosInstanceByManager(HerosManager *herosMgr);
+void updateHeroBehaviourAfterCollisionDetection(HeroInstance *currHeroInstance, Heros * p_heros, ColliderManager *collMgr, int currentTime, int loopTime);
 void jumpHeros(Heros *currHeros);
 void moveHeros(Heros *currHeros, int direction, int timeLoop);
-void displayHeros(HerosManager *currHerosMgr, SDL_Window *p_window);
+void displayHeros(HerosManager *currHerosMgr, SDL_Window *p_window, int p_displayedPosX, int p_displayedPosY);
 void testHerosCollisions(Heros *currHeros);
 void herosGatherBonus(Heros* currHeros, BonusInstance *currBonusInstance);
 

@@ -17,11 +17,15 @@ int displayGamePage(SDL_Window *p_window, char *levelPath, int levelPathSize, Ga
     SDL_Rect timeLeftPos = { SDL_GetWindowSurface(p_window)->w-80, 60, 0, 0};
     SDL_Rect timeLeftPosText = { SDL_GetWindowSurface(p_window)->w-40, 65, 0, 0};
 
+    int herosToLeftScreenBorder = 200;
+    int herosToBottomScreenBorder = 200;
     int exitStatut = 0;
     int i;
-    int deplaX = 0;
-    int deplaY = 0;
+    int cameraX = 0;
+    int cameraY = 0;
     char temp_str[10];
+
+
 
     // To display a red screen when time is running out
     int displayTimeWarning = 0;
@@ -64,9 +68,29 @@ int displayGamePage(SDL_Window *p_window, char *levelPath, int levelPathSize, Ga
             }
             //lastTime = SDL_GetTicks() - 5;
         }
+        // Leave the game
         if(event.type == SDL_QUIT){
-            exitStatut = 0;// Leave the game
+            exitStatut = 0;
             break;
+        }
+
+        // Jump
+        if( event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_UP){
+            currGameMgr->herosMgr->heroInstance->jumpKeyPressed = 1;
+        }else if(event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_UP){
+            currGameMgr->herosMgr->heroInstance->jumpKeyPressed = 0;
+        }
+        // Move to right
+        if( event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_RIGHT){
+            currGameMgr->herosMgr->heroInstance->rightKeyPressed = 1;
+        }else if(event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_RIGHT){
+            currGameMgr->herosMgr->heroInstance->rightKeyPressed = 0;
+        }
+        // Move to left
+        if( event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_LEFT){
+            currGameMgr->herosMgr->heroInstance->leftKeyPressed = 1;
+        }else if(event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_LEFT){
+            currGameMgr->herosMgr->heroInstance->leftKeyPressed = 0;
         }
 //--------------------------Management-----------------------------------------------------------------------
         currTime = SDL_GetTicks();
@@ -74,7 +98,7 @@ int displayGamePage(SDL_Window *p_window, char *levelPath, int levelPathSize, Ga
         lastTime = currTime;
         currFPS = 1000 / loopTime;
 
-
+        // Time management
         sumTime += loopTime;
         sumLoopDone +=1;
         if (countTime < sumTime){
@@ -83,9 +107,15 @@ int displayGamePage(SDL_Window *p_window, char *levelPath, int levelPathSize, Ga
             sumTime = 0;
         }
 
+        // Update the camera position
+        cameraX = currGameMgr->herosMgr->heroInstance->posX - herosToLeftScreenBorder;
+        cameraY = currGameMgr->herosMgr->heroInstance->posY - herosToBottomScreenBorder;
+
+
+
         // When game windows is not focus loopTime causes some collisions bugs
         if (loopTime < 80){
-            refreshGameByGameManager(currGameMgr, loopTime, SDL_GetWindowSurface(p_window)->w,SDL_GetWindowSurface(p_window)->h, deplaX, deplaY);
+            refreshGameByGameManager(currGameMgr, currTime, loopTime, SDL_GetWindowSurface(p_window)->w,SDL_GetWindowSurface(p_window)->h, cameraX, cameraY);
 
 
             // Level time management (fail when time <= 0)
@@ -119,11 +149,12 @@ int displayGamePage(SDL_Window *p_window, char *levelPath, int levelPathSize, Ga
 
 //--------------------------------Laying out ---------------------------------------------------------------------------------------
         SDL_BlitSurface(background1, NULL, SDL_GetWindowSurface(p_window), &nullPos);
+
         // Displaying Level
-        displayLevelByLevelManager(currGameMgr->levelManager->currLevel, p_window, 1, deplaX, deplaY
+        displayLevelByLevelManager(currGameMgr->levelManager->currLevel, p_window, 1, cameraX, cameraY
                      ,currGameMgr->allBlocks, currGameMgr->allBonus, currGameMgr->allEnemies);
 
-        displayHeros(currGameMgr->herosMgr, p_window);
+        displayHeros(currGameMgr->herosMgr, p_window, herosToLeftScreenBorder, herosToBottomScreenBorder);
 
         // Lifes, coins and timeleft
         SDL_BlitSurface(lifesLeft, NULL, SDL_GetWindowSurface(p_window), &lifeLeftPos);

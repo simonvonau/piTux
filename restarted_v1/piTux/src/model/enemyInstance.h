@@ -21,14 +21,18 @@ typedef struct{
     float movementProgressY;
     int posX, posY;
     int isDead;
+    int lifeTime;// Time to keep displaying the enemy after he die
     int direction;
     int isFalling;
+    int isStuck;// If the enemy can move or not
+    int isExposedToGravity; // If the enemy fall down or not
     Collider ** coll;
     int collSize;
 }EnemyInstance;
 
 
 EnemyInstance * initEnemyInstance(int idEnemy, int posX, int posY, Collider ** currColl, int collSize);
+void changeEnemyAction(EnemyInstance * p_enemyInstance, int p_newAction, int p_newSprite);
 void refreshEnemyInstance(EnemyInstance *currEnemyInstance, int loopTime, Enemy currEnemy);
 void displayEnemyInstance(EnemyInstance *currEnemyInstance, Enemy currEnemy, SDL_Window *p_window, int deplaX, int deplaY);
 void destroyEnemyInstance(EnemyInstance *currEnemyInstance);

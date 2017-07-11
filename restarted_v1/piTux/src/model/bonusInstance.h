@@ -16,8 +16,11 @@ typedef struct{
     int currentTime;
     int currentActionId;
     int currentSpriteId;
+    float movementX, movementY; // A decimal position is the FPS is too fast
     int posX, posY;
     Collider *coll;
+    int wasGathered;// 0 or 1 if the bonus was already gathered
+    int lifeTime;// Nb of milliseconds
 }BonusInstance;
 
 

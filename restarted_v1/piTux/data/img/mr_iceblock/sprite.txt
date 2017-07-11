@@ -1,4 +1,4 @@
-[Header];6;Mr iceblock;
+[Header];6;210;Mr iceblock;
 =========Walking left=========
 [Action];0;4;200;35;38;50;
 [Sprite];0;data/img/mr_iceblock/left-0.png;
@@ -26,8 +26,8 @@
 [Sprite];3;data/img/mr_iceblock/gmelting-3-right.png;
 [Sprite];4;data/img/mr_iceblock/gmelting-4-right.png;
 =========Flat left=========
-[Action];4;1;2000;35;35;0;
+[Action];4;1;2000;35;35;400;
 [Sprite];0;data/img/mr_iceblock/flat-left.png;
 =========Flat right=========
-[Action];5;1;2000;35;35;0;
+[Action];5;1;2000;35;35;400;
 [Sprite];0;data/img/mr_iceblock/flat-right.png;

@@ -161,7 +161,7 @@ int displayLevelEditorPage(SDL_Window *p_window, GameManager *currGameMgr){
                        , clicX, clicY, &selectedToolId, currGameMgr);
             // Add a element to level
             if(clicX < SDL_GetWindowSurface(p_window)->w - toolbox->w ){
-                addElementToLevelByGameMgr(currGameMgr, toolTypeId, selectedToolId, clicX - deplaX,
+                addElementToLevelByGameMgr(currGameMgr, toolTypeId, selectedToolId, clicX + deplaX,
                                   SDL_GetWindowSurface(p_window)->h - clicY + deplaY);
             }
         }
@@ -169,14 +169,14 @@ int displayLevelEditorPage(SDL_Window *p_window, GameManager *currGameMgr){
             SDL_GetMouseState(&clicX, &clicY);
             // Remove element(s) from level
             if(clicX < SDL_GetWindowSurface(p_window)->w - toolbox->w ){
-                removeElementFromLevel(currGameMgr->levelManager->currLevel, clicX - deplaX, SDL_GetWindowSurface(p_window)->h - clicY + deplaY);
+                removeElementFromLevel(currGameMgr->levelManager->currLevel, clicX + deplaX, SDL_GetWindowSurface(p_window)->h - clicY + deplaY);
             }
         }
         // Traveling across the level
         if( event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_RIGHT){
-            deplaX -= 50;
-        }else if( event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_LEFT){
             deplaX += 50;
+        }else if( event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_LEFT){
+            deplaX -= 50;
         }
         if( event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_UP){
             deplaY += 50;
@@ -196,9 +196,9 @@ int displayLevelEditorPage(SDL_Window *p_window, GameManager *currGameMgr){
         if( toolTypeId < 0){toolTypeId = toolTypeIdMax - 1;}
         toolTypeId = toolTypeId % toolTypeIdMax;
 
-        startLevelPosCurr.x = startLevelPosDefault.x + deplaX;
+        startLevelPosCurr.x = startLevelPosDefault.x - deplaX;
         startLevelPosCurr.y = startLevelPosDefault.y + deplaY;
-        endLevelPosCurr.x = endLevelPosDefault.x + deplaX;
+        endLevelPosCurr.x = endLevelPosDefault.x - deplaX;
         endLevelPosCurr.y = endLevelPosDefault.y + deplaY;
 
         // Auto saving after a timelapse

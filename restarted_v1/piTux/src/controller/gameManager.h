@@ -4,6 +4,7 @@
 #include <stdio.h>
 
 #include "../utils/reporting.h"
+#include "../global.h"
 
 #include "../controller/enemyBehaviour.h"
 #include "../controller/translationManager.h"
@@ -34,7 +35,8 @@ GameManager* initGameManager(char *path);
 void loadLevelByGameMgr(GameManager *currGameMgr, char *path, int pathSize);
 void addElementToLevelByGameMgr(GameManager *currGameMgr, int elemType, int elemId, int posX, int posY);
 void removeElementFromLevel(Level *lev, int clicX, int clicY);
-void refreshGameByGameManager(GameManager *currGameMgr, int loopTime, int screenWidth, int screenHeight, int deplaX, int deplaY);
+void refreshGameByGameManager(GameManager *currGameMgr, int currentTime, int loopTime, int screenWidth, int screenHeight, int deplaX, int deplaY);
+void cleanLevelMemory(GameManager *currGameManager);
 
 void destroyLevelByGameManager(GameManager *currGameManager);
 void destroyGameManager(GameManager *currGameManager);

@@ -3,7 +3,7 @@
 	<stdio.h>
 	<stdlib.h>
 
-1483554157 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\main.c
+1486309155 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\main.c
 	<stdio.h>
 	<stdlib.h>
 	<SDL2/SDL.h>
@@ -15,7 +15,7 @@
 	"controller/gui_manager.h"
 	"controller/gameManager.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl.h
 	"SDL_main.h"
 	"SDL_stdinc.h"
 	"SDL_assert.h"
@@ -46,12 +46,12 @@
 	"begin_code.h"
 	"close_code.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_main.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_main.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_stdinc.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_stdinc.h
 	"SDL_config.h"
 	<sys/types.h>
 	<stdio.h>
@@ -80,34 +80,34 @@
 	<stdlib.h>
 	"close_code.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_config.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_config.h
 	"SDL_platform.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_platform.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_platform.h
 	"AvailabilityMacros.h"
 	"TargetConditionals.h"
 	<winapifamily.h>
 	"begin_code.h"
 	"close_code.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\begin_code.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\begin_code.h
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\close_code.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\close_code.h
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_assert.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_assert.h
 	"SDL_config.h"
 	"begin_code.h"
 	<signal.h>
 	"close_code.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_atomic.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_atomic.h
 	"SDL_stdinc.h"
 	"SDL_platform.h"
 	"begin_code.h"
 	<mbarrier.h>
 	"close_code.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_audio.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_audio.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_endian.h"
@@ -117,24 +117,24 @@
 	"begin_code.h"
 	"close_code.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_error.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_error.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_endian.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_endian.h
 	"SDL_stdinc.h"
 	<endian.h>
 	"begin_code.h"
 	"close_code.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_mutex.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_mutex.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_thread.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_thread.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_atomic.h"
@@ -143,18 +143,18 @@
 	<process.h>
 	"close_code.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_rwops.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_rwops.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_clipboard.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_clipboard.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_cpuinfo.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_cpuinfo.h
 	"SDL_stdinc.h"
 	<intrin.h>
 	<intrin.h>
@@ -166,7 +166,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_events.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_events.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
@@ -180,7 +180,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_video.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_video.h
 	"SDL_stdinc.h"
 	"SDL_pixels.h"
 	"SDL_rect.h"
@@ -188,12 +188,12 @@
 	"begin_code.h"
 	"close_code.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_pixels.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_pixels.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_rect.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_rect.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_pixels.h"
@@ -201,7 +201,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_surface.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_surface.h
 	"SDL_stdinc.h"
 	"SDL_pixels.h"
 	"SDL_rect.h"
@@ -210,11 +210,11 @@
 	"begin_code.h"
 	"close_code.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_blendmode.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_blendmode.h
 	"begin_code.h"
 	"close_code.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_keyboard.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_keyboard.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_keycode.h"
@@ -222,27 +222,27 @@
 	"begin_code.h"
 	"close_code.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_keycode.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_keycode.h
 	"SDL_stdinc.h"
 	"SDL_scancode.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_scancode.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_scancode.h
 	"SDL_stdinc.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_mouse.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_mouse.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_joystick.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_joystick.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_gamecontroller.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_gamecontroller.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_rwops.h"
@@ -250,11 +250,11 @@
 	"begin_code.h"
 	"close_code.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_quit.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_quit.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_gesture.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_gesture.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
@@ -262,60 +262,60 @@
 	"begin_code.h"
 	"close_code.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_touch.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_touch.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_filesystem.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_filesystem.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_haptic.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_haptic.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_joystick.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_hints.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_hints.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_loadso.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_loadso.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_log.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_log.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_messagebox.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_messagebox.h
 	"SDL_stdinc.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_power.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_power.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_render.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_render.h
 	"SDL_stdinc.h"
 	"SDL_rect.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_system.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_system.h
 	"SDL_stdinc.h"
 	"SDL_keyboard.h"
 	"SDL_render.h"
@@ -323,32 +323,32 @@
 	"begin_code.h"
 	"close_code.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_timer.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_timer.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451764694 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_version.h
+1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_version.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1451800374 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_image.h
+1451803974 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_image.h
 	"SDL.h"
 	"SDL_version.h"
 	"begin_code.h"
 	"close_code.h"
 
-1454362934 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_ttf.h
+1454366534 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_ttf.h
 	"SDL.h"
 	"begin_code.h"
 	"close_code.h"
 
-1483557070 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\collidermanager.c
+1499288553 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\collidermanager.c
 	"colliderManager.h"
 
-1483137031 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\collidermanager.h
+1499282404 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\collidermanager.h
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -356,17 +356,17 @@
 	"../model/collider.h"
 	"../model/collision.h"
 
-1473852402 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\utils\reporting.h
+1473856002 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\utils\reporting.h
 	<stdlib.h>
 	<stdio.h>
 
-1483557210 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\collider.h
+1483560810 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\collider.h
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
 	"../utils/reporting.h"
 
-1476207357 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\collision.h
+1476210957 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\collision.h
 	<stdlib.h>
 	<stdio.h>
 	"../utils/reporting.h"
@@ -381,7 +381,7 @@
 	"../model/enemy.h"
 	"../model/enemyInstance.h"
 
-1483106060 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\enemy.h
+1498499566 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\enemy.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -393,14 +393,14 @@
 	"../model/collider.h"
 	"../utils/arrayProcessing.h"
 
-1474129618 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\utils\loadimage.h
+1474133218 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\utils\loadimage.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
 
-1483643210 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\enemyinstance.h
+1499712818 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\enemyinstance.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -410,13 +410,14 @@
 	"../model/enemy.h"
 	"../model/collider.h"
 
-1483643610 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\gamemanager.c
+1499367315 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\gamemanager.c
 	"gameManager.h"
 
-1483643486 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\gamemanager.h
+1499280549 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\gamemanager.h
 	<stdlib.h>
 	<stdio.h>
 	"../utils/reporting.h"
+	"../global.h"
 	"../controller/enemyBehaviour.h"
 	"../controller/translationManager.h"
 	"../controller/herosManager.h"
@@ -426,21 +427,21 @@
 	"../model/block.h"
 	"../model/bonus.h"
 
-1482757757 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\translationmanager.h
+1482761357 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\translationmanager.h
 	<stdlib.h>
 	<stdio.h>
 	"../utils/reporting.h"
 	"../controller/translationManager.h"
 	"../model/translation.h"
 
-1482762729 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\translation.h
+1482766329 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\translation.h
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
 	"../utils/reporting.h"
 	"../utils/arrayProcessing.h"
 
-1482078773 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\game.h
+1482082373 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\game.h
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -448,7 +449,7 @@
 	"../global.h"
 	"../utils/arrayProcessing.h"
 
-1482763281 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\block.h
+1499807502 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\block.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -460,7 +461,7 @@
 	"../model/collider.h"
 	"../utils/arrayProcessing.h"
 
-1482078699 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\bonus.h
+1498504524 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\bonus.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -472,10 +473,10 @@
 	"../model/collider.h"
 	"../utils/arrayProcessing.h"
 
-1483040908 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\gui_manager.c
+1483044508 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\gui_manager.c
 	"gui_manager.h"
 
-1483031636 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\gui_manager.h
+1483035236 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\gui_manager.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -491,7 +492,7 @@
 	"../pages/quitPage.h"
 	"../pages/settingsPage.h"
 
-1482771147 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\mainpage.h
+1482774747 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\mainpage.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -503,11 +504,11 @@
 	"../controller/gameManager.h"
 	"../pages/textLayout.h"
 
-1483556361 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\global.h
+1499714026 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\global.h
 	<stdlib.h>
 	<stdio.h>
 
-1477512785 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\textlayout.h
+1477516385 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\textlayout.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -516,13 +517,13 @@
 	"../global.h"
 	"../utils/arrayProcessing.h"
 
-1474123528 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\utils\arrayprocessing.h
+1474127128 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\utils\arrayprocessing.h
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
 	"../model/block.h"
 
-1483026247 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\creditspage.h
+1483029847 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\creditspage.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -534,7 +535,7 @@
 	"../pages/textLayout.h"
 	"../global.h"
 
-1483031387 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\gamepage.h
+1483034987 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\gamepage.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -553,7 +554,7 @@
 	"../model/level.h"
 	"../model/button.h"
 
-1483125508 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\levelmanager.h
+1498769742 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\levelmanager.h
 	<stdlib.h>
 	<stdio.h>
 	"../utils/reporting.h"
@@ -568,7 +569,7 @@
 	"../model/bonusInstance.h"
 	"../model/enemyInstance.h"
 
-1483035437 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\level.h
+1483039037 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\level.h
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -581,14 +582,14 @@
 	"../model/bonusInstance.h"
 	"../model/enemyInstance.h"
 
-1480198196 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\blockinstance.h
+1480201796 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\blockinstance.h
 	<stdlib.h>
 	<stdio.h>
 	"../utils/reporting.h"
 	"../model/block.h"
 	"../model/collider.h"
 
-1476448468 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\bonusinstance.h
+1498505245 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\bonusinstance.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -598,7 +599,7 @@
 	"../model/collider.h"
 	"../model/bonus.h"
 
-1482872102 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\leveleditorpage.h
+1482875702 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\leveleditorpage.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -617,7 +618,7 @@
 	"../model/level.h"
 	"../model/button.h"
 
-1482944360 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\sub_pages\help_page.h
+1482947960 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\sub_pages\help_page.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -630,7 +631,7 @@
 	"../../pages/textLayout.h"
 	"../../model/button.h"
 
-1482078681 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\button.h
+1482082281 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\button.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -640,7 +641,7 @@
 	"../utils/loadImage.h"
 	"../utils/arrayProcessing.h"
 
-1482078544 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\heros.h
+1492032036 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\heros.h
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -652,7 +653,7 @@
 	"../global.h"
 	"../utils/arrayProcessing.h"
 
-1482771961 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\levelselectionpage.h
+1482775561 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\levelselectionpage.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -665,14 +666,14 @@
 	"../model/levelIcon.h"
 	"../pages/textLayout.h"
 
-1482078558 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\levelicon.h
+1482082158 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\levelicon.h
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
 	"../utils/reporting.h"
 	"../utils/arrayProcessing.h"
 
-1483026463 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\quitpage.h
+1483030063 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\quitpage.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -684,7 +685,7 @@
 	"../controller/gameManager.h"
 	"../pages/textLayout.h"
 
-1483025747 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\settingspage.h
+1483029347 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\settingspage.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -696,10 +697,10 @@
 	"../controller/gameManager.h"
 	"../pages/textLayout.h"
 
-1480444578 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\herosmanager.c
+1499711972 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\herosmanager.c
 	"herosManager.h"
 
-1480444569 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\herosmanager.h
+1498399367 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\herosmanager.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -707,83 +708,85 @@
 	<SDL2/SDL_ttf.h>
 	"../utils/reporting.h"
 	"../model/heros.h"
+	"../model/heroInstance.h"
 	"../model/bonusInstance.h"
+	"../controller/colliderManager.h"
 
 1476298371 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\leveliconmanager.c
 
-1483126609 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\levelmanager.c
+1499284032 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\levelmanager.c
 	"levelManager.h"
 
-1482762839 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\translationmanager.c
+1482766439 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\translationmanager.c
 	"translationManager.h"
 
-1483105815 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\block.c
+1498499212 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\block.c
 	"block.h"
 
-1480198620 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\blockinstance.c
+1480202220 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\blockinstance.c
 	"blockInstance.h"
 
-1481566525 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\bonus.c
+1498505725 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\bonus.c
 	"bonus.h"
 
-1480198699 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\bonusinstance.c
+1498764583 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\bonusinstance.c
 	"bonusInstance.h"
 
-1479755090 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\button.c
+1479758690 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\button.c
 	"button.h"
 
-1483557292 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\collider.c
+1483560892 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\collider.c
 	"collider.h"
 
-1476207350 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\collision.c
+1476210950 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\collision.c
 	"collision.h"
 
-1481566525 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\enemy.c
+1498499815 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\enemy.c
 	"enemy.h"
 
-1483643639 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\enemyinstance.c
+1499715025 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\enemyinstance.c
 	"enemyInstance.h"
 
-1480443556 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\game.c
+1480447156 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\game.c
 	"game.h"
 
-1480444979 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\heros.c
+1498499237 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\heros.c
 	"heros.h"
 
-1482952176 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\level.c
+1499289963 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\level.c
 	"level.h"
 
-1480446623 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\levelicon.c
+1480450223 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\levelicon.c
 	"levelIcon.h"
 
-1482762829 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\translation.c
+1482766429 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\translation.c
 	"translation.h"
 
-1483043151 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\creditspage.c
+1483046751 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\creditspage.c
 	"creditsPage.h"
 
-1483642741 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\gamepage.c
+1499288803 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\gamepage.c
 	"gamePage.h"
 
-1483043068 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\leveleditorpage.c
+1498428603 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\leveleditorpage.c
 	"levelEditorPage.h"
 
-1482772137 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\levelselectionpage.c
+1482775737 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\levelselectionpage.c
 	"levelSelectionPage.h"
 
-1482771447 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\mainpage.c
+1482775047 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\mainpage.c
 	"mainPage.h"
 
-1483026497 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\quitpage.c
+1483030097 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\quitpage.c
 	"quitPage.h"
 
-1483026099 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\settingspage.c
+1483029699 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\settingspage.c
 	"mainPage.h"
 
-1483040940 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\sub_pages\break_page.c
+1483044540 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\sub_pages\break_page.c
 	"break_page.h"
 
-1483036434 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\sub_pages\break_page.h
+1483040034 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\sub_pages\break_page.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -796,19 +799,19 @@
 	"../../controller/gameManager.h"
 	"../../model/button.h"
 
-1482944518 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\sub_pages\help_page.c
+1482948118 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\sub_pages\help_page.c
 	"help_page.h"
 
-1477513571 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\textlayout.c
+1477517171 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\textlayout.c
 	"textLayout.h"
 
-1476809893 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\utils\arrayprocessing.c
+1476813493 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\utils\arrayprocessing.c
 	"arrayProcessing.h"
 
-1477509357 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\utils\reporting.c
+1477512957 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\utils\reporting.c
 	"reporting.h"
 
-1476736263 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\utils\loadimage.c
+1476739863 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\utils\loadimage.c
 	"loadImage.h"
 
 1490618963 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\collidermanager.c
@@ -1621,7 +1624,7 @@
 1477554541 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\utils\reporting.c
 	"reporting.h"
 
-1451801792 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_mixer.h
+1451805392 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl_mixer.h
 	"SDL_stdinc.h"
 	"SDL_rwops.h"
 	"SDL_audio.h"
@@ -1672,7 +1675,7 @@
 	"../controller/translationManager.h"
 	"../model/translation.h"
 
-1483556319 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\enemybehaviour.h
+1498394084 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\enemybehaviour.h
 	<stdlib.h>
 	<stdio.h>
 	"../global.h"
@@ -1680,7 +1683,7 @@
 	"../model/enemyInstance.h"
 	"../controller/colliderManager.h"
 
-1483645113 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\enemybehaviour.c
+1499714961 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\enemybehaviour.c
 	"enemyBehaviour.h"
 
 1485783892 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\enemybehaviour.c
@@ -1705,5 +1708,18 @@
 	"../utils/arrayProcessing.h"
 
 1490616618 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\heroinstance.c
+	"heroInstance.h"
+
+1498762618 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\heroinstance.h
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"../model/collider.h"
+	"../model/heros.h"
+	"../utils/reporting.h"
+	"../global.h"
+	"../utils/arrayProcessing.h"
+
+1499012717 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\heroinstance.c
 	"heroInstance.h"
 

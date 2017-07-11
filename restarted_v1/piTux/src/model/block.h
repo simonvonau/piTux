@@ -23,9 +23,9 @@ typedef struct{
 
 }Block;
 
-Block ** initBlockArray(char *path, int *resSize);
-Block * initBlock( char *path);
-void destroyBlock(Block *currBlock);
+Block ** initBlockArray(char *p_path, int *p_resSize);
+Block * initBlock(char *p_path);
+void destroyBlock(Block *p_block);
 
 
 #endif

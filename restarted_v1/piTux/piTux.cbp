@@ -152,6 +152,7 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/model/levelIcon.h" />
+		<Unit filename="src/model/mrIceblockBehaviour.h" />
 		<Unit filename="src/model/translation.c">
 			<Option compilerVar="CC" />
 		</Unit>

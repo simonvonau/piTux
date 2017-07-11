@@ -20,6 +20,7 @@ typedef struct{
     int *spriteDuration; // All actions life time
     int bonusType;// cf global.h
     Collider *refColl;
+    int speedX, speedY;
 }Bonus;
 
 Bonus ** initBonusArray(char *path, int *resSize);

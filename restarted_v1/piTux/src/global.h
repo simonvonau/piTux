@@ -3,36 +3,37 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-
-
 #define MUSIC_BUFFER_LENGTH 1024
+
+// The limit border outside the screen where an object can collide/interact with other objects
+#define COLLIDER_MARGIN 200
+
 
 // Max size of a configuration file line
 #define LINE_SIZE_MAX 512
 // Max size of a file path
 #define FILE_PATH_SIZE_MAX 512
 
-// All tags (for collider use)
-#define TAG_COLL_BONUS 0
-#define TAG_COLL_STRONG_BLOCK 1
-#define TAG_COLL_WEAK_BLOCK 2
-#define TAG_COLL_ENEMY 3
-#define TAG_COLL_FIRE_BALL 4
-#define TAG_COLL_TUX 10
+// Used in collision management
+#define TAG_HEROS_TUX 1
+#define TAG_BONUS_COIN 10
+#define TAG_BONUS_EGG 20
+#define TAG_BONUS_FIREFLOWER 30
+#define TAG_BLOCK_WEAK 100
+#define TAG_BLOCK_NORMAL 110
+#define TAG_BLOCK_STRONG 120
+#define TAG_ENEMY_MRFLUFFY 200
+#define TAG_ENEMY_MRICEBLOCK 210
+#define TAG_ENEMY_MRBOMB 220
+#define TAG_EXPLOSION 500
+#define TAG_BULL 600 // When the icecube run fast and destroy everything
+#define TAG_DEAD_ENEMY 1000
 
 // Game settings
-#define GRAVITY_SPEED 200 // Speed in pixel/second
+#define GRAVITY_SPEED 400 // Speed in pixel/second
 
-
-
-
-//int AllBonusTypes[]
-// "COIN","EGG","FIRE FLOWER"
-
-//int AllBlockTypes[]
-// "BonusBlock","WeakBlock","StrongBlock",...
-
-//all enemies types (id field)
+// The limit to kill the enemies out of it
+#define DEAD_LIMIT_Y -200
 
 
 #endif

@@ -28,13 +28,11 @@ void loadLevelByLevelMgr(LevelManager* currLevelMgr, char *path, int pathSize);
 
 int getBlockInstanceId(Level *lev, int clicX, int clicY);
 
-void refreshLevelByLevelManager(Level *currLevel, ColliderManager *currCollMgr, int loopTime, Block **allBlocks, Bonus **allBonus, Enemy **allEnemies);
+void refreshLevelByLevelManager(Level *currLevel, ColliderManager *currCollMgr, int loopTime, Block **allBlocks, Bonus **allBonus, Enemy **allEnemies, int p_leftLimit, int p_rightLimit, int p_topLimit, int p_bottomLimit);
 void displayLevelByLevelManager(Level *currLevel, SDL_Window *p_window, int isGameMode, int deplaX, int deplaY
                   , Block **allBlocks, Bonus **allBonus, Enemy **allEnemies);
+void updateBonusAfterColliding(LevelManager* p_levelManager, ColliderManager *collMgr, int currentTime, int loopTime);
 
 void saveLevelByManager(LevelManager* currLevelManager);
-
-void gatherBonusByCollider(LevelManager *currLevelMgr, Collider *currColl);
-
 void destroyLevelManager(LevelManager *currLevelManager);
 #endif

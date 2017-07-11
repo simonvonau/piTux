@@ -3,14 +3,16 @@ This file help me to keep something in mind when i'm not on my private computer
 ---------------------------------------------------------------------------------------------
 
 TODO List for next time:
-	0)Create a "HeroInstance" Object to have the possibility of having multiples heros in the same game => OK
-	1)Hero collisions with the level => WIP
-	2)Gravity on hero
-	3)hero jump
-	4)Gather bonus
-	5)Die on enemy collisions or kill the enemy
-	
-	100) Check GameManager.loadLevelByGameMgr(...) (especiallty memory leaks)
+	- Check if all the function have a prototype in a .h file
+	- Check GameManager.loadLevelByGameMgr(...) (especiallty memory leaks)
+	- Remove all the NULL comparisons
+	OK - Bug: the enemies disappear when they are out of the screen => Pb de conception la gravité des enemis les faisait sortir du champ des collider actifs et donc ils s'enfonçaient dans le décors
+	- Bug: stuck in the air in the left -> reste pb hauteur
+	- Bug: bug when tux touches an enemy
+	- Bug: level editor: suppression de 3-4 ennemis dès l'ouverture = bug
+	- Bug: memory leaks
+	- Bug: in mode game [escape] to pause mode + [escape] to go back game => back in a empty level
+	- Bug: replace all the realloc by (malloc, free) level.c, ... => due to realloc problems
 
 NB:
 	Update UML diagram

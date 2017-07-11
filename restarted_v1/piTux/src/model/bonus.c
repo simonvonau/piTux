@@ -67,7 +67,9 @@ Bonus * initBonus(char *path){
                 res->sprites = malloc( res->spritesSize1 * sizeof(SDL_Surface **));
                 res->spritesSize2 = malloc( res->spritesSize1 * sizeof(int));
                 res->spriteDuration = malloc( res->spritesSize1 * sizeof(int));
-                res->refColl = initNonRegisteredCollider(atoi(buff[3]),atoi(buff[4]), 0, 0, 1, TAG_COLL_BONUS);
+                res->refColl = initNonRegisteredCollider(atoi(buff[3]),atoi(buff[4]), 0, 0, 1, 0);
+                res->speedX = atoi(buff[5]);
+                res->speedY = atoi(buff[6]);
 
                 if(res->sprites == NULL || res->spritesSize2 == NULL || res->spriteDuration == NULL){
                     reportErreur("Error malloc initBonus():1");

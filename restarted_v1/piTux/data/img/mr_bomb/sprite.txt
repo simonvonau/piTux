@@ -1,4 +1,4 @@
-[Header];5;Mr Bomb;
+[Header];5;220;Mr Bomb;
 =========Walking left=========
 [Action];0;4;200;42;40;50;
 [Sprite];0;data/img/mr_bomb/left-0.png;
@@ -12,14 +12,14 @@
 [Sprite];2;data/img/mr_bomb/right-2.png;
 [Sprite];3;data/img/mr_bomb/right-1.png;
 =========Exploding left=========
-[Action];2;5;200;42;40;0;
+[Action];2;5;400;42;40;0;
 [Sprite];0;data/img/mr_bomb/exploding-left-0.png;
 [Sprite];1;data/img/mr_bomb/exploding-left-1.png;
 [Sprite];2;data/img/mr_bomb/exploding-left-2.png;
 [Sprite];3;data/img/mr_bomb/exploding-left-3.png;
 [Sprite];4;data/img/mr_bomb/exploding-left-4.png;
 =========Exploding right=========
-[Action];3;5;200;42;40;0;
+[Action];3;5;400;42;40;0;
 [Sprite];0;data/img/mr_bomb/exploding-right-0.png;
 [Sprite];1;data/img/mr_bomb/exploding-right-1.png;
 [Sprite];2;data/img/mr_bomb/exploding-right-2.png;

@@ -213,18 +213,29 @@ void removeBonusInstanceToLevel(Level *lev, int bonusIndex){
 void removeEnemyInstanceToLevel(Level *lev, int enemyIndex){
 // Remove a EnemyInstance from level (by it's index)
     int i;
+    EnemyInstance ** res;
 
     if (enemyIndex >= 0 && enemyIndex < lev->enemyInstancesSize){
-        destroyEnemyInstance(lev->enemyInstances[enemyIndex]);
+        //destroyEnemyInstance(lev->enemyInstances[enemyIndex]);
         for(i = enemyIndex; i < lev->enemyInstancesSize - 1; i++){
             lev->enemyInstances[i] = lev->enemyInstances[i+1];
         }
+
+        res = malloc(sizeof(EnemyInstance*) * (lev->enemyInstancesSize - 1));
+
+        for(i = 0; i < lev->enemyInstancesSize - 1; i++){
+            res[i] = lev->enemyInstances[i];
+        }
+        free(lev->enemyInstances);
+        lev->enemyInstances = res;
         lev->enemyInstancesSize -= 1;
-        realloc(lev->enemyInstances, sizeof(EnemyInstance*) * lev->enemyInstancesSize);
+
+        //*** Realloc doesn't work, weird...
+        //realloc(lev->enemyInstances, sizeof(EnemyInstance*) * (lev->enemyInstancesSize - 1));
 
         if(lev->enemyInstances == NULL){
             lev->enemyInstancesSize = 0;
-            reportErreur("Error removeEnemyInstanceToLevel(...)");
+            reportErreur("Error removeEnemyInstanceToLevel(...) malloc()");
         }
     }
 }//------------------------------------------------------------------------------------------------------------------------

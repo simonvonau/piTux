@@ -24,7 +24,7 @@ void addColliderToColliderManager(ColliderManager *currColliderManager, Collider
 Collider * createCollider(ColliderManager *currColliderManager, int width, int height, int posX, int posY, int isEnabled, int ownerTag);
 Collider * colliderDeepCopyByColliderManager(ColliderManager *currColliderManager, Collider *coll);
 Collider ** colliderArrayDeepCopyByColliderManager(ColliderManager *currColliderManager, Collider **coll, int currSize);
-int removeCollider(ColliderManager *currColliderManager, int idCollider);
+int removeCollider(ColliderManager *currColliderManager, int idCollider, int p_freeMemory);
 Collider * getColliderById(ColliderManager *collMgr, int id);
 void createCollision(ColliderManager *currCollMgr, int coll1Id, int coll2Id);
 int getNextAvailableColliderId(ColliderManager *currColliderManager);
