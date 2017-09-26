@@ -39,14 +39,14 @@ void updateHeroBehaviourAfterCollisionDetection(HeroInstance *p_herosInstance, H
                         , &contactPoints, &contactPointsSize);
     for (i = 0; i < contactPointsSize; i++){
         switch(contactPoints[i]->ownerTag){
-            case TAG_BONUS_COIN:
+            case tag_bonus_coin:
                 p_herosInstance->nbCoins += 1;
                 if(p_herosInstance->nbCoins >= 100){
                     p_herosInstance->nbCoins -= 100;
                     p_herosInstance->lifesLeft += 1;
                 }
                 break;
-            case TAG_BONUS_EGG:
+            case tag_bonus_egg:
                 if(p_herosInstance->currState == 0){// To avoid a fire tux (state 2) to become a big tux (state 1)
                     if(p_herosInstance->lastDirection == 'r'){
                         changeHerosState(p_herosInstance, 1, 0, 0);
@@ -55,14 +55,14 @@ void updateHeroBehaviourAfterCollisionDetection(HeroInstance *p_herosInstance, H
                     }
                 }
                 break;
-            case TAG_BONUS_FIREFLOWER:
+            case tag_bonus_flower:
                 if(p_herosInstance->lastDirection == 'r'){
                     changeHerosState(p_herosInstance, 2, 0, 0);
                 }else{
                     changeHerosState(p_herosInstance, 2, 1, 0);
                 }
                 break;
-            case TAG_EXPLOSION:
+            case tag_explosion:
                 isTouchingEnemy = 1;
                 break;
             default:
@@ -71,7 +71,7 @@ void updateHeroBehaviourAfterCollisionDetection(HeroInstance *p_herosInstance, H
                     p_herosInstance->posY = contactPoints[i]->posY + contactPoints[i]->height;
                     isAboveSomething = 1;
                     // Bouncing on an enemy
-                    if(contactPoints[i]->ownerTag == TAG_ENEMY_MRFLUFFY || contactPoints[i]->ownerTag == TAG_ENEMY_MRBOMB || contactPoints[i]->ownerTag == TAG_ENEMY_MRICEBLOCK){
+                    if(contactPoints[i]->ownerTag == tag_enemy_fluffy || contactPoints[i]->ownerTag == tag_enemy_bomb || contactPoints[i]->ownerTag == tag_enemy_iceblock){
                         p_herosInstance->jumpStartTime = p_currentTime;
                         p_herosInstance->jumpDuration = p_heros->jumpDuration / 2;
                     }
@@ -82,7 +82,7 @@ void updateHeroBehaviourAfterCollisionDetection(HeroInstance *p_herosInstance, H
                     p_herosInstance->jumpStartTime = -1;
                     p_herosInstance->jumpDuration = -1;
                     // Touching an enemy
-                    if(contactPoints[i]->ownerTag == TAG_ENEMY_MRFLUFFY || contactPoints[i]->ownerTag == TAG_ENEMY_MRBOMB || contactPoints[i]->ownerTag == TAG_ENEMY_MRICEBLOCK){
+                    if(contactPoints[i]->ownerTag == tag_enemy_fluffy || contactPoints[i]->ownerTag == tag_enemy_bomb || contactPoints[i]->ownerTag == tag_enemy_iceblock){
                         isTouchingEnemy = 1;
                     }
                 }else{// Lateral collision
@@ -93,7 +93,7 @@ void updateHeroBehaviourAfterCollisionDetection(HeroInstance *p_herosInstance, H
                         p_herosInstance->posX = contactPoints[i]->posX + contactPoints[i]->width;
                     }
                     // Touching an enemy
-                    if(contactPoints[i]->ownerTag == TAG_ENEMY_MRFLUFFY || contactPoints[i]->ownerTag == TAG_ENEMY_MRBOMB || contactPoints[i]->ownerTag == TAG_ENEMY_MRICEBLOCK){
+                    if(contactPoints[i]->ownerTag == tag_enemy_fluffy || contactPoints[i]->ownerTag == tag_enemy_bomb || contactPoints[i]->ownerTag == tag_enemy_iceblock){
                         isTouchingEnemy = 1;
                     }
                 }

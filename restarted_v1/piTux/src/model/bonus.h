@@ -18,7 +18,7 @@ typedef struct{
     int spritesSize1; // sprites array size
     int *spritesSize2;// List of sprites[*] sizes
     int *spriteDuration; // All actions life time
-    int bonusType;// cf global.h
+    enum ObjectTag bonusType;// cf global.h
     Collider *refColl;
     int speedX, speedY;
 }Bonus;

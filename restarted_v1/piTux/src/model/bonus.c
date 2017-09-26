@@ -67,7 +67,7 @@ Bonus * initBonus(char *path){
                 res->sprites = malloc( res->spritesSize1 * sizeof(SDL_Surface **));
                 res->spritesSize2 = malloc( res->spritesSize1 * sizeof(int));
                 res->spriteDuration = malloc( res->spritesSize1 * sizeof(int));
-                res->refColl = initNonRegisteredCollider(atoi(buff[3]),atoi(buff[4]), 0, 0, 1, 0);
+                res->refColl = initNonRegisteredCollider(atoi(buff[3]),atoi(buff[4]), 0, 0, 1, res->bonusType, state_normal);
                 res->speedX = atoi(buff[5]);
                 res->speedY = atoi(buff[6]);
 

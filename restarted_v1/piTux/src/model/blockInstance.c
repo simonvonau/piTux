@@ -43,58 +43,92 @@ void refreshBlockInstance(BlockInstance * p_blockInstance, int p_loopTime, Block
 // Refresh a blockInstance
     p_blockInstance->currentTime += p_loopTime;
 
-    // Wood block destruction
-    if(p_blockInstance->coll->ownerTag == TAG_BLOCK_UNDERHIT_WEAK){
-        p_blockInstance->movementY += p_block.speedY * p_loopTime / 1000.0;
-        if(p_blockInstance->movementY >= 1 || p_blockInstance->movementY <= -1){
-            moveBlockInstance(p_blockInstance, 0, (int)p_blockInstance->movementY);
-            p_blockInstance->movementY = 0;
+    // Wood block hit
+    if(p_blockInstance->coll->ownerTag == tag_block_weak){
+        if(p_blockInstance->coll->ownerState == state_block_hit_up){
+        // When a block is hit, it has to move up
+            p_blockInstance->movementY += p_block.speedY * p_loopTime / 1000.0;
+            if(p_blockInstance->movementY >= 1 || p_blockInstance->movementY <= -1){
+                moveBlockInstance(p_blockInstance, 0, (int)p_blockInstance->movementY);
+                p_blockInstance->movementY = 0;
+            }
+            // Updating the sprite
+            if(p_blockInstance->currentTime >= p_block.spriteDuration[p_blockInstance->currentActionId]){
+                p_blockInstance->currentTime = 0;
+                p_blockInstance->currentSpriteId += 1;
+            }
+            // After reached his max height, the block will be destroyed (hit by big tux) or just going to its initial position (hit by small tux)
+            if(p_blockInstance->currentSpriteId >= p_block.spritesSize2[p_blockInstance->currentActionId]){
+                if(p_blockInstance->currentActionId == 1){
+                   p_blockInstance->wasDestroyed = 1;
+                    p_blockInstance->coll->isEnabled = 0;
+                }else{
+                    p_blockInstance->coll->ownerState = state_block_hit_down;
+                }
+            }
+            p_blockInstance->currentSpriteId = p_blockInstance->currentSpriteId % p_block.spritesSize2[p_blockInstance->currentActionId];
+        }else if (p_blockInstance->coll->ownerState == state_block_hit_down){
+         // When a wood block is hit by a small tux, it has to go back down (without being destroyed)
+            p_blockInstance->movementY -= p_block.speedY * p_loopTime / 1000.0;
+            if(p_blockInstance->movementY >= 1 || p_blockInstance->movementY <= -1){
+                moveBlockInstance(p_blockInstance, 0, (int)p_blockInstance->movementY);
+                p_blockInstance->movementY = 0;
+            }
+            // Updating the sprite
+            if(p_blockInstance->currentTime >= p_block.spriteDuration[p_blockInstance->currentActionId]){
+                p_blockInstance->currentTime = 0;
+                p_blockInstance->currentSpriteId += 1;
+            }
+            // After the descending phase, the block has to go to its initial position
+            if(p_blockInstance->posY <= p_blockInstance->startPosY){
+                moveBlockInstance(p_blockInstance, 0, p_blockInstance->startPosY - p_blockInstance->posY);
+                p_blockInstance->coll->ownerState = state_normal;
+                p_blockInstance->movementY = 0;
+            }
+            p_blockInstance->currentSpriteId = p_blockInstance->currentSpriteId % p_block.spritesSize2[p_blockInstance->currentActionId];
         }
-
-        if(p_blockInstance->currentTime >= p_block.spriteDuration[p_blockInstance->currentActionId]){
-            p_blockInstance->currentTime = 0;
-            p_blockInstance->currentSpriteId += 1;
-        }
-        if(p_blockInstance->currentSpriteId >= p_block.spritesSize2[p_blockInstance->currentActionId]){
-            p_blockInstance->wasDestroyed = 1;
-            p_blockInstance->coll->isEnabled = 0;
-        }
-        p_blockInstance->currentSpriteId = p_blockInstance->currentSpriteId % p_block.spritesSize2[p_blockInstance->currentActionId];
     }
 
-    // "?" block opening when going down
-    if(p_blockInstance->coll->ownerTag == TAG_BLOCK_UNDERHIT_NORMAL_DESC){
-        p_blockInstance->movementY -= p_block.speedY * p_loopTime / 1000.0;
-        if(p_blockInstance->movementY >= 1 || p_blockInstance->movementY <= -1){
-            moveBlockInstance(p_blockInstance, 0, (int)p_blockInstance->movementY);
-            p_blockInstance->movementY = 0;
-        }
-        if(p_blockInstance->posY <= p_blockInstance->startPosY){
-            moveBlockInstance(p_blockInstance, 0, p_blockInstance->startPosY - p_blockInstance->posY);
-            p_blockInstance->coll->ownerTag = TAG_BLOCK_NORMAL;
-            p_blockInstance->movementY = 0;
-        }
-        if(p_blockInstance->currentTime >= p_block.spriteDuration[p_blockInstance->currentActionId]){
-            p_blockInstance->currentTime = 0;
-            p_blockInstance->currentSpriteId += 1;
-        }
-        p_blockInstance->currentSpriteId = p_blockInstance->currentSpriteId % p_block.spritesSize2[p_blockInstance->currentActionId];
-    }
-    // "?" block opening when going up
-    if(p_blockInstance->coll->ownerTag == TAG_BLOCK_UNDERHIT_NORMAL){
-        p_blockInstance->movementY += p_block.speedY * p_loopTime / 1000.0;
-        if(p_blockInstance->movementY >= 1 || p_blockInstance->movementY <= -1){
-            moveBlockInstance(p_blockInstance, 0, (int)p_blockInstance->movementY);
-            p_blockInstance->movementY = 0;
-        }
-        if(p_blockInstance->currentTime >= p_block.spriteDuration[p_blockInstance->currentActionId]){
-            p_blockInstance->currentTime = 0;
-            p_blockInstance->currentSpriteId += 1;
-        }
-        if(p_blockInstance->currentSpriteId >= p_block.spritesSize2[p_blockInstance->currentActionId]){
-            p_blockInstance->coll->ownerTag = TAG_BLOCK_UNDERHIT_NORMAL_DESC;
-        }
-        p_blockInstance->currentSpriteId = p_blockInstance->currentSpriteId % p_block.spritesSize2[p_blockInstance->currentActionId];
+
+    // "?" block hit
+    if(p_blockInstance->coll->ownerTag == tag_block_mystery){
+        if(p_blockInstance->coll->ownerState == state_block_hit_up){
+            // After a hit the block moves up
+            p_blockInstance->movementY += p_block.speedY * p_loopTime / 1000.0;
+            if(p_blockInstance->movementY >= 1 || p_blockInstance->movementY <= -1){
+                moveBlockInstance(p_blockInstance, 0, (int)p_blockInstance->movementY);
+                p_blockInstance->movementY = 0;
+            }
+            // Updating the sprite
+            if(p_blockInstance->currentTime >= p_block.spriteDuration[p_blockInstance->currentActionId]){
+                p_blockInstance->currentTime = 0;
+                p_blockInstance->currentSpriteId += 1;
+            }
+            // When the block come to its max height it has to go back down
+            if(p_blockInstance->currentSpriteId >= p_block.spritesSize2[p_blockInstance->currentActionId]){
+                p_blockInstance->coll->ownerState = state_block_hit_down;
+            }
+            p_blockInstance->currentSpriteId = p_blockInstance->currentSpriteId % p_block.spritesSize2[p_blockInstance->currentActionId];
+        }else if(p_blockInstance->coll->ownerState == state_block_hit_down){
+            // The block is going down
+            p_blockInstance->movementY -= p_block.speedY * p_loopTime / 1000.0;
+            if(p_blockInstance->movementY >= 1 || p_blockInstance->movementY <= -1){
+                moveBlockInstance(p_blockInstance, 0, (int)p_blockInstance->movementY);
+                p_blockInstance->movementY = 0;
+            }
+            // After the descending phase the block has to go to its initial position
+            if(p_blockInstance->posY <= p_blockInstance->startPosY){
+                moveBlockInstance(p_blockInstance, 0, p_blockInstance->startPosY - p_blockInstance->posY);
+                p_blockInstance->coll->ownerState = state_normal;
+                p_blockInstance->movementY = 0;
+            }
+            // Updating the sprite
+            if(p_blockInstance->currentTime >= p_block.spriteDuration[p_blockInstance->currentActionId]){
+                p_blockInstance->currentTime = 0;
+                p_blockInstance->currentSpriteId += 1;
+            }
+            p_blockInstance->currentSpriteId = p_blockInstance->currentSpriteId % p_block.spritesSize2[p_blockInstance->currentActionId];
+            }
     }
 }//--------------------------------------------------------------------------------------------------------------------
 

@@ -1,4 +1,4 @@
-[Header];6;200;Mr Fluffy;
+[Header];6;30;Mr Fluffy;
 =========Walking left=========
 [Action];0;4;200;38;36;50;
 [Sprite];0;data/img/mr_fluffy/left-0.png;

@@ -42,7 +42,7 @@ void addColliderToColliderManager(ColliderManager *p_colliderManager, Collider *
 
 Collider * createCollider(ColliderManager *p_colliderManager, int p_width, int p_height, int p_posX, int p_posY, int p_isEnabled, int p_ownerTag){
 // Create a new collider and add it to a colliderManager
-    Collider *res = initCollider(getNextAvailableColliderId(p_colliderManager), p_width, p_height, p_posX, p_posY, p_isEnabled, p_ownerTag);
+    Collider *res = initCollider(getNextAvailableColliderId(p_colliderManager), p_width, p_height, p_posX, p_posY, p_isEnabled, p_ownerTag, state_normal);
     addColliderToColliderManager(p_colliderManager, res);
     return res;
 }//------------------------------------------------------------------------------------------------------------------------

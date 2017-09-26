@@ -1,9 +1,9 @@
-[Header];2;100;32;32;100;
+[Header];2;100;32;32;200;
 =====================================================;
-[Action];0;1;300;
+[Action];0;1;150;
 [Sprite];0;data/img/brick/brick-0.png;
 =====================================================;
-[Action];1;3;80;
+[Action];1;3;50;
 [Sprite];0;data/img/brick/bark-0.png;
 [Sprite];1;data/img/brick/bark-1.png;
 [Sprite];2;data/img/brick/bark-2.png;

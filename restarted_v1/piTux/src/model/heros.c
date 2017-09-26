@@ -54,7 +54,7 @@ Heros *initHeros(char p_path[FILE_PATH_SIZE_MAX]){
             }else if(strcmp(buff[0], "[Action]") == 0){
                 res->spriteDuration[currentTuxState - 1][atoi(buff[1])] = atoi(buff[3]);
                 res->spriteSize[currentTuxState - 1][atoi(buff[1])] = atoi(buff[2]);
-                res->herosColl[currentTuxState - 1][atoi(buff[1])] = initNonRegisteredCollider(atoi(buff[4]), atoi(buff[5]), 0, 0, 0, TAG_HEROS_TUX);
+                res->herosColl[currentTuxState - 1][atoi(buff[1])] = initNonRegisteredCollider(atoi(buff[4]), atoi(buff[5]), 0, 0, 0, tag_tux, atoi(buff[6]));
 
                 res->sprites[currentTuxState - 1][atoi(buff[1])] = malloc(atoi(buff[2]) * sizeof(SDL_Surface *));
                 if (res->sprites [currentTuxState - 1][atoi(buff[1])] == NULL){

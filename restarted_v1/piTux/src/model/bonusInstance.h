@@ -18,6 +18,7 @@ typedef struct{
     int currentSpriteId;
     float movementX, movementY; // A decimal position is the FPS is too fast
     int posX, posY;
+    int direction; // The egg direction
     Collider *coll;
     int wasGathered;// 0 or 1 if the bonus was already gathered
     int lifeTime;// Nb of milliseconds

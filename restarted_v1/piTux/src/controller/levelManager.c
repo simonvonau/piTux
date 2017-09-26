@@ -132,40 +132,68 @@ void displayLevelByLevelManager(Level *p_lev, SDL_Window *p_window, int p_isGame
 
 }//------------------------------------------------------------------------------------------------------------------------
 
-void updateLevelAfterCollisionsDetection(LevelManager* p_levMgr, ColliderManager *p_collMgr, int p_currentTime, int p_loopTime, int p_minX, int p_maxX, int p_minY, int p_maxY){
+void updateLevelAfterCollisionsDetection(LevelManager* p_levMgr, ColliderManager *p_collMgr, int p_currentTime, int p_loopTime, int p_minX, int p_maxX, int p_minY, int p_maxY, Bonus** p_allBonus, int p_allBonusSize){
     // Update level's items after collisions detection
 
-    updateBlocksAfterColliding(p_levMgr, p_collMgr, p_currentTime, p_loopTime);
+    updateBlocksAfterColliding(p_levMgr, p_collMgr, p_currentTime, p_loopTime, p_allBonus, p_allBonusSize);
     updateBonusAfterColliding(p_levMgr, p_collMgr, p_currentTime, p_loopTime);
 
 }//------------------------------------------------------------------------------------------------------------------------
 
-void updateBlocksAfterColliding(LevelManager* p_levMgr, ColliderManager *p_collMgr, int p_currentTime, int p_loopTime){
+void updateBlocksAfterColliding(LevelManager* p_levMgr, ColliderManager *p_collMgr, int p_currentTime, int p_loopTime, Bonus ** p_allBonus, int p_allBonusSize){
     // Update each block after a collision
     Collider **contactPoints;
+    Collider *newBonusInstanceColl;
     int contactPointsSize;
-    int i, j;
+    int i, j, k;
 
     for(i = 0; i < p_levMgr->currLevel->blockInstancesSize; i++){
         getColliderTouching(p_collMgr, p_levMgr->currLevel->blockInstances[i]->coll->id, &contactPoints, &contactPointsSize);
 
         for(j = 0; j < contactPointsSize; j++){
             // If the heros gathered this block
-            if(contactPoints[j]->ownerTag == TAG_HEROS_TUX){
+            if(contactPoints[j]->ownerTag == tag_tux){
                 switch(p_levMgr->currLevel->blockInstances[i]->coll->ownerTag){
-                    case TAG_BLOCK_WEAK:
-                        // When tux destroys a wood block (collision from under)
+                    case tag_block_weak:
+                        // When a big tux hit a wood block (collision from under)
                         if(contactPoints[j]->lastPosY + contactPoints[j]->height <= p_levMgr->currLevel->blockInstances[i]->coll->posY){
-                            p_levMgr->currLevel->blockInstances[i]->coll->ownerTag = TAG_BLOCK_UNDERHIT_WEAK;
-                            changeBlockAction(p_levMgr->currLevel->blockInstances[i], 1, 0);
+                            p_levMgr->currLevel->blockInstances[i]->coll->ownerState = state_block_hit_up;
+                            p_levMgr->currLevel->blockInstances[i]->currentTime = 0;
+                            // If tux is big the wood block will be destroyed
+                            if(contactPoints[j]->ownerState == state_tux_big || contactPoints[j]->ownerState == state_tux_fire){
+                                changeBlockAction(p_levMgr->currLevel->blockInstances[i], 1, 0);
+                            }
                         }
                         break;
-                    case TAG_BLOCK_NORMAL:
+                    case tag_block_mystery:
                         // When tux opens a "?" block (collision from under)
                         if(contactPoints[j]->lastPosY + contactPoints[j]->height <= p_levMgr->currLevel->blockInstances[i]->coll->posY){
-                            p_levMgr->currLevel->blockInstances[i]->coll->ownerTag = TAG_BLOCK_UNDERHIT_NORMAL;
+                            p_levMgr->currLevel->blockInstances[i]->coll->ownerState = state_block_hit_up;
                             changeBlockAction(p_levMgr->currLevel->blockInstances[i], 1, 0);
                             p_levMgr->currLevel->blockInstances[i]->currentTime = 0;
+
+                            // When a bonus go out a "?" block
+                            if(p_levMgr->currLevel->blockInstances[i]->idBonus >= 0 && p_levMgr->currLevel->blockInstances[i]->idBonus < p_allBonusSize){
+                                // Only the small tux can get egg (the "big tux" and the "fire tux" must have a flower)
+                                if(p_allBonus[p_levMgr->currLevel->blockInstances[i]->idBonus]->refColl->ownerTag == tag_bonus_egg && contactPoints[j]->ownerState != state_tux_small){
+                                    for(k = 0; k < p_allBonusSize; k++){
+                                        if(p_allBonus[k]->refColl->ownerTag == tag_bonus_flower){
+                                            p_levMgr->currLevel->blockInstances[i]->idBonus = k;
+                                        }
+                                    }
+                                }
+                                newBonusInstanceColl = createCollider(p_collMgr,
+                                                                        p_allBonus[p_levMgr->currLevel->blockInstances[i]->idBonus]->refColl->width,
+                                                                        p_allBonus[p_levMgr->currLevel->blockInstances[i]->idBonus]->refColl->height,
+                                                                        p_levMgr->currLevel->blockInstances[i]->coll->posX,
+                                                                        p_levMgr->currLevel->blockInstances[i]->coll->posY + p_levMgr->currLevel->blockInstances[i]->coll->height + 1,
+                                                                        1,
+                                                                        p_allBonus[p_levMgr->currLevel->blockInstances[i]->idBonus]->refColl->ownerTag);
+
+                                addBonusInstanceToLevel(p_levMgr->currLevel, p_levMgr->currLevel->blockInstances[i]->idBonus, p_levMgr->currLevel->blockInstances[i]->coll->posX,
+                                    p_levMgr->currLevel->blockInstances[i]->coll->posY + p_levMgr->currLevel->blockInstances[i]->coll->height, newBonusInstanceColl);
+                                p_levMgr->currLevel->blockInstances[i]->idBonus = -1;
+                            }
                         }
                         break;
                     default:
@@ -188,32 +216,55 @@ void updateBonusAfterColliding(LevelManager* p_levMgr, ColliderManager *p_collMg
 
         for(j = 0; j < contactPointsSize; j++){
             // If the heros gathered this bonus
-            if(contactPoints[j]->ownerTag == TAG_HEROS_TUX){
+            if(contactPoints[j]->ownerTag == tag_tux){
                 p_levMgr->currLevel->bonusInstances[i]->coll->isEnabled = 0;
                 switch(p_levMgr->currLevel->bonusInstances[i]->coll->ownerTag){
-                    case TAG_BONUS_COIN:
+                    case tag_bonus_coin:
                         p_levMgr->currLevel->bonusInstances[i]->wasGathered = 1;
                         p_levMgr->currLevel->bonusInstances[i]->lifeTime = 500;
                         break;
-                    case TAG_BONUS_EGG:
+                    case tag_bonus_egg:
                         p_levMgr->currLevel->bonusInstances[i]->wasGathered = 1;
                         p_levMgr->currLevel->bonusInstances[i]->lifeTime = -1;
                         break;
-                    case TAG_BONUS_FIREFLOWER:
+                    case tag_bonus_flower:
                         p_levMgr->currLevel->bonusInstances[i]->wasGathered = 1;
                         p_levMgr->currLevel->bonusInstances[i]->lifeTime = -1;
                         break;
                 }
+            }else if(contactPoints[j]->ownerTag == tag_block_mystery || contactPoints[j]->ownerTag == tag_block_strong || contactPoints[j]->ownerTag == tag_block_weak){
+                // Reaction of the bonus with its environment
+                if(p_levMgr->currLevel->bonusInstances[i]->coll->ownerTag == tag_bonus_egg){
+                    if(p_levMgr->currLevel->bonusInstances[i]->coll->lastPosY < contactPoints[j]->posY + contactPoints[j]->height){
+                        if(p_levMgr->currLevel->bonusInstances[i]->coll->lastPosX + p_levMgr->currLevel->bonusInstances[i]->coll->width <= contactPoints[j]->posX){
+                            p_levMgr->currLevel->bonusInstances[i]->posX = contactPoints[j]->posX - p_levMgr->currLevel->bonusInstances[i]->coll->width;
+                            p_levMgr->currLevel->bonusInstances[i]->direction = - p_levMgr->currLevel->bonusInstances[i]->direction;
+                        }else if(p_levMgr->currLevel->bonusInstances[i]->coll->lastPosX >= contactPoints[j]->posX + contactPoints[j]->width){
+                            p_levMgr->currLevel->bonusInstances[i]->posX = contactPoints[j]->posX + contactPoints[j]->width;
+                            p_levMgr->currLevel->bonusInstances[i]->direction = - p_levMgr->currLevel->bonusInstances[i]->direction;
+                        }else{
+                            p_levMgr->currLevel->bonusInstances[i]->posY = contactPoints[j]->posY + contactPoints[j]->height;
+                        }
+                    }else{
+                        p_levMgr->currLevel->bonusInstances[i]->posY = contactPoints[j]->posY + contactPoints[j]->height;
+                    }
+                }else if(p_levMgr->currLevel->bonusInstances[i]->coll->ownerTag == tag_bonus_flower){
+                    p_levMgr->currLevel->bonusInstances[i]->posY = contactPoints[j]->posY + contactPoints[j]->height;
+                }
             }
-            // If the heros gathered this bonus by hitting the block under
-            if( p_levMgr->currLevel->bonusInstances[i]->coll->isEnabled && p_levMgr->currLevel->bonusInstances[i]->coll->ownerTag == TAG_BONUS_COIN
-            && (contactPoints[j]->ownerTag == TAG_BLOCK_UNDERHIT_NORMAL || contactPoints[j]->ownerTag == TAG_BLOCK_UNDERHIT_WEAK)){
+
+            // If the heros gathered this coin by hitting the block under it
+            if( p_levMgr->currLevel->bonusInstances[i]->coll->isEnabled && p_levMgr->currLevel->bonusInstances[i]->coll->ownerTag == tag_bonus_coin
+            && contactPoints[j]->ownerState == state_block_hit_up){
                 p_levMgr->currLevel->bonusInstances[i]->coll->isEnabled = 0;
                 p_levMgr->currLevel->bonusInstances[i]->wasGathered = 1;
                 p_levMgr->currLevel->bonusInstances[i]->lifeTime = 500;
             }
-
         }
+        /*p_levMgr->currLevel->bonusInstances[i]->coll->lastPosX = p_levMgr->currLevel->bonusInstances[i]->coll->posX;
+        p_levMgr->currLevel->bonusInstances[i]->coll->lastPosY = p_levMgr->currLevel->bonusInstances[i]->coll->posY;*/
+        p_levMgr->currLevel->bonusInstances[i]->coll->posX = p_levMgr->currLevel->bonusInstances[i]->posX;
+        p_levMgr->currLevel->bonusInstances[i]->coll->posY = p_levMgr->currLevel->bonusInstances[i]->posY;
     }
 
 }//------------------------------------------------------------------------------------------------------------------------

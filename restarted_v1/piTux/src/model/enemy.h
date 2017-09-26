@@ -23,7 +23,7 @@ typedef struct
     int *spriteDuration; // All actions life-time
     int *speed; // All speed sorted by actionId
     Collider **actionColl;// All the colliders (sorted by actionId)
-    int enemyType; // cf TAG from global.h
+    enum ObjectTag enemyType; // cf TAG from global.h
     void *specialBehaviour; // To define his own behaviour
 } Enemy;
 

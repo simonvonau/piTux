@@ -1,4 +1,4 @@
-[Header];5;220;Mr Bomb;
+[Header];5;40;Mr Bomb;
 =========Walking left=========
 [Action];0;4;200;42;40;50;
 [Sprite];0;data/img/mr_bomb/left-0.png;

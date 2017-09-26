@@ -97,7 +97,7 @@ void loadLevelByGameMgr(GameManager *p_gameMgr, char *p_path, int p_pathSize){
         // Update HerosInstance collider
         for(j = 0; j < p_gameMgr->herosMgr->heros->actionSize[i]; j++){
             tempColl = p_gameMgr->herosMgr->heroInstance->herosColl[i][j];
-            tempColl->ownerTag = TAG_HEROS_TUX;
+            tempColl->ownerTag = tag_tux;
             tempColl->posX = p_gameMgr->herosMgr->heroInstance->posX;
             tempColl->posY = p_gameMgr->herosMgr->heroInstance->posY;
             if (i == p_gameMgr->herosMgr->heroInstance->currState && j == p_gameMgr->herosMgr->heroInstance->currAction){
@@ -231,7 +231,7 @@ void refreshGameByGameManager(GameManager *p_gameMgr, int p_currentTime, int p_l
     updateHeroBehaviourAfterCollisionDetection(p_gameMgr->herosMgr->heroInstance, p_gameMgr->herosMgr->heros, p_gameMgr->collMgr, p_currentTime, p_loopTime);
 
     updateLevelAfterCollisionsDetection(p_gameMgr->levelManager, p_gameMgr->collMgr, p_currentTime, p_loopTime,
-                                        leftLimit, rightLimit, bottomLimit, topLimit);
+                                        leftLimit, rightLimit, bottomLimit, topLimit, p_gameMgr->allBonus, p_gameMgr->allBonusSize);
 
     // Update enemies behaviour after the collision checking
     for(i = 0; i < p_gameMgr->levelManager->currLevel->enemyInstancesSize; i++){

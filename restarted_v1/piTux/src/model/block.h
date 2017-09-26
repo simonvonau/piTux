@@ -18,7 +18,7 @@ typedef struct{
     int spritesSize1; // sprites size
     int *spritesSize2;// List of sprites[*] sizes
     int *spriteDuration; // All actions life time
-    char blockType;// cf global.h
+    enum ObjectTag blockType;// cf global.h
     Collider *refColl; // A non-registered Collider
     int speedY; // Vertical speed (when the block is hit from under he goes up)
 }Block;

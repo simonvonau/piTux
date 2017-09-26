@@ -74,7 +74,7 @@ Enemy *initEnemy(char *p_path){
                 res->spritesSize2[currentAction] = atoi(buff[2]);
                 res->spriteDuration[currentAction] = atoi(buff[3]);
                 res->sprites[currentAction] = malloc(res->spriteDuration[currentAction] * sizeof(SDL_Surface *));
-                res->actionColl[currentAction] = initNonRegisteredCollider(atoi(buff[4]), atoi(buff[5]), 0, 0, 1, 0);
+                res->actionColl[currentAction] = initNonRegisteredCollider(atoi(buff[4]), atoi(buff[5]), 0, 0, 1, 0, state_normal);
                 res->speed[currentAction] = atoi(buff[6]);
 
                 if(res->sprites[currentAction] == NULL ){
