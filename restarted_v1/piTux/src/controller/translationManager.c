@@ -2,26 +2,26 @@
 
 
 
-TranslationManager *initTranslationManager(char *path){
+TranslationManager *initTranslationManager(char *p_path){
 // Init a new TranslationManager
     TranslationManager *res = malloc(sizeof(TranslationManager));
     if(res == NULL){
         reportErreur("initTranslationManager():error malloc()");
     }
-    res->currLangageId = 0;
-    res->allTranslations = initTranslations(path, &(res->allTranslationsSize), &(res->nbLangages), &(res->langagesList));
+    res->currLanguageId = 0;
+    res->allTranslations = initTranslations(p_path, &(res->allTranslationsSize), &(res->nbLanguages), &(res->languagesList));
     return res;
 }//--------------------------------------------------------------------------------------------------------------------
 
-void destroyTranslationManager(TranslationManager *currTranslationManager){
+void destroyTranslationManager(TranslationManager *p_translaMgr){
 // Free TranslationManager memory
     int i;
-    for( i = 0; i < currTranslationManager->allTranslationsSize; i++){
-        destroyTranslation(currTranslationManager->allTranslations[i]);
+    for( i = 0; i < p_translaMgr->allTranslationsSize; i++){
+        destroyTranslation(p_translaMgr->allTranslations[i]);
     }
-    free(currTranslationManager->allTranslations);
+    free(p_translaMgr->allTranslations);
 
-    destroyTranslation(currTranslationManager->langagesList);
-    free(currTranslationManager);
+    destroyTranslation(p_translaMgr->languagesList);
+    free(p_translaMgr);
 }//--------------------------------------------------------------------------------------------------------------------
 

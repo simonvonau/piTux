@@ -1,6 +1,6 @@
 #include "quitPage.h"
 
-int displayQuitPage(SDL_Window *p_window, GameManager *currGameMgr){
+int displayQuitPage(SDL_Window *p_window, GameManager *p_gameMgr){
     SDL_Surface *cursor, *background1, *background2;
     TTF_Font *font1 = TTF_OpenFont("data/fonts/dejavu/DejaVuSans.ttf", 20);
     TTF_Font *font2 = TTF_OpenFont("data/fonts/dejavu/DejaVuSans.ttf", 25);
@@ -61,23 +61,23 @@ int displayQuitPage(SDL_Window *p_window, GameManager *currGameMgr){
 
         // Printing the page title
         setTextLayout(p_window,
-                        currGameMgr->translaManager->allTranslations[pageTitleId]->sentence[currGameMgr->translaManager->currLangageId],
-                        currGameMgr->translaManager->allTranslations[pageTitleId]->sentenceSize, font2, textColor, pageTitlePos);
+                        p_gameMgr->translaManager->allTranslations[pageTitleId]->sentence[p_gameMgr->translaManager->currLanguageId],
+                        p_gameMgr->translaManager->allTranslations[pageTitleId]->sentenceSize, font2, textColor, pageTitlePos);
 
         for(i=0; i < nbMaxUserChoice; i++){
             if(userChoice == i){
                 // Print the current selected choice
                 setTextLayout(p_window,
-                        currGameMgr->translaManager->allTranslations[allUserChoicesId[i]]->sentence[currGameMgr->translaManager->currLangageId],
-                        currGameMgr->translaManager->allTranslations[allUserChoicesId[i]]->sentenceSize, font2, textColor, textPos);
+                        p_gameMgr->translaManager->allTranslations[allUserChoicesId[i]]->sentence[p_gameMgr->translaManager->currLanguageId],
+                        p_gameMgr->translaManager->allTranslations[allUserChoicesId[i]]->sentenceSize, font2, textColor, textPos);
                 textPos.x -= 35;
                 // Print the cursor
                 SDL_BlitSurface(cursor,NULL,SDL_GetWindowSurface(p_window),&textPos);
                 textPos.x +=35;
             }else{
                 setTextLayout(p_window,
-                        currGameMgr->translaManager->allTranslations[allUserChoicesId[i]]->sentence[currGameMgr->translaManager->currLangageId],
-                        currGameMgr->translaManager->allTranslations[allUserChoicesId[i]]->sentenceSize, font1, textColor, textPos);
+                        p_gameMgr->translaManager->allTranslations[allUserChoicesId[i]]->sentence[p_gameMgr->translaManager->currLanguageId],
+                        p_gameMgr->translaManager->allTranslations[allUserChoicesId[i]]->sentenceSize, font1, textColor, textPos);
             }
             textPos.y += 45;
         }
@@ -85,8 +85,8 @@ int displayQuitPage(SDL_Window *p_window, GameManager *currGameMgr){
         // Indication to go back
         textPos.y = SDL_GetWindowSurface(p_window)->h - 120;
         setTextLayout(p_window,
-                        currGameMgr->translaManager->allTranslations[12]->sentence[currGameMgr->translaManager->currLangageId],
-                        currGameMgr->translaManager->allTranslations[12]->sentenceSize, font3, textColor, textPos);
+                        p_gameMgr->translaManager->allTranslations[12]->sentence[p_gameMgr->translaManager->currLanguageId],
+                        p_gameMgr->translaManager->allTranslations[12]->sentenceSize, font3, textColor, textPos);
         textPos.y = 150;
 
         // Window refreshing

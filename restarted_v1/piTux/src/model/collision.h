@@ -12,8 +12,8 @@ typedef struct{
 }Collision;
 
 
-Collision * initCollision(int id, int currColl1Id, int currColl2Id);
-void destroyCollision(Collision* currCollision);
+Collision * initCollision(int p_id, int p_coll1Id, int p_coll2Id);
+void destroyCollision(Collision* p_collision);
 
 
 #endif

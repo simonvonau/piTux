@@ -10,10 +10,10 @@
 
 
 
-void updateEnemyBehaviourAfterCollisionDetection(EnemyInstance *currEnemyInstance, Enemy currEnemy, ColliderManager *currCollMgr, int loopTime);
+void updateEnemyBehaviourAfterCollisionDetection(EnemyInstance *p_enemyInstance, Enemy p_enemy, ColliderManager *p_collMgr, int p_loopTime);
 
-void updateMrFluffyBehaviour(EnemyInstance *currEnemyInstance, Enemy currEnemy, ColliderManager *currCollMgr, int loopTime);
-void updateMrBombBehaviour(EnemyInstance *currEnemyInstance, Enemy currEnemy, ColliderManager *currCollMgr, int loopTime);
-void updateMrIceBlockBehaviour(EnemyInstance *currEnemyInstance, Enemy currEnemy, ColliderManager *currCollMgr, int loopTime);
+void updateMrFluffyBehaviour(EnemyInstance *p_enemyInstance, Enemy p_enemy, ColliderManager *p_collMgr, int p_loopTime);
+void updateMrBombBehaviour(EnemyInstance *p_enemyInstance, Enemy p_enemy, ColliderManager *p_collMgr, int p_loopTime);
+void updateMrIceBlockBehaviour(EnemyInstance *p_enemyInstance, Enemy p_enemy, ColliderManager *p_collMgr, int p_loopTime);
 
 #endif

@@ -23,9 +23,9 @@ typedef struct{
     int speedX, speedY;
 }Bonus;
 
-Bonus ** initBonusArray(char *path, int *resSize);
-Bonus * initBonus( char *path);
-void destroyBonus(Bonus *currBonus);
+Bonus ** initBonusArray(char *p_path, int *p_resSize);
+Bonus * initBonus( char *p_path);
+void destroyBonus(Bonus *p_bonus);
 
 
 #endif

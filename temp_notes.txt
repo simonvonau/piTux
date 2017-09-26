@@ -14,8 +14,6 @@ TODO List for next time:
 	- Bug: in mode game [escape] to pause mode + [escape] to go back game => back in a empty level
 	- Bug: replace all the realloc by (malloc, free) level.c, ... => due to realloc problems
 
-NB:
-	Update UML diagram
 
 
 

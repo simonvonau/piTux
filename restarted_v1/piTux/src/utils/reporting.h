@@ -6,7 +6,7 @@
 
 
 
-void reportErreur(char * description);
+void reportErreur(char * p_description);
 
 
 #endif

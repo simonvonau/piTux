@@ -1,8 +1,8 @@
 #include "levelIcon.h"
 
 
-LevelIcon **initLevelIcons(char *path, int *resSize){
-    FILE *file = fopen ( path, "r" );
+LevelIcon **initLevelIcons(char *p_path, int *p_resSize){
+    FILE *file = fopen ( p_path, "r" );
     int nbMaxElemPerLine = 10;
     int lineSizeMax = 512;// Max size of a line from the opened file
     char  **buff = malloc(nbMaxElemPerLine * sizeof(char *));
@@ -16,13 +16,13 @@ LevelIcon **initLevelIcons(char *path, int *resSize){
             buff = splitString(line, ';', lineSizeMax, nbMaxElemPerLine, lineSizeMax);
 
             if(strcmp(buff[0], "[Header]") == 0){
-                *resSize = atoi(buff[1]);
-                res = malloc(*resSize * sizeof(LevelIcon *));
+                *p_resSize = atoi(buff[1]);
+                res = malloc(*p_resSize * sizeof(LevelIcon *));
                 if(res == NULL){
-                    *resSize = 0;
+                    *p_resSize = 0;
                     reportErreur("Error malloc initLevelIcon()");
                 }
-            }else if(strcmp(buff[0], "[Data]") == 0 && resCurrIndex < *resSize){
+            }else if(strcmp(buff[0], "[Data]") == 0 && resCurrIndex < *p_resSize){
                 res[resCurrIndex] = initLevelIcon(lineSizeMax, 1, buff);
                 resCurrIndex += 1;
             }
@@ -30,7 +30,7 @@ LevelIcon **initLevelIcons(char *path, int *resSize){
 
         fclose ( file );
     }else{
-        perror ( path );
+        perror ( p_path );
     }
 
     for(i=0;i < nbMaxElemPerLine; i++){
@@ -42,18 +42,19 @@ LevelIcon **initLevelIcons(char *path, int *resSize){
 
 }//--------------------------------------------------------------------------------------------------------------------
 
-LevelIcon *initLevelIcon(int lineSizeMax, int startIndex, char ** buff){
+LevelIcon *initLevelIcon(int p_lineSizeMax, int p_startIndex, char ** p_buff){
+// Init a levelIcon from the data in the p_buff param
     LevelIcon *res = malloc(sizeof(LevelIcon));
-    strncpy(res->path, buff[startIndex], lineSizeMax);
-    res->posX = atoi(buff[startIndex + 1]);
-    res->posY = atoi(buff[startIndex + 2]);
-    res->isCleared = atoi(buff[startIndex + 3]);
-    res->isAvailable = atoi(buff[startIndex + 4]);
-    res->linkedLevel1 = atoi(buff[startIndex + 5]);
-    res->linkedLevel2 = atoi(buff[startIndex + 6]);
+    strncpy(res->path, p_buff[p_startIndex], p_lineSizeMax);
+    res->posX = atoi(p_buff[p_startIndex + 1]);
+    res->posY = atoi(p_buff[p_startIndex + 2]);
+    res->isCleared = atoi(p_buff[p_startIndex + 3]);
+    res->isAvailable = atoi(p_buff[p_startIndex + 4]);
+    res->linkedLevel1 = atoi(p_buff[p_startIndex + 5]);
+    res->linkedLevel2 = atoi(p_buff[p_startIndex + 6]);
     return res;
 }//--------------------------------------------------------------------------------------------------------------------
 
-void destroyLevelIcon(LevelIcon *currLevelIcon){
-    free(currLevelIcon);
+void destroyLevelIcon(LevelIcon *p_levelIcon){
+    free(p_levelIcon);
 }//--------------------------------------------------------------------------------------------------------------------

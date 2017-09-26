@@ -20,7 +20,10 @@
 #define TAG_BONUS_EGG 20
 #define TAG_BONUS_FIREFLOWER 30
 #define TAG_BLOCK_WEAK 100
+#define TAG_BLOCK_UNDERHIT_WEAK 105
 #define TAG_BLOCK_NORMAL 110
+#define TAG_BLOCK_UNDERHIT_NORMAL 115
+#define TAG_BLOCK_UNDERHIT_NORMAL_DESC 116
 #define TAG_BLOCK_STRONG 120
 #define TAG_ENEMY_MRFLUFFY 200
 #define TAG_ENEMY_MRICEBLOCK 210
@@ -35,5 +38,29 @@
 // The limit to kill the enemies out of it
 #define DEAD_LIMIT_Y -200
 
+
+//*** à ajouter à l'UML
+typedef enum AllCollidersTag{
+    tag_tux_small = 1,
+    tag_tux_big = 10,
+    tag_tux_fire = 20,
+
+    tag_enemy_fluffy = 30,
+    tag_enemy_iceblock = 40,
+    tag_enemy_iceblock_bull = 41,
+    tag_enemy_bomb = 50,
+
+    tag_block_weak = 100,
+    tag_block_mystery = 110,
+    tag_block_normal = 120,
+    tag_block_strong = 130,
+
+
+    tag_bonus_coin = 200,
+    tag_bonus_egg = 210,
+    tag_bonus_flower = 220,
+
+    tag_explosion = 300
+};
 
 #endif

@@ -14,6 +14,6 @@
 #include "../controller/gameManager.h"
 #include "../pages/textLayout.h"
 
-int displayQuitPage(SDL_Window *p_window, GameManager *currGameMgr);
+int displayQuitPage(SDL_Window *p_window, GameManager *p_gameMgr);
 
 #endif

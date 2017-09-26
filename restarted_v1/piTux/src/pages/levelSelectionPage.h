@@ -16,7 +16,7 @@
 #include "../model/levelIcon.h"
 #include "../pages/textLayout.h"
 
-int chooseLevel(LevelIcon **allLevels, int nbLevels, int userChoice, char *keyPressed);
-int displayLevelSelectionPage(SDL_Window *p_window, char *nextLevelPath, GameManager *currGameMgr);
+int chooseLevel(LevelIcon **p_allLevels, int p_nbLevels, int p_userChoice, char *p_keyPressed);
+int displayLevelSelectionPage(SDL_Window *p_window, char *p_nextLevelPath, GameManager *p_gameMgr);
 
 #endif

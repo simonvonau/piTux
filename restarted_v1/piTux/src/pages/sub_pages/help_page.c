@@ -1,7 +1,7 @@
 #include "help_page.h"
 
 //NB: Sub pages are not managed by gui_manager and can be called by another page
-int displayHelpSubPage(SDL_Window *p_window, GameManager *currGameMgr){
+int displayHelpSubPage(SDL_Window *p_window, GameManager *p_gameMgr){
     SDL_Surface *background1;
     Button *goBackArrow;
 
@@ -53,13 +53,13 @@ int displayHelpSubPage(SDL_Window *p_window, GameManager *currGameMgr){
 
         // Printing the page title
         setTextLayout(p_window,
-                        currGameMgr->translaManager->allTranslations[pageTitleId]->sentence[currGameMgr->translaManager->currLangageId],
-                        currGameMgr->translaManager->allTranslations[pageTitleId]->sentenceSize, font3, textColor, pageTitlePos);
+                        p_gameMgr->translaManager->allTranslations[pageTitleId]->sentence[p_gameMgr->translaManager->currLanguageId],
+                        p_gameMgr->translaManager->allTranslations[pageTitleId]->sentenceSize, font3, textColor, pageTitlePos);
         // Printing page content
         for( i = 0; i < contentIdSize; i++){
             setTextLayout(p_window,
-                        currGameMgr->translaManager->allTranslations[contentId[i]]->sentence[currGameMgr->translaManager->currLangageId],
-                        currGameMgr->translaManager->allTranslations[contentId[i]]->sentenceSize, font2, textColor, textPos);
+                        p_gameMgr->translaManager->allTranslations[contentId[i]]->sentence[p_gameMgr->translaManager->currLanguageId],
+                        p_gameMgr->translaManager->allTranslations[contentId[i]]->sentenceSize, font2, textColor, textPos);
             textPos.y += jumpLineGapSize;
         }
         // Displaying back button
@@ -67,8 +67,8 @@ int displayHelpSubPage(SDL_Window *p_window, GameManager *currGameMgr){
         // Indication to go back
         textPos.y = SDL_GetWindowSurface(p_window)->h - 120;
         setTextLayout(p_window,
-                        currGameMgr->translaManager->allTranslations[12]->sentence[currGameMgr->translaManager->currLangageId],
-                        currGameMgr->translaManager->allTranslations[12]->sentenceSize, font1, textColor, textPos);
+                        p_gameMgr->translaManager->allTranslations[12]->sentence[p_gameMgr->translaManager->currLanguageId],
+                        p_gameMgr->translaManager->allTranslations[12]->sentenceSize, font1, textColor, textPos);
 
         // Window refreshing
         SDL_UpdateWindowSurface(p_window);

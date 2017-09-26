@@ -27,10 +27,10 @@ typedef struct
     void *specialBehaviour; // To define his own behaviour
 } Enemy;
 
-Enemy **initEnemyArray(char *path,int *resSize);
-Enemy *initEnemy(char *path);
-void enemyDie(Enemy *currEnemy);
-void destroyEnemy(Enemy *currEnemy);
+Enemy **initEnemyArray(char *p_path,int *p_resSize);
+Enemy *initEnemy(char *p_path);
+void enemyDie(Enemy *p_enemy);
+void destroyEnemy(Enemy *p_enemy);
 
 
 #endif

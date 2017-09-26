@@ -24,9 +24,9 @@ typedef struct{
 }BonusInstance;
 
 
-BonusInstance * initBonusInstance(int idBonus, int posX, int posY, Collider *coll);
-void refreshBonusInstance(BonusInstance *currBonusInstance, int loopTime, Bonus currBonus);
-void destroyBonusInstance(BonusInstance *currBonusInstance);
+BonusInstance * initBonusInstance(int p_idBonus, int p_posX, int p_posY, Collider *p_coll);
+void refreshBonusInstance(BonusInstance *p_bonusInstance, int p_loopTime, Bonus p_bonus);
+void destroyBonusInstance(BonusInstance *p_bonusInstance);
 
 
 #endif

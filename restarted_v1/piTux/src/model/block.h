@@ -20,7 +20,7 @@ typedef struct{
     int *spriteDuration; // All actions life time
     char blockType;// cf global.h
     Collider *refColl; // A non-registered Collider
-
+    int speedY; // Vertical speed (when the block is hit from under he goes up)
 }Block;
 
 Block ** initBlockArray(char *p_path, int *p_resSize);

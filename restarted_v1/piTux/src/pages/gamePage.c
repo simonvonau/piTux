@@ -1,6 +1,6 @@
 #include "gamePage.h"
 
-int displayGamePage(SDL_Window *p_window, char *levelPath, int levelPathSize, GameManager *currGameMgr){
+int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize, GameManager *p_gameMgr){
     SDL_Surface *background1, *lifesLeft, *coinLeft, *timeLeft, *redBackground;
     TTF_Font *font1 = TTF_OpenFont("data/fonts/dejavu/DejaVuSans.ttf", 20);
     TTF_Font *font2 = TTF_OpenFont("data/fonts/dejavu/DejaVuSans.ttf", 30);
@@ -43,7 +43,7 @@ int displayGamePage(SDL_Window *p_window, char *levelPath, int levelPathSize, Ga
     int sumLoopDone = 0; // Sum of each loop
 
     // Init level
-    loadLevelByGameMgr(currGameMgr, levelPath, levelPathSize);
+    loadLevelByGameMgr(p_gameMgr, p_levelPath, p_levelPathSize);
 
     background1 = loadImage("data/img/background/arctis.jpg");
     lifesLeft = loadImage("data/img/icon/life_left.png");
@@ -53,11 +53,11 @@ int displayGamePage(SDL_Window *p_window, char *levelPath, int levelPathSize, Ga
 
     SDL_FlushEvent(SDL_KEYDOWN);
     while ( 1 ){
-//--------------------------Events management-----------------------------------------------------------------------
+    //--------------------------Events management-----------------------------------------------------------------------
         SDL_PollEvent(&event);
         // Escape => break mode
         if( event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE && event.key.keysym.sym != lastEvent.key.keysym.sym){
-            if (!(exitStatut=displayBreakSubPage(p_window, currGameMgr))){ // Leave the game
+            if (!(exitStatut=displayBreakSubPage(p_window, p_gameMgr))){ // Leave the game
                 break;
             }
             if (exitStatut != 1000){// Go to another page
@@ -76,23 +76,23 @@ int displayGamePage(SDL_Window *p_window, char *levelPath, int levelPathSize, Ga
 
         // Jump
         if( event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_UP){
-            currGameMgr->herosMgr->heroInstance->jumpKeyPressed = 1;
+            p_gameMgr->herosMgr->heroInstance->jumpKeyPressed = 1;
         }else if(event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_UP){
-            currGameMgr->herosMgr->heroInstance->jumpKeyPressed = 0;
+            p_gameMgr->herosMgr->heroInstance->jumpKeyPressed = 0;
         }
         // Move to right
         if( event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_RIGHT){
-            currGameMgr->herosMgr->heroInstance->rightKeyPressed = 1;
+            p_gameMgr->herosMgr->heroInstance->rightKeyPressed = 1;
         }else if(event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_RIGHT){
-            currGameMgr->herosMgr->heroInstance->rightKeyPressed = 0;
+            p_gameMgr->herosMgr->heroInstance->rightKeyPressed = 0;
         }
         // Move to left
         if( event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_LEFT){
-            currGameMgr->herosMgr->heroInstance->leftKeyPressed = 1;
+            p_gameMgr->herosMgr->heroInstance->leftKeyPressed = 1;
         }else if(event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_LEFT){
-            currGameMgr->herosMgr->heroInstance->leftKeyPressed = 0;
+            p_gameMgr->herosMgr->heroInstance->leftKeyPressed = 0;
         }
-//--------------------------Management-----------------------------------------------------------------------
+    //--------------------------Management-----------------------------------------------------------------------
         currTime = SDL_GetTicks();
         loopTime = currTime - lastTime;
         lastTime = currTime;
@@ -108,14 +108,14 @@ int displayGamePage(SDL_Window *p_window, char *levelPath, int levelPathSize, Ga
         }
 
         // Update the camera position
-        cameraX = currGameMgr->herosMgr->heroInstance->posX - herosToLeftScreenBorder;
-        cameraY = currGameMgr->herosMgr->heroInstance->posY - herosToBottomScreenBorder;
+        cameraX = p_gameMgr->herosMgr->heroInstance->posX - herosToLeftScreenBorder;
+        cameraY = p_gameMgr->herosMgr->heroInstance->posY - herosToBottomScreenBorder;
 
 
 
         // When game windows is not focus loopTime causes some collisions bugs
         if (loopTime < 80){
-            refreshGameByGameManager(currGameMgr, currTime, loopTime, SDL_GetWindowSurface(p_window)->w,SDL_GetWindowSurface(p_window)->h, cameraX, cameraY);
+            refreshGameByGameManager(p_gameMgr, currTime, loopTime, SDL_GetWindowSurface(p_window)->w,SDL_GetWindowSurface(p_window)->h, cameraX, cameraY);
 
 
             // Level time management (fail when time <= 0)
@@ -139,7 +139,7 @@ int displayGamePage(SDL_Window *p_window, char *levelPath, int levelPathSize, Ga
         }else{
             // Pause mode if game windows is not focus
             // Conflict problem after break mode
-            //if (!(exitStatut=displayBreakSubPage(p_window, currGameMgr))){
+            //if (!(exitStatut=displayBreakSubPage(p_window, p_gameMgr))){
               //  break;
             //}
         }
@@ -147,22 +147,22 @@ int displayGamePage(SDL_Window *p_window, char *levelPath, int levelPathSize, Ga
 
 
 
-//--------------------------------Laying out ---------------------------------------------------------------------------------------
+    //--------------------------------Laying out ---------------------------------------------------------------------------------------
         SDL_BlitSurface(background1, NULL, SDL_GetWindowSurface(p_window), &nullPos);
 
         // Displaying Level
-        displayLevelByLevelManager(currGameMgr->levelManager->currLevel, p_window, 1, cameraX, cameraY
-                     ,currGameMgr->allBlocks, currGameMgr->allBonus, currGameMgr->allEnemies);
+        displayLevelByLevelManager(p_gameMgr->levelManager->currLevel, p_window, 1, cameraX, cameraY
+                     ,p_gameMgr->allBlocks, p_gameMgr->allBonus, p_gameMgr->allEnemies);
 
-        displayHeros(currGameMgr->herosMgr, p_window, herosToLeftScreenBorder, herosToBottomScreenBorder);
+        displayHeros(p_gameMgr->herosMgr, p_window, herosToLeftScreenBorder, herosToBottomScreenBorder);
 
         // Lifes, coins and timeleft
         SDL_BlitSurface(lifesLeft, NULL, SDL_GetWindowSurface(p_window), &lifeLeftPos);
         SDL_BlitSurface(coinLeft, NULL, SDL_GetWindowSurface(p_window), &coinPos);
         SDL_BlitSurface(timeLeft, NULL, SDL_GetWindowSurface(p_window), &timeLeftPos);
-        sprintf(temp_str, "%d", currGameMgr->herosMgr->heroInstance->lifesLeft);
+        sprintf(temp_str, "%d", p_gameMgr->herosMgr->heroInstance->lifesLeft);
         setTextLayout(p_window, temp_str, 5, font1, textColor, lifeLeftPosText);
-        sprintf(temp_str, "%d", currGameMgr->herosMgr->heroInstance->nbCoins);
+        sprintf(temp_str, "%d", p_gameMgr->herosMgr->heroInstance->nbCoins);
         setTextLayout(p_window, temp_str, 5, font1, textColor, coinPosText);
         //setTextLayout(p_window, setTimeLayout(currLevelManager->currLevel->currTime,4)
                       //, 4, font1, timeLeftColor, timeLeftPosText);
@@ -176,8 +176,8 @@ int displayGamePage(SDL_Window *p_window, char *levelPath, int levelPathSize, Ga
         SDL_UpdateWindowSurface(p_window);
         lastEvent = event;
     }
-//-------------------------------- Free memory--------------------------------------------
-    destroyLevelByGameManager(currGameMgr);
+    //-------------------------------- Free memory--------------------------------------------
+    destroyLevelByGameManager(p_gameMgr);
     SDL_FreeSurface(background1);
     SDL_FreeSurface(redBackground);
     SDL_FreeSurface(lifesLeft);

@@ -27,8 +27,8 @@ typedef struct{
     int jumpDuration;// Time between jump start and jump max height
 }Heros;
 
-Heros *initHeros(char path[FILE_PATH_SIZE_MAX]);
-void destroyHeros(Heros *currHeros);
+Heros *initHeros(char p_path[FILE_PATH_SIZE_MAX]);
+void destroyHeros(Heros *p_heros);
 
 
 #endif

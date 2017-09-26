@@ -208,6 +208,7 @@
 		<Unit filename="src/utils/reporting.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/utils/reporting.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

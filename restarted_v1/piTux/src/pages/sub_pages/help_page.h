@@ -16,6 +16,6 @@
 #include "../../model/button.h"
 
 //NB: Sub pages are not managed by gui_manager and can be called by another page
-int displayHelpSubPage(SDL_Window *p_window, GameManager *currGameMgr);
+int displayHelpSubPage(SDL_Window *p_window, GameManager *p_gameMgr);
 
 #endif

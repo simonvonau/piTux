@@ -16,6 +16,6 @@
 #include "../global.h"
 
 
-int displayCreditsPage(SDL_Window *p_window, GameManager *currGameMgr);
+int displayCreditsPage(SDL_Window *p_window, GameManager *p_gameMgr);
 
 #endif

@@ -15,6 +15,6 @@
 
 #include "../pages/textLayout.h"
 
-int displayMainPage(SDL_Window *p_window, GameManager *currGameMgr);
+int displayMainPage(SDL_Window *p_window, GameManager *p_gameMgr);
 
 #endif

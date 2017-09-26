@@ -1,7 +1,7 @@
 #include "textLayout.h"
 
 
-void setTextLayout(SDL_Window* pWindow,char *text,int textSize,TTF_Font* font,SDL_Color textColor,SDL_Rect textPos){
+void setTextLayout(SDL_Window* p_window, char *p_text,int p_textSize,TTF_Font* p_font,SDL_Color p_textColor,SDL_Rect p_textPos){
 // Display text
     char endLine = '$';
     int jumpSize = 30;// Size between two lines
@@ -13,20 +13,20 @@ void setTextLayout(SDL_Window* pWindow,char *text,int textSize,TTF_Font* font,SD
     int nbLines = 0;
 
     // Line accounting
-    for(i = 0;i<textSize && text[i]!='\0'; i++){
-        if(text[i] == endLine){nbLines += 1;}
+    for(i = 0;i<p_textSize && p_text[i]!='\0'; i++){
+        if(p_text[i] == endLine){nbLines += 1;}
     }
-    if(text[textSize-1] != endLine){nbLines += 1;}
+    if(p_text[p_textSize-1] != endLine){nbLines += 1;}
 
-    buff =splitString(text, endLine, textSize, nbLines, maxLineWidth);
+    buff =splitString(p_text, endLine, p_textSize, nbLines, maxLineWidth);
 
     // Print each line
     for(i=0; i < nbLines; i++){
-        label = TTF_RenderText_Blended(font, buff[i], textColor);
-        SDL_BlitSurface(label, NULL, SDL_GetWindowSurface(pWindow), &textPos);
+        label = TTF_RenderText_Blended(p_font, buff[i], p_textColor);
+        SDL_BlitSurface(label, NULL, SDL_GetWindowSurface(p_window), &p_textPos);
         SDL_FreeSurface(label);
 
-        textPos.y += jumpSize;
+        p_textPos.y += jumpSize;
     }
     for(i = 0; i < nbLines; i++){
         free(buff[i]);
@@ -34,20 +34,20 @@ void setTextLayout(SDL_Window* pWindow,char *text,int textSize,TTF_Font* font,SD
     free(buff);
 }//--------------------------------------------------------------------------------------------------------------------
 
-char *setTimeLayout(int time, int wishedSize){
+char *setTimeLayout(int p_time, int p_wishedSize){
 // Put time from millisecondes to char
     int maxSize = 200;
     char res[maxSize];
     int i;
-    sprintf(res, "%d", time / 1000);
+    sprintf(res, "%d", p_time / 1000);
 
     // Put an end of line char
-    if(wishedSize < 0){
+    if(p_wishedSize < 0){
         res[0] = '\0';
-    }else if(wishedSize >= maxSize){
+    }else if(p_wishedSize >= maxSize){
         res[maxSize - 1] = '\0';
     }else{
-        res[wishedSize] = '\0';
+        res[p_wishedSize] = '\0';
     }
     return res;
 }

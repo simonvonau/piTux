@@ -18,9 +18,9 @@ typedef struct{
     int guiHeight, guiWidth;
 }Button;
 
-Button *initButton(char *path);
-void displayButton(SDL_Window *p_window, Button *currBut);
-int isClicked(Button *currButt, int clicX, int clicY);
-void destroyButton(Button *currButton);
+Button *initButton(char *p_path);
+void displayButton(SDL_Window *p_window, Button *p_button);
+int isClicked(Button *p_button, int p_clicX, int p_clicY);
+void destroyButton(Button *p_button);
 
 #endif

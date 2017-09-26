@@ -10,7 +10,7 @@
 
 
 
-SDL_Surface* loadImage(char* path);
+SDL_Surface* loadImage(char* p_path);
 
 
 #endif

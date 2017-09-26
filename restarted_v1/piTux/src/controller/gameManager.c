@@ -1,7 +1,7 @@
 #include "gameManager.h"
 
 
-GameManager* initGameManager(char *path){
+GameManager* initGameManager(char *p_path){
 // Init a new Game manager
     GameManager *res = malloc(sizeof(GameManager));
 
@@ -9,7 +9,7 @@ GameManager* initGameManager(char *path){
         reportErreur("initGameManager():error malloc()");
     }
 
-    res->currentGame = initGame(path);
+    res->currentGame = initGame(p_path);
     res->translaManager = initTranslationManager(res->currentGame->allTranslationsFile);
     res->collMgr = NULL;
     res->levelManager = initLevelManager();
@@ -22,63 +22,63 @@ GameManager* initGameManager(char *path){
     return res;
 }//--------------------------------------------------------------------------------------------------------------------
 
-void loadLevelByGameMgr(GameManager *currGameMgr, char *path, int pathSize){
+void loadLevelByGameMgr(GameManager *p_gameMgr, char *p_path, int p_pathSize){
 // Load a level by a GameManager and add Colliders to it
     int i, j;
     Collider *tempColl;
 
     //Destroying previous level if exists
-    //if(currGameMgr->levelManager->currLevel != NULL){destroyLevel(currGameMgr->levelManager->currLevel);}
-    loadLevelByLevelMgr(currGameMgr->levelManager, path, pathSize);
+    //if(p_gameMgr->levelManager->currLevel != NULL){destroyLevel(p_gameMgr->levelManager->currLevel);}
+    loadLevelByLevelMgr(p_gameMgr->levelManager, p_path, p_pathSize);
 
     // Destroying previous collisions if exists
-    //if(currGameMgr->collMgr != NULL){destroyColliderManager(currGameMgr->collMgr);}
-    currGameMgr->collMgr = initColliderManager();
+    //if(p_gameMgr->collMgr != NULL){destroyColliderManager(p_gameMgr->collMgr);}
+    p_gameMgr->collMgr = initColliderManager();
 
     // Init the heros instance
-    initHerosInstanceByManager(currGameMgr->herosMgr);
+    initHerosInstanceByManager(p_gameMgr->herosMgr);
 
     // Put Collider on each BlockInstance
-    for( i = 0; i < currGameMgr->levelManager->currLevel->blockInstancesSize; i++){
-        currGameMgr->levelManager->currLevel->blockInstances[i]->coll = colliderDeepCopyByColliderManager(
-                currGameMgr->collMgr
-                , currGameMgr->allBlocks[ currGameMgr->levelManager->currLevel->blockInstances[i]->idBlock ]->refColl);
+    for( i = 0; i < p_gameMgr->levelManager->currLevel->blockInstancesSize; i++){
+        p_gameMgr->levelManager->currLevel->blockInstances[i]->coll = colliderDeepCopyByColliderManager(
+                p_gameMgr->collMgr
+                , p_gameMgr->allBlocks[ p_gameMgr->levelManager->currLevel->blockInstances[i]->idBlock ]->refColl);
         // Update BlockInstance Collider
-        tempColl = currGameMgr->levelManager->currLevel->blockInstances[i]->coll;
-        tempColl->ownerTag = currGameMgr->allBlocks[ currGameMgr->levelManager->currLevel->blockInstances[i]->idBlock ]->blockType;
+        tempColl = p_gameMgr->levelManager->currLevel->blockInstances[i]->coll;
+        tempColl->ownerTag = p_gameMgr->allBlocks[ p_gameMgr->levelManager->currLevel->blockInstances[i]->idBlock ]->blockType;
         tempColl->isEnabled = 1;
-        tempColl->posX = currGameMgr->levelManager->currLevel->blockInstances[i]->posX;
-        tempColl->posY = currGameMgr->levelManager->currLevel->blockInstances[i]->posY;
+        tempColl->posX = p_gameMgr->levelManager->currLevel->blockInstances[i]->posX;
+        tempColl->posY = p_gameMgr->levelManager->currLevel->blockInstances[i]->posY;
     }
 
     // Put Collider on each BonusInstance
-    for( i = 0; i < currGameMgr->levelManager->currLevel->bonusInstancesSize; i++){
-        currGameMgr->levelManager->currLevel->bonusInstances[i]->coll = colliderDeepCopyByColliderManager(
-                currGameMgr->collMgr
-                ,currGameMgr->allBonus[ currGameMgr->levelManager->currLevel->bonusInstances[i]->idBonus ]->refColl);
+    for( i = 0; i < p_gameMgr->levelManager->currLevel->bonusInstancesSize; i++){
+        p_gameMgr->levelManager->currLevel->bonusInstances[i]->coll = colliderDeepCopyByColliderManager(
+                p_gameMgr->collMgr
+                ,p_gameMgr->allBonus[ p_gameMgr->levelManager->currLevel->bonusInstances[i]->idBonus ]->refColl);
         // Update BonusInstance Collider
-        tempColl = currGameMgr->levelManager->currLevel->bonusInstances[i]->coll;
-        tempColl->ownerTag = currGameMgr->allBonus[ currGameMgr->levelManager->currLevel->bonusInstances[i]->idBonus ]->bonusType;
+        tempColl = p_gameMgr->levelManager->currLevel->bonusInstances[i]->coll;
+        tempColl->ownerTag = p_gameMgr->allBonus[ p_gameMgr->levelManager->currLevel->bonusInstances[i]->idBonus ]->bonusType;
         tempColl->isEnabled = 1;
-        tempColl->posX = currGameMgr->levelManager->currLevel->bonusInstances[i]->posX;
-        tempColl->posY = currGameMgr->levelManager->currLevel->bonusInstances[i]->posY;
+        tempColl->posX = p_gameMgr->levelManager->currLevel->bonusInstances[i]->posX;
+        tempColl->posY = p_gameMgr->levelManager->currLevel->bonusInstances[i]->posY;
     }
 
     // Put Collider on each EnemyInstance
-    for( i = 0; i < currGameMgr->levelManager->currLevel->enemyInstancesSize; i++){
-        currGameMgr->levelManager->currLevel->enemyInstances[i]->coll = colliderArrayDeepCopyByColliderManager(
-                currGameMgr->collMgr
-                ,currGameMgr->allEnemies[ currGameMgr->levelManager->currLevel->enemyInstances[i]->idEnemy ]->actionColl
-                , currGameMgr->allEnemies[ currGameMgr->levelManager->currLevel->enemyInstances[i]->idEnemy ]->spritesSize1);
-        currGameMgr->levelManager->currLevel->enemyInstances[i]->collSize =
-                currGameMgr->allEnemies[ currGameMgr->levelManager->currLevel->enemyInstances[i]->idEnemy ]->spritesSize1;
+    for( i = 0; i < p_gameMgr->levelManager->currLevel->enemyInstancesSize; i++){
+        p_gameMgr->levelManager->currLevel->enemyInstances[i]->coll = colliderArrayDeepCopyByColliderManager(
+                p_gameMgr->collMgr
+                ,p_gameMgr->allEnemies[ p_gameMgr->levelManager->currLevel->enemyInstances[i]->idEnemy ]->actionColl
+                , p_gameMgr->allEnemies[ p_gameMgr->levelManager->currLevel->enemyInstances[i]->idEnemy ]->spritesSize1);
+        p_gameMgr->levelManager->currLevel->enemyInstances[i]->collSize =
+                p_gameMgr->allEnemies[ p_gameMgr->levelManager->currLevel->enemyInstances[i]->idEnemy ]->spritesSize1;
         // Update EnemyInstance Collider
-        for(j = 0; j < currGameMgr->allEnemies[ currGameMgr->levelManager->currLevel->enemyInstances[i]->idEnemy ]->spritesSize1; j++){
-            tempColl = currGameMgr->levelManager->currLevel->enemyInstances[i]->coll[j];
-            tempColl->ownerTag = currGameMgr->allEnemies[ currGameMgr->levelManager->currLevel->enemyInstances[i]->idEnemy ]->enemyType;
-            tempColl->posX = currGameMgr->levelManager->currLevel->enemyInstances[i]->posX;
-            tempColl->posY = currGameMgr->levelManager->currLevel->enemyInstances[i]->posY;
-            if (j == currGameMgr->levelManager->currLevel->enemyInstances[i]->currentActionId){
+        for(j = 0; j < p_gameMgr->allEnemies[ p_gameMgr->levelManager->currLevel->enemyInstances[i]->idEnemy ]->spritesSize1; j++){
+            tempColl = p_gameMgr->levelManager->currLevel->enemyInstances[i]->coll[j];
+            tempColl->ownerTag = p_gameMgr->allEnemies[ p_gameMgr->levelManager->currLevel->enemyInstances[i]->idEnemy ]->enemyType;
+            tempColl->posX = p_gameMgr->levelManager->currLevel->enemyInstances[i]->posX;
+            tempColl->posY = p_gameMgr->levelManager->currLevel->enemyInstances[i]->posY;
+            if (j == p_gameMgr->levelManager->currLevel->enemyInstances[i]->currentActionId){
                 tempColl->isEnabled = 1;
             }else{
                 tempColl->isEnabled = 0;
@@ -87,20 +87,20 @@ void loadLevelByGameMgr(GameManager *currGameMgr, char *path, int pathSize){
     }
 
     // Put collider on the HerosInstance
-    currGameMgr->herosMgr->heroInstance->herosColl = malloc(sizeof(Collider **) * currGameMgr->herosMgr->heros->stateSize);
-    if(currGameMgr->herosMgr->heroInstance->herosColl == NULL) {reportErreur("GameManager.loadLevelByGameMgr():Cannot add collider to heroInstance");}
-    for( i = 0; i < currGameMgr->herosMgr->heros->stateSize; i++){
-       currGameMgr->herosMgr->heroInstance->herosColl[i] = colliderArrayDeepCopyByColliderManager(
-            currGameMgr->collMgr
-            ,currGameMgr->herosMgr->heros->herosColl[i]
-            ,currGameMgr->herosMgr->heros->actionSize[i]);
+    p_gameMgr->herosMgr->heroInstance->herosColl = malloc(sizeof(Collider **) * p_gameMgr->herosMgr->heros->stateSize);
+    if(p_gameMgr->herosMgr->heroInstance->herosColl == NULL) {reportErreur("GameManager.loadLevelByGameMgr():Cannot add collider to heroInstance");}
+    for( i = 0; i < p_gameMgr->herosMgr->heros->stateSize; i++){
+       p_gameMgr->herosMgr->heroInstance->herosColl[i] = colliderArrayDeepCopyByColliderManager(
+            p_gameMgr->collMgr
+            ,p_gameMgr->herosMgr->heros->herosColl[i]
+            ,p_gameMgr->herosMgr->heros->actionSize[i]);
         // Update HerosInstance collider
-        for(j = 0; j < currGameMgr->herosMgr->heros->actionSize[i]; j++){
-            tempColl = currGameMgr->herosMgr->heroInstance->herosColl[i][j];
+        for(j = 0; j < p_gameMgr->herosMgr->heros->actionSize[i]; j++){
+            tempColl = p_gameMgr->herosMgr->heroInstance->herosColl[i][j];
             tempColl->ownerTag = TAG_HEROS_TUX;
-            tempColl->posX = currGameMgr->herosMgr->heroInstance->posX;
-            tempColl->posY = currGameMgr->herosMgr->heroInstance->posY;
-            if (i == currGameMgr->herosMgr->heroInstance->currState && j == currGameMgr->herosMgr->heroInstance->currAction){
+            tempColl->posX = p_gameMgr->herosMgr->heroInstance->posX;
+            tempColl->posY = p_gameMgr->herosMgr->heroInstance->posY;
+            if (i == p_gameMgr->herosMgr->heroInstance->currState && j == p_gameMgr->herosMgr->heroInstance->currAction){
                 tempColl->isEnabled = 1;
             }else{
                 tempColl->isEnabled = 0;
@@ -111,148 +111,158 @@ void loadLevelByGameMgr(GameManager *currGameMgr, char *path, int pathSize){
 
 }//--------------------------------------------------------------------------------------------------------------------
 
-void addElementToLevelByGameMgr(GameManager *currGameMgr, int elemType, int elemId, int posX, int posY){
+void addElementToLevelByGameMgr(GameManager *p_gameMgr, int p_elemType, int p_elemId, int p_posX, int p_posY){
 // Add 1 element to level with auto-position adjustment
     int adjustedPosX;
     int adjustedPosY;
     int blockInstanceId;
 
-    switch(elemType){
+    switch(p_elemType){
         case 0: // Block
-            adjustedPosX = posX - (posX % currGameMgr->allBlocks[elemId]->refColl->width);
-            adjustedPosY = posY - (posY % currGameMgr->allBlocks[elemId]->refColl->height);
+            adjustedPosX = p_posX - (p_posX % p_gameMgr->allBlocks[p_elemId]->refColl->width);
+            adjustedPosY = p_posY - (p_posY % p_gameMgr->allBlocks[p_elemId]->refColl->height);
             // To avoid gap when x < 0 or y < 0
-            if(posX < 0){adjustedPosX -= currGameMgr->allBlocks[elemId]->refColl->width;}
-            if(posY < 0){adjustedPosY -= currGameMgr->allBlocks[elemId]->refColl->height;}
+            if(p_posX < 0){adjustedPosX -= p_gameMgr->allBlocks[p_elemId]->refColl->width;}
+            if(p_posY < 0){adjustedPosY -= p_gameMgr->allBlocks[p_elemId]->refColl->height;}
 
-            if ( !checkIfBlockInstanceExistHere(currGameMgr->levelManager->currLevel, adjustedPosX, adjustedPosY)){ // to avoid superposition
-                addBlockInstanceToLevel(currGameMgr->levelManager->currLevel, elemId, adjustedPosX, adjustedPosY
-                    ,colliderDeepCopyByColliderManager(currGameMgr->collMgr, currGameMgr->allBlocks[elemId]->refColl));
+            if ( !checkIfBlockInstanceExistHere(p_gameMgr->levelManager->currLevel, adjustedPosX, adjustedPosY)){ // to avoid superposition
+                addBlockInstanceToLevel(p_gameMgr->levelManager->currLevel, p_elemId, adjustedPosX, adjustedPosY
+                    ,colliderDeepCopyByColliderManager(p_gameMgr->collMgr, p_gameMgr->allBlocks[p_elemId]->refColl));
             }
             break;
         case 1: // Bonus
-            adjustedPosX = posX - (posX % currGameMgr->allBonus[elemId]->refColl->width);
-            adjustedPosY = posY - (posY % currGameMgr->allBonus[elemId]->refColl->height);
+            adjustedPosX = p_posX - (p_posX % p_gameMgr->allBonus[p_elemId]->refColl->width);
+            adjustedPosY = p_posY - (p_posY % p_gameMgr->allBonus[p_elemId]->refColl->height);
             // To avoid gap when x < 0 or y < 0
-            if(posX < 0){adjustedPosX -= currGameMgr->allBonus[elemId]->refColl->width;}
-            if(posY < 0){adjustedPosY -= currGameMgr->allBonus[elemId]->refColl->height;}
+            if(p_posX < 0){adjustedPosX -= p_gameMgr->allBonus[p_elemId]->refColl->width;}
+            if(p_posY < 0){adjustedPosY -= p_gameMgr->allBonus[p_elemId]->refColl->height;}
 
             // If there is already a block here, we put the current bonus inside it
-            if( (blockInstanceId = getBlockInstanceId(currGameMgr->levelManager->currLevel, posX, posY)) != -1 ){ // Put the bonus in a block
-                addBonusToBlock(currGameMgr->levelManager->currLevel, blockInstanceId, elemId);
+            if( (blockInstanceId = getBlockInstanceId(p_gameMgr->levelManager->currLevel, p_posX, p_posY)) != -1 ){ // Put the bonus in a block
+                addBonusToBlock(p_gameMgr->levelManager->currLevel, blockInstanceId, p_elemId);
             }else{ // Just adding the bonus
-                if ( !checkIfBonusInstanceExistHere(currGameMgr->levelManager->currLevel, adjustedPosX, adjustedPosY)){ // to avoid superposition
-                    addBonusInstanceToLevel(currGameMgr->levelManager->currLevel, elemId, adjustedPosX, adjustedPosY,
-                        colliderDeepCopyByColliderManager(currGameMgr->collMgr, currGameMgr->allBonus[elemId]->refColl));
+                if ( !checkIfBonusInstanceExistHere(p_gameMgr->levelManager->currLevel, adjustedPosX, adjustedPosY)){ // to avoid superposition
+                    addBonusInstanceToLevel(p_gameMgr->levelManager->currLevel, p_elemId, adjustedPosX, adjustedPosY,
+                        colliderDeepCopyByColliderManager(p_gameMgr->collMgr, p_gameMgr->allBonus[p_elemId]->refColl));
                 }
             }
             break;
         case 2: // enemy
-            adjustedPosX = posX - currGameMgr->allEnemies[elemId]->actionColl[0]->width / 2;
-            adjustedPosY = posY - currGameMgr->allEnemies[elemId]->actionColl[0]->height / 2;
+            adjustedPosX = p_posX - p_gameMgr->allEnemies[p_elemId]->actionColl[0]->width / 2;
+            adjustedPosY = p_posY - p_gameMgr->allEnemies[p_elemId]->actionColl[0]->height / 2;
             //*** Correction: No need to avoid superposition with enemies!
-            //if ( !checkIfEnemyInstanceExistHere(currGameMgr->levelManager->currLevel, adjustedPosX, adjustedPosY)){ // to avoid superposition
-                addEnemyInstanceToLevel(currGameMgr->levelManager->currLevel, elemId, adjustedPosX, adjustedPosY
-                    , colliderArrayDeepCopyByColliderManager(currGameMgr->collMgr
-                    , currGameMgr->allEnemies[elemId]->actionColl
-                    , currGameMgr->allEnemies[elemId]->spritesSize1)
-                    , currGameMgr->allEnemies[elemId]->spritesSize1);
+            //if ( !checkIfEnemyInstanceExistHere(p_gameMgr->levelManager->currLevel, adjustedPosX, adjustedPosY)){ // to avoid superposition
+                addEnemyInstanceToLevel(p_gameMgr->levelManager->currLevel, p_elemId, adjustedPosX, adjustedPosY
+                    , colliderArrayDeepCopyByColliderManager(p_gameMgr->collMgr
+                    , p_gameMgr->allEnemies[p_elemId]->actionColl
+                    , p_gameMgr->allEnemies[p_elemId]->spritesSize1)
+                    , p_gameMgr->allEnemies[p_elemId]->spritesSize1);
             //}
             break;
     }
 
 }//------------------------------------------------------------------------------------------------------------------------
 
-void removeElementFromLevel(Level *lev, int clicX, int clicY){
+void removeElementFromLevel(Level *p_lev, int p_clicX, int p_clicY){
 // Remove all elements under a click
     int i;
 
     // Check clicked block(s) existence
-    for(i = 0; i < lev->blockInstancesSize; i++){
-        if(clicX >= lev->blockInstances[i]->posX
-        && clicX <= lev->blockInstances[i]->coll->width + lev->blockInstances[i]->posX){
-            if( clicY >= lev->blockInstances[i]->posY
-            && clicY <= lev->blockInstances[i]->posY + lev->blockInstances[i]->coll->height){
-                removeBlockInstanceToLevel(lev , i);
+    for(i = 0; i < p_lev->blockInstancesSize; i++){
+        if(p_clicX >= p_lev->blockInstances[i]->posX
+        && p_clicX <= p_lev->blockInstances[i]->coll->width + p_lev->blockInstances[i]->posX){
+            if( p_clicY >= p_lev->blockInstances[i]->posY
+            && p_clicY <= p_lev->blockInstances[i]->posY + p_lev->blockInstances[i]->coll->height){
+                removeBlockInstanceToLevel(p_lev , i);
             }
         }
     }
     // Check clicked bonus existence
-    for(i = 0; i < lev->bonusInstancesSize; i++){
-        if(clicX >= lev->bonusInstances[i]->posX
-        && clicX <= lev->bonusInstances[i]->coll->width + lev->bonusInstances[i]->posX){
-            if( clicY >= lev->bonusInstances[i]->posY
-            && clicY <= lev->bonusInstances[i]->posY + lev->bonusInstances[i]->coll->height){
-                removeBonusInstanceToLevel(lev , i);
+    for(i = 0; i < p_lev->bonusInstancesSize; i++){
+        if(p_clicX >= p_lev->bonusInstances[i]->posX
+        && p_clicX <= p_lev->bonusInstances[i]->coll->width + p_lev->bonusInstances[i]->posX){
+            if( p_clicY >= p_lev->bonusInstances[i]->posY
+            && p_clicY <= p_lev->bonusInstances[i]->posY + p_lev->bonusInstances[i]->coll->height){
+                removeBonusInstanceToLevel(p_lev , i);
             }
         }
     }
     // Check clicked enemy(ies) existence
-    for(i = 0; i < lev->enemyInstancesSize; i++){
-        if(clicX >= lev->enemyInstances[i]->posX
-        && clicX <= lev->enemyInstances[i]->coll[0]->width + lev->enemyInstances[i]->posX){
-            if( clicY >= lev->enemyInstances[i]->posY
-            && clicY <= lev->enemyInstances[i]->posY + lev->enemyInstances[i]->coll[0]->height){
-                removeEnemyInstanceToLevel(lev , i);
+    for(i = 0; i < p_lev->enemyInstancesSize; i++){
+        if(p_clicX >= p_lev->enemyInstances[i]->posX
+        && p_clicX <= p_lev->enemyInstances[i]->coll[0]->width + p_lev->enemyInstances[i]->posX){
+            if( p_clicY >= p_lev->enemyInstances[i]->posY
+            && p_clicY <= p_lev->enemyInstances[i]->posY + p_lev->enemyInstances[i]->coll[0]->height){
+                removeEnemyInstanceToLevel(p_lev , i);
                 i -= 1;
             }
         }
     }
 }//------------------------------------------------------------------------------------------------------------------------
 
-void refreshGameByGameManager(GameManager *currGameMgr, int currentTime, int loopTime, int screenWidth, int screenHeight, int deplaX, int deplaY){
-// Refresh game
+void refreshGameByGameManager(GameManager *p_gameMgr, int p_currentTime, int p_loopTime, int p_screenWidth, int p_screenHeight, int p_deplaX, int p_deplaY){
+// Refresh the game
+/*  This process is made of 3 steps :
+    1) Refresh the level (gravity, ...)
+    2) Process the collisions
+    3) Refresh each object according to its behaviour and the detected collisions
+*/
     int i;
-    int leftLimit = deplaX - COLLIDER_MARGIN;
-    int rightLimit = deplaX + COLLIDER_MARGIN + screenWidth;
-    int topLimit = deplaY + COLLIDER_MARGIN + screenHeight;
-    int bottomLimit = deplaY - COLLIDER_MARGIN;
+    int leftLimit = p_deplaX - COLLIDER_MARGIN;
+    int rightLimit = p_deplaX + COLLIDER_MARGIN + p_screenWidth;
+    int topLimit = p_deplaY + COLLIDER_MARGIN + p_screenHeight;
+    int bottomLimit = p_deplaY - COLLIDER_MARGIN;
     EnemyInstance * currEnemyInstance;
 
     // Refresh the level (ie. enemy, bonus, blocks)
-    refreshLevelByLevelManager(currGameMgr->levelManager->currLevel, currGameMgr->collMgr, loopTime
-                    ,currGameMgr->allBlocks, currGameMgr->allBonus, currGameMgr->allEnemies, leftLimit+100, rightLimit-100, topLimit-100, bottomLimit+100);
+    refreshLevelByLevelManager(p_gameMgr->levelManager->currLevel, p_gameMgr->collMgr, p_loopTime
+                    ,p_gameMgr->allBlocks, p_gameMgr->allBonus, p_gameMgr->allEnemies, leftLimit+100, rightLimit-100, topLimit-100, bottomLimit+100);
     // Refresh Tux
-    refreshHeroInstance(currGameMgr->herosMgr->heroInstance, currGameMgr->herosMgr->heros, currentTime, loopTime);
+    refreshHerosInstance(p_gameMgr->herosMgr->heroInstance, p_gameMgr->herosMgr->heros, p_currentTime, p_loopTime);
+
+
 
     // Check ALL the collision of the game (of course just the displayed part of the level)
-    updateCollisions(currGameMgr->collMgr, leftLimit, rightLimit, bottomLimit, topLimit);
+    updateCollisions(p_gameMgr->collMgr, leftLimit, rightLimit, bottomLimit, topLimit);
 
-    updateHeroBehaviourAfterCollisionDetection(currGameMgr->herosMgr->heroInstance, currGameMgr->herosMgr->heros, currGameMgr->collMgr, currentTime, loopTime);
 
-    // Update the bonus after collision checking
-    updateBonusAfterColliding(currGameMgr->levelManager, currGameMgr->collMgr, currentTime, loopTime);
+
+    // Update tux behaviour after the collision checking
+    updateHeroBehaviourAfterCollisionDetection(p_gameMgr->herosMgr->heroInstance, p_gameMgr->herosMgr->heros, p_gameMgr->collMgr, p_currentTime, p_loopTime);
+
+    updateLevelAfterCollisionsDetection(p_gameMgr->levelManager, p_gameMgr->collMgr, p_currentTime, p_loopTime,
+                                        leftLimit, rightLimit, bottomLimit, topLimit);
 
     // Update enemies behaviour after the collision checking
-    for(i = 0; i < currGameMgr->levelManager->currLevel->enemyInstancesSize; i++){
-        currEnemyInstance = currGameMgr->levelManager->currLevel->enemyInstances[i];
+    for(i = 0; i < p_gameMgr->levelManager->currLevel->enemyInstancesSize; i++){
+        currEnemyInstance = p_gameMgr->levelManager->currLevel->enemyInstances[i];
         // Only update the displayed enemies
         if(currEnemyInstance->posX + currEnemyInstance->coll[currEnemyInstance->currentActionId]->width > leftLimit
            && currEnemyInstance->posX < rightLimit
            && currEnemyInstance->posY + currEnemyInstance->coll[currEnemyInstance->currentActionId]->height > bottomLimit
            && currEnemyInstance->posY < topLimit){
             updateEnemyBehaviourAfterCollisionDetection(currEnemyInstance
-                             , *currGameMgr->allEnemies[currEnemyInstance->idEnemy]
-                             , currGameMgr->collMgr
-                             , loopTime);
+                             , *p_gameMgr->allEnemies[currEnemyInstance->idEnemy]
+                             , p_gameMgr->collMgr
+                             , p_loopTime);
         }
     }
 
     // Clear the unused memory
-    cleanLevelMemory(currGameMgr);
+    cleanLevelMemory(p_gameMgr);
 
 }//------------------------------------------------------------------------------------------------------------------------
 
-void cleanLevelMemory(GameManager *currGameManager){
+void cleanLevelMemory(GameManager *p_gameMgr){
 // Clean the level memory by deallocating dead enemies, gathered bonus, ... and their colliders
     int i, j;
-    Level *currLevel = currGameManager->levelManager->currLevel;
+    Level *currLevel = p_gameMgr->levelManager->currLevel;
 
     // Clean the dead enemies
     for(i = 0; i < currLevel->enemyInstancesSize; i++){
         if(currLevel->enemyInstances[i]->posY <= DEAD_LIMIT_Y || (currLevel->enemyInstances[i]->isDead && currLevel->enemyInstances[i]->lifeTime <= 0)){
             for(j = 0; j < currLevel->enemyInstances[i]->collSize; j++){
-                removeCollider(currGameManager->collMgr, currLevel->enemyInstances[i]->coll[j]->id, 0);
+                removeCollider(p_gameMgr->collMgr, currLevel->enemyInstances[i]->coll[j]->id, 0);
             }
             removeEnemyInstanceToLevel(currLevel, i);
         }
@@ -261,48 +271,56 @@ void cleanLevelMemory(GameManager *currGameManager){
     // Clean the gathered bonus
     for(i = 0; i < currLevel->bonusInstancesSize; i++){
         if(currLevel->bonusInstances[i]->wasGathered && currLevel->bonusInstances[i]->lifeTime <= 0){
-            removeCollider(currGameManager->collMgr, currLevel->bonusInstances[i]->coll->id, 0);
+            removeCollider(p_gameMgr->collMgr, currLevel->bonusInstances[i]->coll->id, 0);
             removeBonusInstanceToLevel(currLevel, i);
+        }
+    }
+
+    // Clean the destroyed blocks
+    for(i = 0; i < currLevel->blockInstancesSize; i++){
+        if(currLevel->blockInstances[i]->wasDestroyed){
+            removeCollider(p_gameMgr->collMgr, currLevel->blockInstances[i]->coll->id, 0);
+            removeBlockInstanceToLevel(currLevel, i);
         }
     }
 
 
 }//------------------------------------------------------------------------------------------------------------------------
 
-void destroyLevelByGameManager(GameManager *currGameManager){
+void destroyLevelByGameManager(GameManager *p_gameMgr){
 // Free Level,Collisions et Colliders memory
 
-    destroyLevel(currGameManager->levelManager->currLevel);
-    currGameManager->levelManager->currLevel = NULL;
+    destroyLevel(p_gameMgr->levelManager->currLevel);
+    p_gameMgr->levelManager->currLevel = NULL;
 
-    destroyHeroInstanceColliders(currGameManager->herosMgr->heroInstance, currGameManager->herosMgr->heros);
-    destroyHeroInstance(currGameManager->herosMgr->heroInstance);
-    currGameManager->herosMgr->heroInstance = NULL;
+    destroyHeroInstanceColliders(p_gameMgr->herosMgr->heroInstance, p_gameMgr->herosMgr->heros);
+    destroyHeroInstance(p_gameMgr->herosMgr->heroInstance);
+    p_gameMgr->herosMgr->heroInstance = NULL;
 
-    destroyColliderManager(currGameManager->collMgr);
-    currGameManager->collMgr = NULL;
+    destroyColliderManager(p_gameMgr->collMgr);
+    p_gameMgr->collMgr = NULL;
 
 }//------------------------------------------------------------------------------------------------------------------------
 
-void destroyGameManager(GameManager *currGameManager){
+void destroyGameManager(GameManager *p_gameMgr){
 // Free GameManager memory
     int i;
-    for( i = 0; i < currGameManager->allBlocksSize; i++){
-        destroyBlock(currGameManager->allBlocks[i]);
+    for( i = 0; i < p_gameMgr->allBlocksSize; i++){
+        destroyBlock(p_gameMgr->allBlocks[i]);
     }
-    free(currGameManager->allBlocks);
+    free(p_gameMgr->allBlocks);
 
-    for( i = 0; i < currGameManager->allBonusSize; i++){
-        destroyBonus(currGameManager->allBonus[i]);
+    for( i = 0; i < p_gameMgr->allBonusSize; i++){
+        destroyBonus(p_gameMgr->allBonus[i]);
     }
-    free(currGameManager->allBonus);
+    free(p_gameMgr->allBonus);
 
-    destroyHerosManager(currGameManager->herosMgr);
-    destroyTranslationManager(currGameManager->translaManager);
+    destroyHerosManager(p_gameMgr->herosMgr);
+    destroyTranslationManager(p_gameMgr->translaManager);
     // Already destroyed at level closure
     //destroyColliderManager(currGameManager->collMgr);
-    destroyGame(currGameManager->currentGame);
+    destroyGame(p_gameMgr->currentGame);
 
-    free(currGameManager);
+    free(p_gameMgr);
 }//--------------------------------------------------------------------------------------------------------------------
 

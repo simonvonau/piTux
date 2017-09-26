@@ -1,107 +1,107 @@
 #include "levelSelectionPage.h"
 
-int chooseLevel(LevelIcon **allLevels, int nbLevels, int userChoice, char *keyPressed){
+int chooseLevel(LevelIcon **p_allLevels, int p_nbLevels, int p_userChoice, char *p_keyPressed){
 // Select the next level to play
     // Global tests
-    if(allLevels[userChoice]->linkedLevel1 <= -1
-        && allLevels[userChoice]->linkedLevel2 <= -1){
-        return userChoice;
+    if(p_allLevels[p_userChoice]->linkedLevel1 <= -1
+        && p_allLevels[p_userChoice]->linkedLevel2 <= -1){
+        return p_userChoice;
     }
-    if(allLevels[userChoice]->linkedLevel1 <= -1
-        && allLevels[userChoice]->linkedLevel2 >= 0){
-        return allLevels[userChoice]->linkedLevel2;
+    if(p_allLevels[p_userChoice]->linkedLevel1 <= -1
+        && p_allLevels[p_userChoice]->linkedLevel2 >= 0){
+        return p_allLevels[p_userChoice]->linkedLevel2;
     }
-    if(allLevels[userChoice]->linkedLevel1 >= 0
-        && allLevels[userChoice]->linkedLevel2 <= -1){
-        return allLevels[userChoice]->linkedLevel1;
+    if(p_allLevels[p_userChoice]->linkedLevel1 >= 0
+        && p_allLevels[p_userChoice]->linkedLevel2 <= -1){
+        return p_allLevels[p_userChoice]->linkedLevel1;
     }
 
     // Tests for each key pressed:
-    if( strcmp(keyPressed,"LEFT") == 0){
-        if( allLevels[allLevels[userChoice]->linkedLevel1]->posX < allLevels[userChoice]->posX
-           && allLevels[allLevels[userChoice]->linkedLevel2]->posX > allLevels[userChoice]->posX){
-            return allLevels[userChoice]->linkedLevel1;
+    if( strcmp(p_keyPressed,"LEFT") == 0){
+        if( p_allLevels[p_allLevels[p_userChoice]->linkedLevel1]->posX < p_allLevels[p_userChoice]->posX
+           && p_allLevels[p_allLevels[p_userChoice]->linkedLevel2]->posX > p_allLevels[p_userChoice]->posX){
+            return p_allLevels[p_userChoice]->linkedLevel1;
         }
-        if( allLevels[allLevels[userChoice]->linkedLevel1]->posX > allLevels[userChoice]->posX
-           && allLevels[allLevels[userChoice]->linkedLevel2]->posX < allLevels[userChoice]->posX){
-            return allLevels[userChoice]->linkedLevel2;
+        if( p_allLevels[p_allLevels[p_userChoice]->linkedLevel1]->posX > p_allLevels[p_userChoice]->posX
+           && p_allLevels[p_allLevels[p_userChoice]->linkedLevel2]->posX < p_allLevels[p_userChoice]->posX){
+            return p_allLevels[p_userChoice]->linkedLevel2;
         }
-        if( allLevels[allLevels[userChoice]->linkedLevel1]->posX >= allLevels[userChoice]->posX
-           && allLevels[allLevels[userChoice]->linkedLevel2]->posX >= allLevels[userChoice]->posX){
-            return userChoice;
+        if( p_allLevels[p_allLevels[p_userChoice]->linkedLevel1]->posX >= p_allLevels[p_userChoice]->posX
+           && p_allLevels[p_allLevels[p_userChoice]->linkedLevel2]->posX >= p_allLevels[p_userChoice]->posX){
+            return p_userChoice;
         }
-        if(fabs(allLevels[allLevels[userChoice]->linkedLevel1]->posY - allLevels[userChoice]->posY)
-           < fabs(allLevels[allLevels[userChoice]->linkedLevel2]->posY > allLevels[userChoice]->posY)){
-            return allLevels[userChoice]->linkedLevel1;
+        if(fabs(p_allLevels[p_allLevels[p_userChoice]->linkedLevel1]->posY - p_allLevels[p_userChoice]->posY)
+           < fabs(p_allLevels[p_allLevels[p_userChoice]->linkedLevel2]->posY > p_allLevels[p_userChoice]->posY)){
+            return p_allLevels[p_userChoice]->linkedLevel1;
         }else{
-            return allLevels[userChoice]->linkedLevel2;
+            return p_allLevels[p_userChoice]->linkedLevel2;
         }
     }
-    if( strcmp(keyPressed,"RIGHT") == 0){
-        if( allLevels[allLevels[userChoice]->linkedLevel1]->posX < allLevels[userChoice]->posX
-           && allLevels[allLevels[userChoice]->linkedLevel2]->posX > allLevels[userChoice]->posX){
-            return allLevels[userChoice]->linkedLevel2;
+    if( strcmp(p_keyPressed,"RIGHT") == 0){
+        if( p_allLevels[p_allLevels[p_userChoice]->linkedLevel1]->posX < p_allLevels[p_userChoice]->posX
+           && p_allLevels[p_allLevels[p_userChoice]->linkedLevel2]->posX > p_allLevels[p_userChoice]->posX){
+            return p_allLevels[p_userChoice]->linkedLevel2;
         }
-        if( allLevels[allLevels[userChoice]->linkedLevel1]->posX > allLevels[userChoice]->posX
-           && allLevels[allLevels[userChoice]->linkedLevel2]->posX < allLevels[userChoice]->posX){
-            return allLevels[userChoice]->linkedLevel1;
+        if( p_allLevels[p_allLevels[p_userChoice]->linkedLevel1]->posX > p_allLevels[p_userChoice]->posX
+           && p_allLevels[p_allLevels[p_userChoice]->linkedLevel2]->posX < p_allLevels[p_userChoice]->posX){
+            return p_allLevels[p_userChoice]->linkedLevel1;
         }
-        if( allLevels[allLevels[userChoice]->linkedLevel1]->posX <= allLevels[userChoice]->posX
-           && allLevels[allLevels[userChoice]->linkedLevel2]->posX <= allLevels[userChoice]->posX){
-            return userChoice;
+        if( p_allLevels[p_allLevels[p_userChoice]->linkedLevel1]->posX <= p_allLevels[p_userChoice]->posX
+           && p_allLevels[p_allLevels[p_userChoice]->linkedLevel2]->posX <= p_allLevels[p_userChoice]->posX){
+            return p_userChoice;
         }
-        if(fabs(allLevels[allLevels[userChoice]->linkedLevel1]->posY - allLevels[userChoice]->posY)
-           < fabs(allLevels[allLevels[userChoice]->linkedLevel2]->posY > allLevels[userChoice]->posY)){
-            return allLevels[userChoice]->linkedLevel1;
+        if(fabs(p_allLevels[p_allLevels[p_userChoice]->linkedLevel1]->posY - p_allLevels[p_userChoice]->posY)
+           < fabs(p_allLevels[p_allLevels[p_userChoice]->linkedLevel2]->posY > p_allLevels[p_userChoice]->posY)){
+            return p_allLevels[p_userChoice]->linkedLevel1;
         }else{
-            return allLevels[userChoice]->linkedLevel2;
+            return p_allLevels[p_userChoice]->linkedLevel2;
         }
     }
-    if( strcmp(keyPressed,"UP") == 0){
-        if( allLevels[allLevels[userChoice]->linkedLevel1]->posY < allLevels[userChoice]->posY
-           && allLevels[allLevels[userChoice]->linkedLevel2]->posY > allLevels[userChoice]->posY){
-            return allLevels[userChoice]->linkedLevel1;
+    if( strcmp(p_keyPressed,"UP") == 0){
+        if( p_allLevels[p_allLevels[p_userChoice]->linkedLevel1]->posY < p_allLevels[p_userChoice]->posY
+           && p_allLevels[p_allLevels[p_userChoice]->linkedLevel2]->posY > p_allLevels[p_userChoice]->posY){
+            return p_allLevels[p_userChoice]->linkedLevel1;
         }
-        if( allLevels[allLevels[userChoice]->linkedLevel1]->posY > allLevels[userChoice]->posY
-           && allLevels[allLevels[userChoice]->linkedLevel2]->posY < allLevels[userChoice]->posY){
-            return allLevels[userChoice]->linkedLevel2;
+        if( p_allLevels[p_allLevels[p_userChoice]->linkedLevel1]->posY > p_allLevels[p_userChoice]->posY
+           && p_allLevels[p_allLevels[p_userChoice]->linkedLevel2]->posY < p_allLevels[p_userChoice]->posY){
+            return p_allLevels[p_userChoice]->linkedLevel2;
         }
-        if( allLevels[allLevels[userChoice]->linkedLevel1]->posY >= allLevels[userChoice]->posY
-           && allLevels[allLevels[userChoice]->linkedLevel2]->posY >= allLevels[userChoice]->posY){
-            return userChoice;
+        if( p_allLevels[p_allLevels[p_userChoice]->linkedLevel1]->posY >= p_allLevels[p_userChoice]->posY
+           && p_allLevels[p_allLevels[p_userChoice]->linkedLevel2]->posY >= p_allLevels[p_userChoice]->posY){
+            return p_userChoice;
         }
-        if(fabs(allLevels[allLevels[userChoice]->linkedLevel1]->posX - allLevels[userChoice]->posX)
-           < fabs(allLevels[allLevels[userChoice]->linkedLevel2]->posX > allLevels[userChoice]->posX)){
-            return allLevels[userChoice]->linkedLevel2;
+        if(fabs(p_allLevels[p_allLevels[p_userChoice]->linkedLevel1]->posX - p_allLevels[p_userChoice]->posX)
+           < fabs(p_allLevels[p_allLevels[p_userChoice]->linkedLevel2]->posX > p_allLevels[p_userChoice]->posX)){
+            return p_allLevels[p_userChoice]->linkedLevel2;
         }else{
-            return allLevels[userChoice]->linkedLevel1;
+            return p_allLevels[p_userChoice]->linkedLevel1;
         }
     }
-    if( strcmp(keyPressed,"DOWN") == 0){
-        if( allLevels[allLevels[userChoice]->linkedLevel1]->posY < allLevels[userChoice]->posY
-           && allLevels[allLevels[userChoice]->linkedLevel2]->posY > allLevels[userChoice]->posY){
-            return allLevels[userChoice]->linkedLevel2;
+    if( strcmp(p_keyPressed,"DOWN") == 0){
+        if( p_allLevels[p_allLevels[p_userChoice]->linkedLevel1]->posY < p_allLevels[p_userChoice]->posY
+           && p_allLevels[p_allLevels[p_userChoice]->linkedLevel2]->posY > p_allLevels[p_userChoice]->posY){
+            return p_allLevels[p_userChoice]->linkedLevel2;
         }
-        if( allLevels[allLevels[userChoice]->linkedLevel1]->posY > allLevels[userChoice]->posY
-           && allLevels[allLevels[userChoice]->linkedLevel2]->posY < allLevels[userChoice]->posY){
-            return allLevels[userChoice]->linkedLevel1;
+        if( p_allLevels[p_allLevels[p_userChoice]->linkedLevel1]->posY > p_allLevels[p_userChoice]->posY
+           && p_allLevels[p_allLevels[p_userChoice]->linkedLevel2]->posY < p_allLevels[p_userChoice]->posY){
+            return p_allLevels[p_userChoice]->linkedLevel1;
         }
-        if( allLevels[allLevels[userChoice]->linkedLevel1]->posY <= allLevels[userChoice]->posY
-           && allLevels[allLevels[userChoice]->linkedLevel2]->posY <= allLevels[userChoice]->posY){
-            return userChoice;
+        if( p_allLevels[p_allLevels[p_userChoice]->linkedLevel1]->posY <= p_allLevels[p_userChoice]->posY
+           && p_allLevels[p_allLevels[p_userChoice]->linkedLevel2]->posY <= p_allLevels[p_userChoice]->posY){
+            return p_userChoice;
         }
-        if(fabs(allLevels[allLevels[userChoice]->linkedLevel1]->posX - allLevels[userChoice]->posX)
-           < fabs(allLevels[allLevels[userChoice]->linkedLevel2]->posX > allLevels[userChoice]->posX)){
-            return allLevels[userChoice]->linkedLevel2;
+        if(fabs(p_allLevels[p_allLevels[p_userChoice]->linkedLevel1]->posX - p_allLevels[p_userChoice]->posX)
+           < fabs(p_allLevels[p_allLevels[p_userChoice]->linkedLevel2]->posX > p_allLevels[p_userChoice]->posX)){
+            return p_allLevels[p_userChoice]->linkedLevel2;
         }else{
-            return allLevels[userChoice]->linkedLevel1;
+            return p_allLevels[p_userChoice]->linkedLevel1;
         }
     }
 
-    return userChoice;
+    return p_userChoice;
 }//--------------------------------------------------------------------------------------------------------------------
 
-int displayLevelSelectionPage(SDL_Window *p_window, char *nextLevelPath, GameManager *currGameMgr){
+int displayLevelSelectionPage(SDL_Window *p_window, char *p_nextLevelPath, GameManager *p_gameMgr){
     SDL_Surface *cursor, *background1, *greenDot, *lifesLeft, *coinLeft;
     TTF_Font *font1 = TTF_OpenFont("data/fonts/dejavu/DejaVuSans.ttf", 20);
     SDL_Event event;
@@ -159,7 +159,7 @@ int displayLevelSelectionPage(SDL_Window *p_window, char *nextLevelPath, GameMan
         }
         if( event.type==SDL_KEYDOWN && event.key.keysym.sym == SDLK_RETURN){// Validate userChoice
             nextPage = 7;
-            strncpy(nextLevelPath, allLevels[userChoice]->path, pathSize );
+            strncpy(p_nextLevelPath, allLevels[userChoice]->path, pathSize );
             break;
         }
 

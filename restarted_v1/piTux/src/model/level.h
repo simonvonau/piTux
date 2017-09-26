@@ -29,22 +29,22 @@ typedef struct{
     int bonusInstancesSize;
 }Level;
 
-Level *initLevel(char *path, int pathSize);
-void saveLevel(Level *lev);
+Level *initLevel(char *p_path, int p_pathSize);
+void saveLevel(Level *p_level);
 
-void addBlockInstanceToLevel(Level *lev, int idBlock, int posX, int posY, Collider *coll);
-void addBonusInstanceToLevel(Level *lev, int idBonus, int posX, int posY, Collider *coll);
-void addEnemyInstanceToLevel(Level *lev, int idEnemy, int posX, int posY, Collider **coll, int collSize);
+void addBlockInstanceToLevel(Level *p_lev, int p_idBlock, int p_posX, int p_posY, Collider *p_coll);
+void addBonusInstanceToLevel(Level *p_lev, int p_idBonus, int p_posX, int p_posY, Collider *p_coll);
+void addEnemyInstanceToLevel(Level *p_lev, int p_idEnemy, int p_posX, int p_posY, Collider **p_coll, int p_collSize);
 
-void removeBlockInstanceToLevel(Level *lev, int blockIndex);
-void removeBonusInstanceToLevel(Level *lev, int bonusIndex);
-void removeEnemyInstanceToLevel(Level *lev, int enemyIndex);
+void removeBlockInstanceToLevel(Level *p_lev, int p_blockIndex);
+void removeBonusInstanceToLevel(Level *p_lev, int p_bonusIndex);
+void removeEnemyInstanceToLevel(Level *p_lev, int p_enemyIndex);
 
-int checkIfBlockInstanceExistHere(Level *lev, int posX, int posY);
-int checkIfBonusInstanceExistHere(Level *lev, int posX, int posY);
-int checkIfEnemyInstanceExistHere(Level *lev, int posX, int posY);
+int checkIfBlockInstanceExistHere(Level *p_lev, int p_posX, int p_posY);
+int checkIfBonusInstanceExistHere(Level *p_lev, int p_posX, int p_posY);
+int checkIfEnemyInstanceExistHere(Level *p_lev, int p_posX, int p_posY);
 
-void addBonusToBlock(Level *lev, int idBlockInstance, int idBonus);
+void addBonusToBlock(Level *p_lev, int p_idBlockInstance, int p_idBonus);
 
-void destroyLevel(Level *currLevel);
+void destroyLevel(Level *p_level);
 #endif

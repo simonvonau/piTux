@@ -98,19 +98,19 @@ Bonus * initBonus(char *path){
     return res;
 }//------------------------------------------------------------------------------------------------------------------------
 
-void destroyBonus(Bonus *currBonus){
+void destroyBonus(Bonus *p_bonus){
 // Free a bonus
     int i,j;
-    for( i = 0; i < currBonus->spritesSize1; i++){
-        for(j = 0; j < currBonus->spritesSize2[i]; j++){
-            SDL_FreeSurface(currBonus->sprites[i][j]);
+    for( i = 0; i < p_bonus->spritesSize1; i++){
+        for(j = 0; j < p_bonus->spritesSize2[i]; j++){
+            SDL_FreeSurface(p_bonus->sprites[i][j]);
         }
-        free(currBonus->sprites[i]);
+        free(p_bonus->sprites[i]);
     }
-    free(currBonus->sprites);
+    free(p_bonus->sprites);
 
-    free(currBonus->spriteDuration);
-    free(currBonus->spritesSize2);
-    destroyCollider(currBonus->refColl);
-    free(currBonus);
+    free(p_bonus->spriteDuration);
+    free(p_bonus->spritesSize2);
+    destroyCollider(p_bonus->refColl);
+    free(p_bonus);
 }//------------------------------------------------------------------------------------------------------------------------

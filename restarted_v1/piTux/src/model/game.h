@@ -18,7 +18,7 @@ typedef struct{
 }Game;
 
 
-Game* initGame(char *path);
-void destroyGame(Game *currGame);
+Game* initGame(char *p_path);
+void destroyGame(Game *p_game);
 
 #endif

@@ -1,8 +1,8 @@
 #include "button.h"
 
-Button *initButton(char *path){
+Button *initButton(char *p_path){
 // Load a button from a file
-    FILE *file = fopen ( path, "r" );
+    FILE *file = fopen ( p_path, "r" );
     int nbMaxElemPerLine = 4;
     int lineSizeMax = 512;// Max size of a line from the opened file
     char  **buff;
@@ -29,7 +29,7 @@ Button *initButton(char *path){
         }
         fclose ( file );
     }else{
-        perror ( path );
+        perror ( p_path );
     }
 
     for(i=0;i < nbMaxElemPerLine;i++){
@@ -39,19 +39,19 @@ Button *initButton(char *path){
     return res;
 }//------------------------------------------------------------------------------------------------------------------------
 
-void displayButton(SDL_Window *p_window, Button *currBut){
+void displayButton(SDL_Window *p_window, Button *p_button){
 // Display a specified button
     SDL_Rect buttPos = { 0, 0, 0, 0};
-    buttPos.x = currBut->posX;
-    buttPos.y = currBut->posY;
-    SDL_BlitSurface(currBut->background, NULL, SDL_GetWindowSurface(p_window), &buttPos);
+    buttPos.x = p_button->posX;
+    buttPos.y = p_button->posY;
+    SDL_BlitSurface(p_button->background, NULL, SDL_GetWindowSurface(p_window), &buttPos);
 }//------------------------------------------------------------------------------------------------------------------------
 
-int isClicked(Button *currButt, int clicX, int clicY){
+int isClicked(Button *p_button, int p_clicX, int p_clicY){
 // Is a button clicked or not
-    if(currButt->isEnabled){
-        if(clicX > currButt->posX && clicX < currButt->posX + currButt->guiWidth){
-            if(clicY > currButt->posY && clicY < currButt->posY + currButt->guiHeight){
+    if(p_button->isEnabled){
+        if(p_clicX > p_button->posX && p_clicX < p_button->posX + p_button->guiWidth){
+            if(p_clicY > p_button->posY && p_clicY < p_button->posY + p_button->guiHeight){
                 return 1;
             }
         }
@@ -59,8 +59,8 @@ int isClicked(Button *currButt, int clicX, int clicY){
     return 0;
 }//------------------------------------------------------------------------------------------------------------------------
 
-void destroyButton(Button *currButton){
+void destroyButton(Button *p_button){
 // Free a Button
-    SDL_FreeSurface(currButton->background);
-    free(currButton);
+    SDL_FreeSurface(p_button->background);
+    free(p_button);
 }//------------------------------------------------------------------------------------------------------------------------

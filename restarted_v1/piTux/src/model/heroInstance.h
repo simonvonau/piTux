@@ -36,16 +36,16 @@ typedef struct{
 
 HeroInstance * initHeroInstance();
 
-void changeHerosState(HeroInstance * p_heroInstance,int p_newState, int p_newAction, int p_newSprite);
-void changeHeroAction(HeroInstance * p_heroInstance, int p_newAction, int p_newSprite);
+void changeHerosState(HeroInstance * p_herosInstance,int p_newState, int p_newAction, int p_newSprite);
+void changeHerosAction(HeroInstance * p_herosInstance, int p_newAction, int p_newSprite);
 
 // Refreshing the heros
-void refreshHeroInstance(HeroInstance * p_heroInstance, Heros *p_heros, int currentTime, int loopTime);
-void applyGravity(HeroInstance *p_heroInstance, int p_loopTime);
-void movingRight(HeroInstance *p_heroInstance, Heros *p_heros, int p_loopTime);
-void movingLeft(HeroInstance *p_heroInstance, Heros *p_heros, int p_loopTime);
-void jump(HeroInstance *p_heroInstance, Heros *p_heros, int p_loopTime);
-void land(HeroInstance *p_heroInstance);
+void refreshHerosInstance(HeroInstance * p_herosInstance, Heros *p_heros, int p_currentTime, int p_loopTime);
+void applyGravity(HeroInstance *p_herosInstance, int p_loopTime);
+void movingRight(HeroInstance *p_herosInstance, Heros *p_heros, int p_loopTime);
+void movingLeft(HeroInstance *p_herosInstance, Heros *p_heros, int p_loopTime);
+void jump(HeroInstance *p_herosInstance, Heros *p_heros, int p_loopTime);
+void land(HeroInstance *p_herosInstance);
 void updateCurrentSprite(HeroInstance *p_heroInstance, Heros *p_heros);
 
 void destroyHeroInstanceColliders(HeroInstance *p_heroInstance, Heros *p_heros);

@@ -7,6 +7,6 @@
 
 #include "../model/block.h"
 
-int* initIntArray(int pSize,int defaultVal);
-char ** splitString(char* str,char separator,int sizeMax,int returnArrayMaxQty,int returnMaxSize);
+int* initIntArray(int p_size,int p_defaultVal);
+char ** splitString(char* p_str,char p_separator,int p_sizeMax,int p_returnArrayMaxQty,int p_returnMaxSize);
 #endif

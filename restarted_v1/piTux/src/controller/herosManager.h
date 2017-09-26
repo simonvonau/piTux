@@ -22,16 +22,16 @@ typedef struct{
 }HerosManager;
 
 
-HerosManager *initHerosManager(char path[FILE_PATH_SIZE_MAX]);
-void initHerosInstanceByManager(HerosManager *herosMgr);
-void updateHeroBehaviourAfterCollisionDetection(HeroInstance *currHeroInstance, Heros * p_heros, ColliderManager *collMgr, int currentTime, int loopTime);
-void jumpHeros(Heros *currHeros);
-void moveHeros(Heros *currHeros, int direction, int timeLoop);
-void displayHeros(HerosManager *currHerosMgr, SDL_Window *p_window, int p_displayedPosX, int p_displayedPosY);
-void testHerosCollisions(Heros *currHeros);
-void herosGatherBonus(Heros* currHeros, BonusInstance *currBonusInstance);
+HerosManager *initHerosManager(char p_path[FILE_PATH_SIZE_MAX]);
+void initHerosInstanceByManager(HerosManager *p_herosMgr);
+void updateHeroBehaviourAfterCollisionDetection(HeroInstance *p_herosInstance, Heros * p_heros, ColliderManager *p_collMgr, int p_currentTime, int p_loopTime);
+void jumpHeros(Heros *p_heros);
+void moveHeros(Heros *p_heros, int p_direction, int p_loopTime);
+void displayHeros(HerosManager *p_herosMgr, SDL_Window *p_window, int p_displayedPosX, int p_displayedPosY);
+void testHerosCollisions(Heros *p_heros);
+void herosGatherBonus(Heros* p_heros, BonusInstance *p_bonusInstance);
 
-void destroyHerosManager(HerosManager *currHerosManager);
+void destroyHerosManager(HerosManager *p_herosManager);
 
 
 

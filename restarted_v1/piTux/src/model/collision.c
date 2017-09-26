@@ -1,20 +1,20 @@
 #include "collision.h"
 
-Collision * initCollision(int id, int currColl1Id, int currColl2Id){
+Collision * initCollision(int p_id, int p_coll1Id, int p_coll2Id){
     Collision *res = malloc(sizeof(Collision));
     if (res == NULL){
         reportErreur("Error malloc initCollision()");
     }
 
-    res->id = id;
-    res->coll1Id = currColl1Id;
-    res->coll2Id = currColl2Id;
+    res->id = p_id;
+    res->coll1Id = p_coll1Id;
+    res->coll2Id = p_coll2Id;
 
     return res;
 }//------------------------------------------------------------------------------------------------------------------------
 
-void destroyCollision(Collision *currCollision){
-    free(currCollision);
+void destroyCollision(Collision *p_collision){
+    free(p_collision);
 }//------------------------------------------------------------------------------------------------------------------------
 
 

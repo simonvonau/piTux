@@ -1,16 +1,16 @@
 #include "enemyBehaviour.h"
 
-void updateEnemyBehaviourAfterCollisionDetection(EnemyInstance *currEnemyInstance, Enemy currEnemy, ColliderManager *currCollMgr, int loopTime){
-// Chooses the right behaviour matching with currEnemyInstance
-    switch(currEnemyInstance->idEnemy){
+void updateEnemyBehaviourAfterCollisionDetection(EnemyInstance *p_enemyInstance, Enemy p_enemy, ColliderManager *p_collMgr, int p_loopTime){
+// Chooses the right behaviour matching with p_enemyInstance
+    switch(p_enemyInstance->idEnemy){
         case 0:
-            updateMrFluffyBehaviour(currEnemyInstance, currEnemy, currCollMgr, loopTime);
+            updateMrFluffyBehaviour(p_enemyInstance, p_enemy, p_collMgr, p_loopTime);
             break;
         case 1:
-            updateMrBombBehaviour(currEnemyInstance, currEnemy, currCollMgr, loopTime);
+            updateMrBombBehaviour(p_enemyInstance, p_enemy, p_collMgr, p_loopTime);
             break;
         case 2:
-            updateMrIceBlockBehaviour(currEnemyInstance, currEnemy, currCollMgr, loopTime);
+            updateMrIceBlockBehaviour(p_enemyInstance, p_enemy, p_collMgr, p_loopTime);
             break;
         default:
             reportErreur("Cannot update this enemy Id! (doesn't exists)");
@@ -18,7 +18,7 @@ void updateEnemyBehaviourAfterCollisionDetection(EnemyInstance *currEnemyInstanc
     }
 }//------------------------------------------------------------------------------------------------------------------------
 
-void updateMrFluffyBehaviour(EnemyInstance *currEnemyInstance, Enemy currEnemy, ColliderManager *currCollMgr, int loopTime){
+void updateMrFluffyBehaviour(EnemyInstance *p_enemyInstance, Enemy p_enemy, ColliderManager *p_collMgr, int p_loopTime){
 // Update Mr Fluffy behaviour
     int movementX, movementY;
     int i;
@@ -27,54 +27,61 @@ void updateMrFluffyBehaviour(EnemyInstance *currEnemyInstance, Enemy currEnemy, 
     int enemyFallY; // The deepness the enemy go down on the ground (due to gravity)
 
     // Collision detection
-    getColliderTouching(currCollMgr, currEnemyInstance->coll[currEnemyInstance->currentActionId]->id, &contacts, &contactsSize);
+    getColliderTouching(p_collMgr, p_enemyInstance->coll[p_enemyInstance->currentActionId]->id, &contacts, &contactsSize);
 
     for (i = 0; i < contactsSize; i++){
-        enemyFallY = currEnemyInstance->coll[currEnemyInstance->currentActionId]->lastPosY - currEnemyInstance->coll[currEnemyInstance->currentActionId]->posY;
+        enemyFallY = p_enemyInstance->coll[p_enemyInstance->currentActionId]->lastPosY - p_enemyInstance->coll[p_enemyInstance->currentActionId]->posY;
 
-        // Dead after touched an explosion
-        if(contacts[i]->ownerTag == TAG_EXPLOSION || contacts[i]->ownerTag == TAG_BULL){
-            currEnemyInstance->isDead = 1;
-            currEnemyInstance->lifeTime = 1000;
-            currEnemyInstance->coll[currEnemyInstance->currentActionId]->isEnabled = 0;
+        // Dead after it touched an explosion
+        if(contacts[i]->ownerTag == TAG_EXPLOSION || contacts[i]->ownerTag == TAG_BULL || contacts[i]->ownerTag == TAG_BLOCK_UNDERHIT_WEAK
+        || contacts[i]->ownerTag == TAG_BLOCK_UNDERHIT_NORMAL){
+            if(p_enemyInstance->direction == -1){
+                changeEnemyAction(p_enemyInstance, 4, 0);
+            }else{
+                changeEnemyAction(p_enemyInstance, 5, 0);
+            }
+            p_enemyInstance->isDead = 1;
+            p_enemyInstance->lifeTime = 1000;
+            p_enemyInstance->coll[p_enemyInstance->currentActionId]->isEnabled = 0;
+            return;
         }
 
         // If the colliding object is under
-        if( currEnemyInstance->coll[currEnemyInstance->currentActionId]->lastPosY >= contacts[i]->posY + contacts[i]->height){
-            currEnemyInstance->posY = contacts[i]->posY + contacts[i]->height;
+        if( p_enemyInstance->coll[p_enemyInstance->currentActionId]->lastPosY >= contacts[i]->posY + contacts[i]->height){
+            p_enemyInstance->posY = contacts[i]->posY + contacts[i]->height;
         // If the colliding object is above
-        }else if(currEnemyInstance->coll[currEnemyInstance->currentActionId]->lastPosY + currEnemyInstance->coll[currEnemyInstance->currentActionId]->height <= contacts[i]->lastPosY + enemyFallY){
-            if(!currEnemyInstance->isDead && contacts[i]->ownerTag == TAG_HEROS_TUX){
-                if(currEnemyInstance->direction == -1){
-                    changeEnemyAction(currEnemyInstance, 2, 0);
+        }else if(p_enemyInstance->coll[p_enemyInstance->currentActionId]->lastPosY + p_enemyInstance->coll[p_enemyInstance->currentActionId]->height <= contacts[i]->lastPosY + enemyFallY){
+            if(!p_enemyInstance->isDead && contacts[i]->ownerTag == TAG_HEROS_TUX){
+                if(p_enemyInstance->direction == -1){
+                    changeEnemyAction(p_enemyInstance, 2, 0);
                 }else{
-                    changeEnemyAction(currEnemyInstance, 3, 0);
+                    changeEnemyAction(p_enemyInstance, 3, 0);
                 }
-                currEnemyInstance->isDead = 1;
-                currEnemyInstance->lifeTime = 500;
-                currEnemyInstance->coll[currEnemyInstance->currentActionId]->isEnabled = 0;
-                currEnemyInstance->isExposedToGravity = 0;
+                p_enemyInstance->isDead = 1;
+                p_enemyInstance->lifeTime = 500;
+                p_enemyInstance->coll[p_enemyInstance->currentActionId]->isEnabled = 0;
+                p_enemyInstance->isExposedToGravity = 0;
             }
-        }else if(!currEnemyInstance->isDead){ // Lateral collision
+        }else if(!p_enemyInstance->isDead){ // Lateral collision
             // If left touching
-            if (currEnemyInstance->posX > contacts[i]->posX){
-                changeEnemyAction(currEnemyInstance, 1, 0);
-                currEnemyInstance->posX = contacts[i]->posX + contacts[i]->width;
-                currEnemyInstance->direction = 1;
+            if (p_enemyInstance->posX > contacts[i]->posX){
+                changeEnemyAction(p_enemyInstance, 1, 0);
+                p_enemyInstance->posX = contacts[i]->posX + contacts[i]->width;
+                p_enemyInstance->direction = 1;
             }else{ // If right touching
-                changeEnemyAction(currEnemyInstance, 0, 0);
-                currEnemyInstance->posX = contacts[i]->posX - currEnemyInstance->coll[currEnemyInstance->currentActionId]->width;
-                currEnemyInstance->direction = -1;
+                changeEnemyAction(p_enemyInstance, 0, 0);
+                p_enemyInstance->posX = contacts[i]->posX - p_enemyInstance->coll[p_enemyInstance->currentActionId]->width;
+                p_enemyInstance->direction = -1;
             }
         }
     }
 
     // Update Collider position
-    currEnemyInstance->coll[currEnemyInstance->currentActionId]->posX = currEnemyInstance->posX;
-    currEnemyInstance->coll[currEnemyInstance->currentActionId]->posY = currEnemyInstance->posY;
+    p_enemyInstance->coll[p_enemyInstance->currentActionId]->posX = p_enemyInstance->posX;
+    p_enemyInstance->coll[p_enemyInstance->currentActionId]->posY = p_enemyInstance->posY;
 }//------------------------------------------------------------------------------------------------------------------------
 
-void updateMrBombBehaviour(EnemyInstance *currEnemyInstance, Enemy currEnemy, ColliderManager *currCollMgr, int loopTime){
+void updateMrBombBehaviour(EnemyInstance *p_enemyInstance, Enemy p_enemy, ColliderManager *p_collMgr, int p_loopTime){
 // Update Mr Bomb behaviour
     int movementX, movementY;
     int i;
@@ -83,67 +90,68 @@ void updateMrBombBehaviour(EnemyInstance *currEnemyInstance, Enemy currEnemy, Co
     int enemyFallY; // The deepness the enemy go down on the ground (due to gravity)
 
     // Collision detection
-    getColliderTouching(currCollMgr, currEnemyInstance->coll[currEnemyInstance->currentActionId]->id, &contacts, &contactsSize);
+    getColliderTouching(p_collMgr, p_enemyInstance->coll[p_enemyInstance->currentActionId]->id, &contacts, &contactsSize);
 
     for (i = 0; i < contactsSize; i++){
-        enemyFallY = currEnemyInstance->coll[currEnemyInstance->currentActionId]->lastPosY - currEnemyInstance->coll[currEnemyInstance->currentActionId]->posY;
+        enemyFallY = p_enemyInstance->coll[p_enemyInstance->currentActionId]->lastPosY - p_enemyInstance->coll[p_enemyInstance->currentActionId]->posY;
 
         // Mr Bomb explodes when he touches an explosion
-        if((contacts[i]->ownerTag == TAG_EXPLOSION || contacts[i]->ownerTag == TAG_BULL) && currEnemyInstance->currentActionId != 4){
-            changeEnemyAction(currEnemyInstance, 4, 0);
-            currEnemyInstance->coll[currEnemyInstance->currentActionId]->ownerTag = TAG_EXPLOSION;
-            currEnemyInstance->isDead = 1;
-            currEnemyInstance->isExposedToGravity = 0;
+        if((contacts[i]->ownerTag == TAG_EXPLOSION || contacts[i]->ownerTag == TAG_BULL || contacts[i]->ownerTag == TAG_BLOCK_UNDERHIT_WEAK
+        || contacts[i]->ownerTag == TAG_BLOCK_UNDERHIT_NORMAL) && p_enemyInstance->currentActionId != 4){
+            changeEnemyAction(p_enemyInstance, 4, 0);
+            p_enemyInstance->coll[p_enemyInstance->currentActionId]->ownerTag = TAG_EXPLOSION;
+            p_enemyInstance->isDead = 1;
+            p_enemyInstance->isExposedToGravity = 0;
             // Get the explosion duration (spritesQty * spriteDuration)
-            currEnemyInstance->lifeTime = currEnemy.spriteDuration[currEnemyInstance->currentActionId] * currEnemy.spritesSize2[currEnemyInstance->currentActionId];
+            p_enemyInstance->lifeTime = p_enemy.spriteDuration[p_enemyInstance->currentActionId] * p_enemy.spritesSize2[p_enemyInstance->currentActionId];
         }
 
         // If the colliding object is under
-        if( currEnemyInstance->coll[currEnemyInstance->currentActionId]->lastPosY >= contacts[i]->posY + contacts[i]->height){
-            currEnemyInstance->posY = contacts[i]->posY + contacts[i]->height;
+        if( p_enemyInstance->coll[p_enemyInstance->currentActionId]->lastPosY >= contacts[i]->posY + contacts[i]->height){
+            p_enemyInstance->posY = contacts[i]->posY + contacts[i]->height;
         // If the colliding object is above
-        }else if(currEnemyInstance->coll[currEnemyInstance->currentActionId]->lastPosY + currEnemyInstance->coll[currEnemyInstance->currentActionId]->height <= contacts[i]->lastPosY + enemyFallY){
-            if(!currEnemyInstance->isDead && contacts[i]->ownerTag == TAG_HEROS_TUX){
-                if(currEnemyInstance->direction == -1){
-                    changeEnemyAction(currEnemyInstance, 2, 0);
+        }else if(p_enemyInstance->coll[p_enemyInstance->currentActionId]->lastPosY + p_enemyInstance->coll[p_enemyInstance->currentActionId]->height <= contacts[i]->lastPosY + enemyFallY){
+            if(!p_enemyInstance->isDead && contacts[i]->ownerTag == TAG_HEROS_TUX){
+                if(p_enemyInstance->direction == -1){
+                    changeEnemyAction(p_enemyInstance, 2, 0);
                 }else{
-                    changeEnemyAction(currEnemyInstance, 3, 0);
+                    changeEnemyAction(p_enemyInstance, 3, 0);
                 }
-                currEnemyInstance->lifeTime = currEnemy.spriteDuration[currEnemyInstance->currentActionId] * currEnemy.spritesSize2[currEnemyInstance->currentActionId] + 200;
-                currEnemyInstance->isDead = 1;
+                p_enemyInstance->lifeTime = p_enemy.spriteDuration[p_enemyInstance->currentActionId] * p_enemy.spritesSize2[p_enemyInstance->currentActionId] + 200;
+                p_enemyInstance->isDead = 1;
             }
-        }else if(!currEnemyInstance->isDead){ // Lateral collision
+        }else if(!p_enemyInstance->isDead){ // Lateral collision
             // If left touching
-            if (currEnemyInstance->posX > contacts[i]->posX){
-                changeEnemyAction(currEnemyInstance, 1, 0);
-                currEnemyInstance->posX = contacts[i]->posX + contacts[i]->width;
-                currEnemyInstance->direction = 1;
+            if (p_enemyInstance->posX > contacts[i]->posX){
+                changeEnemyAction(p_enemyInstance, 1, 0);
+                p_enemyInstance->posX = contacts[i]->posX + contacts[i]->width;
+                p_enemyInstance->direction = 1;
             }else{ // If right touching
-                changeEnemyAction(currEnemyInstance, 0, 0);
-                currEnemyInstance->posX = contacts[i]->posX - currEnemyInstance->coll[currEnemyInstance->currentActionId]->width;
-                currEnemyInstance->direction = -1;
+                changeEnemyAction(p_enemyInstance, 0, 0);
+                p_enemyInstance->posX = contacts[i]->posX - p_enemyInstance->coll[p_enemyInstance->currentActionId]->width;
+                p_enemyInstance->direction = -1;
             }
         }
     }
 
     // Create the explosion
-    if((currEnemyInstance->currentActionId == 2 || currEnemyInstance->currentActionId == 3)
-       && currEnemyInstance->currentSpriteId == currEnemy.spritesSize2[currEnemyInstance->currentActionId] - 1){
-        changeEnemyAction(currEnemyInstance, 4, 0);
-        currEnemyInstance->coll[currEnemyInstance->currentActionId]->ownerTag = TAG_EXPLOSION;
-        currEnemyInstance->isDead = 1;
-        currEnemyInstance->isExposedToGravity = 0;
+    if((p_enemyInstance->currentActionId == 2 || p_enemyInstance->currentActionId == 3)
+       && p_enemyInstance->currentSpriteId == p_enemy.spritesSize2[p_enemyInstance->currentActionId] - 1){
+        changeEnemyAction(p_enemyInstance, 4, 0);
+        p_enemyInstance->coll[p_enemyInstance->currentActionId]->ownerTag = TAG_EXPLOSION;
+        p_enemyInstance->isDead = 1;
+        p_enemyInstance->isExposedToGravity = 0;
         // Get the explosion duration (spritesQty * spriteDuration)
-        currEnemyInstance->lifeTime = currEnemy.spriteDuration[currEnemyInstance->currentActionId] * currEnemy.spritesSize2[currEnemyInstance->currentActionId];
+        p_enemyInstance->lifeTime = p_enemy.spriteDuration[p_enemyInstance->currentActionId] * p_enemy.spritesSize2[p_enemyInstance->currentActionId];
     }
 
     // Update Collider position
-    currEnemyInstance->coll[currEnemyInstance->currentActionId]->posX = currEnemyInstance->posX;
-    currEnemyInstance->coll[currEnemyInstance->currentActionId]->posY = currEnemyInstance->posY;
+    p_enemyInstance->coll[p_enemyInstance->currentActionId]->posX = p_enemyInstance->posX;
+    p_enemyInstance->coll[p_enemyInstance->currentActionId]->posY = p_enemyInstance->posY;
 
 }//------------------------------------------------------------------------------------------------------------------------
 
-void updateMrIceBlockBehaviour(EnemyInstance *currEnemyInstance, Enemy currEnemy, ColliderManager *currCollMgr, int loopTime){
+void updateMrIceBlockBehaviour(EnemyInstance *p_enemyInstance, Enemy p_enemy, ColliderManager *p_collMgr, int p_loopTime){
 // Update Mr IceBlock behaviour
     int movementX, movementY;
     int i;
@@ -152,88 +160,68 @@ void updateMrIceBlockBehaviour(EnemyInstance *currEnemyInstance, Enemy currEnemy
     int enemyFallY; // The deepness the enemy go down on the ground (due to gravity)
 
     // Collision detection
-    getColliderTouching(currCollMgr, currEnemyInstance->coll[currEnemyInstance->currentActionId]->id, &contacts, &contactsSize);
+    getColliderTouching(p_collMgr, p_enemyInstance->coll[p_enemyInstance->currentActionId]->id, &contacts, &contactsSize);
 
     for (i = 0; i < contactsSize; i++){
-        enemyFallY = currEnemyInstance->coll[currEnemyInstance->currentActionId]->lastPosY - currEnemyInstance->coll[currEnemyInstance->currentActionId]->posY;
+        enemyFallY = p_enemyInstance->coll[p_enemyInstance->currentActionId]->lastPosY - p_enemyInstance->coll[p_enemyInstance->currentActionId]->posY;
 
         // Melt after being touched by an explosion
         if(contacts[i]->ownerTag == TAG_EXPLOSION){
-            if(currEnemyInstance->direction == -1){
-                changeEnemyAction(currEnemyInstance, 2, 0);
+            if(p_enemyInstance->direction == -1){
+                changeEnemyAction(p_enemyInstance, 2, 0);
             }else{
-                changeEnemyAction(currEnemyInstance, 3, 0);
+                changeEnemyAction(p_enemyInstance, 3, 0);
             }
-            currEnemyInstance->isDead = 1;
-            currEnemyInstance->lifeTime = currEnemy.spriteDuration[currEnemyInstance->currentActionId] * (currEnemy.spritesSize2[currEnemyInstance->currentActionId] - 1);
-            currEnemyInstance->coll[currEnemyInstance->currentActionId]->isEnabled = 0;
-            currEnemyInstance->isExposedToGravity = 0;
+            p_enemyInstance->isDead = 1;
+            p_enemyInstance->lifeTime = p_enemy.spriteDuration[p_enemyInstance->currentActionId] * (p_enemy.spritesSize2[p_enemyInstance->currentActionId] - 1);
+            p_enemyInstance->coll[p_enemyInstance->currentActionId]->isEnabled = 0;
         }
 
         // If the colliding object is under
-        if( currEnemyInstance->coll[currEnemyInstance->currentActionId]->lastPosY >= contacts[i]->posY + contacts[i]->height){
-            currEnemyInstance->posY = contacts[i]->posY + contacts[i]->height;
+        if( p_enemyInstance->coll[p_enemyInstance->currentActionId]->lastPosY >= contacts[i]->posY + contacts[i]->height){
+            p_enemyInstance->posY = contacts[i]->posY + contacts[i]->height;
         // If the colliding object is above
-        }else if(currEnemyInstance->coll[currEnemyInstance->currentActionId]->lastPosY + currEnemyInstance->coll[currEnemyInstance->currentActionId]->height <= contacts[i]->lastPosY + enemyFallY){
-            if(!currEnemyInstance->isDead && contacts[i]->ownerTag == TAG_HEROS_TUX){
-                if(currEnemyInstance->direction == -1){
-                    changeEnemyAction(currEnemyInstance, 4, 0);
+        }else if(p_enemyInstance->coll[p_enemyInstance->currentActionId]->lastPosY + p_enemyInstance->coll[p_enemyInstance->currentActionId]->height <= contacts[i]->lastPosY + enemyFallY){
+            /*if(!p_enemyInstance->isDead && contacts[i]->ownerTag == TAG_HEROS_TUX){
+                if(p_enemyInstance->direction == -1){
+                    changeEnemyAction(p_enemyInstance, 4, 0);
                 }else{
-                    changeEnemyAction(currEnemyInstance, 5, 0);
+                    changeEnemyAction(p_enemyInstance, 5, 0);
                 }
-                currEnemyInstance->coll[currEnemyInstance->currentActionId]->ownerTag = TAG_DEAD_ENEMY;
-                currEnemyInstance->isStuck = 1;
-            }
-        }else if(!currEnemyInstance->isDead){ // Lateral collision
+                p_enemyInstance->coll[p_enemyInstance->currentActionId]->ownerTag = TAG_DEAD_ENEMY;
+                p_enemyInstance->isStuck = 1;
+                p_enemyInstance->isExposedToGravity = 0;
+            }*/
+        }else if(!p_enemyInstance->isDead){ // Lateral collision
             // If left touching
-            if (currEnemyInstance->posX > contacts[i]->posX){
-                if(contacts[i]->ownerTag != TAG_HEROS_TUX){
-                    if(currEnemyInstance->currentActionId != 4 && currEnemyInstance->currentActionId != 5){
-                        changeEnemyAction(currEnemyInstance, 1, 0);
-                    }
-                }else{
-                    if(currEnemyInstance->isStuck){
-                        currEnemyInstance->isStuck = 0;
-                        changeEnemyAction(currEnemyInstance, 5, 0);
-                        currEnemyInstance->coll[currEnemyInstance->currentActionId]->ownerTag = TAG_BULL;
-                    }
+            if (p_enemyInstance->posX > contacts[i]->posX){
+                if(contacts[i]->ownerTag = TAG_HEROS_TUX && p_enemyInstance->isStuck){
+                    p_enemyInstance->isStuck = 0;
+                    changeEnemyAction(p_enemyInstance, 5, 0);
+                    p_enemyInstance->coll[p_enemyInstance->currentActionId]->ownerTag = TAG_BULL;
+                }else if(p_enemyInstance->currentActionId != 4 && p_enemyInstance->currentActionId != 5){
+                    changeEnemyAction(p_enemyInstance, 1, 0);
                 }
-                if( (currEnemyInstance->currentActionId == 4 || currEnemyInstance->currentActionId == 5)
-                && contacts[i]->ownerTag == TAG_ENEMY_MRBOMB || contacts[i]->ownerTag == TAG_ENEMY_MRFLUFFY || contacts[i]->ownerTag == TAG_ENEMY_MRICEBLOCK){
-                    currEnemyInstance->posX = contacts[i]->posX - currEnemyInstance->coll[currEnemyInstance->currentActionId]->width;
-                }else{
-                    currEnemyInstance->posX = contacts[i]->posX + contacts[i]->width;
-                    currEnemyInstance->direction = 1;
-                }
+                p_enemyInstance->posX = contacts[i]->posX + contacts[i]->width;
+                p_enemyInstance->direction = 1;
             }else{ // If right touching
-                if(contacts[i]->ownerTag != TAG_HEROS_TUX){
-                    if(currEnemyInstance->currentActionId != 4 && currEnemyInstance->currentActionId != 5){
-                        changeEnemyAction(currEnemyInstance, 0, 0);
-                    }
-                }else{
-                    if(currEnemyInstance->isStuck){
-                        currEnemyInstance->isStuck = 0;
-                        changeEnemyAction(currEnemyInstance, 4, 0);
-                        currEnemyInstance->coll[currEnemyInstance->currentActionId]->ownerTag = TAG_BULL;
-                    }
+                if(contacts[i]->ownerTag = TAG_HEROS_TUX && p_enemyInstance->isStuck){
+                    p_enemyInstance->isStuck = 0;
+                    changeEnemyAction(p_enemyInstance, 5, 0);
+                    p_enemyInstance->coll[p_enemyInstance->currentActionId]->ownerTag = TAG_BULL;
+                }else if(p_enemyInstance->currentActionId != 4 && p_enemyInstance->currentActionId != 5){
+                    changeEnemyAction(p_enemyInstance, 0, 0);
                 }
-                if( (currEnemyInstance->currentActionId == 4 || currEnemyInstance->currentActionId == 5)
-                && contacts[i]->ownerTag == TAG_ENEMY_MRBOMB || contacts[i]->ownerTag == TAG_ENEMY_MRFLUFFY || contacts[i]->ownerTag == TAG_ENEMY_MRICEBLOCK){
-                    currEnemyInstance->posX = contacts[i]->posX + contacts[i]->width;
-                }else{
-                    currEnemyInstance->posX = contacts[i]->posX - currEnemyInstance->coll[currEnemyInstance->currentActionId]->width;
-                    currEnemyInstance->direction = -1;
-                }
-
+                p_enemyInstance->posX = contacts[i]->posX - p_enemyInstance->coll[p_enemyInstance->currentActionId]->width;
+                p_enemyInstance->direction = -1;
             }
         }
     }
 
 
-
     // Update Collider position
-    currEnemyInstance->coll[currEnemyInstance->currentActionId]->posX = currEnemyInstance->posX;
-    currEnemyInstance->coll[currEnemyInstance->currentActionId]->posY = currEnemyInstance->posY;
+    p_enemyInstance->coll[p_enemyInstance->currentActionId]->posX = p_enemyInstance->posX;
+    p_enemyInstance->coll[p_enemyInstance->currentActionId]->posY = p_enemyInstance->posY;
 }//------------------------------------------------------------------------------------------------------------------------
 
 

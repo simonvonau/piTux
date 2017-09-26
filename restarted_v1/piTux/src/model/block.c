@@ -69,6 +69,7 @@ Block * initBlock(char *p_path){
                 res->spritesSize2 = malloc( res->spritesSize1 * sizeof(int));
                 res->spriteDuration = malloc( res->spritesSize1 * sizeof(int));
                 res->refColl = initNonRegisteredCollider(atoi(buff[3]),atoi(buff[4]), 0, 0, 1, 0);
+                res->speedY = atoi(buff[5]);
 
                 if(res->sprites == NULL || res->spritesSize2 == NULL || res->spriteDuration == NULL){
                     reportErreur("Error malloc initBlock():1");

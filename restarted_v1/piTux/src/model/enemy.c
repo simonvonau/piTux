@@ -1,8 +1,8 @@
 #include "enemy.h"
 
-Enemy **initEnemyArray(char *path,int *resSize){
+Enemy **initEnemyArray(char *p_path,int *p_resSize){
 // Load an array of enemies
-    FILE *file = fopen ( path, "r" );
+    FILE *file = fopen ( p_path, "r" );
     int nbMaxElemPerLine = 10;
     int lineSizeMax = 512;// Max size of a line from the opened file
     char  **buff;
@@ -15,8 +15,8 @@ Enemy **initEnemyArray(char *path,int *resSize){
             buff = splitString(line, ';', lineSizeMax, nbMaxElemPerLine, lineSizeMax);
 
             if(strcmp(buff[0], "[Header]") == 0){
-                *resSize = atoi(buff[1]);
-                res = malloc(*resSize * sizeof(Enemy *));
+                *p_resSize = atoi(buff[1]);
+                res = malloc(*p_resSize * sizeof(Enemy *));
                 if(res == NULL){
                     reportErreur("Error malloc initEnemyArray():1");
                 }
@@ -26,7 +26,7 @@ Enemy **initEnemyArray(char *path,int *resSize){
         }
         fclose ( file );
     }else{
-        perror ( path );
+        perror ( p_path );
     }
 
     for(i=0;i < nbMaxElemPerLine;i++){
@@ -36,9 +36,9 @@ Enemy **initEnemyArray(char *path,int *resSize){
     return res;
 
 }//------------------------------------------------------------------------------------------------------------------------
-Enemy *initEnemy(char *path){
+Enemy *initEnemy(char *p_path){
 // Load an enemy from file
-    FILE *file = fopen ( path, "r" );
+    FILE *file = fopen ( p_path, "r" );
     int nbMaxElemPerLine = 10;
     int lineSizeMax = 512;// Max size of a line from the opened file
     char  **buff;
@@ -86,7 +86,7 @@ Enemy *initEnemy(char *path){
         }
         fclose ( file );
     }else{
-        perror ( path );
+        perror ( p_path );
     }
 
     for(i=0;i < nbMaxElemPerLine;i++){
@@ -98,23 +98,23 @@ Enemy *initEnemy(char *path){
     return res;
 
 }//------------------------------------------------------------------------------------------------------------------------
-void destroyEnemy(Enemy *currEnemy){
+void destroyEnemy(Enemy *p_enemy){
 // Free enemy memory
     int i,j;
-    for(i = 0; i < currEnemy->spritesSize1; i++){
-        for(j = 0; j < currEnemy->spritesSize2[i]; j++){
-            SDL_FreeSurface(currEnemy->sprites[i][j]);
+    for(i = 0; i < p_enemy->spritesSize1; i++){
+        for(j = 0; j < p_enemy->spritesSize2[i]; j++){
+            SDL_FreeSurface(p_enemy->sprites[i][j]);
         }
-        free(currEnemy->sprites[i]);
-        destroyCollider(currEnemy->actionColl[i]);
+        free(p_enemy->sprites[i]);
+        destroyCollider(p_enemy->actionColl[i]);
     }
-    free(currEnemy->sprites);
-    free(currEnemy->actionColl);
+    free(p_enemy->sprites);
+    free(p_enemy->actionColl);
 
-    free(currEnemy->speed);
-    free(currEnemy->spriteDuration);
-    free(currEnemy->spritesSize2);
-    free(currEnemy->specialBehaviour);
-    free(currEnemy);
+    free(p_enemy->speed);
+    free(p_enemy->spriteDuration);
+    free(p_enemy->spritesSize2);
+    free(p_enemy->specialBehaviour);
+    free(p_enemy);
 }//------------------------------------------------------------------------------------------------------------------------
 

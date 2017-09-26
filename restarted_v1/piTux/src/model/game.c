@@ -1,13 +1,13 @@
 #include "game.h"
 
-Game* initGame(char *path){
+Game* initGame(char *p_path){
 // Init a game
     Game * res = malloc(sizeof(Game));
     if(res == NULL ){
         reportErreur("Error malloc initGame()");
     }
 
-    FILE *file = fopen ( path, "r" );
+    FILE *file = fopen ( p_path, "r" );
     int nbMaxElemPerLine = 2;
     char  **buff;
     char line[LINE_SIZE_MAX];
@@ -43,7 +43,7 @@ Game* initGame(char *path){
         }
         fclose ( file );
     }else{
-        perror ( path );
+        perror ( p_path );
     }
     // Freeing buffer memory
     for(i=0;i < nbMaxElemPerLine;i++){
@@ -55,13 +55,13 @@ Game* initGame(char *path){
     return res;
 }//--------------------------------------------------------------------------------------------------------------------
 
-void destroyGame(Game *currGame){
+void destroyGame(Game *p_game){
 // Free a game memory
-    free(currGame->allTranslationsFile);
-    free(currGame->allBlocksFile);
-    free(currGame->allEnemiesFile);
-    free(currGame->allBonusFile);
-    free(currGame->allHerosFile);
-    free(currGame);
+    free(p_game->allTranslationsFile);
+    free(p_game->allBlocksFile);
+    free(p_game->allEnemiesFile);
+    free(p_game->allBonusFile);
+    free(p_game->allHerosFile);
+    free(p_game);
 }//--------------------------------------------------------------------------------------------------------------------
 

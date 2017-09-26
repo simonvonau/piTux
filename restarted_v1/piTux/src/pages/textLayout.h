@@ -10,7 +10,7 @@
 #include "../global.h"
 #include "../utils/arrayProcessing.h"
 
-void setTextLayout(SDL_Window* pWindow,char *text,int textSize,TTF_Font* font,SDL_Color textColor,SDL_Rect textPos);
-char *setTimeLayout(int time, int wishedSize);
+void setTextLayout(SDL_Window* p_window, char *p_text,int p_textSize,TTF_Font* p_font,SDL_Color p_textColor,SDL_Rect p_textPos);
+char *setTimeLayout(int p_time, int p_wishedSize);
 
 #endif

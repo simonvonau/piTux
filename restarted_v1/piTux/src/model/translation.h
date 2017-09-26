@@ -9,13 +9,13 @@
 
 typedef struct{
     char **sentence;
-    int nbLangages;
+    int nbLanguages;
     int sentenceSize;
 
 }Translation;
 
-Translation ** initTranslations(char *path, int *resSize, int *nbLangages, Translation **langagesList);
-Translation* initTranslation(int currNbLangages, int currSentenceSize, int startIndex, char ** currSentence);
-void destroyTranslation(Translation *currTranslation);
+Translation ** initTranslations(char *p_path, int *p_resSize, int *p_nbLanguages, Translation **p_languagesList);
+Translation* initTranslation(int p_nbLanguages, int p_sentenceSize, int p_startIndex, char ** p_sentence);
+void destroyTranslation(Translation *p_translation);
 
 #endif

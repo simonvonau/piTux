@@ -3,9 +3,9 @@
 
 
 
-Heros *initHeros(char path[FILE_PATH_SIZE_MAX]){
+Heros *initHeros(char p_path[FILE_PATH_SIZE_MAX]){
 // Init a new Heros
-    FILE *file = fopen ( path, "r" );
+    FILE *file = fopen ( p_path, "r" );
     int nbMaxElemPerLine = 10;
     int lineSizeMax = 512;// Max size of a line from the opened file
     char  **buff;
@@ -67,7 +67,7 @@ Heros *initHeros(char path[FILE_PATH_SIZE_MAX]){
         }
         fclose ( file );
     }else{
-        perror ( path );
+        perror ( p_path );
     }
 
     for(i=0;i < nbMaxElemPerLine;i++){
@@ -96,28 +96,28 @@ Heros *initHeros(char path[FILE_PATH_SIZE_MAX]){
     return res;
 }//------------------------------------------------------------------------------------------------------------------------
 
-void destroyHeros(Heros *currHeros){
+void destroyHeros(Heros *p_heros){
 // Free Heros memory
     int i, j, k;
-    for(i = 0; i < currHeros->stateSize; i++){
-        for(j = 0; j < currHeros->actionSize[i]; j++){
-            for(k = 0; k < currHeros->spriteSize[i][j]; k++){
-                SDL_FreeSurface(currHeros->sprites[i][j][k]);
+    for(i = 0; i < p_heros->stateSize; i++){
+        for(j = 0; j < p_heros->actionSize[i]; j++){
+            for(k = 0; k < p_heros->spriteSize[i][j]; k++){
+                SDL_FreeSurface(p_heros->sprites[i][j][k]);
             }
-            free(currHeros->sprites[i][j]);
-            destroyCollider(currHeros->herosColl[i][j]);
+            free(p_heros->sprites[i][j]);
+            destroyCollider(p_heros->herosColl[i][j]);
         }
-        free(currHeros->sprites[i]);
-        free(currHeros->herosColl[i]);
-        free(currHeros->spriteDuration[i]);
-        free(currHeros->spriteSize[i]);
+        free(p_heros->sprites[i]);
+        free(p_heros->herosColl[i]);
+        free(p_heros->spriteDuration[i]);
+        free(p_heros->spriteSize[i]);
     }
-    free(currHeros->sprites);
-    free(currHeros->spriteDuration);
-    free(currHeros->herosColl);
-    free(currHeros->actionSize);
-    free(currHeros->spriteSize);
+    free(p_heros->sprites);
+    free(p_heros->spriteDuration);
+    free(p_heros->herosColl);
+    free(p_heros->actionSize);
+    free(p_heros->spriteSize);
 
-    free(currHeros);
+    free(p_heros);
 }//------------------------------------------------------------------------------------------------------------------------
 

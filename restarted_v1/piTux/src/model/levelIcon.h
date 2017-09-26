@@ -15,8 +15,8 @@ typedef struct{
     char path[512];
 }LevelIcon;
 
-LevelIcon **initLevelIcons(char *path, int *resSize);
-LevelIcon *initLevelIcon();
-void destroyLevelIcon(LevelIcon *currLevelIcon);
+LevelIcon **initLevelIcons(char *p_path, int *p_resSize);
+LevelIcon *initLevelIcon(int p_lineSizeMax, int p_startIndex, char ** p_buff);
+void destroyLevelIcon(LevelIcon *p_levelIcon);
 
 #endif

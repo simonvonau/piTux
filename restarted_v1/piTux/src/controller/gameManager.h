@@ -30,16 +30,16 @@ typedef struct{
 }GameManager;
 
 
-GameManager* initGameManager(char *path);
+GameManager* initGameManager(char *p_path);
 
-void loadLevelByGameMgr(GameManager *currGameMgr, char *path, int pathSize);
-void addElementToLevelByGameMgr(GameManager *currGameMgr, int elemType, int elemId, int posX, int posY);
-void removeElementFromLevel(Level *lev, int clicX, int clicY);
-void refreshGameByGameManager(GameManager *currGameMgr, int currentTime, int loopTime, int screenWidth, int screenHeight, int deplaX, int deplaY);
-void cleanLevelMemory(GameManager *currGameManager);
+void loadLevelByGameMgr(GameManager *p_gameMgr, char *p_path, int p_pathSize);
+void addElementToLevelByGameMgr(GameManager *p_gameMgr, int p_elemType, int p_elemId, int p_posX, int p_posY);
+void removeElementFromLevel(Level *p_lev, int p_clicX, int p_clicY);
+void refreshGameByGameManager(GameManager *p_gameMgr, int p_currentTime, int p_loopTime, int p_screenWidth, int p_screenHeight, int p_deplaX, int p_deplaY);
+void cleanLevelMemory(GameManager *p_gameMgr);
 
-void destroyLevelByGameManager(GameManager *currGameManager);
-void destroyGameManager(GameManager *currGameManager);
+void destroyLevelByGameManager(GameManager *p_gameMgr);
+void destroyGameManager(GameManager *p_gameMgr);
 
 
 

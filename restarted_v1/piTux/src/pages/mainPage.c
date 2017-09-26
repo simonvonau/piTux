@@ -1,6 +1,6 @@
 #include "mainPage.h"
 
-int displayMainPage(SDL_Window *p_window, GameManager *currGameMgr){
+int displayMainPage(SDL_Window *p_window, GameManager *p_gameMgr){
     SDL_Surface *cursor, *background1, *background2;
     TTF_Font *font1 = TTF_OpenFont("data/fonts/dejavu/DejaVuSans.ttf", 25);
     TTF_Font *font2 = TTF_OpenFont("data/fonts/dejavu/DejaVuSans.ttf", 30);
@@ -51,16 +51,16 @@ int displayMainPage(SDL_Window *p_window, GameManager *currGameMgr){
             if(userChoice == i){
                 // Print the current selected choice
                 setTextLayout(p_window,
-                        currGameMgr->translaManager->allTranslations[allUserChoicesId[i]]->sentence[currGameMgr->translaManager->currLangageId],
-                        currGameMgr->translaManager->allTranslations[allUserChoicesId[i]]->sentenceSize, font2, textColor, textPos);
+                        p_gameMgr->translaManager->allTranslations[allUserChoicesId[i]]->sentence[p_gameMgr->translaManager->currLanguageId],
+                        p_gameMgr->translaManager->allTranslations[allUserChoicesId[i]]->sentenceSize, font2, textColor, textPos);
                 textPos.x -= 35;
                 // Print the cursor
                 SDL_BlitSurface(cursor,NULL,SDL_GetWindowSurface(p_window),&textPos);
                 textPos.x +=35;
             }else{
                 setTextLayout(p_window,
-                        currGameMgr->translaManager->allTranslations[allUserChoicesId[i]]->sentence[currGameMgr->translaManager->currLangageId],
-                        currGameMgr->translaManager->allTranslations[allUserChoicesId[i]]->sentenceSize, font1, textColor, textPos);
+                        p_gameMgr->translaManager->allTranslations[allUserChoicesId[i]]->sentence[p_gameMgr->translaManager->currLanguageId],
+                        p_gameMgr->translaManager->allTranslations[allUserChoicesId[i]]->sentenceSize, font1, textColor, textPos);
             }
             textPos.y += 45;
         }

@@ -14,13 +14,13 @@
 typedef struct{
     Translation **allTranslations;
     int allTranslationsSize;
-    int nbLangages;
-    Translation *langagesList; // One translation like: Anglais,Français,Deutsch,Italiano
-    int currLangageId; // The current selected language
+    int nbLanguages;
+    Translation *languagesList; // One translation like: Anglais,Français,Deutsch,Italiano
+    int currLanguageId; // The current selected language
 }TranslationManager;
 
-TranslationManager *initTranslationManager(char *path);
-void destroyTranslationManager(TranslationManager *currTranslationManager);
+TranslationManager *initTranslationManager(char *p_path);
+void destroyTranslationManager(TranslationManager *p_translaMgr);
 
 
 

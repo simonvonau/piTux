@@ -24,15 +24,18 @@ typedef struct{
 }LevelManager;
 
 LevelManager* initLevelManager();
-void loadLevelByLevelMgr(LevelManager* currLevelMgr, char *path, int pathSize);
+void loadLevelByLevelMgr(LevelManager* p_levMgr, char *p_path, int p_pathSize);
 
-int getBlockInstanceId(Level *lev, int clicX, int clicY);
+int getBlockInstanceId(Level *p_lev, int p_clicX, int p_clicY);
 
-void refreshLevelByLevelManager(Level *currLevel, ColliderManager *currCollMgr, int loopTime, Block **allBlocks, Bonus **allBonus, Enemy **allEnemies, int p_leftLimit, int p_rightLimit, int p_topLimit, int p_bottomLimit);
-void displayLevelByLevelManager(Level *currLevel, SDL_Window *p_window, int isGameMode, int deplaX, int deplaY
-                  , Block **allBlocks, Bonus **allBonus, Enemy **allEnemies);
-void updateBonusAfterColliding(LevelManager* p_levelManager, ColliderManager *collMgr, int currentTime, int loopTime);
+void refreshLevelByLevelManager(Level *p_lev, ColliderManager *p_collMgr, int p_loopTime, Block **p_allBlocks, Bonus **p_allBonus, Enemy **p_allEnemies, int p_leftLimit, int p_rightLimit, int p_topLimit, int p_bottomLimit);
+void displayLevelByLevelManager(Level *p_lev, SDL_Window *p_window, int p_isGameMode, int p_deplaX, int p_deplaY
+                  , Block **p_allBlocks, Bonus **p_allBonus, Enemy **p_allEnemies);
 
-void saveLevelByManager(LevelManager* currLevelManager);
-void destroyLevelManager(LevelManager *currLevelManager);
+void updateLevelAfterCollisionsDetection(LevelManager* p_levMgr, ColliderManager *p_collMgr, int p_currentTime, int p_loopTime, int p_minX, int p_maxX, int p_minY, int p_maxY);
+void updateBlocksAfterColliding(LevelManager* p_levMgr, ColliderManager *p_collMgr, int p_currentTime, int p_loopTime);
+void updateBonusAfterColliding(LevelManager* p_levMgr, ColliderManager *p_collMgr, int p_currentTime, int p_loopTime);
+
+void saveLevelByManager(LevelManager* p_levMgr);
+void destroyLevelManager(LevelManager *p_levMgr);
 #endif

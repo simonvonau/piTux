@@ -1,8 +1,8 @@
 #include "level.h"
 
 
-Level *initLevel(char *path, int pathSize){
-    FILE *file = fopen ( path, "r" );
+Level *initLevel(char *p_path, int p_pathSize){
+    FILE *file = fopen ( p_path, "r" );
     int nbMaxElemPerLine = 10;
     int lineSizeMax = 512;// Max size of a line from the opened file
     char  **buff = malloc(nbMaxElemPerLine * sizeof(char *));
@@ -10,7 +10,7 @@ Level *initLevel(char *path, int pathSize){
     int i;
     Level *res = malloc( sizeof(Level));
 
-    strncpy(res->path, path, pathSize * sizeof(char));
+    strncpy(res->path, p_path, p_pathSize * sizeof(char));
 
     if ( file != NULL ){
         while ( fgets ( line, sizeof(line), file ) != NULL){
@@ -54,7 +54,7 @@ Level *initLevel(char *path, int pathSize){
 
         fclose ( file );
     }else{
-        perror ( path );
+        perror ( p_path );
     }
 
     for(i=0;i < nbMaxElemPerLine;i++){
@@ -64,242 +64,250 @@ Level *initLevel(char *path, int pathSize){
 
     return res;
 }//------------------------------------------------------------------------------------------------------------------------
-void saveLevel(Level *lev){
+void saveLevel(Level *p_level){
 // Saving the level
     char *line="==========================================================";
-    FILE *file = fopen (lev->path, "w");
+    FILE *file = fopen (p_level->path, "w");
     int i;
     if ( file != NULL ){
         // Saving file header
         fprintf(file,"[Header];World 1;Level custom;%d;%d;%d;%d;%d;%d;%d;\n"
-            ,lev->blockInstancesSize
-            ,lev->enemyInstancesSize
-            ,lev->bonusInstancesSize
-            ,lev->herosStartX
-            ,lev->herosStartY
-            ,lev->finishPosX
-            ,lev->timeLimit);
+            ,p_level->blockInstancesSize
+            ,p_level->enemyInstancesSize
+            ,p_level->bonusInstancesSize
+            ,p_level->herosStartX
+            ,p_level->herosStartY
+            ,p_level->finishPosX
+            ,p_level->timeLimit);
         fprintf(file,"%s\n",line);
         // Saving blockInstances
-        for(i = 0; i < lev->blockInstancesSize; i++){
+        for(i = 0; i < p_level->blockInstancesSize; i++){
             fprintf(file,"[Block];%d;%d;%d;%d;%d;\n"
             ,i
-            ,lev->blockInstances[i]->idBlock
-            ,lev->blockInstances[i]->posX
-            ,lev->blockInstances[i]->posY
-            ,lev->blockInstances[i]->idBonus);
+            ,p_level->blockInstances[i]->idBlock
+            ,p_level->blockInstances[i]->posX
+            ,p_level->blockInstances[i]->posY
+            ,p_level->blockInstances[i]->idBonus);
         }
         fprintf(file,"%s\n",line);
         // Saving EnemyInstances
-        for(i = 0; i < lev->enemyInstancesSize; i++){
+        for(i = 0; i < p_level->enemyInstancesSize; i++){
             fprintf(file,"[Enemy];%d;%d;%d;%d;\n"
             ,i
-            ,lev->enemyInstances[i]->idEnemy
-            ,lev->enemyInstances[i]->posX
-            ,lev->enemyInstances[i]->posY);
+            ,p_level->enemyInstances[i]->idEnemy
+            ,p_level->enemyInstances[i]->posX
+            ,p_level->enemyInstances[i]->posY);
         }
         fprintf(file,"%s\n",line);
         // Saving BonusInstances
-        for(i = 0; i < lev->bonusInstancesSize; i++){
+        for(i = 0; i < p_level->bonusInstancesSize; i++){
             fprintf(file,"[Bonus];%d;%d;%d;%d;\n"
             ,i
-            ,lev->bonusInstances[i]->idBonus
-            ,lev->bonusInstances[i]->posX
-            ,lev->bonusInstances[i]->posY);
+            ,p_level->bonusInstances[i]->idBonus
+            ,p_level->bonusInstances[i]->posX
+            ,p_level->bonusInstances[i]->posY);
         }
 
         fclose ( file );
     }else{
-        perror (lev->path);
+        perror (p_level->path);
     }
 }//------------------------------------------------------------------------------------------------------------------------
 
-void addBlockInstanceToLevel(Level *lev, int idBlock, int posX, int posY, Collider *coll){
+void addBlockInstanceToLevel(Level *p_lev, int p_idBlock, int p_posX, int p_posY, Collider *p_coll){
 // Add a new blockInstance to current level
-    BlockInstance *temp[lev->blockInstancesSize];
+    BlockInstance *temp[p_lev->blockInstancesSize];
 
-    memcpy(temp, lev->blockInstances, sizeof(BlockInstance*) * lev->blockInstancesSize);
+    memcpy(temp, p_lev->blockInstances, sizeof(BlockInstance*) * p_lev->blockInstancesSize);
 
     // NB: Realloc causes some bugs
-    free(lev->blockInstances);
-    lev->blockInstances = malloc(sizeof(BlockInstance*) * (lev->blockInstancesSize + 1));
+    free(p_lev->blockInstances);
+    p_lev->blockInstances = malloc(sizeof(BlockInstance*) * (p_lev->blockInstancesSize + 1));
 
-    if (lev->blockInstances == NULL){
-        lev->blockInstancesSize = 0;
+    if (p_lev->blockInstances == NULL){
+        p_lev->blockInstancesSize = 0;
         reportErreur("Error addBlockToInstance() realloc()");
     }
-    memcpy(lev->blockInstances, temp, sizeof(BlockInstance*) * lev->blockInstancesSize);
-    lev->blockInstances[lev->blockInstancesSize] = initBlockInstance(idBlock, -1, posX, posY, coll);
-    lev->blockInstancesSize += 1;
+    memcpy(p_lev->blockInstances, temp, sizeof(BlockInstance*) * p_lev->blockInstancesSize);
+    p_lev->blockInstances[p_lev->blockInstancesSize] = initBlockInstance(p_idBlock, -1, p_posX, p_posY, p_coll);
+    p_lev->blockInstancesSize += 1;
 }//------------------------------------------------------------------------------------------------------------------------
 
-void addBonusInstanceToLevel(Level *lev, int idBonus, int posX, int posY, Collider *coll){
+void addBonusInstanceToLevel(Level *p_lev, int p_idBonus, int p_posX, int p_posY, Collider *p_coll){
 // Add a new bonusInstance to current level
-    BonusInstance *temp[lev->bonusInstancesSize];
+    BonusInstance *temp[p_lev->bonusInstancesSize];
 
-    memcpy(temp, lev->bonusInstances, sizeof(BonusInstance*) * lev->bonusInstancesSize);
+    memcpy(temp, p_lev->bonusInstances, sizeof(BonusInstance*) * p_lev->bonusInstancesSize);
 
     // NB: Realloc causes some bugs
-    //realloc(lev->bonusInstances, sizeof(BonusInstance*) * (lev->bonusInstancesSize + 1));
-    free(lev->bonusInstances);
-    lev->bonusInstances = malloc(sizeof(BonusInstance*) * (lev->bonusInstancesSize + 1));
+    //realloc(p_lev->bonusInstances, sizeof(BonusInstance*) * (p_lev->bonusInstancesSize + 1));
+    free(p_lev->bonusInstances);
+    p_lev->bonusInstances = malloc(sizeof(BonusInstance*) * (p_lev->bonusInstancesSize + 1));
 
-    if (lev->bonusInstances == NULL){
-        lev->bonusInstancesSize = 0;
+    if (p_lev->bonusInstances == NULL){
+        p_lev->bonusInstancesSize = 0;
         reportErreur("Error addBonusToInstance() realloc()");
     }
-    memcpy(lev->bonusInstances, temp, sizeof(BonusInstance*) * lev->bonusInstancesSize);
-    lev->bonusInstances[lev->bonusInstancesSize] = initBonusInstance(idBonus, posX, posY, coll);
-    lev->bonusInstancesSize += 1;
+    memcpy(p_lev->bonusInstances, temp, sizeof(BonusInstance*) * p_lev->bonusInstancesSize);
+    p_lev->bonusInstances[p_lev->bonusInstancesSize] = initBonusInstance(p_idBonus, p_posX, p_posY, p_coll);
+    p_lev->bonusInstancesSize += 1;
 }//------------------------------------------------------------------------------------------------------------------------
 
-void addEnemyInstanceToLevel(Level *lev, int idEnemy, int posX, int posY, Collider **coll, int collSize){
+void addEnemyInstanceToLevel(Level *p_lev, int p_idEnemy, int p_posX, int p_posY, Collider **p_coll, int p_collSize){
 // Add a new enemyInstance to current level
-    EnemyInstance *temp[lev->enemyInstancesSize];
+    EnemyInstance *temp[p_lev->enemyInstancesSize];
 
-    memcpy(temp, lev->enemyInstances, sizeof(EnemyInstance*) * lev->enemyInstancesSize);
+    memcpy(temp, p_lev->enemyInstances, sizeof(EnemyInstance*) * p_lev->enemyInstancesSize);
 
     // NB: Realloc causes some bugs
-    //realloc(lev->enemyInstances, sizeof(EnemyInstance*) * (lev->enemyInstancesSize + 1));
-    free(lev->enemyInstances);
-    lev->enemyInstances = malloc(sizeof(EnemyInstance *) * (lev->enemyInstancesSize + 1));
+    //realloc(p_lev->enemyInstances, sizeof(EnemyInstance*) * (p_lev->enemyInstancesSize + 1));
+    free(p_lev->enemyInstances);
+    p_lev->enemyInstances = malloc(sizeof(EnemyInstance *) * (p_lev->enemyInstancesSize + 1));
 
-    if (lev->enemyInstances == NULL){
-        lev->enemyInstancesSize = 0;
+    if (p_lev->enemyInstances == NULL){
+        p_lev->enemyInstancesSize = 0;
         reportErreur("Error addEnemyInstanceToLevel() realloc()");
     }
-    memcpy(lev->enemyInstances, temp, sizeof(EnemyInstance*) * lev->enemyInstancesSize);
-    lev->enemyInstances[lev->enemyInstancesSize] = initEnemyInstance(idEnemy, posX, posY, coll, collSize);
-    lev->enemyInstancesSize += 1;
+    memcpy(p_lev->enemyInstances, temp, sizeof(EnemyInstance*) * p_lev->enemyInstancesSize);
+    p_lev->enemyInstances[p_lev->enemyInstancesSize] = initEnemyInstance(p_idEnemy, p_posX, p_posY, p_coll, p_collSize);
+    p_lev->enemyInstancesSize += 1;
 }//------------------------------------------------------------------------------------------------------------------------
 
-void removeBlockInstanceToLevel(Level *lev, int blockIndex){
+void removeBlockInstanceToLevel(Level *p_lev, int p_blockIndex){
 // Remove a blockInstance from level (by it's index)
-    int i;
+    BlockInstance *tempBlock;
+    BlockInstance *tempArray[p_lev->blockInstancesSize];
 
-    if (blockIndex >= 0 && blockIndex < lev->blockInstancesSize){
-        destroyBlockInstance(lev->blockInstances[blockIndex]);
-        for(i = blockIndex; i < lev->blockInstancesSize - 1; i++){
-            lev->blockInstances[i] = lev->blockInstances[i+1];
-        }
-        lev->blockInstancesSize -= 1;
-        realloc(lev->blockInstances, sizeof(BlockInstance*) * lev->blockInstancesSize);
+    if (p_blockIndex >= 0 && p_blockIndex < p_lev->blockInstancesSize){
+        tempBlock = p_lev->blockInstances[p_blockIndex];
+        p_lev->blockInstances[p_blockIndex] = p_lev->blockInstances[p_lev->blockInstancesSize - 1];
+        p_lev->blockInstances[p_lev->blockInstancesSize - 1] = tempBlock;
+        p_lev->blockInstancesSize -= 1;
 
-        if(lev->blockInstances == NULL){
-            lev->blockInstancesSize = 0;
+        memcpy(tempArray, p_lev->blockInstances, sizeof(BlockInstance*) * (p_lev->blockInstancesSize + 1));
+        free(p_lev->blockInstances);
+        p_lev->blockInstances = malloc(sizeof(BlockInstance*) * p_lev->blockInstancesSize);
+        memcpy(p_lev->blockInstances, tempArray, sizeof(BlockInstance*) * p_lev->blockInstancesSize);
+        destroyBlockInstance(tempArray[p_lev->blockInstancesSize]);
+
+        if(p_lev->blockInstances == NULL){
+            p_lev->blockInstancesSize = 0;
             reportErreur("Error removeBlockInstanceToLevel(...)");
         }
     }
 }//------------------------------------------------------------------------------------------------------------------------
 
-void removeBonusInstanceToLevel(Level *lev, int bonusIndex){
+void removeBonusInstanceToLevel(Level *p_lev, int p_bonusIndex){
 // Remove a bonusInstance from level (by it's index)
-    int i;
-    if (bonusIndex >= 0 && bonusIndex < lev->bonusInstancesSize){
-        destroyBonusInstance(lev->bonusInstances[bonusIndex]);
-        for(i = bonusIndex; i < lev->bonusInstancesSize - 1; i++){
-            lev->bonusInstances[i] = lev->bonusInstances[i+1];
-        }
-        lev->bonusInstancesSize -= 1;
-        realloc(lev->bonusInstances, sizeof(BonusInstance*) * lev->bonusInstancesSize);
+    BonusInstance *tempBonus;
+    BonusInstance *temp[p_lev->bonusInstancesSize];
 
-        if(lev->bonusInstances == NULL){
-            lev->bonusInstancesSize = 0;
+    if (p_bonusIndex >= 0 && p_bonusIndex < p_lev->bonusInstancesSize){
+        tempBonus = p_lev->bonusInstances[p_bonusIndex];
+        p_lev->bonusInstances[p_bonusIndex] = p_lev->bonusInstances[p_lev->bonusInstancesSize - 1];
+        p_lev->bonusInstances[p_lev->bonusInstancesSize - 1] = tempBonus;
+        p_lev->bonusInstancesSize -= 1;
+
+        memcpy(temp, p_lev->bonusInstances, sizeof(BonusInstance*) * (p_lev->bonusInstancesSize + 1));
+        free(p_lev->bonusInstances);
+        p_lev->bonusInstances = malloc(sizeof(BonusInstance*) * p_lev->bonusInstancesSize);
+        memcpy(p_lev->bonusInstances, temp, sizeof(BonusInstance*) * (p_lev->bonusInstancesSize));
+        destroyBonusInstance(temp[p_lev->bonusInstancesSize]);
+
+        if(p_lev->bonusInstances == NULL){
+            p_lev->bonusInstancesSize = 0;
             reportErreur("Error removeBonusInstanceToLevel(...)");
         }
     }
 }//------------------------------------------------------------------------------------------------------------------------
 
-void removeEnemyInstanceToLevel(Level *lev, int enemyIndex){
+void removeEnemyInstanceToLevel(Level *p_lev, int p_enemyIndex){
 // Remove a EnemyInstance from level (by it's index)
-    int i;
-    EnemyInstance ** res;
+    EnemyInstance *tempEne;
+    EnemyInstance *tempArray[p_lev->enemyInstancesSize];
 
-    if (enemyIndex >= 0 && enemyIndex < lev->enemyInstancesSize){
-        //destroyEnemyInstance(lev->enemyInstances[enemyIndex]);
-        for(i = enemyIndex; i < lev->enemyInstancesSize - 1; i++){
-            lev->enemyInstances[i] = lev->enemyInstances[i+1];
-        }
+    if (p_enemyIndex >= 0 && p_enemyIndex < p_lev->enemyInstancesSize){
+        tempEne = p_lev->enemyInstances[p_enemyIndex];
+        p_lev->enemyInstances[p_enemyIndex] = p_lev->enemyInstances[p_lev->enemyInstancesSize - 1];
+        p_lev->enemyInstances[p_lev->enemyInstancesSize - 1] = tempEne;
+        p_lev->enemyInstancesSize -= 1;
 
-        res = malloc(sizeof(EnemyInstance*) * (lev->enemyInstancesSize - 1));
-
-        for(i = 0; i < lev->enemyInstancesSize - 1; i++){
-            res[i] = lev->enemyInstances[i];
-        }
-        free(lev->enemyInstances);
-        lev->enemyInstances = res;
-        lev->enemyInstancesSize -= 1;
+        memcpy(tempArray, p_lev->enemyInstances, sizeof(EnemyInstance*) * (p_lev->enemyInstancesSize + 1));
+        free(p_lev->enemyInstances);
+        p_lev->enemyInstances = malloc(sizeof(EnemyInstance*) * p_lev->enemyInstancesSize);
+        memcpy(p_lev->enemyInstances, tempArray, sizeof(EnemyInstance*) * p_lev->enemyInstancesSize);
+        destroyEnemyInstance(tempArray[p_lev->enemyInstancesSize]);
 
         //*** Realloc doesn't work, weird...
-        //realloc(lev->enemyInstances, sizeof(EnemyInstance*) * (lev->enemyInstancesSize - 1));
+        //realloc(p_lev->enemyInstances, sizeof(EnemyInstance*) * (p_lev->enemyInstancesSize - 1));
 
-        if(lev->enemyInstances == NULL){
-            lev->enemyInstancesSize = 0;
+        if(p_lev->enemyInstances == NULL){
+            p_lev->enemyInstancesSize = 0;
             reportErreur("Error removeEnemyInstanceToLevel(...) malloc()");
         }
     }
 }//------------------------------------------------------------------------------------------------------------------------
 
-int checkIfBlockInstanceExistHere(Level *lev, int posX, int posY){
+int checkIfBlockInstanceExistHere(Level *p_lev, int p_posX, int p_posY){
 // Check if a blockInstance already exists here
     int i;
-    for(i = 0; i < lev->blockInstancesSize; i++){
-        if(lev->blockInstances[i]->posX == posX && lev->blockInstances[i]->posY == posY){
+    for(i = 0; i < p_lev->blockInstancesSize; i++){
+        if(p_lev->blockInstances[i]->posX == p_posX && p_lev->blockInstances[i]->posY == p_posY){
             return 1;
         }
     }
     return 0;
 }//------------------------------------------------------------------------------------------------------------------------
 
-int checkIfBonusInstanceExistHere(Level *lev, int posX, int posY){
+int checkIfBonusInstanceExistHere(Level *p_lev, int p_posX, int p_posY){
 // Check if a bonusInstance already exists here
     int i;
-    for(i = 0; i < lev->bonusInstancesSize; i++){
-        if(lev->bonusInstances[i]->posX == posX && lev->bonusInstances[i]->posY == posY){
+    for(i = 0; i < p_lev->bonusInstancesSize; i++){
+        if(p_lev->bonusInstances[i]->posX == p_posX && p_lev->bonusInstances[i]->posY == p_posY){
             return 1;
         }
     }
     return 0;
 }//------------------------------------------------------------------------------------------------------------------------
 
-int checkIfEnemyInstanceExistHere(Level *lev, int posX, int posY){
+int checkIfEnemyInstanceExistHere(Level *p_lev, int p_posX, int p_posY){
 // Check if a enemyInstance already exists here
     int i;
-    for(i = 0; i < lev->enemyInstancesSize; i++){
-        if(lev->enemyInstances[i]->posX == posX && lev->enemyInstances[i]->posY == posY){
+    for(i = 0; i < p_lev->enemyInstancesSize; i++){
+        if(p_lev->enemyInstances[i]->posX == p_posX && p_lev->enemyInstances[i]->posY == p_posY){
             return 1;
         }
     }
     return 0;
 }//------------------------------------------------------------------------------------------------------------------------
 
-void addBonusToBlock(Level *lev, int idBlockInstance, int idBonus){
+void addBonusToBlock(Level *p_lev, int p_idBlockInstance, int p_idBonus){
 // Put a bonus inside a block
-    lev->blockInstances[idBlockInstance]->idBonus = idBonus;
+    p_lev->blockInstances[p_idBlockInstance]->idBonus = p_idBonus;
 }//------------------------------------------------------------------------------------------------------------------------
 
-void destroyLevel(Level *currLevel){
+void destroyLevel(Level *p_level){
     int i;
 
     // Destroying blocks
-    for(i = 0; i < currLevel->blockInstancesSize; i++){
-        destroyBlockInstance(currLevel->blockInstances[i]);
+    for(i = 0; i < p_level->blockInstancesSize; i++){
+        destroyBlockInstance(p_level->blockInstances[i]);
     }
-    free(currLevel->blockInstances);
+    free(p_level->blockInstances);
 
     // Destroying bonus
-    for(i = 0; i < currLevel->bonusInstancesSize; i++){
-        destroyBonusInstance(currLevel->bonusInstances[i]);
+    for(i = 0; i < p_level->bonusInstancesSize; i++){
+        destroyBonusInstance(p_level->bonusInstances[i]);
     }
-    free(currLevel->bonusInstances);
+    free(p_level->bonusInstances);
 
     // Destroying Enemies
-    for(i = 0; i < currLevel->enemyInstancesSize; i++){
-        destroyEnemyInstance(currLevel->enemyInstances[i]);
+    for(i = 0; i < p_level->enemyInstancesSize; i++){
+        destroyEnemyInstance(p_level->enemyInstances[i]);
     }
-    free(currLevel->enemyInstances);
+    free(p_level->enemyInstances);
 
-    free(currLevel);
+    free(p_level);
 }//------------------------------------------------------------------------------------------------------------------------
 
 

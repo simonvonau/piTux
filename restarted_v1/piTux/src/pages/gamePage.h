@@ -24,6 +24,6 @@
 #include "../model/button.h"
 
 
-int displayGamePage(SDL_Window *p_window, char *levelPath, int levelPathSize, GameManager *currGameMgr);
+int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize, GameManager *p_gameMgr);
 
 #endif

@@ -24,9 +24,8 @@
 #include "../model/level.h"
 #include "../model/button.h"
 
-void fillToolBox(SDL_Window *p_window, int toolType, int startPosX, int startPosY, SDL_Surface *cursor, int selectedTool
-                , int cursorDecalX, int cursorDecalY, GameManager *currGameMgr);
-void selectTool(int toolType, int toolBoxStartX, int toolBoxStartY, int clicX, int clicY, int *selectedTool, GameManager *currGameMgr);
-int displayLevelEditorPage(SDL_Window *p_window, GameManager *currGameMgr);
+void fillToolBox(SDL_Window *p_window, int p_toolType, int p_startPosX, int p_startPosY, SDL_Surface *p_cursor, int p_selectedTool, int p_cursorDecalX, int p_cursorDecalY, GameManager *p_gameMgr);
+void selectTool(int p_toolType, int p_toolBoxStartX, int p_toolBoxStartY, int p_clicX, int p_clicY, int *p_selectedTool, GameManager *p_gameMgr);
+int displayLevelEditorPage(SDL_Window *p_window, GameManager *p_gameMgr);
 
 #endif

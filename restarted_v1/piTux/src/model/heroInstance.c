@@ -34,156 +34,156 @@ HeroInstance * initHeroInstance(){
     return res;
 }//------------------------------------------------------------------------------------------------------------------------
 
-void changeHerosState(HeroInstance * p_heroInstance,int p_newState, int p_newAction, int p_newSprite){
+void changeHerosState(HeroInstance * p_herosInstance,int p_newState, int p_newAction, int p_newSprite){
     // Change herosInstance state (big/small/fire)
 
-    if(p_heroInstance->currState == p_newState){return;}
-    p_heroInstance->herosColl[p_heroInstance->currState][p_heroInstance->currAction]->isEnabled = 0;
+    if(p_herosInstance->currState == p_newState){return;}
+    p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->isEnabled = 0;
 
     // Put the old coordinate in the new enabled collider
-    p_heroInstance->herosColl[p_newState][p_newAction]->posX = p_heroInstance->herosColl[p_heroInstance->currState][p_heroInstance->currAction]->posX;
-    p_heroInstance->herosColl[p_newState][p_newAction]->posY = p_heroInstance->herosColl[p_heroInstance->currState][p_heroInstance->currAction]->posY;
-    p_heroInstance->herosColl[p_newState][p_newAction]->lastPosX = p_heroInstance->herosColl[p_heroInstance->currState][p_heroInstance->currAction]->lastPosX;
-    p_heroInstance->herosColl[p_newState][p_newAction]->lastPosY = p_heroInstance->herosColl[p_heroInstance->currState][p_heroInstance->currAction]->lastPosY;
+    p_herosInstance->herosColl[p_newState][p_newAction]->posX = p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->posX;
+    p_herosInstance->herosColl[p_newState][p_newAction]->posY = p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->posY;
+    p_herosInstance->herosColl[p_newState][p_newAction]->lastPosX = p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->lastPosX;
+    p_herosInstance->herosColl[p_newState][p_newAction]->lastPosY = p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->lastPosY;
 
-    p_heroInstance->currState = p_newState;
-    p_heroInstance->currAction = p_newAction;
-    p_heroInstance->currSprite = p_newSprite;
-    p_heroInstance->herosColl[p_heroInstance->currState][p_heroInstance->currAction]->isEnabled = 1;
+    p_herosInstance->currState = p_newState;
+    p_herosInstance->currAction = p_newAction;
+    p_herosInstance->currSprite = p_newSprite;
+    p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->isEnabled = 1;
 }//------------------------------------------------------------------------------------------------------------------------
 
-void changeHeroAction(HeroInstance * p_heroInstance, int p_newAction, int p_newSprite){
+void changeHerosAction(HeroInstance * p_herosInstance, int p_newAction, int p_newSprite){
     // Change the herosInstance current action
 
-    if(p_heroInstance->currAction == p_newAction){return;}
-    p_heroInstance->herosColl[p_heroInstance->currState][p_heroInstance->currAction]->isEnabled = 0;
+    if(p_herosInstance->currAction == p_newAction){return;}
+    p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->isEnabled = 0;
 
     // Put the old coordinate in the new enabled collider
-    p_heroInstance->herosColl[p_heroInstance->currState][p_newAction]->posX = p_heroInstance->herosColl[p_heroInstance->currState][p_heroInstance->currAction]->posX;
-    p_heroInstance->herosColl[p_heroInstance->currState][p_newAction]->posY = p_heroInstance->herosColl[p_heroInstance->currState][p_heroInstance->currAction]->posY;
-    p_heroInstance->herosColl[p_heroInstance->currState][p_newAction]->lastPosX = p_heroInstance->herosColl[p_heroInstance->currState][p_heroInstance->currAction]->lastPosX;
-    p_heroInstance->herosColl[p_heroInstance->currState][p_newAction]->lastPosY = p_heroInstance->herosColl[p_heroInstance->currState][p_heroInstance->currAction]->lastPosY;
+    p_herosInstance->herosColl[p_herosInstance->currState][p_newAction]->posX = p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->posX;
+    p_herosInstance->herosColl[p_herosInstance->currState][p_newAction]->posY = p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->posY;
+    p_herosInstance->herosColl[p_herosInstance->currState][p_newAction]->lastPosX = p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->lastPosX;
+    p_herosInstance->herosColl[p_herosInstance->currState][p_newAction]->lastPosY = p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->lastPosY;
 
-    p_heroInstance->currAction = p_newAction;
-    p_heroInstance->currSprite = p_newSprite;
-    p_heroInstance->herosColl[p_heroInstance->currState][p_heroInstance->currAction]->isEnabled = 1;
+    p_herosInstance->currAction = p_newAction;
+    p_herosInstance->currSprite = p_newSprite;
+    p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->isEnabled = 1;
 }//------------------------------------------------------------------------------------------------------------------------
 
-void refreshHeroInstance(HeroInstance * p_heroInstance, Heros *p_heros, int currentTime, int loopTime){
+void refreshHerosInstance(HeroInstance * p_herosInstance, Heros *p_heros, int p_currentTime, int p_loopTime){
 // Refresh hero's position and sprite
     int movementX, movementY;
-    p_heroInstance->currentTime += loopTime;
-    if(p_heroInstance->godModeDuration > 0){
-        p_heroInstance->godModeDuration -= loopTime;
+    p_herosInstance->currentTime += p_loopTime;
+    if(p_herosInstance->godModeDuration > 0){
+        p_herosInstance->godModeDuration -= p_loopTime;
     }
 
-    applyGravity(p_heroInstance, loopTime);
+    applyGravity(p_herosInstance, p_loopTime);
 
-    jump(p_heroInstance, p_heros, loopTime);
-    land(p_heroInstance);
+    jump(p_herosInstance, p_heros, p_loopTime);
+    land(p_herosInstance);
 
-    movingRight(p_heroInstance, p_heros, loopTime);
-    movingLeft(p_heroInstance, p_heros, loopTime);
+    movingRight(p_herosInstance, p_heros, p_loopTime);
+    movingLeft(p_herosInstance, p_heros, p_loopTime);
 
     // Go to idle mode
-    if(!p_heroInstance->leftKeyPressed  && !p_heroInstance->rightKeyPressed && !p_heroInstance->jumpKeyPressed && p_heroInstance->isTouchingGround){
-        if(p_heroInstance->lastDirection == 'r'){
-            changeHeroAction(p_heroInstance, 0, 0);
+    if(!p_herosInstance->leftKeyPressed  && !p_herosInstance->rightKeyPressed && !p_herosInstance->jumpKeyPressed && p_herosInstance->isTouchingGround){
+        if(p_herosInstance->lastDirection == 'r'){
+            changeHerosAction(p_herosInstance, 0, 0);
         }else{
-            changeHeroAction(p_heroInstance, 1, 0);
+            changeHerosAction(p_herosInstance, 1, 0);
         }
 
     }
 
-    updateCurrentSprite(p_heroInstance, p_heros);
+    updateCurrentSprite(p_herosInstance, p_heros);
 
     // Update Collider position
-    p_heroInstance->herosColl[p_heroInstance->currState][p_heroInstance->currAction]->lastPosX = p_heroInstance->herosColl[p_heroInstance->currState][p_heroInstance->currAction]->posX;
-    p_heroInstance->herosColl[p_heroInstance->currState][p_heroInstance->currAction]->lastPosY = p_heroInstance->herosColl[p_heroInstance->currState][p_heroInstance->currAction]->posY;
-    p_heroInstance->herosColl[p_heroInstance->currState][p_heroInstance->currAction]->posX = p_heroInstance->posX;
-    p_heroInstance->herosColl[p_heroInstance->currState][p_heroInstance->currAction]->posY = p_heroInstance->posY;
+    p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->lastPosX = p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->posX;
+    p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->lastPosY = p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->posY;
+    p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->posX = p_herosInstance->posX;
+    p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->posY = p_herosInstance->posY;
 }//------------------------------------------------------------------------------------------------------------------------
 
-void applyGravity(HeroInstance *p_heroInstance, int p_loopTime){
+void applyGravity(HeroInstance *p_herosInstance, int p_loopTime){
     // Apply gravity force to tux
     int movementY;
 
-    p_heroInstance->movementProgressY -= p_loopTime / 1000.0 * GRAVITY_SPEED;
-    movementY = (int) p_heroInstance->movementProgressY;
+    p_herosInstance->movementProgressY -= p_loopTime / 1000.0 * GRAVITY_SPEED;
+    movementY = (int) p_herosInstance->movementProgressY;
     if ( movementY >= 1 || movementY <= -1){
-        p_heroInstance->posY += movementY;
-        p_heroInstance->movementProgressY -= movementY;
+        p_herosInstance->posY += movementY;
+        p_herosInstance->movementProgressY -= movementY;
     }
 }//------------------------------------------------------------------------------------------------------------------------
 
-void movingRight(HeroInstance *p_heroInstance, Heros *p_heros, int p_loopTime){
+void movingRight(HeroInstance *p_herosInstance, Heros *p_heros, int p_loopTime){
     // Moving right
     int movementX;
 
-    if(p_heroInstance->rightKeyPressed){
-        p_heroInstance->lastDirection = 'r';
-        if(p_heroInstance->isTouchingGround && p_heroInstance->currAction != 3){
-            changeHeroAction(p_heroInstance, 3, 0);
+    if(p_herosInstance->rightKeyPressed){
+        p_herosInstance->lastDirection = 'r';
+        if(p_herosInstance->isTouchingGround && p_herosInstance->currAction != 3){
+            changeHerosAction(p_herosInstance, 3, 0);
         }
-        p_heroInstance->movementProgressX += p_loopTime / 1000.0 * p_heros->speed;
-        movementX = (int) p_heroInstance->movementProgressX;
+        p_herosInstance->movementProgressX += p_loopTime / 1000.0 * p_heros->speed;
+        movementX = (int) p_herosInstance->movementProgressX;
         if(movementX >= 1 || movementX <= -1){
-            p_heroInstance->posX += movementX;
-            p_heroInstance->movementProgressX -= movementX;
+            p_herosInstance->posX += movementX;
+            p_herosInstance->movementProgressX -= movementX;
         }
     }
 }//------------------------------------------------------------------------------------------------------------------------
 
-void movingLeft(HeroInstance *p_heroInstance, Heros *p_heros, int p_loopTime){
+void movingLeft(HeroInstance *p_herosInstance, Heros *p_heros, int p_loopTime){
     // Moving left
     int movementX;
 
-    if(p_heroInstance->leftKeyPressed){
-        p_heroInstance->lastDirection = 'l';
-        if(p_heroInstance->isTouchingGround && p_heroInstance->currAction != 4){
-            changeHeroAction(p_heroInstance, 4, 0);
+    if(p_herosInstance->leftKeyPressed){
+        p_herosInstance->lastDirection = 'l';
+        if(p_herosInstance->isTouchingGround && p_herosInstance->currAction != 4){
+            changeHerosAction(p_herosInstance, 4, 0);
         }
-        p_heroInstance->movementProgressX -= p_loopTime / 1000.0 * p_heros->speed;
-        movementX = (int) p_heroInstance->movementProgressX;
+        p_herosInstance->movementProgressX -= p_loopTime / 1000.0 * p_heros->speed;
+        movementX = (int) p_herosInstance->movementProgressX;
         if(movementX >= 1 || movementX <= -1){
-            p_heroInstance->posX += movementX;
-            p_heroInstance->movementProgressX -= movementX;
+            p_herosInstance->posX += movementX;
+            p_herosInstance->movementProgressX -= movementX;
         }
     }
 }//------------------------------------------------------------------------------------------------------------------------
 
-void jump(HeroInstance *p_heroInstance, Heros *p_heros, int p_loopTime){
+void jump(HeroInstance *p_herosInstance, Heros *p_heros, int p_loopTime){
     // When the heros jump (just the step when he go up)
     int movementY;
 
-    if(p_heroInstance->jumpDuration >= 0 && p_heroInstance->jumpDuration < p_heros->jumpDuration){
+    if(p_herosInstance->jumpDuration >= 0 && p_herosInstance->jumpDuration < p_heros->jumpDuration){
         // Set the right or left sprite
-        if(p_heroInstance->rightKeyPressed){
-            p_heroInstance->lastDirection = 'r';
-            changeHeroAction(p_heroInstance, 5, 0);
-        }else if(p_heroInstance->leftKeyPressed){
-            p_heroInstance->lastDirection = 'l';
-            changeHeroAction(p_heroInstance, 6, 0);
+        if(p_herosInstance->rightKeyPressed){
+            p_herosInstance->lastDirection = 'r';
+            changeHerosAction(p_herosInstance, 5, 0);
+        }else if(p_herosInstance->leftKeyPressed){
+            p_herosInstance->lastDirection = 'l';
+            changeHerosAction(p_herosInstance, 6, 0);
         }
-        p_heroInstance->jumpDuration += p_loopTime;
-        p_heroInstance->movementProgressY += p_loopTime / 1000.0 * p_heros->jumpSpeed;
-        movementY = (int) p_heroInstance->movementProgressY;
+        p_herosInstance->jumpDuration += p_loopTime;
+        p_herosInstance->movementProgressY += p_loopTime / 1000.0 * p_heros->jumpSpeed;
+        movementY = (int) p_herosInstance->movementProgressY;
         if(movementY >= 1 || movementY <= -1){
-            p_heroInstance->posY += movementY;
-            p_heroInstance->movementProgressY -= movementY;
+            p_herosInstance->posY += movementY;
+            p_herosInstance->movementProgressY -= movementY;
         }
     }
 }//------------------------------------------------------------------------------------------------------------------------
 
-void land(HeroInstance *p_heroInstance){
+void land(HeroInstance *p_herosInstance){
     // When tux lands after a jump or a fall
-    if(!p_heroInstance->isTouchingGround){
-        if(p_heroInstance->rightKeyPressed){
-            p_heroInstance->lastDirection = 'r';
-            changeHeroAction(p_heroInstance, 5, 0);
-        }else if(p_heroInstance->leftKeyPressed){
-            p_heroInstance->lastDirection = 'l';
-            changeHeroAction(p_heroInstance, 6, 0);
+    if(!p_herosInstance->isTouchingGround){
+        if(p_herosInstance->rightKeyPressed){
+            p_herosInstance->lastDirection = 'r';
+            changeHerosAction(p_herosInstance, 5, 0);
+        }else if(p_herosInstance->leftKeyPressed){
+            p_herosInstance->lastDirection = 'l';
+            changeHerosAction(p_herosInstance, 6, 0);
         }
     }
 }//------------------------------------------------------------------------------------------------------------------------
@@ -197,11 +197,6 @@ void updateCurrentSprite(HeroInstance *p_heroInstance, Heros *p_heros){
     }
 }//------------------------------------------------------------------------------------------------------------------------
 
-/*void killHeroInstance(Hero s * currHeros){
-// Kill a Heros
-    currHeros->isDead = 1;
-}//------------------------------------------------------------------------------------------------------------------------
-*/
 void destroyHeroInstanceColliders(HeroInstance *p_heroInstance, Heros *p_heros){
 // Free HeroInstance's colliders
     int i, j;
