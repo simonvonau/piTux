@@ -16,14 +16,10 @@ Not yet available.
 
 Not yet available.
 
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
 
 ## Authors
 
-* **Simon Vonau** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Simon Vonau**
 
 See also the original supertux project at https://github.com/SuperTux/supertux/wiki where I got all my sprites.
 
