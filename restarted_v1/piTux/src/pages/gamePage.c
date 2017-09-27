@@ -74,6 +74,13 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
             break;
         }
 
+        // Shoot
+        if( event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_SPACE){
+            p_gameMgr->herosMgr->heroInstance->fireKeyPressed = 1;
+        }else if(event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_SPACE){
+            p_gameMgr->herosMgr->heroInstance->fireKeyPressed = 0;
+        }
+
         // Jump
         if( event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_UP){
             p_gameMgr->herosMgr->heroInstance->jumpKeyPressed = 1;
@@ -152,7 +159,7 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
 
         // Displaying Level
         displayLevelByLevelManager(p_gameMgr->levelManager->currLevel, p_window, 1, cameraX, cameraY
-                     ,p_gameMgr->allBlocks, p_gameMgr->allBonus, p_gameMgr->allEnemies);
+                     ,p_gameMgr->allBlocks, p_gameMgr->allBonus, p_gameMgr->allEnemies, p_gameMgr->fireBullet);
 
         displayHeros(p_gameMgr->herosMgr, p_window, herosToLeftScreenBorder, herosToBottomScreenBorder);
 

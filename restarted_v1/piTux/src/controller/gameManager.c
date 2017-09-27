@@ -17,6 +17,7 @@ GameManager* initGameManager(char *p_path){
     res->allBlocks = initBlockArray(res->currentGame->allBlocksFile, &(res->allBlocksSize));
     res->allBonus = initBonusArray(res->currentGame->allBonusFile, &(res->allBonusSize));
     res->allEnemies = initEnemyArray(res->currentGame->allEnemiesFile, &(res->allEnemiesSize));
+    res->fireBullet = initFireBullet(res->currentGame->fireBulletFile);
 
 
     return res;
@@ -107,6 +108,21 @@ void loadLevelByGameMgr(GameManager *p_gameMgr, char *p_path, int p_pathSize){
             }
         }
     }
+
+
+    //*** Tests on firebullet
+    /*addBulletInstanceToLevel(p_gameMgr->levelManager->currLevel, 400, 450, NULL, 1, 1, 1000);
+    // Put a collider in each fireBullet
+    p_gameMgr->levelManager->currLevel->fireBulletInstances[0]->coll = colliderDeepCopyByColliderManager(
+                p_gameMgr->collMgr
+                ,p_gameMgr->fireBullet->refColl);
+    // Update BonusInstance Collider
+    tempColl = p_gameMgr->levelManager->currLevel->fireBulletInstances[0]->coll;
+    tempColl->ownerTag = p_gameMgr->fireBullet->refColl->ownerTag;
+    tempColl->isEnabled = 1;
+    tempColl->posX = p_gameMgr->levelManager->currLevel->fireBulletInstances[0]->posX;
+    tempColl->posY = p_gameMgr->levelManager->currLevel->fireBulletInstances[0]->posY;*/
+
 
 
 }//--------------------------------------------------------------------------------------------------------------------
@@ -216,7 +232,7 @@ void refreshGameByGameManager(GameManager *p_gameMgr, int p_currentTime, int p_l
 
     // Refresh the level (ie. enemy, bonus, blocks)
     refreshLevelByLevelManager(p_gameMgr->levelManager->currLevel, p_gameMgr->collMgr, p_loopTime
-                    ,p_gameMgr->allBlocks, p_gameMgr->allBonus, p_gameMgr->allEnemies, leftLimit+100, rightLimit-100, topLimit-100, bottomLimit+100);
+                    ,p_gameMgr->allBlocks, p_gameMgr->allBonus, p_gameMgr->allEnemies, p_gameMgr->fireBullet, leftLimit+100, rightLimit-100, topLimit-100, bottomLimit+100);
     // Refresh Tux
     refreshHerosInstance(p_gameMgr->herosMgr->heroInstance, p_gameMgr->herosMgr->heros, p_currentTime, p_loopTime);
 
@@ -228,7 +244,7 @@ void refreshGameByGameManager(GameManager *p_gameMgr, int p_currentTime, int p_l
 
 
     // Update tux behaviour after the collision checking
-    updateHeroBehaviourAfterCollisionDetection(p_gameMgr->herosMgr->heroInstance, p_gameMgr->herosMgr->heros, p_gameMgr->collMgr, p_currentTime, p_loopTime);
+    updateHeroBehaviourAfterCollisionDetection(p_gameMgr->herosMgr->heroInstance, p_gameMgr->herosMgr->heros, p_gameMgr->collMgr, p_currentTime, p_loopTime, p_gameMgr->levelManager, p_gameMgr->fireBullet);
 
     updateLevelAfterCollisionsDetection(p_gameMgr->levelManager, p_gameMgr->collMgr, p_currentTime, p_loopTime,
                                         leftLimit, rightLimit, bottomLimit, topLimit, p_gameMgr->allBonus, p_gameMgr->allBonusSize);
@@ -284,6 +300,14 @@ void cleanLevelMemory(GameManager *p_gameMgr){
         }
     }
 
+    // Clean the bullet
+    for(i = 0; i < currLevel->fireBulletInstancesSize; i++){
+        if(currLevel->fireBulletInstances[i]->lifeTimeLeft <= 0){
+            removeCollider(p_gameMgr->collMgr, currLevel->fireBulletInstances[i]->coll->id, 0);
+            removeFireBulletInstanceToLevel(currLevel, i);
+        }
+    }
+
 
 }//------------------------------------------------------------------------------------------------------------------------
 
@@ -320,6 +344,8 @@ void destroyGameManager(GameManager *p_gameMgr){
     // Already destroyed at level closure
     //destroyColliderManager(currGameManager->collMgr);
     destroyGame(p_gameMgr->currentGame);
+
+    destroyFireBullet(p_gameMgr->fireBullet);
 
     free(p_gameMgr);
 }//--------------------------------------------------------------------------------------------------------------------

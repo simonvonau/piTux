@@ -14,15 +14,16 @@
 typedef struct{
     int idHeros;
     Collider *** herosColl;//[currState][currActionid]
-    int currState;// Is tux big(1) or small(0)
-    int currAction;
-    int currSprite;
+    int currState;// Small tux, big Tux, fire Tux
+    int currAction;// Jumping, walking, ...
+    int currSprite;// The current sprite of the action
     int isDead;
     int lifesLeft;
     int nbCoins;
     int lastMovementTime;// Last time when tux move
     int isTouchingGround;// If the heros is on the ground (or on an ennemy)
     int jumpKeyPressed;// (0 or 1)When player press the jump key
+    int fireKeyPressed;// (0 or 1)
     int leftKeyPressed;// (0 or 1)
     int rightKeyPressed;// (0 or 1)
     int jumpStartTime;// Time at jump start
@@ -32,6 +33,7 @@ typedef struct{
     float movementProgressX, movementProgressY; // Store a movement <1 pixel => to avoid being stuck if FPS is too fast
     int currentTime;
     int godModeDuration; // The god mode allow tux to touch enemies without troubles
+    int timeBeforeNextShot;
 }HeroInstance;
 
 HeroInstance * initHeroInstance();

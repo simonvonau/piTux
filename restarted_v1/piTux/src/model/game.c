@@ -37,6 +37,10 @@ Game* initGame(char *p_path){
                 res->allBonusFile = malloc(sizeof(char) * LINE_SIZE_MAX);
                 if(res->allBonusFile == NULL){reportErreur("initGame():error malloc(...)4");}
                 strncpy(res->allBonusFile, buff[1], LINE_SIZE_MAX);
+            }else if(strcmp(buff[0], "[AllBullet]") == 0){
+                res->fireBulletFile = malloc(sizeof(char) * LINE_SIZE_MAX);
+                if(res->fireBulletFile == NULL){reportErreur("initGame():error malloc(...)5");}
+                strncpy(res->fireBulletFile, buff[1], LINE_SIZE_MAX);
             }else{
                 reportErreur("Cannot read a line in the main game setings file!");
             }

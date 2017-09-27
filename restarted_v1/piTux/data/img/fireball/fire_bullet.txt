@@ -1,0 +1,7 @@
+[Header];1;300;16;16;400;200;2000;50;
+=====================================================;
+[Action];0;4;200;
+[Sprite];0;data/img/fireball/fire_bullet-0.png;
+[Sprite];1;data/img/fireball/fire_bullet-1.png;
+[Sprite];2;data/img/fireball/fire_bullet-2.png;
+[Sprite];3;data/img/fireball/fire_bullet-3.png;

@@ -13,6 +13,7 @@
 #include "../model/heroInstance.h"
 #include "../model/bonusInstance.h"
 #include "../controller/colliderManager.h"
+#include "../controller/levelManager.h"
 
 
 typedef struct{
@@ -24,7 +25,7 @@ typedef struct{
 
 HerosManager *initHerosManager(char p_path[FILE_PATH_SIZE_MAX]);
 void initHerosInstanceByManager(HerosManager *p_herosMgr);
-void updateHeroBehaviourAfterCollisionDetection(HeroInstance *p_herosInstance, Heros * p_heros, ColliderManager *p_collMgr, int p_currentTime, int p_loopTime);
+void updateHeroBehaviourAfterCollisionDetection(HeroInstance *p_herosInstance, Heros * p_heros, ColliderManager *p_collMgr, int p_currentTime, int p_loopTime, LevelManager *p_levMgr, FireBullet *p_fireBullet);
 void jumpHeros(Heros *p_heros);
 void moveHeros(Heros *p_heros, int p_direction, int p_loopTime);
 void displayHeros(HerosManager *p_herosMgr, SDL_Window *p_window, int p_displayedPosX, int p_displayedPosY);

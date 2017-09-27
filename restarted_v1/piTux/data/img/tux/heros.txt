@@ -74,7 +74,7 @@ _______________________
 [Action];6;1;300;64;80;20;
 [Sprite];0;data/img/tux/big/jump-0-left.png;
 =====================================================
-[State];2;7;
+[State];2;9;
 [Action];0;2;300;64;80;30;
 [Sprite];0;data/img/tux/fire/idle-0.png;
 [Sprite];1;data/img/tux/fire/idle-1.png;
@@ -108,4 +108,11 @@ _______________________
 _______________________
 [Action];6;1;300;64;80;30;
 [Sprite];0;data/img/tux/fire/jump-0-left.png;
+_______________________
+[Action];7;1;300;64;80;30;
+[Sprite];0;data/img/tux/fire/kick-0.png;
+_______________________
+[Action];8;1;300;64;80;30;
+[Sprite];0;data/img/tux/fire/kick-0-left.png;
+
 

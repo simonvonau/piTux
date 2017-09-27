@@ -4,3 +4,4 @@
 [AllEnemies];./data/settings/allEnemies.txt;
 [Heros];./data/img/tux/heros.txt;
 [AllBonus];./data/settings/allBonus.txt;
+[AllBullet];./data/img/fireball/fire_bullet.txt;

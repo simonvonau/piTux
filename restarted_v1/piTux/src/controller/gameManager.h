@@ -14,6 +14,7 @@
 #include "../model/game.h"
 #include "../model/block.h"
 #include "../model/bonus.h"
+#include "../model/fireBullet.h"
 
 typedef struct{
     Game *currentGame;
@@ -27,6 +28,7 @@ typedef struct{
     int allBonusSize;
     Enemy **allEnemies;
     int allEnemiesSize;
+    FireBullet *fireBullet;
 }GameManager;
 
 

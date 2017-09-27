@@ -132,6 +132,14 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/model/enemyInstance.h" />
+		<Unit filename="src/model/fireBullet.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/model/fireBullet.h" />
+		<Unit filename="src/model/fireBulletInstance.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/model/fireBulletInstance.h" />
 		<Unit filename="src/model/game.c">
 			<Option compilerVar="CC" />
 		</Unit>

@@ -26,7 +26,7 @@ void initHerosInstanceByManager(HerosManager *p_herosMgr){
     p_herosMgr->heroInstance = initHeroInstance();
 }//------------------------------------------------------------------------------------------------------------------------
 
-void updateHeroBehaviourAfterCollisionDetection(HeroInstance *p_herosInstance, Heros * p_heros, ColliderManager *p_collMgr, int p_currentTime, int p_loopTime){
+void updateHeroBehaviourAfterCollisionDetection(HeroInstance *p_herosInstance, Heros * p_heros, ColliderManager *p_collMgr, int p_currentTime, int p_loopTime, LevelManager *p_levMgr, FireBullet *p_fireBullet){
 // Update the heros behaviour AFTER having some collisions
     Collider **contactPoints;
     int contactPointsSize;
@@ -111,6 +111,21 @@ void updateHeroBehaviourAfterCollisionDetection(HeroInstance *p_herosInstance, H
                 changeHerosState(p_herosInstance, p_herosInstance->currState - 1, 1, 0);
             }
         }
+    }
+
+    // Firing
+    if(p_herosInstance->fireKeyPressed && p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->ownerState == state_tux_fire
+       && p_herosInstance->timeBeforeNextShot <= 0){
+        if(p_herosInstance->lastDirection == 'r'){
+            addBulletInstanceFromLevelMgr(p_collMgr, p_levMgr, p_herosInstance->posX + p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->width + 1
+                , p_herosInstance->posY + p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->height / 2, p_fireBullet, 1);
+            changeHerosAction(p_herosInstance, 7, 0);
+        }else{
+            addBulletInstanceFromLevelMgr(p_collMgr, p_levMgr, p_herosInstance->posX - 1 - p_fireBullet->refColl->width, p_herosInstance->posY + p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->height / 2, p_fireBullet, -1);
+            changeHerosAction(p_herosInstance, 8, 0);
+        }
+
+        p_herosInstance->timeBeforeNextShot = TIME_BETWEEN_SHOTS;
     }
 
     // Is the heros is on the ground (or on an ennemy)

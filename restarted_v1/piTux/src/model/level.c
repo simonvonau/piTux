@@ -43,6 +43,10 @@ Level *initLevel(char *p_path, int p_pathSize){
                     res->bonusInstancesSize = 0;
                     reportErreur("Error malloc initLevel()3");
                 }
+                // FireBullet initialization
+                res->fireBulletInstances = NULL;
+                res->fireBulletInstancesSize = 0;
+
             }else if(strcmp(buff[0], "[Block]") == 0){
                 res->blockInstances[atoi(buff[1])] = initBlockInstance(atoi(buff[2]), atoi(buff[5]), atoi(buff[3]), atoi(buff[4]), NULL);
             }else if(strcmp(buff[0], "[Enemy]") == 0){
@@ -126,7 +130,7 @@ void addBlockInstanceToLevel(Level *p_lev, int p_idBlock, int p_posX, int p_posY
 
     if (p_lev->blockInstances == NULL){
         p_lev->blockInstancesSize = 0;
-        reportErreur("Error addBlockToInstance() realloc()");
+        reportErreur("Error addBlockToInstance() malloc()");
     }
     memcpy(p_lev->blockInstances, temp, sizeof(BlockInstance*) * p_lev->blockInstancesSize);
     p_lev->blockInstances[p_lev->blockInstancesSize] = initBlockInstance(p_idBlock, -1, p_posX, p_posY, p_coll);
@@ -146,7 +150,7 @@ void addBonusInstanceToLevel(Level *p_lev, int p_idBonus, int p_posX, int p_posY
 
     if (p_lev->bonusInstances == NULL){
         p_lev->bonusInstancesSize = 0;
-        reportErreur("Error addBonusToInstance() realloc()");
+        reportErreur("Error addBonusToInstance() malloc()");
     }
     memcpy(p_lev->bonusInstances, temp, sizeof(BonusInstance*) * p_lev->bonusInstancesSize);
     p_lev->bonusInstances[p_lev->bonusInstancesSize] = initBonusInstance(p_idBonus, p_posX, p_posY, p_coll);
@@ -166,11 +170,30 @@ void addEnemyInstanceToLevel(Level *p_lev, int p_idEnemy, int p_posX, int p_posY
 
     if (p_lev->enemyInstances == NULL){
         p_lev->enemyInstancesSize = 0;
-        reportErreur("Error addEnemyInstanceToLevel() realloc()");
+        reportErreur("Error addEnemyInstanceToLevel() malloc()");
     }
     memcpy(p_lev->enemyInstances, temp, sizeof(EnemyInstance*) * p_lev->enemyInstancesSize);
     p_lev->enemyInstances[p_lev->enemyInstancesSize] = initEnemyInstance(p_idEnemy, p_posX, p_posY, p_coll, p_collSize);
     p_lev->enemyInstancesSize += 1;
+}//------------------------------------------------------------------------------------------------------------------------
+
+void addBulletInstanceToLevel(Level *p_lev, int p_posX, int p_posY, Collider *p_coll, int p_directionX, int p_directionY, int p_lifeTimeLeft){
+// Add a BulletInstance to a level
+    FireBulletInstance *tempArray[p_lev->fireBulletInstancesSize];
+    if(p_lev->fireBulletInstancesSize == 0){
+        p_lev->fireBulletInstances = malloc(sizeof(FireBulletInstance*));
+    }else{
+        memcpy(tempArray, p_lev->fireBulletInstances, p_lev->fireBulletInstancesSize * sizeof(FireBulletInstance*));
+        free(p_lev->fireBulletInstances);
+        p_lev->fireBulletInstances = malloc((p_lev->fireBulletInstancesSize + 1) * sizeof(FireBulletInstance*));
+        memcpy(p_lev->fireBulletInstances, tempArray, p_lev->fireBulletInstancesSize * sizeof(FireBulletInstance*));
+    }
+    if(p_lev->fireBulletInstances == NULL){
+        p_lev->fireBulletInstancesSize = 0;
+        reportErreur("Error addBulletInstanceToLevel() malloc()");
+    }
+    p_lev->fireBulletInstancesSize += 1;
+    p_lev->fireBulletInstances[p_lev->fireBulletInstancesSize - 1] = initFireBulletInstance(p_posX, p_posY, p_directionX, p_directionY, p_coll, p_lifeTimeLeft);
 }//------------------------------------------------------------------------------------------------------------------------
 
 void removeBlockInstanceToLevel(Level *p_lev, int p_blockIndex){
@@ -248,6 +271,32 @@ void removeEnemyInstanceToLevel(Level *p_lev, int p_enemyIndex){
     }
 }//------------------------------------------------------------------------------------------------------------------------
 
+void removeFireBulletInstanceToLevel(Level *p_lev, int p_fireBulletIndex){
+// Remove a fire bullet from a level
+    FireBulletInstance *tempFBI;
+    FireBulletInstance *tempArray[p_lev->fireBulletInstancesSize];
+
+    if (p_fireBulletIndex >= 0 && p_fireBulletIndex < p_lev->fireBulletInstancesSize){
+        tempFBI = p_lev->fireBulletInstances[p_fireBulletIndex];
+        p_lev->fireBulletInstances[p_fireBulletIndex] = p_lev->fireBulletInstances[p_lev->fireBulletInstancesSize - 1];
+        p_lev->fireBulletInstances[p_lev->fireBulletInstancesSize - 1] = tempFBI;
+        p_lev->fireBulletInstancesSize -= 1;
+
+        memcpy(tempArray, p_lev->fireBulletInstances, sizeof(FireBulletInstance*) * (p_lev->fireBulletInstancesSize + 1));
+        free(p_lev->fireBulletInstances);
+        p_lev->fireBulletInstances = malloc(sizeof(FireBulletInstance*) * p_lev->fireBulletInstancesSize);
+        memcpy(p_lev->fireBulletInstances, tempArray, sizeof(FireBulletInstance*) * p_lev->fireBulletInstancesSize);
+        destroyFireBulletInstance(tempArray[p_lev->fireBulletInstancesSize]);
+
+        if(p_lev->fireBulletInstances == NULL){
+            p_lev->fireBulletInstancesSize = 0;
+            reportErreur("Error removeFireBulletInstanceToLevel(...) malloc()");
+        }
+    }
+
+
+}//------------------------------------------------------------------------------------------------------------------------
+
 int checkIfBlockInstanceExistHere(Level *p_lev, int p_posX, int p_posY){
 // Check if a blockInstance already exists here
     int i;
@@ -306,6 +355,12 @@ void destroyLevel(Level *p_level){
         destroyEnemyInstance(p_level->enemyInstances[i]);
     }
     free(p_level->enemyInstances);
+
+    // Destroying bullet
+    for(i = 0; i < p_level->fireBulletInstancesSize; i++){
+        destroyFireBulletInstance(p_level->fireBulletInstances[i]);
+    }
+    free(p_level->fireBulletInstances);
 
     free(p_level);
 }//------------------------------------------------------------------------------------------------------------------------

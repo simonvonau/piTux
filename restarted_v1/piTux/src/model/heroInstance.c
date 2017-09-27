@@ -18,6 +18,7 @@ HeroInstance * initHeroInstance(){
     res->lastMovementTime = 0;// Last time when tux move
     res->isTouchingGround = 0;
     res->jumpKeyPressed = 0;// (0 or 1)When player press the jump key
+    res->fireKeyPressed = 0;
     res->leftKeyPressed = 0;
     res->rightKeyPressed = 0;
     res->jumpStartTime = -1;// Time at jump start
@@ -31,6 +32,7 @@ HeroInstance * initHeroInstance(){
     res->movementProgressY = 0;
     res->currentTime = 0;
     res->godModeDuration = 0;
+    res->timeBeforeNextShot = TIME_BETWEEN_SHOTS;
     return res;
 }//------------------------------------------------------------------------------------------------------------------------
 
@@ -73,6 +75,7 @@ void refreshHerosInstance(HeroInstance * p_herosInstance, Heros *p_heros, int p_
 // Refresh hero's position and sprite
     int movementX, movementY;
     p_herosInstance->currentTime += p_loopTime;
+    p_herosInstance->timeBeforeNextShot -= p_loopTime;
     if(p_herosInstance->godModeDuration > 0){
         p_herosInstance->godModeDuration -= p_loopTime;
     }
@@ -86,7 +89,8 @@ void refreshHerosInstance(HeroInstance * p_herosInstance, Heros *p_heros, int p_
     movingLeft(p_herosInstance, p_heros, p_loopTime);
 
     // Go to idle mode
-    if(!p_herosInstance->leftKeyPressed  && !p_herosInstance->rightKeyPressed && !p_herosInstance->jumpKeyPressed && p_herosInstance->isTouchingGround){
+    if(!p_herosInstance->leftKeyPressed  && !p_herosInstance->rightKeyPressed && !p_herosInstance->jumpKeyPressed
+        && !p_herosInstance->fireKeyPressed && p_herosInstance->isTouchingGround){
         if(p_herosInstance->lastDirection == 'r'){
             changeHerosAction(p_herosInstance, 0, 0);
         }else{

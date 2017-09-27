@@ -210,7 +210,7 @@ int displayLevelEditorPage(SDL_Window *p_window, GameManager *p_gameMgr){
 //--------------------------------Laying out ---------------------------------------------------------------------------------------
         SDL_BlitSurface(background1, NULL, SDL_GetWindowSurface(p_window), &nullPos);
         displayLevelByLevelManager(p_gameMgr->levelManager->currLevel, p_window, 0, deplaX, deplaY
-                     ,p_gameMgr->allBlocks, p_gameMgr->allBonus, p_gameMgr->allEnemies);
+                     ,p_gameMgr->allBlocks, p_gameMgr->allBonus, p_gameMgr->allEnemies, p_gameMgr->fireBullet);
         // Press escape to quit message
         setTextLayout(p_window,
                         p_gameMgr->translaManager->allTranslations[12]->sentence[p_gameMgr->translaManager->currLanguageId],

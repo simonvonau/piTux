@@ -35,12 +35,24 @@ int getBlockInstanceId(Level *p_lev, int p_clicX, int p_clicY){
     return -1;
 }//------------------------------------------------------------------------------------------------------------------------
 
-void refreshLevelByLevelManager(Level *p_lev, ColliderManager *p_collMgr, int p_loopTime, Block **p_allBlocks, Bonus **p_allBonus, Enemy **p_allEnemies, int p_leftLimit, int p_rightLimit, int p_topLimit, int p_bottomLimit){
+void addBulletInstanceFromLevelMgr(ColliderManager *p_collMgr, LevelManager* p_levMgr, int p_posX, int p_posY, FireBullet *p_fb, int p_directionX){
+// When tux shoots a bullet
+    Collider * tempColl = colliderDeepCopyByColliderManager(p_collMgr, p_fb->refColl);
+    tempColl->isEnabled = 1;
+    tempColl->posX = p_posX;
+    tempColl->posY = p_posY;
+    tempColl->lastPosX = p_posX;
+    tempColl->lastPosY = p_posY;
+    addBulletInstanceToLevel(p_levMgr->currLevel, p_posX, p_posY, tempColl, p_directionX, -1, p_fb->maxLifeTime);
+}//------------------------------------------------------------------------------------------------------------------------
+
+void refreshLevelByLevelManager(Level *p_lev, ColliderManager *p_collMgr, int p_loopTime, Block **p_allBlocks, Bonus **p_allBonus, Enemy **p_allEnemies, FireBullet *p_fireBullet, int p_leftLimit, int p_rightLimit, int p_topLimit, int p_bottomLimit){
 // Refresh the level (blockInstances,enemyInstances and bonusInstances)
     int i;
     BlockInstance *currBlockI;
     BonusInstance *currBonusI;
     EnemyInstance *currEneI;
+    FireBulletInstance *currFBI;
 
     // Refreshing blockInstances
     for(i = 0; i < p_lev->blockInstancesSize; i++){
@@ -66,10 +78,19 @@ void refreshLevelByLevelManager(Level *p_lev, ColliderManager *p_collMgr, int p_
             refreshEnemyInstance(currEneI, p_loopTime, *p_allEnemies[currEneI->idEnemy]);
        }
     }
+
+    // Refreshing FireBulletInstances
+    for(i = 0; i < p_lev->fireBulletInstancesSize; i++){
+        currFBI = p_lev->fireBulletInstances[i];
+        if(currFBI->posX + currFBI->coll->width > p_leftLimit && currFBI->posX < p_rightLimit
+           && currFBI->posY + currFBI->coll->height > p_bottomLimit && currFBI->posY < p_topLimit){
+            refreshFireBulletInstance(currFBI, *p_fireBullet, p_loopTime);
+       }
+    }
 }//------------------------------------------------------------------------------------------------------------------------
 
 void displayLevelByLevelManager(Level *p_lev, SDL_Window *p_window, int p_isGameMode, int p_deplaX, int p_deplaY
-                  , Block **p_allBlocks, Bonus **p_allBonus, Enemy **p_allEnemies){
+                  , Block **p_allBlocks, Bonus **p_allBonus, Enemy **p_allEnemies, FireBullet *p_fireBullet){
 // Display the current level
     int i;
     SDL_Rect objectPos = { 0, 0, 0, 0};
@@ -130,6 +151,18 @@ void displayLevelByLevelManager(Level *p_lev, SDL_Window *p_window, int p_isGame
         }
     }
 
+    // Displaying FireBulletInstances
+    for( i = 0; i < p_lev->fireBulletInstancesSize; i++){
+        if (p_lev->fireBulletInstances[i]->posX >= leftLimit && p_lev->fireBulletInstances[i]->posX <= rightLimit
+        &&p_lev->fireBulletInstances[i]->posY >= bottomLimit && p_lev->fireBulletInstances[i]->posY <= topLimit){
+            objectPos.x = p_lev->fireBulletInstances[i]->posX - p_deplaX;
+            objectPos.y = SDL_GetWindowSurface(p_window)->h - p_lev->fireBulletInstances[i]->posY
+                            - p_lev->fireBulletInstances[i]->coll->height + p_deplaY;
+            SDL_BlitSurface(p_fireBullet->sprites[p_lev->fireBulletInstances[i]->currentSpriteId],
+                             NULL, SDL_GetWindowSurface(p_window), &objectPos);
+        }
+    }
+
 }//------------------------------------------------------------------------------------------------------------------------
 
 void updateLevelAfterCollisionsDetection(LevelManager* p_levMgr, ColliderManager *p_collMgr, int p_currentTime, int p_loopTime, int p_minX, int p_maxX, int p_minY, int p_maxY, Bonus** p_allBonus, int p_allBonusSize){
@@ -137,6 +170,7 @@ void updateLevelAfterCollisionsDetection(LevelManager* p_levMgr, ColliderManager
 
     updateBlocksAfterColliding(p_levMgr, p_collMgr, p_currentTime, p_loopTime, p_allBonus, p_allBonusSize);
     updateBonusAfterColliding(p_levMgr, p_collMgr, p_currentTime, p_loopTime);
+    updateFireBulletAfterColliding(p_levMgr, p_collMgr, p_currentTime, p_loopTime);
 
 }//------------------------------------------------------------------------------------------------------------------------
 
@@ -261,10 +295,39 @@ void updateBonusAfterColliding(LevelManager* p_levMgr, ColliderManager *p_collMg
                 p_levMgr->currLevel->bonusInstances[i]->lifeTime = 500;
             }
         }
-        /*p_levMgr->currLevel->bonusInstances[i]->coll->lastPosX = p_levMgr->currLevel->bonusInstances[i]->coll->posX;
-        p_levMgr->currLevel->bonusInstances[i]->coll->lastPosY = p_levMgr->currLevel->bonusInstances[i]->coll->posY;*/
         p_levMgr->currLevel->bonusInstances[i]->coll->posX = p_levMgr->currLevel->bonusInstances[i]->posX;
         p_levMgr->currLevel->bonusInstances[i]->coll->posY = p_levMgr->currLevel->bonusInstances[i]->posY;
+    }
+
+}//------------------------------------------------------------------------------------------------------------------------
+
+void updateFireBulletAfterColliding(LevelManager* p_levMgr, ColliderManager *p_collMgr, int p_currentTime, int p_loopTime){
+    // Update each fire bullet after a collision
+    Collider **contactPoints;
+    int contactPointsSize;
+    int i, j;
+
+    for(i = 0; i < p_levMgr->currLevel->fireBulletInstancesSize; i++){
+        getColliderTouching(p_collMgr, p_levMgr->currLevel->fireBulletInstances[i]->coll->id, &contactPoints, &contactPointsSize);
+
+        for(j = 0; j < contactPointsSize; j++){
+            // Destruction of the bullet after touching an enemy
+            if(contactPoints[j]->ownerTag == tag_enemy_bomb || contactPoints[j]->ownerTag == tag_enemy_fluffy || contactPoints[j]->ownerTag == tag_enemy_iceblock){
+                p_levMgr->currLevel->fireBulletInstances[i]->lifeTimeLeft = -1;
+            }
+            // Bouncing on the ground
+            if(contactPoints[j]->ownerTag == tag_block_mystery || contactPoints[j]->ownerTag == tag_block_strong || contactPoints[j]->ownerTag == tag_block_weak){
+                if(p_levMgr->currLevel->fireBulletInstances[i]->coll->lastPosY >= contactPoints[j]->posY + contactPoints[j]->height){
+                    p_levMgr->currLevel->fireBulletInstances[i]->directionY = 1;
+                    p_levMgr->currLevel->fireBulletInstances[i]->posY = contactPoints[j]->posY + contactPoints[j]->height;
+                }else{
+                    // If the bullet touches a wall
+                    p_levMgr->currLevel->fireBulletInstances[i]->lifeTimeLeft = -1;
+                }
+            }
+        }
+        p_levMgr->currLevel->fireBulletInstances[i]->coll->posX = p_levMgr->currLevel->fireBulletInstances[i]->posX;
+        p_levMgr->currLevel->fireBulletInstances[i]->coll->posY = p_levMgr->currLevel->fireBulletInstances[i]->posY;
     }
 
 }//------------------------------------------------------------------------------------------------------------------------

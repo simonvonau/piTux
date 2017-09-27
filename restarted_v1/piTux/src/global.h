@@ -20,6 +20,11 @@
 // The limit to kill the enemies out of it
 #define DEAD_LIMIT_Y -200
 
+// Time between 2 jumps
+#define TIME_BETWEEN_JUMPS 300
+// Time between 2 shots
+#define TIME_BETWEEN_SHOTS 500
+
 
 enum ObjectTag{
     tag_tux = 20,
@@ -40,6 +45,7 @@ enum ObjectTag{
 
     tag_explosion = 300
 };
+
 enum ObjectState{
     state_normal = 1,
 
