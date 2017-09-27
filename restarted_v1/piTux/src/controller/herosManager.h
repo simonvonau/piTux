@@ -16,7 +16,7 @@
 #include "../controller/levelManager.h"
 
 
-typedef struct{
+typedef struct {
     Heros *heros;
     HeroInstance *heroInstance;
     char path[FILE_PATH_SIZE_MAX];

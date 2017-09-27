@@ -34,6 +34,8 @@ typedef struct{
     int currentTime;
     int godModeDuration; // The god mode allow tux to touch enemies without troubles
     int timeBeforeNextShot;
+    int hasReleaseJumpKey;
+    int hasReleaseFireKey;
 }HeroInstance;
 
 HeroInstance * initHeroInstance();

@@ -115,7 +115,8 @@ void updateHeroBehaviourAfterCollisionDetection(HeroInstance *p_herosInstance, H
 
     // Firing
     if(p_herosInstance->fireKeyPressed && p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->ownerState == state_tux_fire
-       && p_herosInstance->timeBeforeNextShot <= 0){
+       && p_herosInstance->timeBeforeNextShot <= 0 && p_herosInstance->hasReleaseFireKey){
+        p_herosInstance->hasReleaseFireKey = 0;
         if(p_herosInstance->lastDirection == 'r'){
             addBulletInstanceFromLevelMgr(p_collMgr, p_levMgr, p_herosInstance->posX + p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->width + 1
                 , p_herosInstance->posY + p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->height / 2, p_fireBullet, 1);
@@ -128,11 +129,12 @@ void updateHeroBehaviourAfterCollisionDetection(HeroInstance *p_herosInstance, H
         p_herosInstance->timeBeforeNextShot = TIME_BETWEEN_SHOTS;
     }
 
-    // Is the heros is on the ground (or on an ennemy)
+    // Is the heros is on the ground (or on an enemy)
     if(isAboveSomething){
         p_herosInstance->isTouchingGround = 1;
         // Start a new jump
-        if(p_herosInstance->jumpKeyPressed){
+        if(p_herosInstance->jumpKeyPressed && p_herosInstance->hasReleaseJumpKey){
+            p_herosInstance->hasReleaseJumpKey = 0;
             if(p_herosInstance->lastDirection == 'r'){
                 changeHerosAction(p_herosInstance, 5, 0);
             }else{
@@ -144,6 +146,7 @@ void updateHeroBehaviourAfterCollisionDetection(HeroInstance *p_herosInstance, H
             if(p_herosInstance->currAction == 5){
                 changeHerosAction(p_herosInstance, 0, 0);
             }
+            p_herosInstance->jumpDuration = -1;
         }
     }else{
         p_herosInstance->isTouchingGround = 0;

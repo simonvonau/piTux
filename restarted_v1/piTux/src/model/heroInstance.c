@@ -33,6 +33,8 @@ HeroInstance * initHeroInstance(){
     res->currentTime = 0;
     res->godModeDuration = 0;
     res->timeBeforeNextShot = TIME_BETWEEN_SHOTS;
+    res->hasReleaseFireKey = 1;
+    res->hasReleaseJumpKey = 1;
     return res;
 }//------------------------------------------------------------------------------------------------------------------------
 
@@ -159,8 +161,13 @@ void movingLeft(HeroInstance *p_herosInstance, Heros *p_heros, int p_loopTime){
 void jump(HeroInstance *p_herosInstance, Heros *p_heros, int p_loopTime){
     // When the heros jump (just the step when he go up)
     int movementY;
+    float coeff = 1;
+    // Increase the jump high when the key jump is still pressed
+    if(p_herosInstance->jumpKeyPressed){
+        coeff = 1.5;
+    }
 
-    if(p_herosInstance->jumpDuration >= 0 && p_herosInstance->jumpDuration < p_heros->jumpDuration){
+    if(p_herosInstance->jumpDuration >= 0 && p_herosInstance->jumpDuration < p_heros->jumpDuration * coeff){
         // Set the right or left sprite
         if(p_herosInstance->rightKeyPressed){
             p_herosInstance->lastDirection = 'r';
@@ -169,6 +176,7 @@ void jump(HeroInstance *p_herosInstance, Heros *p_heros, int p_loopTime){
             p_herosInstance->lastDirection = 'l';
             changeHerosAction(p_herosInstance, 6, 0);
         }
+
         p_herosInstance->jumpDuration += p_loopTime;
         p_herosInstance->movementProgressY += p_loopTime / 1000.0 * p_heros->jumpSpeed;
         movementY = (int) p_herosInstance->movementProgressY;

@@ -99,7 +99,7 @@ int displayLevelEditorPage(SDL_Window *p_window, GameManager *p_gameMgr){
     int deplaX = 0;
     int deplaY = 0;
     int lastSaveDate = 0;
-    int saveLaps = 2000; // Time before next level saving
+    int saveLaps = 2000; // Time before next auto saving
     int startTime = SDL_GetTicks();
 
     // Init level

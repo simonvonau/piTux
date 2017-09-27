@@ -109,22 +109,6 @@ void loadLevelByGameMgr(GameManager *p_gameMgr, char *p_path, int p_pathSize){
         }
     }
 
-
-    //*** Tests on firebullet
-    /*addBulletInstanceToLevel(p_gameMgr->levelManager->currLevel, 400, 450, NULL, 1, 1, 1000);
-    // Put a collider in each fireBullet
-    p_gameMgr->levelManager->currLevel->fireBulletInstances[0]->coll = colliderDeepCopyByColliderManager(
-                p_gameMgr->collMgr
-                ,p_gameMgr->fireBullet->refColl);
-    // Update BonusInstance Collider
-    tempColl = p_gameMgr->levelManager->currLevel->fireBulletInstances[0]->coll;
-    tempColl->ownerTag = p_gameMgr->fireBullet->refColl->ownerTag;
-    tempColl->isEnabled = 1;
-    tempColl->posX = p_gameMgr->levelManager->currLevel->fireBulletInstances[0]->posX;
-    tempColl->posY = p_gameMgr->levelManager->currLevel->fireBulletInstances[0]->posY;*/
-
-
-
 }//--------------------------------------------------------------------------------------------------------------------
 
 void addElementToLevelByGameMgr(GameManager *p_gameMgr, int p_elemType, int p_elemId, int p_posX, int p_posY){
@@ -247,24 +231,9 @@ void refreshGameByGameManager(GameManager *p_gameMgr, int p_currentTime, int p_l
     updateHeroBehaviourAfterCollisionDetection(p_gameMgr->herosMgr->heroInstance, p_gameMgr->herosMgr->heros, p_gameMgr->collMgr, p_currentTime, p_loopTime, p_gameMgr->levelManager, p_gameMgr->fireBullet);
 
     updateLevelAfterCollisionsDetection(p_gameMgr->levelManager, p_gameMgr->collMgr, p_currentTime, p_loopTime,
-                                        leftLimit, rightLimit, bottomLimit, topLimit, p_gameMgr->allBonus, p_gameMgr->allBonusSize);
+                                        leftLimit, rightLimit, bottomLimit, topLimit, p_gameMgr->allBonus, p_gameMgr->allEnemies, p_gameMgr->allBonusSize);
 
-    // Update enemies behaviour after the collision checking
-    for(i = 0; i < p_gameMgr->levelManager->currLevel->enemyInstancesSize; i++){
-        currEnemyInstance = p_gameMgr->levelManager->currLevel->enemyInstances[i];
-        // Only update the displayed enemies
-        if(currEnemyInstance->posX + currEnemyInstance->coll[currEnemyInstance->currentActionId]->width > leftLimit
-           && currEnemyInstance->posX < rightLimit
-           && currEnemyInstance->posY + currEnemyInstance->coll[currEnemyInstance->currentActionId]->height > bottomLimit
-           && currEnemyInstance->posY < topLimit){
-            updateEnemyBehaviourAfterCollisionDetection(currEnemyInstance
-                             , *p_gameMgr->allEnemies[currEnemyInstance->idEnemy]
-                             , p_gameMgr->collMgr
-                             , p_loopTime);
-        }
-    }
-
-    // Clear the unused memory
+    // Clear the unused memory by removing useless items from the level
     cleanLevelMemory(p_gameMgr);
 
 }//------------------------------------------------------------------------------------------------------------------------
@@ -300,7 +269,7 @@ void cleanLevelMemory(GameManager *p_gameMgr){
         }
     }
 
-    // Clean the bullet
+    // Clean the bullets
     for(i = 0; i < currLevel->fireBulletInstancesSize; i++){
         if(currLevel->fireBulletInstances[i]->lifeTimeLeft <= 0){
             removeCollider(p_gameMgr->collMgr, currLevel->fireBulletInstances[i]->coll->id, 0);

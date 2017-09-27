@@ -79,6 +79,7 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
             p_gameMgr->herosMgr->heroInstance->fireKeyPressed = 1;
         }else if(event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_SPACE){
             p_gameMgr->herosMgr->heroInstance->fireKeyPressed = 0;
+            p_gameMgr->herosMgr->heroInstance->hasReleaseFireKey = 1;
         }
 
         // Jump
@@ -86,6 +87,7 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
             p_gameMgr->herosMgr->heroInstance->jumpKeyPressed = 1;
         }else if(event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_UP){
             p_gameMgr->herosMgr->heroInstance->jumpKeyPressed = 0;
+            p_gameMgr->herosMgr->heroInstance->hasReleaseJumpKey = 1;
         }
         // Move to right
         if( event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_RIGHT){
