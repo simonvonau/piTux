@@ -121,6 +121,7 @@ int displayLevelSelectionPage(SDL_Window *p_window, char *p_nextLevelPath, GameM
     int userChoice = 0;
     int newChoice = 0;
     int pathSize = 512;
+    int isFirstLoop = 1; // To force the first loop even if there are no detected events
 
     int i;
     char temp_str[10];
@@ -135,7 +136,8 @@ int displayLevelSelectionPage(SDL_Window *p_window, char *p_nextLevelPath, GameM
     //loadMusic(CurrMusicManager, "data/music/salcon.ogg");
     //playMusic(CurrMusicManager);
 
-    while ( SDL_WaitEvent(&event) ){
+    while (isFirstLoop || SDL_WaitEvent(&event)){
+        isFirstLoop = 0;
 //--------------------------Events management-----------------------------------------------------------------------
         if( event.type==SDL_KEYDOWN && event.key.keysym.sym==SDLK_UP){// Change userChoice
             newChoice = chooseLevel(allLevels, nbLevels, userChoice, "UP");
@@ -164,9 +166,9 @@ int displayLevelSelectionPage(SDL_Window *p_window, char *p_nextLevelPath, GameM
         }
 
         // Set a limit to userChoice
-        newChoice= newChoice%nbLevels;
-        if(newChoice<0){
-            newChoice=nbLevels-1;
+        newChoice = newChoice % nbLevels;
+        if(newChoice < 0){
+            newChoice = nbLevels - 1;
         }
         if(allLevels[newChoice]->isAvailable){
             userChoice = newChoice;

@@ -36,6 +36,6 @@
 [Data];34;Go back to main menu;Retour au menu principal;
 [Data];35;Restart;Recommencer;
 [Data];36;Congratulation!;Félicitation!;
-[Data];37;Time :;Temps :;
-[Data];38;Enemies :;Ennemis :;
-[Data];39;Average FPS :;FPS moyen :;
+[Data];37;Time left:;Temps restant :;
+[Data];38;Enemies:;Ennemis :;
+[Data];39;Average FPS:;FPS moyen :;

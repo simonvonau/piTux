@@ -219,12 +219,6 @@ void updateCollisions(ColliderManager *p_colliderManager, int p_leftLimit, int p
 
 
     for(i = 0; i < p_colliderManager->allCollidersSize; i++){
-        //*** Temporary
-        /*if (p_colliderManager->allColliders[i]->isEnabled){
-            printf("collider enabled (x, y, w, h): %d,%d,%d,%d \n",
-                   p_colliderManager->allColliders[i]->posX, p_colliderManager->allColliders[i]->posY
-                   , p_colliderManager->allColliders[i]->width, p_colliderManager->allColliders[i]->height);
-        }*/
         // Only takes collider enabled and inside the screen (leftLimit, rightLimit, bottomLimit, topLimit) to decrease the processing time
         if (p_colliderManager->allColliders[i]->isEnabled
         && p_colliderManager->allColliders[i]->posX < p_rightLimit

@@ -18,7 +18,7 @@
 #define GRAVITY_SPEED 400 // Speed in pixel/second
 
 // The limit to kill the enemies out of it
-#define DEAD_LIMIT_Y -200
+#define DEAD_LIMIT_Y -100
 
 // Time between 2 jumps
 #define TIME_BETWEEN_JUMPS 300
@@ -54,7 +54,9 @@ enum ObjectState{
     state_tux_fire = 30,
 
     state_block_hit_up = 40,
-    state_block_hit_down = 41
+    state_block_hit_down = 41,
+
+    state_bomb_primed = 50
 };
 
 #endif

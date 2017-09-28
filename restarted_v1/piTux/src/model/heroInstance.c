@@ -76,6 +76,7 @@ void changeHerosAction(HeroInstance * p_herosInstance, int p_newAction, int p_ne
 void refreshHerosInstance(HeroInstance * p_herosInstance, Heros *p_heros, int p_currentTime, int p_loopTime){
 // Refresh hero's position and sprite
     int movementX, movementY;
+    float coeff = 1.5;
     p_herosInstance->currentTime += p_loopTime;
     p_herosInstance->timeBeforeNextShot -= p_loopTime;
     if(p_herosInstance->godModeDuration > 0){
@@ -84,21 +85,36 @@ void refreshHerosInstance(HeroInstance * p_herosInstance, Heros *p_heros, int p_
 
     applyGravity(p_herosInstance, p_loopTime);
 
-    jump(p_herosInstance, p_heros, p_loopTime);
-    land(p_herosInstance);
+    if(!p_herosInstance->isDead){
+        jump(p_herosInstance, p_heros, p_loopTime);
+        land(p_herosInstance);
 
-    movingRight(p_herosInstance, p_heros, p_loopTime);
-    movingLeft(p_herosInstance, p_heros, p_loopTime);
+        movingRight(p_herosInstance, p_heros, p_loopTime);
+        movingLeft(p_herosInstance, p_heros, p_loopTime);
 
-    // Go to idle mode
-    if(!p_herosInstance->leftKeyPressed  && !p_herosInstance->rightKeyPressed && !p_herosInstance->jumpKeyPressed
-        && !p_herosInstance->fireKeyPressed && p_herosInstance->isTouchingGround){
-        if(p_herosInstance->lastDirection == 'r'){
-            changeHerosAction(p_herosInstance, 0, 0);
-        }else{
-            changeHerosAction(p_herosInstance, 1, 0);
+        // Go to idle mode
+        if(!p_herosInstance->leftKeyPressed  && !p_herosInstance->rightKeyPressed && !p_herosInstance->jumpKeyPressed
+            && !p_herosInstance->fireKeyPressed && p_herosInstance->isTouchingGround){
+            if(p_herosInstance->lastDirection == 'r'){
+                changeHerosAction(p_herosInstance, 0, 0);
+            }else{
+                changeHerosAction(p_herosInstance, 1, 0);
+            }
+
         }
-
+    }else{
+        if(p_herosInstance->jumpDuration >= p_heros->jumpDuration * 0.75){
+            coeff = 1.0 * p_herosInstance->jumpDuration / p_heros->jumpDuration;
+        }
+        if(p_herosInstance->jumpDuration <= p_heros->jumpDuration){
+            p_herosInstance->jumpDuration += p_loopTime;
+            p_herosInstance->movementProgressY += p_loopTime / 1000.0 * p_heros->jumpSpeed * coeff;
+            movementY = (int) p_herosInstance->movementProgressY;
+            if(movementY >= 1 || movementY <= -1){
+                p_herosInstance->posY += movementY;
+                p_herosInstance->movementProgressY -= movementY;
+            }
+        }
     }
 
     updateCurrentSprite(p_herosInstance, p_heros);
@@ -209,6 +225,21 @@ void updateCurrentSprite(HeroInstance *p_heroInstance, Heros *p_heros){
         p_heroInstance->currSprite = p_heroInstance->currSprite % p_heros->spriteSize[p_heroInstance->currState][p_heroInstance->currAction];
     }
 }//------------------------------------------------------------------------------------------------------------------------
+
+void heroInstanceDeath(HeroInstance *p_herosInstance, Heros *p_heros, int p_currentTime){
+// When tux dies
+    int i;
+    p_herosInstance->lifesLeft -= 1;
+    p_herosInstance->isDead = 1;
+    p_herosInstance->jumpDuration = 0;
+    p_herosInstance->jumpStartTime = p_currentTime;
+    changeHerosAction(p_herosInstance, 2, 0);
+    for(i = 0; i < p_heros->actionSize[p_herosInstance->currState]; i++){
+        p_herosInstance->herosColl[p_herosInstance->currState][i]->isEnabled = 0;
+    }
+
+}//------------------------------------------------------------------------------------------------------------------------
+
 
 void destroyHeroInstanceColliders(HeroInstance *p_heroInstance, Heros *p_heros){
 // Free HeroInstance's colliders

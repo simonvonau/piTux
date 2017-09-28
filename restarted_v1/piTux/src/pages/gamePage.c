@@ -30,10 +30,14 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
     int i;
     int cameraX = 0;
     int cameraY = 0;
-    char temp_str[10];
+    char temp_str[128];
+    char temp_str2[128];
     int isTuxInsideIgloo = 0;
-    int iglooEntranceDecal = 180; // The space between the igloo sprite posX and its entrance
+    int iglooEntranceDecal = 180; // The space between the igloo sprite positionX and its entrance
     int isLevelCleared = 0;
+    int timeBeforeExiting = 5000;
+    int nbEnemiesAtStart = 0;
+    int timeAtEnd = 0;
 
 
 
@@ -48,12 +52,14 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
     int currTime = lastTime;
     int loopTime;
     int currFPS = 0;
-    int countTime = 2000; // To process average looptime
-    int sumTime = 0; // Sum of loopTime
-    int sumLoopDone = 0; // Sum of each loop
+    long sumTime = 0; // Sum of loopTime
+    long sumLoopDone = 0; // Sum of each loop
+    int averageFPSAtLevelEnd = -1;
 
     // Init level
     loadLevelByGameMgr(p_gameMgr, p_levelPath, p_levelPathSize);
+
+    nbEnemiesAtStart = p_gameMgr->levelManager->currLevel->enemyInstancesSize;
 
     background1 = loadImage("data/img/background/arctis.jpg");
     lifesLeft = loadImage("data/img/icon/life_left.png");
@@ -66,7 +72,7 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
     endLevelPosDefault.x = p_gameMgr->levelManager->currLevel->finishPosX;
     endLevelPosDefault.y = SDL_GetWindowSurface(p_window)->h - endLevelCursor->h - 96;
 
-    //SDL_FlushEvent(SDL_KEYDOWN);
+    SDL_FlushEvent(SDL_KEYDOWN);
     while ( 1 ){
     //--------------------------Events management-----------------------------------------------------------------------
         SDL_PollEvent(&event);
@@ -118,25 +124,29 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
             p_gameMgr->herosMgr->heroInstance->rightKeyPressed = 0;
         }
     //--------------------------Management-----------------------------------------------------------------------
+        // Time management
         currTime = SDL_GetTicks();
         loopTime = currTime - lastTime;
         lastTime = currTime;
         currFPS = 1000 / loopTime;
-
-
-
-        // Time management
+        // Average fps process
         sumTime += loopTime;
         sumLoopDone +=1;
-        if (countTime < sumTime){
-            printf("average frame duration: %f, fps: %f \n", 1.0 * sumTime / sumLoopDone, 1000.0 / (1.0 * sumTime / sumLoopDone));
-            sumLoopDone = 0;
-            sumTime = 0;
+        if(isLevelCleared && averageFPSAtLevelEnd < 0){
+            averageFPSAtLevelEnd = (int)(1000.0 / (1.0 * sumTime / sumLoopDone));
+            timeAtEnd = p_gameMgr->levelManager->currLevel->timeLeft;
+        }
+
+        // Tux dies if timeleft <= 0
+        if(!p_gameMgr->herosMgr->heroInstance->isDead && !isLevelCleared && p_gameMgr->levelManager->currLevel->timeLeft <= 0){
+            heroInstanceDeath(p_gameMgr->herosMgr->heroInstance, p_gameMgr->herosMgr->heros, currTime);
         }
 
         // Updating the camera position
-        cameraX = p_gameMgr->herosMgr->heroInstance->posX - herosToLeftScreenBorder;
-        cameraY = p_gameMgr->herosMgr->heroInstance->posY - herosToBottomScreenBorder;
+        if(!p_gameMgr->herosMgr->heroInstance->isDead){
+            cameraX = p_gameMgr->herosMgr->heroInstance->posX - herosToLeftScreenBorder;
+            cameraY = p_gameMgr->herosMgr->heroInstance->posY - herosToBottomScreenBorder;
+        }
 
         // Updating the coord of the igloo at level end
         endLevelPosCurr.x = endLevelPosDefault.x - cameraX;
@@ -162,9 +172,19 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
             }
         }
 
+        // Back to level menu after a while
+        if(isLevelCleared){
+            timeBeforeExiting -= loopTime;
+            if(timeBeforeExiting <= 0){
+                exitStatut = 2;
+                break;
+            }
+        }
 
 
-        // When game windows is not focus loopTime causes some collisions bugs
+
+
+        // When game windows is not focus the loopTime become too big and causes some collisions bugs
         if (loopTime < 80){
             refreshGameByGameManager(p_gameMgr, currTime, loopTime, SDL_GetWindowSurface(p_window)->w,SDL_GetWindowSurface(p_window)->h, cameraX, cameraY);
 
@@ -194,8 +214,16 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
               //  break;
             //}
         }
+        // If tux goes out of the screen after he died => back to level menu
+        if(p_gameMgr->herosMgr->heroInstance->isDead && - p_gameMgr->herosMgr->heroInstance->posY - herosToBottomScreenBorder > 0 ){
+            if(p_gameMgr->herosMgr->heroInstance->lifesLeft >= 0){
+                exitStatut = 2;
+                break;
+            }else{
 
+            }
 
+        }
 
 
     //--------------------------------Laying out ---------------------------------------------------------------------------------------
@@ -209,7 +237,11 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
         SDL_BlitSurface(endLevelCursor, NULL, SDL_GetWindowSurface(p_window), &endLevelPosCurr);
 
         if(!isTuxInsideIgloo){
-            displayHeros(p_gameMgr->herosMgr, p_window, herosToLeftScreenBorder, herosToBottomScreenBorder);
+            if(p_gameMgr->herosMgr->heroInstance->isDead){
+                displayHeros(p_gameMgr->herosMgr, p_window, herosToLeftScreenBorder, p_gameMgr->herosMgr->heroInstance->posY + herosToBottomScreenBorder);
+            }else{
+                displayHeros(p_gameMgr->herosMgr, p_window, herosToLeftScreenBorder, herosToBottomScreenBorder);
+            }
         }
 
 
@@ -222,8 +254,11 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
         setTextLayout(p_window, temp_str, 5, font1, textColor, lifeLeftPosText);
         sprintf(temp_str, "%d", p_gameMgr->herosMgr->heroInstance->nbCoins);
         setTextLayout(p_window, temp_str, 5, font1, textColor, coinPosText);
-        //setTextLayout(p_window, setTimeLayout(currLevelManager->currLevel->currTime,4)
-                      //, 4, font1, timeLeftColor, timeLeftPosText);
+        if(isLevelCleared){
+            setTextLayout(p_window, setTimeLayout(timeAtEnd, 4), 4, font1, timeLeftColor, timeLeftPosText);
+        }else{
+            setTextLayout(p_window, setTimeLayout(p_gameMgr->levelManager->currLevel->timeLeft, 4), 4, font1, timeLeftColor, timeLeftPosText);
+        }
 
         // Warning when time is running out
         if (displayTimeWarning){
@@ -243,27 +278,31 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
             setTextLayout(p_window,
                         p_gameMgr->translaManager->allTranslations[37]->sentence[p_gameMgr->translaManager->currLanguageId],
                         p_gameMgr->translaManager->allTranslations[37]->sentenceSize, font1, textColor2, textPosTime);
-            sprintf(temp_str, "%d", 100);
             textPosTime.x += 180;
-            setTextLayout(p_window, temp_str, 5, font1, textColor2, textPosTime);
+            setTextLayout(p_window, setTimeLayout(timeAtEnd, 5), 8, font1, textColor2, textPosTime);
             textPosTime.x -= 180;
 
             // Killed enemies
             setTextLayout(p_window,
                         p_gameMgr->translaManager->allTranslations[38]->sentence[p_gameMgr->translaManager->currLanguageId],
                         p_gameMgr->translaManager->allTranslations[38]->sentenceSize, font1, textColor2, textPosEne);
-            sprintf(temp_str, "%d", 10);
+
+
+            sprintf(temp_str, "%d", nbEnemiesAtStart - p_gameMgr->levelManager->currLevel->enemyInstancesSize);
+            strcat(temp_str, "/");
+            sprintf(temp_str2, "%d", nbEnemiesAtStart);
+            strcat(temp_str, temp_str2);
             textPosEne.x += 180;
-            setTextLayout(p_window, temp_str, 5, font1, textColor2, textPosEne);
+            setTextLayout(p_window, temp_str, 8, font1, textColor2, textPosEne);
             textPosEne.x -= 180;
 
             // Average FPS
             setTextLayout(p_window,
                         p_gameMgr->translaManager->allTranslations[39]->sentence[p_gameMgr->translaManager->currLanguageId],
                         p_gameMgr->translaManager->allTranslations[39]->sentenceSize, font1, textColor2, textPosFPS);
-            sprintf(temp_str, "%d", (int)180.5);
+            sprintf(temp_str, "%d", averageFPSAtLevelEnd);
             textPosFPS.x += 180;
-            setTextLayout(p_window, temp_str, 5, font1, textColor2, textPosFPS);
+            setTextLayout(p_window, temp_str, 8, font1, textColor2, textPosFPS);
             textPosFPS.x -= 180;
         }
 

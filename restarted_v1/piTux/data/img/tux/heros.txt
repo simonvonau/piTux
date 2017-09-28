@@ -9,7 +9,7 @@ _______________________
 [Sprite];0;data/img/tux/small/idle-0-left.png;
 [Sprite];1;data/img/tux/small/idle-1-left.png;
 _______________________
-[Action];2;2;300;49;48;10;
+[Action];2;2;100;49;48;10;
 [Sprite];0;data/img/tux/small/gameover-0.png;
 [Sprite];1;data/img/tux/small/gameover-1.png;
 _______________________

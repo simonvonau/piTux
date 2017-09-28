@@ -210,20 +210,18 @@ void refreshGameByGameManager(GameManager *p_gameMgr, int p_currentTime, int p_l
     int i;
     int leftLimit = p_deplaX - COLLIDER_MARGIN;
     int rightLimit = p_deplaX + COLLIDER_MARGIN + p_screenWidth;
-    int topLimit = p_deplaY + COLLIDER_MARGIN + p_screenHeight;
-    int bottomLimit = p_deplaY - COLLIDER_MARGIN;
     EnemyInstance * currEnemyInstance;
 
     // Refresh the level (ie. enemy, bonus, blocks)
     refreshLevelByLevelManager(p_gameMgr->levelManager->currLevel, p_gameMgr->collMgr, p_loopTime
-                    ,p_gameMgr->allBlocks, p_gameMgr->allBonus, p_gameMgr->allEnemies, p_gameMgr->fireBullet, leftLimit+100, rightLimit-100, topLimit-100, bottomLimit+100);
+                    ,p_gameMgr->allBlocks, p_gameMgr->allBonus, p_gameMgr->allEnemies, p_gameMgr->fireBullet, leftLimit+100, rightLimit-100);
     // Refresh Tux
     refreshHerosInstance(p_gameMgr->herosMgr->heroInstance, p_gameMgr->herosMgr->heros, p_currentTime, p_loopTime);
 
 
 
     // Check ALL the collision of the game (of course just the displayed part of the level)
-    updateCollisions(p_gameMgr->collMgr, leftLimit, rightLimit, bottomLimit, topLimit);
+    updateCollisions(p_gameMgr->collMgr, leftLimit, rightLimit, -2000, 2000);
 
 
 
@@ -231,7 +229,7 @@ void refreshGameByGameManager(GameManager *p_gameMgr, int p_currentTime, int p_l
     updateHeroBehaviourAfterCollisionDetection(p_gameMgr->herosMgr->heroInstance, p_gameMgr->herosMgr->heros, p_gameMgr->collMgr, p_currentTime, p_loopTime, p_gameMgr->levelManager, p_gameMgr->fireBullet);
 
     updateLevelAfterCollisionsDetection(p_gameMgr->levelManager, p_gameMgr->collMgr, p_currentTime, p_loopTime,
-                                        leftLimit, rightLimit, bottomLimit, topLimit, p_gameMgr->allBonus, p_gameMgr->allEnemies, p_gameMgr->allBonusSize);
+                                        leftLimit, rightLimit, p_gameMgr->allBonus, p_gameMgr->allEnemies, p_gameMgr->allBonusSize);
 
     // Clear the unused memory by removing useless items from the level
     cleanLevelMemory(p_gameMgr);

@@ -30,15 +30,15 @@ int getBlockInstanceId(Level *p_lev, int p_clicX, int p_clicY);
 
 void addBulletInstanceFromLevelMgr(ColliderManager *p_collMgr, LevelManager* p_levMgr, int p_posX, int p_posY, FireBullet *p_fb, int p_directionX);
 
-void refreshLevelByLevelManager(Level *p_lev, ColliderManager *p_collMgr, int p_loopTime, Block **p_allBlocks, Bonus **p_allBonus, Enemy **p_allEnemies, FireBullet *p_fireBullet, int p_leftLimit, int p_rightLimit, int p_topLimit, int p_bottomLimit);
+void refreshLevelByLevelManager(Level *p_lev, ColliderManager *p_collMgr, int p_loopTime, Block **p_allBlocks, Bonus **p_allBonus, Enemy **p_allEnemies, FireBullet *p_fireBullet, int p_leftLimit, int p_rightLimit);
 void displayLevelByLevelManager(Level *p_lev, SDL_Window *p_window, int p_isGameMode, int p_deplaX, int p_deplaY
                   , Block **p_allBlocks, Bonus **p_allBonus, Enemy **p_allEnemies, FireBullet *p_fireBullet);
 
 
-void updateLevelAfterCollisionsDetection(LevelManager* p_levMgr, ColliderManager *p_collMgr, int p_currentTime, int p_loopTime, int p_minX, int p_maxX, int p_minY, int p_maxY, Bonus** p_allBonus, Enemy **p_allEnemies, int p_allBonusSize);
-void updateEnemyAfterColliding(LevelManager* p_levMgr, ColliderManager *p_collMgr, int p_loopTime, Enemy ** p_allEnemies, int p_minX, int p_maxX, int p_minY, int p_maxY);
-void updateBlocksAfterColliding(LevelManager* p_levMgr, ColliderManager *p_collMgr, int p_currentTime, int p_loopTime, Bonus** p_allBonus, int p_allBonusSize, int p_minX, int p_maxX, int p_minY, int p_maxY);
-void updateBonusAfterColliding(LevelManager* p_levMgr, ColliderManager *p_collMgr, int p_currentTime, int p_loopTime, int p_minX, int p_maxX, int p_minY, int p_maxY);
+void updateLevelAfterCollisionsDetection(LevelManager* p_levMgr, ColliderManager *p_collMgr, int p_currentTime, int p_loopTime, int p_minX, int p_maxX, Bonus** p_allBonus, Enemy **p_allEnemies, int p_allBonusSize);
+void updateEnemyAfterColliding(LevelManager* p_levMgr, ColliderManager *p_collMgr, int p_loopTime, Enemy ** p_allEnemies, int p_minX, int p_maxX);
+void updateBlocksAfterColliding(LevelManager* p_levMgr, ColliderManager *p_collMgr, int p_currentTime, int p_loopTime, Bonus** p_allBonus, int p_allBonusSize, int p_minX, int p_maxX);
+void updateBonusAfterColliding(LevelManager* p_levMgr, ColliderManager *p_collMgr, int p_currentTime, int p_loopTime, int p_minX, int p_maxX);
 void updateFireBulletAfterColliding(LevelManager* p_levMgr, ColliderManager *p_collMgr, int p_currentTime, int p_loopTime);
 
 void saveLevelByManager(LevelManager* p_levMgr);

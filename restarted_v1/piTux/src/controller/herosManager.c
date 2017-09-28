@@ -35,127 +35,141 @@ void updateHeroBehaviourAfterCollisionDetection(HeroInstance *p_herosInstance, H
     int isAboveEnemy = 0;
     int isTouchingEnemy = 0;
 
-    // Collision detection: get all the colliders which are colliding with the heros
-    getColliderTouching(p_collMgr, p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->id
-                        , &contactPoints, &contactPointsSize);
-    for (i = 0; i < contactPointsSize; i++){
-        switch(contactPoints[i]->ownerTag){
-            case tag_bonus_coin:
-                p_herosInstance->nbCoins += 1;
-                if(p_herosInstance->nbCoins >= 100){
-                    p_herosInstance->nbCoins -= 100;
-                    p_herosInstance->lifesLeft += 1;
-                }
-                break;
-            case tag_bonus_egg:
-                if(p_herosInstance->currState == 0){// To avoid a fire tux (state 2) to become a big tux (state 1)
-                    if(p_herosInstance->lastDirection == 'r'){
-                        changeHerosState(p_herosInstance, 1, 0, 0);
-                    }else{
-                        changeHerosState(p_herosInstance, 1, 1, 0);
-                    }
-                }
-                break;
-            case tag_bonus_flower:
-                if(p_herosInstance->lastDirection == 'r'){
-                    changeHerosState(p_herosInstance, 2, 0, 0);
-                }else{
-                    changeHerosState(p_herosInstance, 2, 1, 0);
-                }
-                break;
-            case tag_explosion:
-                isTouchingEnemy = 1;
-                break;
-            default:
-                // Testing if the hero is above the colliding object
-                if( p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->lastPosY >= contactPoints[i]->posY + contactPoints[i]->height){
-                    p_herosInstance->posY = contactPoints[i]->posY + contactPoints[i]->height;
-                    isAboveSomething = 1;
-                    // Bouncing on an enemy
-                    if(contactPoints[i]->ownerTag == tag_enemy_fluffy || contactPoints[i]->ownerTag == tag_enemy_bomb || contactPoints[i]->ownerTag == tag_enemy_iceblock){
-                        isAboveEnemy = 1;
-                    }
-                // Testing if the hero is under the colliding object
-                }else if(p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->lastPosY + p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->height <= contactPoints[i]->posY){
-                    p_herosInstance->posY = contactPoints[i]->posY - p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->height;
-                    // Stop the jump
-                    p_herosInstance->jumpStartTime = -1;
-                    p_herosInstance->jumpDuration = -1;
-                    // Touching an enemy
-                    if(contactPoints[i]->ownerTag == tag_enemy_fluffy || contactPoints[i]->ownerTag == tag_enemy_bomb || contactPoints[i]->ownerTag == tag_enemy_iceblock){
-                        isTouchingEnemy = 1;
-                    }
-                }else{// Lateral collision
-                    // If left touching
-                    if (p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->posX < contactPoints[i]->posX){
-                        p_herosInstance->posX = contactPoints[i]->posX - p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->width;
-                    }else{ // If right touching
-                        p_herosInstance->posX = contactPoints[i]->posX + contactPoints[i]->width;
-                    }
-                    // Touching an enemy
-                    if(contactPoints[i]->ownerTag == tag_enemy_fluffy || contactPoints[i]->ownerTag == tag_enemy_bomb || contactPoints[i]->ownerTag == tag_enemy_iceblock){
-                        isTouchingEnemy = 1;
-                    }
-                }
-        }// End of switch
-    }
+    if(!p_herosInstance->isDead){
 
-    // Tux becomes smaller when he touches an enemy
-    if(isTouchingEnemy && p_herosInstance->godModeDuration <= 0){
-        printf("the hero died");
-        if(p_herosInstance->currState == 1 || p_herosInstance->currState == 2){
-            p_herosInstance->godModeDuration = 1000;
-            if(p_herosInstance->lastDirection == 'r'){
-                changeHerosState(p_herosInstance, p_herosInstance->currState - 1, 0, 0);
+        // Collision detection: get all the colliders which are colliding with the heros
+        getColliderTouching(p_collMgr, p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->id
+                            , &contactPoints, &contactPointsSize);
+        for (i = 0; i < contactPointsSize; i++){
+            switch(contactPoints[i]->ownerTag){
+                case tag_bonus_coin:
+                    p_herosInstance->nbCoins += 1;
+                    if(p_herosInstance->nbCoins >= 100){
+                        p_herosInstance->nbCoins -= 100;
+                        p_herosInstance->lifesLeft += 1;
+                    }
+                    break;
+                case tag_bonus_egg:
+                    if(p_herosInstance->currState == 0){// To avoid a fire tux (state 2) to become a big tux (state 1)
+                        if(p_herosInstance->lastDirection == 'r'){
+                            changeHerosState(p_herosInstance, 1, 0, 0);
+                        }else{
+                            changeHerosState(p_herosInstance, 1, 1, 0);
+                        }
+                    }
+                    break;
+                case tag_bonus_flower:
+                    if(p_herosInstance->lastDirection == 'r'){
+                        changeHerosState(p_herosInstance, 2, 0, 0);
+                    }else{
+                        changeHerosState(p_herosInstance, 2, 1, 0);
+                    }
+                    break;
+                case tag_explosion:
+                    isTouchingEnemy = 1;
+                    break;
+                default:
+                    // Testing if the hero is above the colliding object
+                    if( p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->lastPosY >= contactPoints[i]->posY + contactPoints[i]->height){
+                        p_herosInstance->posY = contactPoints[i]->posY + contactPoints[i]->height;
+                        isAboveSomething = 1;
+                        // Bouncing on an enemy
+                        if(contactPoints[i]->ownerTag == tag_enemy_fluffy || contactPoints[i]->ownerTag == tag_enemy_bomb || contactPoints[i]->ownerTag == tag_enemy_iceblock){
+                            isAboveEnemy = 1;
+                        }
+                    // Testing if the hero is under the colliding object
+                    }else if(p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->lastPosY + p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->height <= contactPoints[i]->posY){
+                        p_herosInstance->posY = contactPoints[i]->posY - p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->height;
+                        // Stop the jump
+                        p_herosInstance->jumpStartTime = -1;
+                        p_herosInstance->jumpDuration = -1;
+                        // Touching an enemy
+                        if(contactPoints[i]->ownerTag == tag_enemy_fluffy || (contactPoints[i]->ownerTag == tag_enemy_bomb && contactPoints[i]->ownerState != state_bomb_primed) || contactPoints[i]->ownerTag == tag_enemy_iceblock){
+                            isTouchingEnemy = 1;
+                        }
+                    }else{// Lateral collision
+                        // If left touching
+                        if (p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->posX < contactPoints[i]->posX){
+                            p_herosInstance->posX = contactPoints[i]->posX - p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->width;
+                        }else{ // If right touching
+                            p_herosInstance->posX = contactPoints[i]->posX + contactPoints[i]->width;
+                        }
+                        // Touching an enemy
+                        if(contactPoints[i]->ownerTag == tag_enemy_fluffy || (contactPoints[i]->ownerTag == tag_enemy_bomb && contactPoints[i]->ownerState != state_bomb_primed) || contactPoints[i]->ownerTag == tag_enemy_iceblock){
+                            isTouchingEnemy = 1;
+                        }
+                    }
+            }// End of switch
+        }
+
+        // Tux dies if he fall under a given high
+        if(p_herosInstance->posY <= DEAD_LIMIT_Y && !p_herosInstance->isDead){
+            heroInstanceDeath(p_herosInstance, p_heros, p_currentTime);
+        }
+
+        // Tux becomes smaller when he touches an enemy
+        if(isTouchingEnemy && p_herosInstance->godModeDuration <= 0 && !p_herosInstance->isDead){
+            // Big or fire tux will become smaller
+            if(p_herosInstance->currState == 1 || p_herosInstance->currState == 2){
+                p_herosInstance->godModeDuration = 1000;
+                if(p_herosInstance->lastDirection == 'r'){
+                    changeHerosState(p_herosInstance, p_herosInstance->currState - 1, 0, 0);
+                }else{
+                    changeHerosState(p_herosInstance, p_herosInstance->currState - 1, 1, 0);
+                }
             }else{
-                changeHerosState(p_herosInstance, p_herosInstance->currState - 1, 1, 0);
+                // Small tux will die
+                heroInstanceDeath(p_herosInstance, p_heros, p_currentTime);
             }
         }
-    }
 
-    // Firing
-    if(p_herosInstance->fireKeyPressed && p_herosInstance->currState == 2 && p_herosInstance->timeBeforeNextShot <= 0 && p_herosInstance->hasReleaseFireKey){
-        p_herosInstance->hasReleaseFireKey = 0;
-        if(p_herosInstance->lastDirection == 'r'){
-            addBulletInstanceFromLevelMgr(p_collMgr, p_levMgr, p_herosInstance->posX + p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->width + 1
-                , p_herosInstance->posY + p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->height / 2, p_fireBullet, 1);
-            changeHerosAction(p_herosInstance, 7, 0);
-        }else{
-            addBulletInstanceFromLevelMgr(p_collMgr, p_levMgr, p_herosInstance->posX - 1 - p_fireBullet->refColl->width, p_herosInstance->posY + p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->height / 2, p_fireBullet, -1);
-            changeHerosAction(p_herosInstance, 8, 0);
+        // Firing
+        if(p_herosInstance->fireKeyPressed && p_herosInstance->currState == 2 && p_herosInstance->timeBeforeNextShot <= 0 && p_herosInstance->hasReleaseFireKey){
+            p_herosInstance->hasReleaseFireKey = 0;
+            if(p_herosInstance->lastDirection == 'r'){
+                addBulletInstanceFromLevelMgr(p_collMgr, p_levMgr, p_herosInstance->posX + p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->width + 1
+                    , p_herosInstance->posY + p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->height / 2, p_fireBullet, 1);
+                changeHerosAction(p_herosInstance, 7, 0);
+            }else{
+                addBulletInstanceFromLevelMgr(p_collMgr, p_levMgr, p_herosInstance->posX - 1 - p_fireBullet->refColl->width, p_herosInstance->posY + p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->height / 2, p_fireBullet, -1);
+                changeHerosAction(p_herosInstance, 8, 0);
+            }
+
+            p_herosInstance->timeBeforeNextShot = TIME_BETWEEN_SHOTS;
         }
 
-        p_herosInstance->timeBeforeNextShot = TIME_BETWEEN_SHOTS;
-    }
+        // Is the heros is on the ground (or on an enemy)
+        if(isAboveSomething){
+            p_herosInstance->isTouchingGround = 1;
+            // Start a new jump
+            if(p_herosInstance->jumpKeyPressed && p_herosInstance->hasReleaseJumpKey){
+                p_herosInstance->hasReleaseJumpKey = 0;
+                if(p_herosInstance->lastDirection == 'r'){
+                    changeHerosAction(p_herosInstance, 5, 0);
+                }else{
+                    changeHerosAction(p_herosInstance, 6, 0);
+                }
+                p_herosInstance->jumpStartTime = p_currentTime;
+                p_herosInstance->jumpDuration = 0;
+            }else{ // When the heros touch the ground after falling
+                if(p_herosInstance->currAction == 5){
+                    changeHerosAction(p_herosInstance, 0, 0);
+                }
+                p_herosInstance->jumpDuration = -1;
+            }
+        }
 
-    // Is the heros is on the ground (or on an enemy)
-    if(isAboveSomething){
-        p_herosInstance->isTouchingGround = 1;
-        // Start a new jump
-        if(p_herosInstance->jumpKeyPressed && p_herosInstance->hasReleaseJumpKey){
-            p_herosInstance->hasReleaseJumpKey = 0;
+        // Bouncing on enemies (a jump with 30% of the max jump high capacity)
+        if(isAboveEnemy && p_herosInstance->jumpDuration == -1){
+            p_herosInstance->jumpDuration = (int) p_heros->jumpDuration * 0.7;
+            p_herosInstance->jumpStartTime = p_currentTime;
             if(p_herosInstance->lastDirection == 'r'){
                 changeHerosAction(p_herosInstance, 5, 0);
             }else{
                 changeHerosAction(p_herosInstance, 6, 0);
             }
-            p_herosInstance->jumpStartTime = p_currentTime;
-            p_herosInstance->jumpDuration = 0;
-        }else{ // When the heros touch the ground after falling
-            if(p_herosInstance->currAction == 5){
-                changeHerosAction(p_herosInstance, 0, 0);
-            }
-            p_herosInstance->jumpDuration = -1;
         }
-    }
-    if(isAboveEnemy && p_herosInstance->jumpDuration == -1){
-        p_herosInstance->jumpDuration = (int) p_heros->jumpDuration * 0.7;
-        p_herosInstance->jumpStartTime = p_currentTime;
-        if(p_herosInstance->lastDirection == 'r'){
-            changeHerosAction(p_herosInstance, 5, 0);
-        }else{
-            changeHerosAction(p_herosInstance, 6, 0);
-        }
+
     }
 
     // Update Collider position
@@ -174,7 +188,7 @@ void moveHeros(Heros *p_heros, int p_direction, int p_loopTime){
 void displayHeros(HerosManager *p_herosMgr, SDL_Window *p_window, int p_displayedPosX, int p_displayedPosY){
 // Display the heros
     SDL_Rect objectPos = {0, 0, 0, 0};
-    objectPos.x = p_displayedPosX;;
+    objectPos.x = p_displayedPosX;
     objectPos.y = SDL_GetWindowSurface(p_window)->h - p_displayedPosY
         - p_herosMgr->heroInstance->herosColl[p_herosMgr->heroInstance->currState][p_herosMgr->heroInstance->currAction]->height;
 

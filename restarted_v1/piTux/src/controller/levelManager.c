@@ -46,35 +46,33 @@ void addBulletInstanceFromLevelMgr(ColliderManager *p_collMgr, LevelManager* p_l
     addBulletInstanceToLevel(p_levMgr->currLevel, p_posX, p_posY, tempColl, p_directionX, -1, p_fb->maxLifeTime);
 }//------------------------------------------------------------------------------------------------------------------------
 
-void refreshLevelByLevelManager(Level *p_lev, ColliderManager *p_collMgr, int p_loopTime, Block **p_allBlocks, Bonus **p_allBonus, Enemy **p_allEnemies, FireBullet *p_fireBullet, int p_leftLimit, int p_rightLimit, int p_topLimit, int p_bottomLimit){
+void refreshLevelByLevelManager(Level *p_lev, ColliderManager *p_collMgr, int p_loopTime, Block **p_allBlocks, Bonus **p_allBonus, Enemy **p_allEnemies, FireBullet *p_fireBullet, int p_leftLimit, int p_rightLimit){
 // Refresh the level (blockInstances,enemyInstances and bonusInstances)
     int i;
     BlockInstance *currBlockI;
     BonusInstance *currBonusI;
     EnemyInstance *currEneI;
     FireBulletInstance *currFBI;
+    p_lev->timeLeft -= p_loopTime;
 
     // Refreshing blockInstances
     for(i = 0; i < p_lev->blockInstancesSize; i++){
         currBlockI = p_lev->blockInstances[i];
-        if(currBlockI->posX + currBlockI->coll->width > p_leftLimit && currBlockI->posX < p_rightLimit
-           && currBlockI->posY + currBlockI->coll->height > p_bottomLimit && currBlockI->posY < p_topLimit){
+        if(currBlockI->posX + currBlockI->coll->width > p_leftLimit && currBlockI->posX < p_rightLimit){
             refreshBlockInstance(currBlockI, p_loopTime, *p_allBlocks[currBlockI->idBlock]);
         }
     }
     // Refreshing bonusInstances
     for(i = 0; i < p_lev->bonusInstancesSize; i++){
         currBonusI = p_lev->bonusInstances[i];
-        if(currBonusI->posX + currBonusI->coll->width > p_leftLimit && currBonusI->posX < p_rightLimit
-           && currBonusI->posY + currBonusI->coll->height > p_bottomLimit && currBonusI->posY < p_topLimit){
+        if(currBonusI->posX + currBonusI->coll->width > p_leftLimit && currBonusI->posX < p_rightLimit){
             refreshBonusInstance(currBonusI, p_loopTime, *p_allBonus[currBonusI->idBonus]);
         }
     }
     // Refreshing enemyInstances
     for(i = 0; i < p_lev->enemyInstancesSize; i++){
         currEneI = p_lev->enemyInstances[i];
-        if(currEneI->posX + currEneI->coll[currEneI->currentActionId]->width > p_leftLimit && currEneI->posX < p_rightLimit
-           && currEneI->posY + currEneI->coll[currEneI->currentActionId]->height > p_bottomLimit && currEneI->posY < p_topLimit){
+        if(currEneI->posX + currEneI->coll[currEneI->currentActionId]->width > p_leftLimit && currEneI->posX < p_rightLimit){
             refreshEnemyInstance(currEneI, p_loopTime, *p_allEnemies[currEneI->idEnemy]);
        }
     }
@@ -82,8 +80,7 @@ void refreshLevelByLevelManager(Level *p_lev, ColliderManager *p_collMgr, int p_
     // Refreshing FireBulletInstances
     for(i = 0; i < p_lev->fireBulletInstancesSize; i++){
         currFBI = p_lev->fireBulletInstances[i];
-        if(currFBI->posX + currFBI->coll->width > p_leftLimit && currFBI->posX < p_rightLimit
-           && currFBI->posY + currFBI->coll->height > p_bottomLimit && currFBI->posY < p_topLimit){
+        if(currFBI->posX + currFBI->coll->width > p_leftLimit && currFBI->posX < p_rightLimit){
             refreshFireBulletInstance(currFBI, *p_fireBullet, p_loopTime);
        }
     }
@@ -165,17 +162,17 @@ void displayLevelByLevelManager(Level *p_lev, SDL_Window *p_window, int p_isGame
 
 }//------------------------------------------------------------------------------------------------------------------------
 
-void updateLevelAfterCollisionsDetection(LevelManager* p_levMgr, ColliderManager *p_collMgr, int p_currentTime, int p_loopTime, int p_minX, int p_maxX, int p_minY, int p_maxY, Bonus** p_allBonus, Enemy **p_allEnemies, int p_allBonusSize){
+void updateLevelAfterCollisionsDetection(LevelManager* p_levMgr, ColliderManager *p_collMgr, int p_currentTime, int p_loopTime, int p_minX, int p_maxX, Bonus** p_allBonus, Enemy **p_allEnemies, int p_allBonusSize){
 // Update level's items after collisions detection
 
-    updateEnemyAfterColliding(p_levMgr, p_collMgr, p_loopTime, p_allEnemies, p_minX, p_maxX, p_minY, p_maxY);
-    updateBlocksAfterColliding(p_levMgr, p_collMgr, p_currentTime, p_loopTime, p_allBonus, p_allBonusSize, p_minX, p_maxX, p_minY, p_maxY);
-    updateBonusAfterColliding(p_levMgr, p_collMgr, p_currentTime, p_loopTime, p_minX, p_maxX, p_minY, p_maxY);
+    updateEnemyAfterColliding(p_levMgr, p_collMgr, p_loopTime, p_allEnemies, p_minX, p_maxX);
+    updateBlocksAfterColliding(p_levMgr, p_collMgr, p_currentTime, p_loopTime, p_allBonus, p_allBonusSize, p_minX, p_maxX);
+    updateBonusAfterColliding(p_levMgr, p_collMgr, p_currentTime, p_loopTime, p_minX, p_maxX);
     updateFireBulletAfterColliding(p_levMgr, p_collMgr, p_currentTime, p_loopTime);
 
 }//------------------------------------------------------------------------------------------------------------------------
 
-void updateEnemyAfterColliding(LevelManager* p_levMgr, ColliderManager *p_collMgr, int p_loopTime, Enemy ** p_allEnemies, int p_minX, int p_maxX, int p_minY, int p_maxY){
+void updateEnemyAfterColliding(LevelManager* p_levMgr, ColliderManager *p_collMgr, int p_loopTime, Enemy ** p_allEnemies, int p_minX, int p_maxX){
 // Update enemies behaviour after the collision checking
     EnemyInstance * currEnemyInstance;
     int i;
@@ -183,9 +180,7 @@ void updateEnemyAfterColliding(LevelManager* p_levMgr, ColliderManager *p_collMg
         currEnemyInstance = p_levMgr->currLevel->enemyInstances[i];
         // Only update the displayed enemies
         if(currEnemyInstance->posX + currEnemyInstance->coll[currEnemyInstance->currentActionId]->width > p_minX
-           && currEnemyInstance->posX < p_maxX
-           && currEnemyInstance->posY + currEnemyInstance->coll[currEnemyInstance->currentActionId]->height > p_minY
-           && currEnemyInstance->posY < p_maxY){
+           && currEnemyInstance->posX < p_maxX){
             updateEnemyBehaviourAfterCollisionDetection(currEnemyInstance
                              , *p_allEnemies[currEnemyInstance->idEnemy]
                              , p_collMgr
@@ -194,7 +189,7 @@ void updateEnemyAfterColliding(LevelManager* p_levMgr, ColliderManager *p_collMg
     }
 }//------------------------------------------------------------------------------------------------------------------------
 
-void updateBlocksAfterColliding(LevelManager* p_levMgr, ColliderManager *p_collMgr, int p_currentTime, int p_loopTime, Bonus ** p_allBonus, int p_allBonusSize, int p_minX, int p_maxX, int p_minY, int p_maxY){
+void updateBlocksAfterColliding(LevelManager* p_levMgr, ColliderManager *p_collMgr, int p_currentTime, int p_loopTime, Bonus ** p_allBonus, int p_allBonusSize, int p_minX, int p_maxX){
 // Update each block after a collision
     Collider **contactPoints;
     Collider *newBonusInstanceColl;
@@ -207,9 +202,7 @@ void updateBlocksAfterColliding(LevelManager* p_levMgr, ColliderManager *p_collM
 
         // Refreshing only the elements displayed on the screen
         if(currBlockInst->posX + currBlockInst->coll->width > p_minX
-           && currBlockInst->posX < p_maxX
-           && currBlockInst->posY + currBlockInst->coll->height > p_minY
-           && currBlockInst->posY < p_maxY){
+           && currBlockInst->posX < p_maxX){
 
             getColliderTouching(p_collMgr, currBlockInst->coll->id, &contactPoints, &contactPointsSize);
 
@@ -270,7 +263,7 @@ void updateBlocksAfterColliding(LevelManager* p_levMgr, ColliderManager *p_collM
 
 }//------------------------------------------------------------------------------------------------------------------------
 
-void updateBonusAfterColliding(LevelManager* p_levMgr, ColliderManager *p_collMgr, int p_currentTime, int p_loopTime, int p_minX, int p_maxX, int p_minY, int p_maxY){
+void updateBonusAfterColliding(LevelManager* p_levMgr, ColliderManager *p_collMgr, int p_currentTime, int p_loopTime, int p_minX, int p_maxX){
 // Update each bonus after a collision
     Collider **contactPoints;
     int contactPointsSize;
@@ -280,9 +273,7 @@ void updateBonusAfterColliding(LevelManager* p_levMgr, ColliderManager *p_collMg
     for(i = 0; i < p_levMgr->currLevel->bonusInstancesSize; i++){
         currBonusIns = p_levMgr->currLevel->bonusInstances[i];
         if(currBonusIns->posX + currBonusIns->coll->width > p_minX
-           && currBonusIns->posX < p_maxX
-           && currBonusIns->posY + currBonusIns->coll->height > p_minY
-           && currBonusIns->posY < p_maxY){
+           && currBonusIns->posX < p_maxX){
             getColliderTouching(p_collMgr, currBonusIns->coll->id, &contactPoints, &contactPointsSize);
 
             for(j = 0; j < contactPointsSize; j++){
