@@ -32,6 +32,7 @@ void updateHeroBehaviourAfterCollisionDetection(HeroInstance *p_herosInstance, H
     int contactPointsSize;
     int i;
     int isAboveSomething = 0;
+    int isAboveEnemy = 0;
     int isTouchingEnemy = 0;
 
     // Collision detection: get all the colliders which are colliding with the heros
@@ -72,8 +73,7 @@ void updateHeroBehaviourAfterCollisionDetection(HeroInstance *p_herosInstance, H
                     isAboveSomething = 1;
                     // Bouncing on an enemy
                     if(contactPoints[i]->ownerTag == tag_enemy_fluffy || contactPoints[i]->ownerTag == tag_enemy_bomb || contactPoints[i]->ownerTag == tag_enemy_iceblock){
-                        p_herosInstance->jumpStartTime = p_currentTime;
-                        p_herosInstance->jumpDuration = p_heros->jumpDuration / 2;
+                        isAboveEnemy = 1;
                     }
                 // Testing if the hero is under the colliding object
                 }else if(p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->lastPosY + p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->height <= contactPoints[i]->posY){
@@ -114,8 +114,7 @@ void updateHeroBehaviourAfterCollisionDetection(HeroInstance *p_herosInstance, H
     }
 
     // Firing
-    if(p_herosInstance->fireKeyPressed && p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->ownerState == state_tux_fire
-       && p_herosInstance->timeBeforeNextShot <= 0 && p_herosInstance->hasReleaseFireKey){
+    if(p_herosInstance->fireKeyPressed && p_herosInstance->currState == 2 && p_herosInstance->timeBeforeNextShot <= 0 && p_herosInstance->hasReleaseFireKey){
         p_herosInstance->hasReleaseFireKey = 0;
         if(p_herosInstance->lastDirection == 'r'){
             addBulletInstanceFromLevelMgr(p_collMgr, p_levMgr, p_herosInstance->posX + p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->width + 1
@@ -142,15 +141,21 @@ void updateHeroBehaviourAfterCollisionDetection(HeroInstance *p_herosInstance, H
             }
             p_herosInstance->jumpStartTime = p_currentTime;
             p_herosInstance->jumpDuration = 0;
-        }else{ // When the heros touch the ground (or an ennemy, bonus,...) after falling
+        }else{ // When the heros touch the ground after falling
             if(p_herosInstance->currAction == 5){
                 changeHerosAction(p_herosInstance, 0, 0);
             }
             p_herosInstance->jumpDuration = -1;
         }
-    }else{
-        p_herosInstance->isTouchingGround = 0;
-        p_herosInstance->jumpStartTime = -1;
+    }
+    if(isAboveEnemy && p_herosInstance->jumpDuration == -1){
+        p_herosInstance->jumpDuration = (int) p_heros->jumpDuration * 0.7;
+        p_herosInstance->jumpStartTime = p_currentTime;
+        if(p_herosInstance->lastDirection == 'r'){
+            changeHerosAction(p_herosInstance, 5, 0);
+        }else{
+            changeHerosAction(p_herosInstance, 6, 0);
+        }
     }
 
     // Update Collider position

@@ -162,10 +162,11 @@ void jump(HeroInstance *p_herosInstance, Heros *p_heros, int p_loopTime){
     // When the heros jump (just the step when he go up)
     int movementY;
     float coeff = 1;
+
     // Increase the jump high when the key jump is still pressed
-    if(p_herosInstance->jumpKeyPressed){
+    /*if(p_herosInstance->jumpKeyPressed){
         coeff = 1.5;
-    }
+    }*/
 
     if(p_herosInstance->jumpDuration >= 0 && p_herosInstance->jumpDuration < p_heros->jumpDuration * coeff){
         // Set the right or left sprite

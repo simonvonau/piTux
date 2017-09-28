@@ -1,14 +1,18 @@
 #include "gamePage.h"
 
 int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize, GameManager *p_gameMgr){
-    SDL_Surface *background1, *lifesLeft, *coinLeft, *timeLeft, *redBackground;
+    SDL_Surface *background1, *lifesLeft, *coinLeft, *timeLeft, *redBackground, *endLevelCursor, *endLevelFrame;
     TTF_Font *font1 = TTF_OpenFont("data/fonts/dejavu/DejaVuSans.ttf", 20);
     TTF_Font *font2 = TTF_OpenFont("data/fonts/dejavu/DejaVuSans.ttf", 30);
     SDL_Event event, lastEvent;
 
     SDL_Color textColor = {0, 0, 0};
+    SDL_Color textColor2 = {255, 255, 255};
     SDL_Color timeLeftColor = {0, 0, 0};
-    SDL_Rect textPos = { 300, 100, 0, 0};
+    SDL_Rect textPosCongrat = { 300, 170, 0, 0};
+    SDL_Rect textPosTime = { 200, 220, 0, 0};
+    SDL_Rect textPosEne = { 200, 250, 0, 0};
+    SDL_Rect textPosFPS = { 200, 280, 0, 0};
     SDL_Rect nullPos = { 0, 0, 0, 0};
     SDL_Rect coinPos = { SDL_GetWindowSurface(p_window)->w-80, 30, 0, 0};
     SDL_Rect coinPosText = { SDL_GetWindowSurface(p_window)->w-40, 35, 0, 0};
@@ -16,6 +20,9 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
     SDL_Rect lifeLeftPosText = { SDL_GetWindowSurface(p_window)->w-40, 5, 0, 0};
     SDL_Rect timeLeftPos = { SDL_GetWindowSurface(p_window)->w-80, 60, 0, 0};
     SDL_Rect timeLeftPosText = { SDL_GetWindowSurface(p_window)->w-40, 65, 0, 0};
+    SDL_Rect endLevelPosCurr = { 0, 0, 0, 0};
+    SDL_Rect endLevelPosDefault = { 0, 0, 0, 0};
+    SDL_Rect endLevelFramePos = {150, 150, 300, 100};
 
     int herosToLeftScreenBorder = 200;
     int herosToBottomScreenBorder = 200;
@@ -24,6 +31,9 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
     int cameraX = 0;
     int cameraY = 0;
     char temp_str[10];
+    int isTuxInsideIgloo = 0;
+    int iglooEntranceDecal = 180; // The space between the igloo sprite posX and its entrance
+    int isLevelCleared = 0;
 
 
 
@@ -50,8 +60,13 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
     coinLeft = loadImage("data/img/icon/coin.png");
     timeLeft = loadImage("data/img/icon/time.png");
     redBackground = loadImage("data/img/background/red_background.png");
+    endLevelCursor = loadImage("data/img/cursor/level_end.png");
+    endLevelFrame = loadImage("data/img/background/score-backdrop.png");
 
-    SDL_FlushEvent(SDL_KEYDOWN);
+    endLevelPosDefault.x = p_gameMgr->levelManager->currLevel->finishPosX;
+    endLevelPosDefault.y = SDL_GetWindowSurface(p_window)->h - endLevelCursor->h - 96;
+
+    //SDL_FlushEvent(SDL_KEYDOWN);
     while ( 1 ){
     //--------------------------Events management-----------------------------------------------------------------------
         SDL_PollEvent(&event);
@@ -75,9 +90,9 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
         }
 
         // Shoot
-        if( event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_SPACE){
+        if( event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_f){
             p_gameMgr->herosMgr->heroInstance->fireKeyPressed = 1;
-        }else if(event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_SPACE){
+        }else if(event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_f){
             p_gameMgr->herosMgr->heroInstance->fireKeyPressed = 0;
             p_gameMgr->herosMgr->heroInstance->hasReleaseFireKey = 1;
         }
@@ -89,23 +104,26 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
             p_gameMgr->herosMgr->heroInstance->jumpKeyPressed = 0;
             p_gameMgr->herosMgr->heroInstance->hasReleaseJumpKey = 1;
         }
-        // Move to right
-        if( event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_RIGHT){
-            p_gameMgr->herosMgr->heroInstance->rightKeyPressed = 1;
-        }else if(event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_RIGHT){
-            p_gameMgr->herosMgr->heroInstance->rightKeyPressed = 0;
-        }
+
         // Move to left
         if( event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_LEFT){
             p_gameMgr->herosMgr->heroInstance->leftKeyPressed = 1;
         }else if(event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_LEFT){
             p_gameMgr->herosMgr->heroInstance->leftKeyPressed = 0;
         }
+        // Move to right
+        if( event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_RIGHT){
+            p_gameMgr->herosMgr->heroInstance->rightKeyPressed = 1;
+        }else if(event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_RIGHT){
+            p_gameMgr->herosMgr->heroInstance->rightKeyPressed = 0;
+        }
     //--------------------------Management-----------------------------------------------------------------------
         currTime = SDL_GetTicks();
         loopTime = currTime - lastTime;
         lastTime = currTime;
         currFPS = 1000 / loopTime;
+
+
 
         // Time management
         sumTime += loopTime;
@@ -116,9 +134,33 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
             sumTime = 0;
         }
 
-        // Update the camera position
+        // Updating the camera position
         cameraX = p_gameMgr->herosMgr->heroInstance->posX - herosToLeftScreenBorder;
         cameraY = p_gameMgr->herosMgr->heroInstance->posY - herosToBottomScreenBorder;
+
+        // Updating the coord of the igloo at level end
+        endLevelPosCurr.x = endLevelPosDefault.x - cameraX;
+        endLevelPosCurr.y = endLevelPosDefault.y + cameraY;
+
+        // When tux come at level end
+        if(p_gameMgr->herosMgr->heroInstance->posX >= endLevelPosDefault.x){
+            isLevelCleared = 1;
+            p_gameMgr->herosMgr->heroInstance->leftKeyPressed = 0;
+            p_gameMgr->herosMgr->heroInstance->jumpKeyPressed = 0;
+            p_gameMgr->herosMgr->heroInstance->fireKeyPressed = 0;
+
+            // When tux enters the igloo his sprite has to stop being displayed
+            if(p_gameMgr->herosMgr->heroInstance->posX >= endLevelPosDefault.x + iglooEntranceDecal){
+                isTuxInsideIgloo = 1;
+            }
+
+            // At level end tux has to go right until he enters his igloo
+            if(isTuxInsideIgloo){
+                p_gameMgr->herosMgr->heroInstance->rightKeyPressed = 0;
+            }else{
+                p_gameMgr->herosMgr->heroInstance->rightKeyPressed = 1;
+            }
+        }
 
 
 
@@ -163,7 +205,14 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
         displayLevelByLevelManager(p_gameMgr->levelManager->currLevel, p_window, 1, cameraX, cameraY
                      ,p_gameMgr->allBlocks, p_gameMgr->allBonus, p_gameMgr->allEnemies, p_gameMgr->fireBullet);
 
-        displayHeros(p_gameMgr->herosMgr, p_window, herosToLeftScreenBorder, herosToBottomScreenBorder);
+        // Displaying the end of level
+        SDL_BlitSurface(endLevelCursor, NULL, SDL_GetWindowSurface(p_window), &endLevelPosCurr);
+
+        if(!isTuxInsideIgloo){
+            displayHeros(p_gameMgr->herosMgr, p_window, herosToLeftScreenBorder, herosToBottomScreenBorder);
+        }
+
+
 
         // Lifes, coins and timeleft
         SDL_BlitSurface(lifesLeft, NULL, SDL_GetWindowSurface(p_window), &lifeLeftPos);
@@ -181,6 +230,43 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
             SDL_BlitSurface(redBackground, NULL, SDL_GetWindowSurface(p_window), &nullPos);
         }
 
+
+        // The frame with the score at the end of the level
+        if(isLevelCleared){
+            SDL_BlitSurface(endLevelFrame, NULL, SDL_GetWindowSurface(p_window), &endLevelFramePos);
+
+            // Congratulation message
+            setTextLayout(p_window,
+                        p_gameMgr->translaManager->allTranslations[36]->sentence[p_gameMgr->translaManager->currLanguageId],
+                        p_gameMgr->translaManager->allTranslations[36]->sentenceSize, font2, textColor2, textPosCongrat);
+            // Time left
+            setTextLayout(p_window,
+                        p_gameMgr->translaManager->allTranslations[37]->sentence[p_gameMgr->translaManager->currLanguageId],
+                        p_gameMgr->translaManager->allTranslations[37]->sentenceSize, font1, textColor2, textPosTime);
+            sprintf(temp_str, "%d", 100);
+            textPosTime.x += 180;
+            setTextLayout(p_window, temp_str, 5, font1, textColor2, textPosTime);
+            textPosTime.x -= 180;
+
+            // Killed enemies
+            setTextLayout(p_window,
+                        p_gameMgr->translaManager->allTranslations[38]->sentence[p_gameMgr->translaManager->currLanguageId],
+                        p_gameMgr->translaManager->allTranslations[38]->sentenceSize, font1, textColor2, textPosEne);
+            sprintf(temp_str, "%d", 10);
+            textPosEne.x += 180;
+            setTextLayout(p_window, temp_str, 5, font1, textColor2, textPosEne);
+            textPosEne.x -= 180;
+
+            // Average FPS
+            setTextLayout(p_window,
+                        p_gameMgr->translaManager->allTranslations[39]->sentence[p_gameMgr->translaManager->currLanguageId],
+                        p_gameMgr->translaManager->allTranslations[39]->sentenceSize, font1, textColor2, textPosFPS);
+            sprintf(temp_str, "%d", (int)180.5);
+            textPosFPS.x += 180;
+            setTextLayout(p_window, temp_str, 5, font1, textColor2, textPosFPS);
+            textPosFPS.x -= 180;
+        }
+
         // Window refreshing
         SDL_UpdateWindowSurface(p_window);
         lastEvent = event;
@@ -192,6 +278,8 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
     SDL_FreeSurface(lifesLeft);
     SDL_FreeSurface(coinLeft);
     SDL_FreeSurface(timeLeft);
+    SDL_FreeSurface(endLevelCursor);
+    SDL_FreeSurface(endLevelFrame);
     TTF_CloseFont(font1);
     TTF_CloseFont(font2);
     return exitStatut;
