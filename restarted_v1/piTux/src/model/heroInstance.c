@@ -13,7 +13,7 @@ HeroInstance * initHeroInstance(){
     res->currAction = 0;
     res->currSprite = 0;
     res->isDead = 0;
-    res->lifesLeft = 2;
+    res->lifesLeft = 0;
     res->nbCoins = 0;
     res->lastMovementTime = 0;// Last time when tux move
     res->isTouchingGround = 0;

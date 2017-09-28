@@ -34,10 +34,12 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
     char temp_str2[128];
     int isTuxInsideIgloo = 0;
     int iglooEntranceDecal = 180; // The space between the igloo sprite positionX and its entrance
-    int isLevelCleared = 0;
-    int timeBeforeExiting = 5000;
+    int isLevelCleared = 0; // When tux reaches the igloo
+    int isGameOver = 0; // When tux has no more lifes
+    int timeBeforeExiting = 5000; // Time while the congratulation message is displayed
     int nbEnemiesAtStart = 0;
     int timeAtEnd = 0;
+    int lifeTimeGameOverMessage = 5000;
 
 
 
@@ -45,7 +47,7 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
     int displayTimeWarning = 0;
     int warningTimeLaps = 1000;
     int warningLastTime = 0;
-    int warningDuration = 200;
+    int warningDuration = 300;
 
     // Fps management
     int lastTime = SDL_GetTicks();
@@ -136,6 +138,13 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
             averageFPSAtLevelEnd = (int)(1000.0 / (1.0 * sumTime / sumLoopDone));
             timeAtEnd = p_gameMgr->levelManager->currLevel->timeLeft;
         }
+        if(isGameOver){
+            lifeTimeGameOverMessage -= loopTime;
+        }
+        if(lifeTimeGameOverMessage <= 0){
+            exitStatut = 2;
+            break;
+        }
 
         // Tux dies if timeleft <= 0
         if(!p_gameMgr->herosMgr->heroInstance->isDead && !isLevelCleared && p_gameMgr->levelManager->currLevel->timeLeft <= 0){
@@ -189,10 +198,10 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
             refreshGameByGameManager(p_gameMgr, currTime, loopTime, SDL_GetWindowSurface(p_window)->w,SDL_GetWindowSurface(p_window)->h, cameraX, cameraY);
 
 
-            // Level time management (fail when time <= 0)
-            /*currLevelManager->currLevel->currTime -= loopTime;
-            if(currLevelManager->currLevel->currTime <= 40000){timeLeftColor.r = 128;}
-            if(currLevelManager->currLevel->currTime <= 20000){
+            //*** Level time management (fail when time <= 0)
+
+            if(p_gameMgr->levelManager->currLevel->timeLeft <= 20000){timeLeftColor.r = 128;}
+            if(p_gameMgr->levelManager->currLevel->timeLeft <= 10000){
                 timeLeftColor.r = 255;
                 warningLastTime += loopTime;
                 if( warningLastTime >= warningTimeLaps){
@@ -203,10 +212,6 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
                     displayTimeWarning = 0;
                 }
             }
-            if( currLevelManager->currLevel->currTime <= 0){
-                // Fail
-                currLevelManager->currLevel->currTime = 0;
-            }*/
         }else{
             // Pause mode if game windows is not focus
             // Conflict problem after break mode
@@ -220,9 +225,8 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
                 exitStatut = 2;
                 break;
             }else{
-
+                isGameOver = 1;
             }
-
         }
 
 
@@ -254,7 +258,7 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
         setTextLayout(p_window, temp_str, 5, font1, textColor, lifeLeftPosText);
         sprintf(temp_str, "%d", p_gameMgr->herosMgr->heroInstance->nbCoins);
         setTextLayout(p_window, temp_str, 5, font1, textColor, coinPosText);
-        if(isLevelCleared){
+        if(isLevelCleared || p_gameMgr->herosMgr->heroInstance->isDead){
             setTextLayout(p_window, setTimeLayout(timeAtEnd, 4), 4, font1, timeLeftColor, timeLeftPosText);
         }else{
             setTextLayout(p_window, setTimeLayout(p_gameMgr->levelManager->currLevel->timeLeft, 4), 4, font1, timeLeftColor, timeLeftPosText);
@@ -266,11 +270,13 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
         }
 
 
-        // The frame with the score at the end of the level
+
+
+        // Congratulation message -----------------------------------------------------------
         if(isLevelCleared){
+            // The frame with the score at the end of the level
             SDL_BlitSurface(endLevelFrame, NULL, SDL_GetWindowSurface(p_window), &endLevelFramePos);
 
-            // Congratulation message
             setTextLayout(p_window,
                         p_gameMgr->translaManager->allTranslations[36]->sentence[p_gameMgr->translaManager->currLanguageId],
                         p_gameMgr->translaManager->allTranslations[36]->sentenceSize, font2, textColor2, textPosCongrat);
@@ -304,7 +310,25 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
             textPosFPS.x += 180;
             setTextLayout(p_window, temp_str, 8, font1, textColor2, textPosFPS);
             textPosFPS.x -= 180;
+        }// End of congratulation message -----------------------------------------------------------
+
+
+        // Game over message
+        if(isGameOver){
+            // The frame with the score at the end of the level
+            SDL_BlitSurface(endLevelFrame, NULL, SDL_GetWindowSurface(p_window), &endLevelFramePos);
+
+            setTextLayout(p_window,
+                        p_gameMgr->translaManager->allTranslations[40]->sentence[p_gameMgr->translaManager->currLanguageId],
+                        p_gameMgr->translaManager->allTranslations[40]->sentenceSize, font2, textColor, textPosCongrat);
+
+        }// End of game over message -----------------------------------------------------------
+
+        // The red frame when the time is running out
+        if(displayTimeWarning){
+            SDL_BlitSurface(redBackground, NULL, SDL_GetWindowSurface(p_window), &nullPos);
         }
+
 
         // Window refreshing
         SDL_UpdateWindowSurface(p_window);

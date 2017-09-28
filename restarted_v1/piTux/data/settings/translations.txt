@@ -1,4 +1,4 @@
-[Header];2;40;English;Français;//(NbLangages;NbSentances;langages list)
+[Header];2;41;English;Français;//(NbLangages;NbSentances;langages list)
 [Data];0;empty;vide;
 [Data];1;empty;vide;
 [Data];2;Play;Jouer;
@@ -39,3 +39,4 @@
 [Data];37;Time left:;Temps restant :;
 [Data];38;Enemies:;Ennemis :;
 [Data];39;Average FPS:;FPS moyen :;
+[Data];40;Game Over :(;Game Over :(;
