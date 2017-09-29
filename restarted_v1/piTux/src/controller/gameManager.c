@@ -37,7 +37,7 @@ void loadLevelByGameMgr(GameManager *p_gameMgr, char *p_path, int p_pathSize){
     p_gameMgr->collMgr = initColliderManager();
 
     // Init the heros instance
-    initHerosInstanceByManager(p_gameMgr->herosMgr);
+    //initHerosInstanceByManager(p_gameMgr->herosMgr);
 
     // Put Collider on each BlockInstance
     for( i = 0; i < p_gameMgr->levelManager->currLevel->blockInstancesSize; i++){
@@ -290,11 +290,11 @@ void destroyLevelByGameManager(GameManager *p_gameMgr){
     p_gameMgr->levelManager->currLevel = NULL;
 
     destroyHeroInstanceColliders(p_gameMgr->herosMgr->heroInstance, p_gameMgr->herosMgr->heros);
-    destroyHeroInstance(p_gameMgr->herosMgr->heroInstance);
-    p_gameMgr->herosMgr->heroInstance = NULL;
 
     destroyColliderManager(p_gameMgr->collMgr);
     p_gameMgr->collMgr = NULL;
+
+    resetHerosInstanceBetweenLevel(p_gameMgr->herosMgr->heroInstance);
 
 }//------------------------------------------------------------------------------------------------------------------------
 

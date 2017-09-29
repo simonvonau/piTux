@@ -40,6 +40,8 @@ typedef struct{
 
 HeroInstance * initHeroInstance();
 
+void resetHerosInstanceBetweenLevel(HeroInstance *p_herosInstance);
+
 void changeHerosState(HeroInstance * p_herosInstance,int p_newState, int p_newAction, int p_newSprite);
 void changeHerosAction(HeroInstance * p_herosInstance, int p_newAction, int p_newSprite);
 

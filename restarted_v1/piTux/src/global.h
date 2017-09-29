@@ -25,6 +25,9 @@
 // Time between 2 shots
 #define TIME_BETWEEN_SHOTS 500
 
+#define HEROS_DEFAULT_X 150
+#define HEROS_DEFAULT_Y 500
+#define HEROS_DEFAULT_LIFELEFT 2
 
 enum ObjectTag{
     tag_tux = 20,

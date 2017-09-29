@@ -13,7 +13,7 @@ HeroInstance * initHeroInstance(){
     res->currAction = 0;
     res->currSprite = 0;
     res->isDead = 0;
-    res->lifesLeft = 0;
+    res->lifesLeft = HEROS_DEFAULT_LIFELEFT;
     res->nbCoins = 0;
     res->lastMovementTime = 0;// Last time when tux move
     res->isTouchingGround = 0;
@@ -24,10 +24,10 @@ HeroInstance * initHeroInstance(){
     res->jumpStartTime = -1;// Time at jump start
     res->jumpDuration = -1;// Time between jump start and jump max height
     res->lastDirection = 'r';
-    res->posX = 150;
-    res->posY = 500;
-    res->lastPosX = 150;
-    res->lastPosY = 300;
+    res->posX = HEROS_DEFAULT_X;
+    res->posY = HEROS_DEFAULT_Y;
+    res->lastPosX = HEROS_DEFAULT_X;
+    res->lastPosY = HEROS_DEFAULT_Y;
     res->movementProgressX = 0;
     res->movementProgressY = 0;
     res->currentTime = 0;
@@ -36,6 +36,43 @@ HeroInstance * initHeroInstance(){
     res->hasReleaseFireKey = 1;
     res->hasReleaseJumpKey = 1;
     return res;
+}//------------------------------------------------------------------------------------------------------------------------
+
+void resetHerosInstanceBetweenLevel(HeroInstance *p_herosInstance){
+// Reset herosInstance attributes between 2 levels
+    if(p_herosInstance->isDead){
+        p_herosInstance->currState = 0;
+        // If the game is over (ie tux has -1 lifes left)
+        if(p_herosInstance->lifesLeft < 0){
+            p_herosInstance->lifesLeft = HEROS_DEFAULT_LIFELEFT;
+            p_herosInstance->nbCoins = 0;
+        }
+    }
+    p_herosInstance->isDead = 0;
+
+    p_herosInstance->currAction = 0;
+    p_herosInstance->currSprite = 0;
+    p_herosInstance->lastMovementTime = 0;
+    p_herosInstance->isTouchingGround = 0;
+    p_herosInstance->jumpKeyPressed = 0;
+    p_herosInstance->fireKeyPressed = 0;
+    p_herosInstance->leftKeyPressed = 0;
+    p_herosInstance->rightKeyPressed = 0;
+    p_herosInstance->jumpStartTime = -1;
+    p_herosInstance->jumpDuration = -1;
+    p_herosInstance->lastDirection = 'r';
+    p_herosInstance->posX = HEROS_DEFAULT_X;
+    p_herosInstance->posY = HEROS_DEFAULT_Y;
+    p_herosInstance->lastPosX = HEROS_DEFAULT_X;
+    p_herosInstance->lastPosY = HEROS_DEFAULT_Y;
+    p_herosInstance->movementProgressX = 0;
+    p_herosInstance->movementProgressY = 0;
+    p_herosInstance->currentTime = 0;
+    p_herosInstance->godModeDuration = 0;
+    p_herosInstance->timeBeforeNextShot = TIME_BETWEEN_SHOTS;
+    p_herosInstance->hasReleaseFireKey = 1;
+    p_herosInstance->hasReleaseJumpKey = 1;
+
 }//------------------------------------------------------------------------------------------------------------------------
 
 void changeHerosState(HeroInstance * p_herosInstance,int p_newState, int p_newAction, int p_newSprite){
