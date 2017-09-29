@@ -19,8 +19,8 @@ int displayMainPage(SDL_Window *p_window, GameManager *p_gameMgr){
     cursor= loadImage("data/img/cursor/cursor.png");
 
     // Loading ambiance music
-    //loadMusic(CurrMusicManager, "data/music/theme.ogg");
-    //playMusic(CurrMusicManager);
+    loadMusic(currMusicManager, "data/music/intro.ogg");
+    playMusic(currMusicManager);
 
     while ( SDL_WaitEvent(&event) ){
         // Events management

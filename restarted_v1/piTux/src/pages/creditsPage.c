@@ -17,9 +17,10 @@ int displayCreditsPage(SDL_Window *p_window, GameManager *p_gameMgr){
     background1 = loadImage("data/img/background/oiltux.jpg");
     background2 = loadImage("data/img/background/frame.png");
     cursor= loadImage("data/img/cursor/cursor.png");
+
     // Loading ambiance music
-    //loadMusic(CurrMusicManager, "data/music/credits.ogg");
-    //playMusic(CurrMusicManager);
+    loadMusic(currMusicManager, "data/music/credits.ogg");
+    playMusic(currMusicManager);
 
     while ( SDL_WaitEvent(&event) ){
         if(event.type == SDL_QUIT){

@@ -15,9 +15,9 @@ typedef struct{
 }MusicManager;
 
 
-MusicManager *initMusicManager(int bufferLength, int channelsQty);
-void loadMusic(MusicManager *currMusicMgr, char* path);
-void playMusic(MusicManager *currMusicMgr);
-void pauseMusic(MusicManager *currMusicMgr);
-void destroyMusicManager(MusicManager *currMusicMgr);
+MusicManager *initMusicManager(int p_bufferLen, int p_channelsQty);
+void loadMusic(MusicManager *p_musicMgr, char* p_path);
+void playMusic(MusicManager *p_musicMgr);
+void pauseMusic(MusicManager *p_musicMgr);
+void destroyMusicManager(MusicManager *p_musicMgr);
 #endif

@@ -114,8 +114,8 @@ int displayLevelEditorPage(SDL_Window *p_window, GameManager *p_gameMgr){
     endLevelCursor = loadImage("data/img/cursor/level_end.png");
 
     // Loading ambiance music
-    //loadMusic(CurrMusicManager, "data/music/cave.ogg");
-    //playMusic(CurrMusicManager);
+    loadMusic(currMusicManager, "data/music/greatgigantic.ogg");
+    playMusic(currMusicManager);
 
     SDL_Color textColor = {0, 0, 0};
     SDL_Rect textPos = { SDL_GetWindowSurface(p_window)->w - toolbox->w + leftArrow->guiWidth + 5,10, 0, 0};

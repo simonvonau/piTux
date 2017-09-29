@@ -134,8 +134,8 @@ int displayLevelSelectionPage(SDL_Window *p_window, char *p_nextLevelPath, GameM
     cursor= loadImage("data/img/cursor/tux_cursor.png");
 
     // Loading ambiance music
-    //loadMusic(CurrMusicManager, "data/music/salcon.ogg");
-    //playMusic(CurrMusicManager);
+    loadMusic(currMusicManager, "data/music/salcon.ogg");
+    playMusic(currMusicManager);
 
     while (isFirstLoop || SDL_WaitEvent(&event)){
         isFirstLoop = 0;

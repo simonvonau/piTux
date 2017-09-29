@@ -2,6 +2,11 @@
 #define __GLOBAL_H__
 #include <stdlib.h>
 #include <stdio.h>
+#include "controller/musicManager.h"
+
+
+MusicManager *currMusicManager;
+
 
 #define MUSIC_BUFFER_LENGTH 1024
 

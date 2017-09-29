@@ -24,8 +24,8 @@ int displayQuitPage(SDL_Window *p_window, GameManager *p_gameMgr){
     cursor = loadImage("data/img/cursor/cursor.png");
 
     // Loading ambiance music
-    //loadMusic(CurrMusicManager, "data/music/wisphunt.ogg");
-    //playMusic(CurrMusicManager);
+    loadMusic(currMusicManager, "data/music/wisphunt.ogg");
+    playMusic(currMusicManager);
 
     while ( SDL_WaitEvent(&event) ){
         // Events management

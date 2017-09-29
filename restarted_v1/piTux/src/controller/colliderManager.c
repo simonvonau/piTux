@@ -146,10 +146,14 @@ void createCollision(ColliderManager *p_collMgr, int p_coll1Id, int p_coll2Id){
         }
     }
 
-    // Find a available Id
-    for(i = 0; !isCollisionAlreadyExists && i < p_collMgr->allCollisionsSize - 1 ; i++){
+    if(isCollisionAlreadyExists){
+        return;
+    }
+
+    // Find an available Id for the new collision
+    for(i = 0; i < p_collMgr->allCollisionsSize - 1 ; i++){
         isAvailable = 1;
-        for(j = 0; j < p_collMgr->allCollisionsSize - 1; j++){
+        for(j = 0; j < p_collMgr->allCollisionsSize; j++){
             if (p_collMgr->allCollisions[j]->id == i){
                 isAvailable = 0;
             }
@@ -161,28 +165,26 @@ void createCollision(ColliderManager *p_collMgr, int p_coll1Id, int p_coll2Id){
     if (isAvailable){
         availableId = i;
     }else{
-        availableId = p_collMgr->allCollisionsSize - 1;
+        availableId = p_collMgr->allCollisionsSize;
     }
 
     // Add 1 field to the Collisions array and fill it
-    if (!isCollisionAlreadyExists){
-        if( p_collMgr->allCollisions == NULL || p_collMgr->allCollisionsSize == 0){
-            p_collMgr->allCollisions = malloc(sizeof(Collision*));
-            if (p_collMgr->allCollisions == NULL){reportErreur("colliderManager:createCollision(...): error malloc()1");}
-        }else{
-            memcpy(temp, p_collMgr->allCollisions, p_collMgr->allCollisionsSize * sizeof(Collision*));
-            //*** realloc doesn't work...
-                //realloc(p_collMgr->allCollisions, (p_collMgr->allCollisionsSize + 1) * sizeof(Collision*));
-            free(p_collMgr->allCollisions);
-            p_collMgr->allCollisions = malloc((p_collMgr->allCollisionsSize + 1) * sizeof(Collision*));
-            if (p_collMgr->allCollisions == NULL){reportErreur("colliderManager:createCollision(...): error malloc()2");}
-            memcpy(p_collMgr->allCollisions, temp, p_collMgr->allCollisionsSize * sizeof(Collision*));
-        }
-        p_collMgr->allCollisionsSize += 1;
-        // Create the new Collision
-        p_collMgr->allCollisions[p_collMgr->allCollisionsSize - 1] = initCollision(availableId, p_coll1Id, p_coll2Id);
-
+    if( p_collMgr->allCollisions == NULL || p_collMgr->allCollisionsSize == 0){
+        p_collMgr->allCollisions = malloc(sizeof(Collision*));
+        if (p_collMgr->allCollisions == NULL){reportErreur("colliderManager:createCollision(...): error malloc()1");}
+    }else{
+        memcpy(temp, p_collMgr->allCollisions, p_collMgr->allCollisionsSize * sizeof(Collision*));
+        //*** realloc doesn't work...
+            //realloc(p_collMgr->allCollisions, (p_collMgr->allCollisionsSize + 1) * sizeof(Collision*));
+        free(p_collMgr->allCollisions);
+        p_collMgr->allCollisions = malloc((p_collMgr->allCollisionsSize + 1) * sizeof(Collision*));
+        if (p_collMgr->allCollisions == NULL){reportErreur("colliderManager:createCollision(...): error malloc()2");}
+        memcpy(p_collMgr->allCollisions, temp, p_collMgr->allCollisionsSize * sizeof(Collision*));
     }
+    p_collMgr->allCollisionsSize += 1;
+    // Create the new Collision
+    p_collMgr->allCollisions[p_collMgr->allCollisionsSize - 1] = initCollision(availableId, p_coll1Id, p_coll2Id);
+
 }//------------------------------------------------------------------------------------------------------------------------
 
 int getNextAvailableColliderId(ColliderManager *p_colliderManager){
@@ -223,8 +225,8 @@ void updateCollisions(ColliderManager *p_colliderManager, int p_leftLimit, int p
         if (p_colliderManager->allColliders[i]->isEnabled
         && p_colliderManager->allColliders[i]->posX < p_rightLimit
         && p_colliderManager->allColliders[i]->posX + p_colliderManager->allColliders[i]->width > p_leftLimit
-        && p_colliderManager->allColliders[i]->posY < p_topLimit
-        && p_colliderManager->allColliders[i]->posY + p_colliderManager->allColliders[i]->height > p_bottomLimit){
+        /*&& p_colliderManager->allColliders[i]->posY < p_topLimit
+        && p_colliderManager->allColliders[i]->posY + p_colliderManager->allColliders[i]->height > p_bottomLimit*/){
             for(j = 0; j < p_colliderManager->allCollidersSize; j++){
                 if ( i != j && p_colliderManager->allColliders[j]->isEnabled){
 

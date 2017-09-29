@@ -2,69 +2,63 @@
 
 
 
-MusicManager *initMusicManager(int bufferLen, int channelsQty){
+MusicManager *initMusicManager(int p_bufferLen, int p_channelsQty){
 // Create a new MusicManager
     MusicManager *res = malloc(sizeof(MusicManager));
     if (res == NULL){
         reportErreur("initMusicManager(): malloc() error");
     }
-    Mix_AllocateChannels(channelsQty);
+    Mix_AllocateChannels(p_channelsQty);
     Mix_Volume(0, MIX_MAX_VOLUME/2);
-    res->bufferLength = bufferLen;
+    res->bufferLength = p_bufferLen;
     res->currMusic = NULL;
 
     // Loading all sounds
-    res->allSoundSize = 1;
+    /*res->allSoundSize = 1;
     res->allSound = malloc( res->allSoundSize * sizeof(Mix_Chunk *));
     if( res->allSound == NULL ){
         reportErreur("initMusicManager(): malloc() error2");
-    }
-    res->allSound[0] = Mix_LoadWAV("data/sounds/jump.wav");
-    if(res->allSound[0] == NULL){
-        printf("errooooooor: %s\n",Mix_GetError());
-    }
+    }*/
 
-    //Mix_VolumeChunk(res->allSound[0], MIX_MAX_VOLUME);
-    //*** test:Mix_PlayChannel(1, currMusicMgr->allSound[0], 1);
     return res;
 }//--------------------------------------------------------------------------------------------------------------------
 
-void loadMusic(MusicManager *currMusicMgr, char* path){
+void loadMusic(MusicManager *p_musicMgr, char* p_path){
 // Load an other music from pathfile
-    if (currMusicMgr->currMusic != NULL){
-        Mix_FreeMusic(currMusicMgr->currMusic);
+    if (p_musicMgr->currMusic != NULL){
+        Mix_FreeMusic(p_musicMgr->currMusic);
     }
-    if(!(currMusicMgr->currMusic=Mix_LoadMUS(path))){
+    if(!(p_musicMgr->currMusic = Mix_LoadMUS(p_path))){
         reportErreur("loadMusic(): cannot find anything at given pathfile");
     }
 }//--------------------------------------------------------------------------------------------------------------------
 
-void playMusic(MusicManager *currMusicMgr){
+void playMusic(MusicManager *p_musicMgr){
 // Play the current music if it exists
-    if(Mix_PlayMusic(currMusicMgr->currMusic, -1) == -1)
+    if(Mix_PlayMusic(p_musicMgr->currMusic, 1) == -1)
 		reportErreur("playMusic(): cannot play it");
 	Mix_VolumeMusic(SDL_MIX_MAXVOLUME);
 }//--------------------------------------------------------------------------------------------------------------------
 
-void pauseMusic(MusicManager *currMusicMgr){
+void pauseMusic(MusicManager *p_musicMgr){
 // Pause while playing the current music
     Mix_PauseMusic();
     //Mix_ResumeMusic();
 }//--------------------------------------------------------------------------------------------------------------------
 
-void destroyMusicManager(MusicManager *currMusicMgr){
+void destroyMusicManager(MusicManager *p_musicMgr){
 // Free MusicManager memory
     int i;
 
-    if (currMusicMgr->currMusic != NULL){
-        Mix_FreeMusic(currMusicMgr->currMusic);
+    if (p_musicMgr->currMusic != NULL){
+        Mix_FreeMusic(p_musicMgr->currMusic);
     }
 
-    for(i = 0; i < currMusicMgr->allSoundSize; i++){
-        Mix_FreeChunk(currMusicMgr->allSound[i]);
+    /*for(i = 0; i < p_musicMgr->allSoundSize; i++){
+        Mix_FreeChunk(p_musicMgr->allSound[i]);
     }
-    free(currMusicMgr->allSound);
+    free(p_musicMgr->allSound);*/
 
-    free(currMusicMgr);
+    free(p_musicMgr);
 }//--------------------------------------------------------------------------------------------------------------------
 

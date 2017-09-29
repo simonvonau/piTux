@@ -82,8 +82,6 @@
 		<Unit filename="src/controller/levelManager.h" />
 		<Unit filename="src/controller/musicManager.c">
 			<Option compilerVar="CC" />
-			<Option compile="0" />
-			<Option link="0" />
 		</Unit>
 		<Unit filename="src/controller/musicManager.h" />
 		<Unit filename="src/controller/translationManager.c">

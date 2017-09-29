@@ -36,7 +36,7 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
     int iglooEntranceDecal = 180; // The space between the igloo sprite positionX and its entrance
     int isLevelCleared = 0; // When tux reaches the igloo
     int isGameOver = 0; // When tux has no more lifes
-    int timeBeforeExiting = 5000; // Time while the congratulation message is displayed
+    int timeBeforeExiting = 7000; // Time while the congratulation message is displayed
     int nbEnemiesAtStart = 0;
     int timeAtEnd = 0;
     int lifeTimeGameOverMessage = 5000;
@@ -60,6 +60,10 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
     long sumTime = 0; // Sum of loopTime
     long sumLoopDone = 0; // Sum of each loop
     int averageFPSAtLevelEnd = -1;
+
+    // Ambiance music
+    loadMusic(currMusicManager, "data/music/theme.ogg");
+    playMusic(currMusicManager);
 
     // Init level
     loadLevelByGameMgr(p_gameMgr, p_levelPath, p_levelPathSize);
@@ -168,6 +172,13 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
 
         // When tux come at level end
         if(p_gameMgr->herosMgr->heroInstance->posX >= endLevelPosDefault.x){
+            if(! isLevelCleared){
+                // End level music
+                loadMusic(currMusicManager, "data/music/leveldone.ogg");
+                playMusic(currMusicManager);
+                // Set this level to "clear" and unlock the adjacent level
+                achieveLevel(p_gameMgr->levIconMgr, p_gameMgr->herosMgr->heroInstance->currentLevelNo);
+            }
             isLevelCleared = 1;
             p_gameMgr->herosMgr->heroInstance->leftKeyPressed = 0;
             p_gameMgr->herosMgr->heroInstance->jumpKeyPressed = 0;
@@ -193,8 +204,6 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
                 exitStatut = 2;
                 break;
             }
-            // Set this level to "clear" and unlock the adjacent level
-            achieveLevel(p_gameMgr->levIconMgr, p_gameMgr->herosMgr->heroInstance->currentLevelNo);
         }
 
 
@@ -203,9 +212,6 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
         // When game windows is not focus the loopTime become too big and causes some collisions bugs
         if (loopTime < 80){
             refreshGameByGameManager(p_gameMgr, currTime, loopTime, SDL_GetWindowSurface(p_window)->w,SDL_GetWindowSurface(p_window)->h, cameraX, cameraY);
-
-
-            //*** Level time management (fail when time <= 0)
 
             if(p_gameMgr->levelManager->currLevel->timeLeft <= 20000){timeLeftColor.r = 128;}
             if(p_gameMgr->levelManager->currLevel->timeLeft <= 10000){
@@ -219,12 +225,6 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
                     displayTimeWarning = 0;
                 }
             }
-        }else{
-            // Pause mode if game windows is not focus
-            // Conflict problem after break mode
-            //if (!(exitStatut=displayBreakSubPage(p_window, p_gameMgr))){
-              //  break;
-            //}
         }
         // If tux goes out of the screen after he died => back to level menu
         if(p_gameMgr->herosMgr->heroInstance->isDead && - p_gameMgr->herosMgr->heroInstance->posY - herosToBottomScreenBorder > 0 ){
@@ -233,6 +233,9 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
                 break;
             }else{
                 isGameOver = 1;
+                // Ambiance music
+                //loadMusic(currMusicManager, "data/music/clavelian_march.wav");
+                //playMusic(currMusicManager);
             }
         }
 

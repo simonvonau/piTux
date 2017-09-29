@@ -21,6 +21,10 @@ int displaySettingsPage(SDL_Window *p_window, GameManager *p_gameMgr){
     background2 = loadImage("data/img/background/frame.png");
     cursor = loadImage("data/img/cursor/cursor.png");
 
+    // Loading ambiance music
+    loadMusic(currMusicManager, "data/music/forest2.ogg");
+    playMusic(currMusicManager);
+
     while ( SDL_WaitEvent(&event) ){
         // Events management
         if( event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_UP){// Change userChoice
