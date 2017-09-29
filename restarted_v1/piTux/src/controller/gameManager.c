@@ -254,6 +254,11 @@ void cleanLevelMemory(GameManager *p_gameMgr){
     // Clean the gathered bonus
     for(i = 0; i < currLevel->bonusInstancesSize; i++){
         if(currLevel->bonusInstances[i]->wasGathered && currLevel->bonusInstances[i]->lifeTime <= 0){
+            // Adding a coin to the heros
+            if(currLevel->bonusInstances[i]->coll->ownerTag == tag_bonus_coin){
+                gatherCoin(p_gameMgr->herosMgr->heroInstance);
+            }
+
             removeCollider(p_gameMgr->collMgr, currLevel->bonusInstances[i]->coll->id, 0);
             removeBonusInstanceToLevel(currLevel, i);
         }

@@ -43,11 +43,14 @@ void updateHeroBehaviourAfterCollisionDetection(HeroInstance *p_herosInstance, H
         for (i = 0; i < contactPointsSize; i++){
             switch(contactPoints[i]->ownerTag){
                 case tag_bonus_coin:
-                    p_herosInstance->nbCoins += 1;
+                    /* Coins can be gathered by hitting the block under so the coin account will be processed in the game manager
+                    using the wasGathered field of each coin and not here anymore
+                    */
+                    /*p_herosInstance->nbCoins += 1;
                     if(p_herosInstance->nbCoins >= 100){
                         p_herosInstance->nbCoins -= 100;
                         p_herosInstance->lifesLeft += 1;
-                    }
+                    }*/
                     break;
                 case tag_bonus_egg:
                     if(p_herosInstance->currState == 0){// To avoid a fire tux (state 2) to become a big tux (state 1)

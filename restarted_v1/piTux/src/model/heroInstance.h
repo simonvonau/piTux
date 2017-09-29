@@ -52,6 +52,7 @@ void jump(HeroInstance *p_herosInstance, Heros *p_heros, int p_loopTime);
 void land(HeroInstance *p_herosInstance);
 void updateCurrentSprite(HeroInstance *p_heroInstance, Heros *p_heros);
 
+void gatherCoin(HeroInstance *p_heroInstance);
 void heroInstanceDeath(HeroInstance *p_herosInstance, Heros *p_heros, int p_currentTime);
 
 void destroyHeroInstanceColliders(HeroInstance *p_heroInstance, Heros *p_heros);

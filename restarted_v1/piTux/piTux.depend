@@ -411,7 +411,7 @@
 	"../model/enemy.h"
 	"../model/collider.h"
 
-1506616320 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\gamemanager.c
+1506679495 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\gamemanager.c
 	"gameManager.h"
 
 1506511426 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\gamemanager.h
@@ -701,7 +701,7 @@
 	"../controller/gameManager.h"
 	"../pages/textLayout.h"
 
-1506621369 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\herosmanager.c
+1506679413 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\herosmanager.c
 	"herosManager.h"
 
 1506536116 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\herosmanager.h
@@ -1715,7 +1715,7 @@
 1490616618 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\heroinstance.c
 	"heroInstance.h"
 
-1506620333 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\heroinstance.h
+1506679097 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\heroinstance.h
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -1725,7 +1725,7 @@
 	"../global.h"
 	"../utils/arrayProcessing.h"
 
-1506637682 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\heroinstance.c
+1506679192 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\heroinstance.c
 	"heroInstance.h"
 
 1506509971 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\firebullet.h

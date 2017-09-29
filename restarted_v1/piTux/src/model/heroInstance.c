@@ -39,7 +39,7 @@ HeroInstance * initHeroInstance(){
 }//------------------------------------------------------------------------------------------------------------------------
 
 void changeHerosState(HeroInstance * p_herosInstance,int p_newState, int p_newAction, int p_newSprite){
-    // Change herosInstance state (big/small/fire)
+// Change herosInstance state (big/small/fire)
 
     if(p_herosInstance->currState == p_newState){return;}
     p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->isEnabled = 0;
@@ -57,7 +57,7 @@ void changeHerosState(HeroInstance * p_herosInstance,int p_newState, int p_newAc
 }//------------------------------------------------------------------------------------------------------------------------
 
 void changeHerosAction(HeroInstance * p_herosInstance, int p_newAction, int p_newSprite){
-    // Change the herosInstance current action
+// Change the herosInstance current action
 
     if(p_herosInstance->currAction == p_newAction){return;}
     p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->isEnabled = 0;
@@ -127,7 +127,7 @@ void refreshHerosInstance(HeroInstance * p_herosInstance, Heros *p_heros, int p_
 }//------------------------------------------------------------------------------------------------------------------------
 
 void applyGravity(HeroInstance *p_herosInstance, int p_loopTime){
-    // Apply gravity force to tux
+// Apply gravity force to tux
     int movementY;
 
     p_herosInstance->movementProgressY -= p_loopTime / 1000.0 * GRAVITY_SPEED;
@@ -139,7 +139,7 @@ void applyGravity(HeroInstance *p_herosInstance, int p_loopTime){
 }//------------------------------------------------------------------------------------------------------------------------
 
 void movingRight(HeroInstance *p_herosInstance, Heros *p_heros, int p_loopTime){
-    // Moving right
+// Moving right
     int movementX;
 
     if(p_herosInstance->rightKeyPressed){
@@ -157,7 +157,7 @@ void movingRight(HeroInstance *p_herosInstance, Heros *p_heros, int p_loopTime){
 }//------------------------------------------------------------------------------------------------------------------------
 
 void movingLeft(HeroInstance *p_herosInstance, Heros *p_heros, int p_loopTime){
-    // Moving left
+// Moving left
     int movementX;
 
     if(p_herosInstance->leftKeyPressed){
@@ -205,7 +205,7 @@ void jump(HeroInstance *p_herosInstance, Heros *p_heros, int p_loopTime){
 }//------------------------------------------------------------------------------------------------------------------------
 
 void land(HeroInstance *p_herosInstance){
-    // When tux lands after a jump or a fall
+// When tux lands after a jump or a fall
     if(!p_herosInstance->isTouchingGround){
         if(p_herosInstance->rightKeyPressed){
             p_herosInstance->lastDirection = 'r';
@@ -218,12 +218,22 @@ void land(HeroInstance *p_herosInstance){
 }//------------------------------------------------------------------------------------------------------------------------
 
 void updateCurrentSprite(HeroInstance *p_heroInstance, Heros *p_heros){
-    // Update the current sprite
+// Update the current sprite
     if(p_heroInstance->currentTime >= p_heros->spriteDuration[p_heroInstance->currState][p_heroInstance->currAction]){
         p_heroInstance->currentTime = 0;
         p_heroInstance->currSprite += 1;
         p_heroInstance->currSprite = p_heroInstance->currSprite % p_heros->spriteSize[p_heroInstance->currState][p_heroInstance->currAction];
     }
+}//------------------------------------------------------------------------------------------------------------------------
+
+void gatherCoin(HeroInstance *p_heroInstance){
+// When tux gather a coin
+    p_heroInstance->nbCoins += 1;
+    if(p_heroInstance->nbCoins >= 100){
+        p_heroInstance->lifesLeft += 1;
+        p_heroInstance->nbCoins -= 100;
+    }
+
 }//------------------------------------------------------------------------------------------------------------------------
 
 void heroInstanceDeath(HeroInstance *p_herosInstance, Heros *p_heros, int p_currentTime){
