@@ -104,10 +104,11 @@ int chooseLevel(LevelIcon **p_allLevels, int p_nbLevels, int p_userChoice, char 
 int displayLevelSelectionPage(SDL_Window *p_window, char *p_nextLevelPath, GameManager *p_gameMgr){
     SDL_Surface *cursor, *background1, *greenDot, *lifesLeft, *coinLeft;
     TTF_Font *font1 = TTF_OpenFont("data/fonts/dejavu/DejaVuSans.ttf", 20);
+    TTF_Font *font2 = TTF_OpenFont("data/fonts/dejavu/DejaVuSans.ttf", 18);
     SDL_Event event;
 
     SDL_Color textColor = {0, 0, 0};
-    SDL_Rect textPos = { 300,100, 0, 0};
+    SDL_Rect textPos = { 445,430, 0, 0};
     SDL_Rect nullPos = { 0, 0, 0, 0};
     SDL_Rect levelDotPos = { 0,0, 100, 100};
     SDL_Rect coinPos = { SDL_GetWindowSurface(p_window)->w-80,30, 0, 0};
@@ -124,7 +125,7 @@ int displayLevelSelectionPage(SDL_Window *p_window, char *p_nextLevelPath, GameM
     int isFirstLoop = 1; // To force the first loop even if there are no detected events
 
     int i;
-    char temp_str[10];
+    char temp_str[64];
 
     background1 = loadImage("data/img/background/world1.jpg");
     greenDot = loadImage("data/img/icon/green_dot.png");
@@ -186,6 +187,10 @@ int displayLevelSelectionPage(SDL_Window *p_window, char *p_nextLevelPath, GameM
         sprintf(temp_str, "%d", p_gameMgr->herosMgr->heroInstance->nbCoins);
         setTextLayout(p_window, temp_str, 5, font1, textColor, coinPosText);
 
+        // Notification about the custom level
+        setTextLayout(p_window, p_gameMgr->translaManager->allTranslations[7]->sentence[p_gameMgr->translaManager->currLanguageId]
+                      , p_gameMgr->translaManager->allTranslations[7]->sentenceSize, font2, textColor, textPos);
+
         for(i=0; i < nbLevels; i++){
             levelDotPos.x = allLevels[i]->posX;
             levelDotPos.y = allLevels[i]->posY;
@@ -209,5 +214,6 @@ int displayLevelSelectionPage(SDL_Window *p_window, char *p_nextLevelPath, GameM
     SDL_FreeSurface(coinLeft);
     SDL_FreeSurface(cursor);
     TTF_CloseFont(font1);
+    TTF_CloseFont(font2);
     return nextPage;
 }//--------------------------------------------------------------------------------------------------------------------

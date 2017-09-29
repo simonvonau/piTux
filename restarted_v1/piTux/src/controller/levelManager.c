@@ -112,7 +112,7 @@ void displayLevelByLevelManager(Level *p_lev, SDL_Window *p_window, int p_isGame
                              NULL, SDL_GetWindowSurface(p_window), &objectPos);
 
             // Displaying the bonus inside a bonus block (levelEditor mode only)
-            if( !p_isGameMode && p_lev->blockInstances[i]->idBonus >= 0 && p_lev->blockInstances[i]->idBonus < p_lev->bonusInstancesSize){
+            if( !p_isGameMode && p_lev->blockInstances[i]->idBonus >= 0){
                 //*** Need to reset objectPos due to SDL_blit behaviour... (searched on the internet for similar problems...)
                 objectPos.x = p_lev->blockInstances[i]->posX - p_deplaX;
                 objectPos.y = SDL_GetWindowSurface(p_window)->h - p_lev->blockInstances[i]->posY

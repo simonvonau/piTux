@@ -6,7 +6,7 @@
 [Data];4;Settings;Options;
 [Data];5;Credits;Crédits;
 [Data];6;Quit;Quitter;
-[Data];7;Your own level!;Votre niveau custom!;
+[Data];7;Your own level!;Votre niveau $custom!;
 [Data];8;It's a little demo project writted in C with the SDL2 librairy;C'est un petit projet/démo développé en C avec la bibliothèque SDL2;
 [Data];9;Graphical design:$     https://supertux.github.io/ and Simon Vonau;Graphismes:$     https://supertux.github.io/ et Simon Vonau;
 [Data];10;Sound:$     https://supertux.github.io/ ;Son:$     https://supertux.github.io/;
@@ -24,7 +24,7 @@
 [Data];22;3)Right click to remove a block;3)Clique droit pour supprimer un block;
 [Data];23;4)Arrows to move in the level;4)Flèches directionelles pour se déplacer;
 [Data];24;5)Auto saving (+security saving each 2 sec);5)Sauvegarde automatique (+sauvegarde de sécurité toutes les 2 sec);
-[Data];25;6)Your level is immediatly available in play mode;6)Votre niveau est immédiatement disponnible en mode jeu;
+[Data];25;6)Your level is immediatly available in play mode;6)Votre niveau est immédiatement disponible en mode jeu;
 [Data];26;7)Enjoy! :) ;7)Amusez-vous! :);
 [Data];27;Help for level editor;Aide pour l'éditeur de niveaux;
 [Data];28;Press F1 for help;Appuyer sur F1 pour l'aide;

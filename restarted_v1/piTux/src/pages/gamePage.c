@@ -4,7 +4,7 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
     SDL_Surface *background1, *lifesLeft, *coinLeft, *timeLeft, *redBackground, *endLevelCursor, *endLevelFrame;
     TTF_Font *font1 = TTF_OpenFont("data/fonts/dejavu/DejaVuSans.ttf", 20);
     TTF_Font *font2 = TTF_OpenFont("data/fonts/dejavu/DejaVuSans.ttf", 30);
-    SDL_Event event, lastEvent;
+    SDL_Event event;
 
     SDL_Color textColor = {0, 0, 0};
     SDL_Color textColor2 = {255, 255, 255};
@@ -42,12 +42,15 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
     int lifeTimeGameOverMessage = 5000;
 
 
-
     // To display a red screen when time is running out
     int displayTimeWarning = 0;
     int warningTimeLaps = 1000;
     int warningLastTime = 0;
     int warningDuration = 300;
+
+    // Escape management : SDL pump & flush seems not worked => the event que of the break page is still filled :/
+    // So we have to detect multiple escape press
+    int lastEscapeTime = SDL_GetTicks();
 
     // Fps management
     int lastTime = SDL_GetTicks();
@@ -74,13 +77,15 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
     endLevelPosDefault.x = p_gameMgr->levelManager->currLevel->finishPosX;
     endLevelPosDefault.y = SDL_GetWindowSurface(p_window)->h - endLevelCursor->h - 96;
 
+    SDL_PumpEvents();
     SDL_FlushEvent(SDL_KEYDOWN);
     while ( 1 ){
     //--------------------------Events management-----------------------------------------------------------------------
         SDL_PollEvent(&event);
         // Escape => break mode
-        if( event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE && event.key.keysym.sym != lastEvent.key.keysym.sym){
-            if (!(exitStatut=displayBreakSubPage(p_window, p_gameMgr))){ // Leave the game
+        if( event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE && event.key.timestamp > lastEscapeTime + 10){
+            lastEscapeTime = SDL_GetTicks();
+            if (!(exitStatut = displayBreakSubPage(p_window, p_gameMgr))){ // Open break page
                 break;
             }
             if (exitStatut != 1000){// Go to another page
@@ -89,7 +94,6 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
             if (exitStatut == 1000){
                 //Just keep playing
             }
-            //lastTime = SDL_GetTicks() - 5;
         }
         // Leave the game
         if(event.type == SDL_QUIT){
@@ -335,7 +339,6 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
 
         // Window refreshing
         SDL_UpdateWindowSurface(p_window);
-        lastEvent = event;
     }
     //-------------------------------- Free memory--------------------------------------------
     destroyLevelByGameManager(p_gameMgr);

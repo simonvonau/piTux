@@ -13,6 +13,7 @@ int displayBreakSubPage(SDL_Window *p_window, GameManager *p_gameMgr){
     int exitStatut = 1; // The page return code
     int userChoice = 0; // The id of current selected option
     int nbMaxUserChoice = contentIdSize;
+    int isFirstLoop = 1;
 
     TTF_Font *font1 = TTF_OpenFont("data/fonts/dejavu/DejaVuSans.ttf", 15);
     TTF_Font *font2 = TTF_OpenFont("data/fonts/dejavu/DejaVuSans.ttf", 25);
@@ -29,8 +30,9 @@ int displayBreakSubPage(SDL_Window *p_window, GameManager *p_gameMgr){
     SDL_Event event;
 
     SDL_FlushEvent(SDL_KEYDOWN);
-    while ( SDL_WaitEvent(&event) ){
-//--------------------------Events management-----------------------------------------------------------------------
+    while ( isFirstLoop || SDL_WaitEvent(&event) ){
+        isFirstLoop = 0;
+        //--------------------------Events management-----------------------------------------------------------------------
         if(event.type == SDL_QUIT){ // Leave the game
             exitStatut = 0;
             break;
@@ -71,7 +73,7 @@ int displayBreakSubPage(SDL_Window *p_window, GameManager *p_gameMgr){
 
         textPos = textPosDefault;
 
-//--------------------------------Laying out ---------------------------------------------------------------------------------------
+        //--------------------------------Laying out ---------------------------------------------------------------------------------------
         SDL_BlitSurface(background1, NULL, SDL_GetWindowSurface(p_window), &nullPos);
 
         // Printing the page title
@@ -104,7 +106,7 @@ int displayBreakSubPage(SDL_Window *p_window, GameManager *p_gameMgr){
         SDL_UpdateWindowSurface(p_window);
     }
 
-//-------------------------------- Free memory--------------------------------------------
+    //-------------------------------- Free memory--------------------------------------------
 
     SDL_FreeSurface(background1);
     SDL_FreeSurface(cursor);
