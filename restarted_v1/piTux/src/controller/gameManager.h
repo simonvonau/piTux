@@ -11,6 +11,7 @@
 #include "../controller/herosManager.h"
 #include "../controller/levelManager.h"
 #include "../controller/colliderManager.h"
+#include "../controller/levelIconManager.h"
 #include "../model/game.h"
 #include "../model/block.h"
 #include "../model/bonus.h"
@@ -22,6 +23,7 @@ typedef struct{
     ColliderManager *collMgr;
     LevelManager *levelManager;
     HerosManager *herosMgr;
+    LevelIconManager *levIconMgr;
     Block **allBlocks;
     int allBlocksSize;
     Bonus **allBonus;

@@ -16,6 +16,7 @@ typedef struct{
     char *allBonusFile;
     char *allHerosFile;
     char *fireBulletFile;
+    char *allLevelIconsFile;
 }Game;
 
 

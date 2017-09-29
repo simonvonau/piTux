@@ -41,8 +41,12 @@ Game* initGame(char *p_path){
                 res->fireBulletFile = malloc(sizeof(char) * LINE_SIZE_MAX);
                 if(res->fireBulletFile == NULL){reportErreur("initGame():error malloc(...)5");}
                 strncpy(res->fireBulletFile, buff[1], LINE_SIZE_MAX);
+            }else if(strcmp(buff[0], "[AllLevelIcons]") == 0){
+                res->allLevelIconsFile = malloc(sizeof(char) * LINE_SIZE_MAX);
+                if(res->allLevelIconsFile == NULL){reportErreur("initGame():error malloc(...)6");}
+                strncpy(res->allLevelIconsFile, buff[1], LINE_SIZE_MAX);
             }else{
-                reportErreur("Cannot read a line in the main game setings file!");
+                reportErreur("Cannot read a line in the main game settings file!");
             }
         }
         fclose ( file );

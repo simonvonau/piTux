@@ -35,6 +35,7 @@ HeroInstance * initHeroInstance(){
     res->timeBeforeNextShot = TIME_BETWEEN_SHOTS;
     res->hasReleaseFireKey = 1;
     res->hasReleaseJumpKey = 1;
+    res->currentLevelNo = 0;
     return res;
 }//------------------------------------------------------------------------------------------------------------------------
 
@@ -42,10 +43,11 @@ void resetHerosInstanceBetweenLevel(HeroInstance *p_herosInstance){
 // Reset herosInstance attributes between 2 levels
     if(p_herosInstance->isDead){
         p_herosInstance->currState = 0;
-        // If the game is over (ie tux has -1 lifes left)
+        // If the game is over (ie. tux has -1 lifes left)
         if(p_herosInstance->lifesLeft < 0){
             p_herosInstance->lifesLeft = HEROS_DEFAULT_LIFELEFT;
             p_herosInstance->nbCoins = 0;
+            p_herosInstance->currentLevelNo = 0;
         }
     }
     p_herosInstance->isDead = 0;

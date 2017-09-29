@@ -6,7 +6,6 @@
 
 #include "../utils/reporting.h"
 
-#include "../controller/translationManager.h"
 #include "../model/translation.h"
 
 
@@ -15,7 +14,7 @@ typedef struct{
     Translation **allTranslations;
     int allTranslationsSize;
     int nbLanguages;
-    Translation *languagesList; // One translation like: Anglais,Français,Deutsch,Italiano
+    Translation *languagesList; // One translation like: English,Français,Deutsch,Italiano
     int currLanguageId; // The current selected language
 }TranslationManager;
 

@@ -74,8 +74,6 @@
 		<Unit filename="src/controller/herosManager.h" />
 		<Unit filename="src/controller/levelIconManager.c">
 			<Option compilerVar="CC" />
-			<Option compile="0" />
-			<Option link="0" />
 		</Unit>
 		<Unit filename="src/controller/levelIconManager.h" />
 		<Unit filename="src/controller/levelManager.c">

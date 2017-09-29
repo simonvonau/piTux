@@ -115,11 +115,11 @@ int displayLevelSelectionPage(SDL_Window *p_window, char *p_nextLevelPath, GameM
     SDL_Rect lifeLeftPos = { SDL_GetWindowSurface(p_window)->w-80,0, 0, 0};
     SDL_Rect lifeLeftPosText = { SDL_GetWindowSurface(p_window)->w-40,5, 0, 0};
 
-    int nbLevels = 5;
-    LevelIcon **allLevels = initLevelIcons("data/world1/world1.txt", &nbLevels);
+    int nbLevels = p_gameMgr->levIconMgr->allLevIconsSize;
+    LevelIcon **allLevels = p_gameMgr->levIconMgr->allLevIcons;
     int nextPage = 0;
     int userChoice = 0;
-    int newChoice = 0;
+    int newChoice = p_gameMgr->herosMgr->heroInstance->currentLevelNo;
     int pathSize = 512;
     int isFirstLoop = 1; // To force the first loop even if there are no detected events
 
@@ -172,8 +172,8 @@ int displayLevelSelectionPage(SDL_Window *p_window, char *p_nextLevelPath, GameM
         }
         if(allLevels[newChoice]->isAvailable){
             userChoice = newChoice;
+            p_gameMgr->herosMgr->heroInstance->currentLevelNo = newChoice;
         }
-
 
 //--------------------------------Laying out ---------------------------------------------------------------------------------------
         SDL_BlitSurface(background1, NULL, SDL_GetWindowSurface(p_window), &nullPos);
@@ -181,15 +181,15 @@ int displayLevelSelectionPage(SDL_Window *p_window, char *p_nextLevelPath, GameM
         SDL_BlitSurface(coinLeft, NULL, SDL_GetWindowSurface(p_window), &coinPos);
 
         // Lifes and coins
-        /*sprintf(temp_str, "%d", currGameMgr->herosMgr->heros->lifesLeft);
+        sprintf(temp_str, "%d", p_gameMgr->herosMgr->heroInstance->lifesLeft);
         setTextLayout(p_window, temp_str, 5, font1, textColor, lifeLeftPosText);
-        sprintf(temp_str, "%d", currGameMgr->herosMgr->heros->nbCoins);
-        setTextLayout(p_window, temp_str, 5, font1, textColor, coinPosText);*/
+        sprintf(temp_str, "%d", p_gameMgr->herosMgr->heroInstance->nbCoins);
+        setTextLayout(p_window, temp_str, 5, font1, textColor, coinPosText);
 
         for(i=0; i < nbLevels; i++){
             levelDotPos.x = allLevels[i]->posX;
             levelDotPos.y = allLevels[i]->posY;
-            if(allLevels[i]->isAvailable){
+            if(allLevels[i]->isCleared){
                 SDL_BlitSurface(greenDot, NULL, SDL_GetWindowSurface(p_window), &levelDotPos);
             }
             if( i == userChoice){
@@ -203,11 +203,6 @@ int displayLevelSelectionPage(SDL_Window *p_window, char *p_nextLevelPath, GameM
     }
 
 //-------------------------------- Free memory--------------------------------------------
-    for(i=0; i < nbLevels; i++){
-        destroyLevelIcon(allLevels[i]);
-    }
-    destroyLevelIcon(allLevels);
-
     SDL_FreeSurface(background1);
     SDL_FreeSurface(greenDot);
     SDL_FreeSurface(lifesLeft);

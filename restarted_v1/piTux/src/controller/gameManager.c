@@ -14,6 +14,7 @@ GameManager* initGameManager(char *p_path){
     res->collMgr = NULL;
     res->levelManager = initLevelManager();
     res->herosMgr = initHerosManager(res->currentGame->allHerosFile);
+    res->levIconMgr = initLevelIconManager(res->currentGame->allLevelIconsFile);
     res->allBlocks = initBlockArray(res->currentGame->allBlocksFile, &(res->allBlocksSize));
     res->allBonus = initBonusArray(res->currentGame->allBonusFile, &(res->allBonusSize));
     res->allEnemies = initEnemyArray(res->currentGame->allEnemiesFile, &(res->allEnemiesSize));
@@ -313,6 +314,7 @@ void destroyGameManager(GameManager *p_gameMgr){
 
     destroyHerosManager(p_gameMgr->herosMgr);
     destroyTranslationManager(p_gameMgr->translaManager);
+    destroyLevelIconManager(p_gameMgr->levIconMgr);
     // Already destroyed at level closure
     //destroyColliderManager(currGameManager->collMgr);
     destroyGame(p_gameMgr->currentGame);

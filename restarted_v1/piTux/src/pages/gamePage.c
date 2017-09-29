@@ -140,6 +140,7 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
         }
         if(isGameOver){
             lifeTimeGameOverMessage -= loopTime;
+            resetLevelAchievements(p_gameMgr->levIconMgr);
         }
         if(lifeTimeGameOverMessage <= 0){
             exitStatut = 2;
@@ -188,6 +189,8 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
                 exitStatut = 2;
                 break;
             }
+            // Set this level to "clear" and unlock the adjacent level
+            achieveLevel(p_gameMgr->levIconMgr, p_gameMgr->herosMgr->heroInstance->currentLevelNo);
         }
 
 

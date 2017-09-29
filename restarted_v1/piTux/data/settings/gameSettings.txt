@@ -5,3 +5,4 @@
 [Heros];./data/img/tux/heros.txt;
 [AllBonus];./data/settings/allBonus.txt;
 [AllBullet];./data/img/fireball/fire_bullet.txt;
+[AllLevelIcons];./data/world1/world1.txt;

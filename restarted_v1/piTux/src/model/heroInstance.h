@@ -36,6 +36,7 @@ typedef struct{
     int timeBeforeNextShot;
     int hasReleaseJumpKey;
     int hasReleaseFireKey;
+    int currentLevelNo;
 }HeroInstance;
 
 HeroInstance * initHeroInstance();
