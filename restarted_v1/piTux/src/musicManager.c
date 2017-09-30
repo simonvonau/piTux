@@ -2,7 +2,7 @@
 
 
 
-MusicManager *initMusicManager(int p_bufferLen){
+MusicManager *initMusicManager(){
 // Create a new MusicManager
     MusicManager *res = malloc(sizeof(MusicManager));
     int allSongPathSize = 15;
@@ -18,7 +18,6 @@ MusicManager *initMusicManager(int p_bufferLen){
         reportErreur("initMusicManager(): malloc() error");
     }
     Mix_AllocateChannels(allSongPathSize);
-    res->bufferLength = p_bufferLen;
     res->currMusic = NULL;
 
     // Loading all sounds
@@ -62,7 +61,7 @@ void loadMusic(MusicManager *p_musicMgr, char* p_path){
 
 void playMusic(MusicManager *p_musicMgr){
 // Play the current music if it exists
-    if(Mix_PlayMusic(p_musicMgr->currMusic, 1) == -1)
+    if(Mix_PlayMusic(p_musicMgr->currMusic, -1) == -1)
 		reportErreur("playMusic(): cannot play it");
 	Mix_VolumeMusic(SDL_MIX_MAXVOLUME / 2);
 }//--------------------------------------------------------------------------------------------------------------------

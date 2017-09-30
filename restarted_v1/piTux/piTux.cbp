@@ -80,10 +80,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/controller/levelManager.h" />
-		<Unit filename="src/controller/musicManager.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/controller/musicManager.h" />
 		<Unit filename="src/controller/translationManager.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -161,6 +157,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/model/translation.h" />
+		<Unit filename="src/musicManager.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/musicManager.h" />
 		<Unit filename="src/pages/creditsPage.c">
 			<Option compilerVar="CC" />
 		</Unit>

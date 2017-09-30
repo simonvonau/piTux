@@ -3,7 +3,7 @@
 	<stdio.h>
 	<stdlib.h>
 
-1506780196 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\main.c
+1506791417 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\main.c
 	<stdio.h>
 	<stdlib.h>
 	<SDL2/SDL.h>
@@ -14,7 +14,6 @@
 	"global.h"
 	"controller/gui_manager.h"
 	"controller/gameManager.h"
-	"controller/musicManager.h"
 
 1451768294 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\include\sdl2\sdl.h
 	"SDL_main.h"
@@ -507,10 +506,10 @@
 	"../controller/gameManager.h"
 	"../pages/textLayout.h"
 
-1506724877 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\global.h
+1506791405 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\global.h
 	<stdlib.h>
 	<stdio.h>
-	"controller/musicManager.h"
+	"musicManager.h"
 
 1506199410 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\textlayout.h
 	<stdlib.h>
@@ -773,7 +772,7 @@
 1506724766 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\creditspage.c
 	"creditsPage.h"
 
-1506725691 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\gamepage.c
+1506787358 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\gamepage.c
 	"gamePage.h"
 
 1506724901 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\leveleditorpage.c
@@ -1641,7 +1640,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1506780257 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\musicmanager.c
+1506786724 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\musicmanager.c
 	"musicManager.h"
 
 1506777167 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\musicmanager.h
@@ -1770,4 +1769,10 @@
 
 1506724878 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\global.c
 	"global.h"
+
+1506791392 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\musicmanager.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL2/SDL_mixer.h>
+	"utils/reporting.h"
 

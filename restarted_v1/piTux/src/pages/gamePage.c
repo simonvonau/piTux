@@ -89,6 +89,12 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
         // Escape => break mode
         if( event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE && event.key.timestamp > lastEscapeTime + 10){
             lastEscapeTime = SDL_GetTicks();
+            p_gameMgr->herosMgr->heroInstance->fireKeyPressed = 0;
+            p_gameMgr->herosMgr->heroInstance->hasReleaseFireKey = 1;
+            p_gameMgr->herosMgr->heroInstance->jumpKeyPressed = 0;
+            p_gameMgr->herosMgr->heroInstance->leftKeyPressed = 0;
+            p_gameMgr->herosMgr->heroInstance->rightKeyPressed = 0;
+
             if (!(exitStatut = displayBreakSubPage(p_window, p_gameMgr))){ // Open break page
                 break;
             }

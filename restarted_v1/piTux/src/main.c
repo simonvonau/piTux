@@ -11,7 +11,6 @@
 #include "global.h"
 #include "controller/gui_manager.h"
 #include "controller/gameManager.h"
-#include "controller/musicManager.h"
 
 
 
@@ -34,7 +33,7 @@ int main(int argc, char *argv[])
         return -1;
     }
     currGameManager = initGameManager("./data/settings/gameSettings.txt");
-    currMusicManager = initMusicManager(MUSIC_BUFFER_LENGTH);
+    currMusicManager = initMusicManager();
 
     // Openning a new window
     p_window = SDL_CreateWindow("piTux", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL_WINDOW_SHOWN);

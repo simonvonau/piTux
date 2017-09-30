@@ -2,7 +2,7 @@
 #define __GLOBAL_H__
 #include <stdlib.h>
 #include <stdio.h>
-#include "controller/musicManager.h"
+#include "musicManager.h"
 
 
 MusicManager *currMusicManager;
