@@ -15,7 +15,8 @@ typedef struct{
 }MusicManager;
 
 
-MusicManager *initMusicManager(int p_bufferLen, int p_channelsQty);
+MusicManager *initMusicManager(int p_bufferLen);
+void playSoundByID(MusicManager *p_musicMgr, int p_idSound);
 void loadMusic(MusicManager *p_musicMgr, char* p_path);
 void playMusic(MusicManager *p_musicMgr);
 void pauseMusic(MusicManager *p_musicMgr);

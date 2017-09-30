@@ -31,8 +31,10 @@ int displayQuitPage(SDL_Window *p_window, GameManager *p_gameMgr){
         // Events management
         if( event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_UP){// Change userChoice
             userChoice -= 1;
+            playSoundByID(currMusicManager, 13);
         }else if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_DOWN){// Change userChoice
             userChoice += 1;
+            playSoundByID(currMusicManager, 13);
         }
         if(event.type == SDL_QUIT){
             nextPage = 0;// Leave the game
@@ -43,6 +45,7 @@ int displayQuitPage(SDL_Window *p_window, GameManager *p_gameMgr){
             break;
         }
         if( event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_RETURN){// Validate userChoice
+            playSoundByID(currMusicManager, 14);
             if (userChoice == 0){
                 nextPage = 1;
             }else{ nextPage = 0;}

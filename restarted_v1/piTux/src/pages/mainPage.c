@@ -30,10 +30,13 @@ int displayMainPage(SDL_Window *p_window, GameManager *p_gameMgr){
         }
         if( event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_UP){// Change userChoice
             userChoice -= 1;
+            playSoundByID(currMusicManager, 13);
         }else if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_DOWN){// Change userChoice
             userChoice += 1;
+            playSoundByID(currMusicManager, 13);
         }
         if( event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_RETURN){// Validate userChoice
+            playSoundByID(currMusicManager, 14);
             // To match with gui_manager() switch's index
             userChoice += 2;
             break;

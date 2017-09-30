@@ -53,6 +53,7 @@ void updateHeroBehaviourAfterCollisionDetection(HeroInstance *p_herosInstance, H
                     }*/
                     break;
                 case tag_bonus_egg:
+                    playSoundByID(currMusicManager, 4);
                     if(p_herosInstance->currState == 0){// To avoid a fire tux (state 2) to become a big tux (state 1)
                         if(p_herosInstance->lastDirection == 'r'){
                             changeHerosState(p_herosInstance, 1, 0, 0);
@@ -62,6 +63,7 @@ void updateHeroBehaviourAfterCollisionDetection(HeroInstance *p_herosInstance, H
                     }
                     break;
                 case tag_bonus_flower:
+                    playSoundByID(currMusicManager, 5);
                     if(p_herosInstance->lastDirection == 'r'){
                         changeHerosState(p_herosInstance, 2, 0, 0);
                     }else{
@@ -114,6 +116,7 @@ void updateHeroBehaviourAfterCollisionDetection(HeroInstance *p_herosInstance, H
         if(isTouchingEnemy && p_herosInstance->godModeDuration <= 0 && !p_herosInstance->isDead){
             // Big or fire tux will become smaller
             if(p_herosInstance->currState == 1 || p_herosInstance->currState == 2){
+                playSoundByID(currMusicManager, 6);
                 p_herosInstance->godModeDuration = 1000;
                 if(p_herosInstance->lastDirection == 'r'){
                     changeHerosState(p_herosInstance, p_herosInstance->currState - 1, 0, 0);
@@ -123,12 +126,14 @@ void updateHeroBehaviourAfterCollisionDetection(HeroInstance *p_herosInstance, H
             }else{
                 // Small tux will die
                 heroInstanceDeath(p_herosInstance, p_heros, p_currentTime);
+                playSoundByID(currMusicManager, 9);
             }
         }
 
         // Firing
         if(p_herosInstance->fireKeyPressed && p_herosInstance->currState == 2 && p_herosInstance->timeBeforeNextShot <= 0 && p_herosInstance->hasReleaseFireKey){
             p_herosInstance->hasReleaseFireKey = 0;
+            playSoundByID(currMusicManager, 11);
             if(p_herosInstance->lastDirection == 'r'){
                 addBulletInstanceFromLevelMgr(p_collMgr, p_levMgr, p_herosInstance->posX + p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->width + 1
                     , p_herosInstance->posY + p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->height / 2, p_fireBullet, 1);
@@ -146,6 +151,7 @@ void updateHeroBehaviourAfterCollisionDetection(HeroInstance *p_herosInstance, H
             p_herosInstance->isTouchingGround = 1;
             // Start a new jump
             if(p_herosInstance->jumpKeyPressed && p_herosInstance->hasReleaseJumpKey){
+                playSoundByID(currMusicManager, 8);
                 p_herosInstance->hasReleaseJumpKey = 0;
                 if(p_herosInstance->lastDirection == 'r'){
                     changeHerosAction(p_herosInstance, 5, 0);

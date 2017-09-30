@@ -51,6 +51,7 @@ void updateMrFluffyBehaviour(EnemyInstance *p_enemyInstance, Enemy p_enemy, Coll
             // If the colliding object is above
             }else if(p_enemyInstance->coll[p_enemyInstance->currentActionId]->lastPosY + p_enemyInstance->coll[p_enemyInstance->currentActionId]->height <= contacts[i]->lastPosY + enemyFallY){
                 if(!p_enemyInstance->isDead && contacts[i]->ownerTag == tag_tux){
+                    playSoundByID(currMusicManager, 12);
                     if(p_enemyInstance->direction == -1){
                         changeEnemyAction(p_enemyInstance, 2, 0);
                     }else{
@@ -97,6 +98,7 @@ void updateMrBombBehaviour(EnemyInstance *p_enemyInstance, Enemy p_enemy, Collid
         if(contacts[i]->ownerTag != tag_bonus_coin && contacts[i]->ownerTag != tag_bonus_egg && contacts[i]->ownerTag != tag_bonus_flower){
             // Mr Bomb explodes when he touches an explosion
             if((contacts[i]->ownerTag == tag_explosion || contacts[i]->ownerState == state_block_hit_up) && p_enemyInstance->currentActionId != 4){
+                playSoundByID(currMusicManager, 2);
                 changeEnemyAction(p_enemyInstance, 4, 0);
                 p_enemyInstance->coll[p_enemyInstance->currentActionId]->ownerTag = tag_explosion;
                 p_enemyInstance->isDead = 1;
@@ -137,6 +139,7 @@ void updateMrBombBehaviour(EnemyInstance *p_enemyInstance, Enemy p_enemy, Collid
     // Create the explosion
     if((p_enemyInstance->currentActionId == 2 || p_enemyInstance->currentActionId == 3)
        && p_enemyInstance->currentSpriteId == p_enemy.spritesSize2[p_enemyInstance->currentActionId] - 1){
+        playSoundByID(currMusicManager, 2);
         changeEnemyAction(p_enemyInstance, 4, 0);
         p_enemyInstance->coll[p_enemyInstance->currentActionId]->ownerTag = tag_explosion;
         p_enemyInstance->isDead = 1;

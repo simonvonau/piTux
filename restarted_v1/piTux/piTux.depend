@@ -3,7 +3,7 @@
 	<stdio.h>
 	<stdlib.h>
 
-1506724892 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\main.c
+1506780196 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\main.c
 	<stdio.h>
 	<stdlib.h>
 	<SDL2/SDL.h>
@@ -703,7 +703,7 @@
 	"../controller/gameManager.h"
 	"../pages/textLayout.h"
 
-1506679413 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\herosmanager.c
+1506778300 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\herosmanager.c
 	"herosManager.h"
 
 1506681374 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\herosmanager.h
@@ -722,7 +722,7 @@
 1506686621 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\leveliconmanager.c
 	"levelIconManager.h"
 
-1506693244 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\levelmanager.c
+1506779531 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\levelmanager.c
 	"levelManager.h"
 
 1506196386 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\translationmanager.c
@@ -779,19 +779,19 @@
 1506724901 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\leveleditorpage.c
 	"levelEditorPage.h"
 
-1506724905 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\levelselectionpage.c
+1506778739 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\levelselectionpage.c
 	"levelSelectionPage.h"
 
-1506724912 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\mainpage.c
+1506778747 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\mainpage.c
 	"mainPage.h"
 
-1506724917 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\quitpage.c
+1506778753 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\quitpage.c
 	"quitPage.h"
 
-1506724921 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\settingspage.c
+1506778763 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\settingspage.c
 	"mainPage.h"
 
-1506691173 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\sub_pages\break_page.c
+1506778732 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\sub_pages\break_page.c
 	"break_page.h"
 
 1506198098 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\sub_pages\break_page.h
@@ -1641,10 +1641,10 @@
 	"begin_code.h"
 	"close_code.h"
 
-1506707739 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\musicmanager.c
+1506780257 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\musicmanager.c
 	"musicManager.h"
 
-1506707725 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\musicmanager.h
+1506777167 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\musicmanager.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL_mixer.h>
@@ -1691,7 +1691,7 @@
 	"../model/enemyInstance.h"
 	"../controller/colliderManager.h"
 
-1506610600 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\enemybehaviour.c
+1506779025 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\enemybehaviour.c
 	"enemyBehaviour.h"
 
 1485783892 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\enemybehaviour.c
@@ -1728,7 +1728,7 @@
 	"../global.h"
 	"../utils/arrayProcessing.h"
 
-1506682982 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\heroinstance.c
+1506778241 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\heroinstance.c
 	"heroInstance.h"
 
 1506509971 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\firebullet.h

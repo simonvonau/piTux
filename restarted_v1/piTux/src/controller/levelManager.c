@@ -217,6 +217,7 @@ void updateBlocksAfterColliding(LevelManager* p_levMgr, ColliderManager *p_collM
                                 currBlockInst->currentTime = 0;
                                 // If tux is big the wood block will be destroyed
                                 if(contactPoints[j]->ownerState == state_tux_big || contactPoints[j]->ownerState == state_tux_fire){
+                                    playSoundByID(currMusicManager, 0);
                                     changeBlockAction(currBlockInst, 1, 0);
                                 }
                             }
@@ -282,6 +283,7 @@ void updateBonusAfterColliding(LevelManager* p_levMgr, ColliderManager *p_collMg
                     currBonusIns->coll->isEnabled = 0;
                     switch(currBonusIns->coll->ownerTag){
                         case tag_bonus_coin:
+                            playSoundByID(currMusicManager, 1);
                             currBonusIns->wasGathered = 1;
                             currBonusIns->lifeTime = 500;
                             break;
@@ -318,6 +320,7 @@ void updateBonusAfterColliding(LevelManager* p_levMgr, ColliderManager *p_collMg
                 // If the heros gathered this coin by hitting the block under it
                 if( currBonusIns->coll->isEnabled && currBonusIns->coll->ownerTag == tag_bonus_coin
                 && contactPoints[j]->ownerState == state_block_hit_up){
+                    playSoundByID(currMusicManager, 1);
                     currBonusIns->coll->isEnabled = 0;
                     currBonusIns->wasGathered = 1;
                     currBonusIns->lifeTime = 500;

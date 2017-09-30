@@ -43,11 +43,14 @@ int displayBreakSubPage(SDL_Window *p_window, GameManager *p_gameMgr){
             break;
         }
         if( event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_UP){// Change userChoice
+            playSoundByID(currMusicManager, 13);
             userChoice -= 1;
         }else if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_DOWN){// Change userChoice
             userChoice += 1;
+            playSoundByID(currMusicManager, 13);
         }
         if( event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_RETURN){// Validate userChoice
+            playSoundByID(currMusicManager, 14);
             switch(userChoice){
                 case 0:
                     exitStatut = 7; //Restart

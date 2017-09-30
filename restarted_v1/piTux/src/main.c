@@ -34,25 +34,7 @@ int main(int argc, char *argv[])
         return -1;
     }
     currGameManager = initGameManager("./data/settings/gameSettings.txt");
-    currMusicManager = initMusicManager(MUSIC_BUFFER_LENGTH, 10);
-
-
-    // Play a song
-    /*Mix_AllocateChannels(32); //Allouer 32 canaux
-    Mix_Volume(1, MIX_MAX_VOLUME/2); //Mettre à mi-volume le post 1
-    Mix_Chunk *son;
-    son = Mix_LoadWAV("./data/sounds/jump.wav");
-    if(son == NULL){
-        printf("errors : %s", Mix_GetError());
-    }
-    Mix_VolumeChunk(son, MIX_MAX_VOLUME);
-    Mix_PlayChannel(1, son, 0);
-    if(Mix_PlayChannel( 0, son, 0 ) == -1){
-        printf("errors : %s", Mix_GetError());
-    }
-    SDL_Delay(2000);
-    Mix_FreeChunk(son);
-    fgetc(stdin);*/
+    currMusicManager = initMusicManager(MUSIC_BUFFER_LENGTH);
 
     // Openning a new window
     p_window = SDL_CreateWindow("piTux", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL_WINDOW_SHOWN);

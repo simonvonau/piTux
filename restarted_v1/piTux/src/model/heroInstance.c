@@ -271,6 +271,7 @@ void gatherCoin(HeroInstance *p_heroInstance){
     if(p_heroInstance->nbCoins >= 100){
         p_heroInstance->lifesLeft += 1;
         p_heroInstance->nbCoins -= 100;
+        playSoundByID(currMusicManager, 10);
     }
 
 }//------------------------------------------------------------------------------------------------------------------------

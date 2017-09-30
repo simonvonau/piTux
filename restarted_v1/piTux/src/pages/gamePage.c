@@ -62,7 +62,7 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
     int averageFPSAtLevelEnd = -1;
 
     // Ambiance music
-    loadMusic(currMusicManager, "data/music/theme.ogg");
+    loadMusic(currMusicManager, "data/music/clavelian_march.wav");
     playMusic(currMusicManager);
 
     // Init level

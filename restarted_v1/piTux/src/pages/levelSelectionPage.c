@@ -142,15 +142,19 @@ int displayLevelSelectionPage(SDL_Window *p_window, char *p_nextLevelPath, GameM
 //--------------------------Events management-----------------------------------------------------------------------
         if( event.type==SDL_KEYDOWN && event.key.keysym.sym==SDLK_UP){// Change userChoice
             newChoice = chooseLevel(allLevels, nbLevels, userChoice, "UP");
+            playSoundByID(currMusicManager, 13);
         }
         if (event.type==SDL_KEYDOWN && event.key.keysym.sym==SDLK_DOWN){// Change userChoice
             newChoice = chooseLevel(allLevels, nbLevels, userChoice, "DOWN");
+            playSoundByID(currMusicManager, 13);
         }
         if( event.type==SDL_KEYDOWN && event.key.keysym.sym==SDLK_RIGHT){// Change userChoice
             newChoice = chooseLevel(allLevels, nbLevels, userChoice, "RIGHT");
+            playSoundByID(currMusicManager, 13);
         }
         if (event.type==SDL_KEYDOWN && event.key.keysym.sym==SDLK_LEFT){// Change userChoice
             newChoice = chooseLevel(allLevels, nbLevels, userChoice, "LEFT");
+            playSoundByID(currMusicManager, 13);
         }
         if(event.type== SDL_QUIT){
             nextPage = 0;// Leave the game
@@ -161,6 +165,7 @@ int displayLevelSelectionPage(SDL_Window *p_window, char *p_nextLevelPath, GameM
             break;
         }
         if( event.type==SDL_KEYDOWN && event.key.keysym.sym == SDLK_RETURN){// Validate userChoice
+            playSoundByID(currMusicManager, 14);
             nextPage = 7;
             strncpy(p_nextLevelPath, allLevels[userChoice]->path, pathSize );
             break;
