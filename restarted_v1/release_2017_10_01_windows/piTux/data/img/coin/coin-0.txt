@@ -1,0 +1,11 @@
+[Header];1;200;32;32;0;400;
+=====================================================;
+[Action];0;8;100;
+[Sprite];0;data/img/coin/coin-0.png;
+[Sprite];1;data/img/coin/coin-1.png;
+[Sprite];2;data/img/coin/coin-2.png;
+[Sprite];3;data/img/coin/coin-3.png;
+[Sprite];4;data/img/coin/coin-4.png;
+[Sprite];5;data/img/coin/coin-5.png;
+[Sprite];6;data/img/coin/coin-6.png;
+[Sprite];7;data/img/coin/coin-7.png;

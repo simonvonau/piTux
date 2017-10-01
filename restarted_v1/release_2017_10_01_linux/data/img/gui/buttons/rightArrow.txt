@@ -1,0 +1,1 @@
+[Header];38;39;data/img/gui/buttons/rightArrow.jpg;

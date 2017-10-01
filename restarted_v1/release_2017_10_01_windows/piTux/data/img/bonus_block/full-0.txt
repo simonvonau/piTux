@@ -1,0 +1,9 @@
+[Header];2;110;32;32;200;
+=====================================================;
+[Action];0;3;300;
+[Sprite];0;data/img/bonus_block/full-0.png;
+[Sprite];1;data/img/bonus_block/full-1.png;
+[Sprite];2;data/img/bonus_block/full-2.png;
+=====================================================;
+[Action];1;1;150;
+[Sprite];0;data/img/bonus_block/empty.png;

@@ -1,0 +1,4 @@
+[Header];3;
+[Bonus];0;data/img/coin/coin-0.txt;
+[Bonus];1;data/img/egg/egg.txt;
+[Bonus];2;data/img/fireflower/fire_flower.txt;

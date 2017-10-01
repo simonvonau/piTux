@@ -1,0 +1,33 @@
+[Header];6;50;Mr iceblock;
+=========Walking left=========
+[Action];0;4;200;35;38;50;1;
+[Sprite];0;data/img/mr_iceblock/left-0.png;
+[Sprite];1;data/img/mr_iceblock/left-1.png;
+[Sprite];2;data/img/mr_iceblock/left-2.png;
+[Sprite];3;data/img/mr_iceblock/left-1.png;
+=========Walking right=========
+[Action];1;4;200;35;38;50;1;
+[Sprite];0;data/img/mr_iceblock/right-0.png;
+[Sprite];1;data/img/mr_iceblock/right-1.png;
+[Sprite];2;data/img/mr_iceblock/right-2.png;
+[Sprite];3;data/img/mr_iceblock/right-1.png;
+=========Dying left=========
+[Action];2;5;200;0;0;0;1;
+[Sprite];0;data/img/mr_iceblock/gmelting-0.png;
+[Sprite];1;data/img/mr_iceblock/gmelting-1.png;
+[Sprite];2;data/img/mr_iceblock/gmelting-2.png;
+[Sprite];3;data/img/mr_iceblock/gmelting-3.png;
+[Sprite];4;data/img/mr_iceblock/gmelting-4.png;
+=========Dying right=========
+[Action];3;5;200;0;0;0;1;
+[Sprite];0;data/img/mr_iceblock/gmelting-0-right.png;
+[Sprite];1;data/img/mr_iceblock/gmelting-1-right.png;
+[Sprite];2;data/img/mr_iceblock/gmelting-2-right.png;
+[Sprite];3;data/img/mr_iceblock/gmelting-3-right.png;
+[Sprite];4;data/img/mr_iceblock/gmelting-4-right.png;
+=========Flat left=========
+[Action];4;1;2000;35;38;400;1;
+[Sprite];0;data/img/mr_iceblock/flat-left.png;
+=========Flat right=========
+[Action];5;1;2000;35;38;400;1;
+[Sprite];0;data/img/mr_iceblock/flat-right.png;

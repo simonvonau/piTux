@@ -1,0 +1,4 @@
+[Header];2;
+[Enemy];0;data/img/mr_fluffy/sprite.txt;
+[Enemy];1;data/img/mr_bomb/sprite.txt;
+//[Enemy];2;data/img/mr_iceblock/sprite.txt;

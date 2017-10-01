@@ -1,0 +1,7 @@
+[Header];6;
+[Block];0;data/img/tiles/unisolid3.txt;
+[Block];1;data/img/tiles/block_horiz.txt;
+[Block];2;data/img/tiles/green_pipe.txt;
+[Block];3;data/img/tiles/block5.txt;
+[Block];4;data/img/brick/brick-0.txt;
+[Block];5;data/img/bonus_block/full-0.txt;

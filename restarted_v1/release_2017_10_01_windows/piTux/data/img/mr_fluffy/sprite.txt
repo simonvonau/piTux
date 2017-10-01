@@ -1,0 +1,25 @@
+[Header];6;30;Mr Fluffy;
+=========Walking left=========
+[Action];0;4;200;38;36;50;1;
+[Sprite];0;data/img/mr_fluffy/left-0.png;
+[Sprite];1;data/img/mr_fluffy/left-1.png;
+[Sprite];2;data/img/mr_fluffy/left-2.png;
+[Sprite];3;data/img/mr_fluffy/left-1.png;
+=========Walking right=========
+[Action];1;4;200;38;36;50;1;
+[Sprite];0;data/img/mr_fluffy/right-0.png;
+[Sprite];1;data/img/mr_fluffy/right-1.png;
+[Sprite];2;data/img/mr_fluffy/right-2.png;
+[Sprite];3;data/img/mr_fluffy/right-1.png;
+=========Squished left=========
+[Action];2;1;500;0;10;0;1;
+[Sprite];0;data/img/mr_fluffy/squished-left.png;
+=========sSquished right=========
+[Action];3;1;500;0;10;0;1;
+[Sprite];0;data/img/mr_fluffy/squished-right.png;
+=========Dying left=========
+[Action];4;1;1000;0;0;0;1;
+[Sprite];0;data/img/mr_fluffy/dying_left.png;
+=========Dying right=========
+[Action];5;1;1000;0;0;0;1;
+[Sprite];0;data/img/mr_fluffy/dying_right.png;
