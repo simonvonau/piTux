@@ -11,7 +11,7 @@ MusicManager *currMusicManager;
 #define MUSIC_BUFFER_LENGTH 1024
 
 // The limit border outside the screen where an object can collide/interact with other objects
-#define COLLIDER_MARGIN 200
+#define COLLIDER_MARGIN 500
 
 
 // Max size of a configuration file line

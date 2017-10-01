@@ -137,34 +137,35 @@ int displayLevelSelectionPage(SDL_Window *p_window, char *p_nextLevelPath, GameM
     loadMusic(currMusicManager, "data/music/salcon.ogg");
     playMusic(currMusicManager);
 
+    SDL_PumpEvents();
+    SDL_FlushEvent(SDL_KEYDOWN);
     while (isFirstLoop || SDL_WaitEvent(&event)){
-        isFirstLoop = 0;
 //--------------------------Events management-----------------------------------------------------------------------
-        if( event.type==SDL_KEYDOWN && event.key.keysym.sym==SDLK_UP){// Change userChoice
+        if(!isFirstLoop && event.type==SDL_KEYDOWN && event.key.keysym.sym==SDLK_UP){// Change userChoice
             newChoice = chooseLevel(allLevels, nbLevels, userChoice, "UP");
             playSoundByID(currMusicManager, 13);
         }
-        if (event.type==SDL_KEYDOWN && event.key.keysym.sym==SDLK_DOWN){// Change userChoice
+        if(!isFirstLoop && event.type==SDL_KEYDOWN && event.key.keysym.sym==SDLK_DOWN){// Change userChoice
             newChoice = chooseLevel(allLevels, nbLevels, userChoice, "DOWN");
             playSoundByID(currMusicManager, 13);
         }
-        if( event.type==SDL_KEYDOWN && event.key.keysym.sym==SDLK_RIGHT){// Change userChoice
+        if(!isFirstLoop && event.type==SDL_KEYDOWN && event.key.keysym.sym==SDLK_RIGHT){// Change userChoice
             newChoice = chooseLevel(allLevels, nbLevels, userChoice, "RIGHT");
             playSoundByID(currMusicManager, 13);
         }
-        if (event.type==SDL_KEYDOWN && event.key.keysym.sym==SDLK_LEFT){// Change userChoice
+        if(!isFirstLoop && event.type==SDL_KEYDOWN && event.key.keysym.sym==SDLK_LEFT){// Change userChoice
             newChoice = chooseLevel(allLevels, nbLevels, userChoice, "LEFT");
             playSoundByID(currMusicManager, 13);
         }
-        if(event.type== SDL_QUIT){
+        if(!isFirstLoop && event.type== SDL_QUIT){
             nextPage = 0;// Leave the game
             break;
         }
-        if( event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE){
+        if(!isFirstLoop && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE){
             nextPage = 1; // Go back to main menu
             break;
         }
-        if( event.type==SDL_KEYDOWN && event.key.keysym.sym == SDLK_RETURN){// Validate userChoice
+        if(!isFirstLoop && event.type==SDL_KEYDOWN && event.key.keysym.sym == SDLK_RETURN){// Validate userChoice
             playSoundByID(currMusicManager, 14);
             nextPage = 7;
             strncpy(p_nextLevelPath, allLevels[userChoice]->path, pathSize );
@@ -210,6 +211,7 @@ int displayLevelSelectionPage(SDL_Window *p_window, char *p_nextLevelPath, GameM
 
         // Window refreshing
         SDL_UpdateWindowSurface(p_window);
+        isFirstLoop = 0;
     }
 
 //-------------------------------- Free memory--------------------------------------------

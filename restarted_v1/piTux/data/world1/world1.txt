@@ -1,6 +1,6 @@
 [Header];5;
 [Data];data/world1/level1.txt;532;311;0;1;1;2;
-[Data];data/world1/level_custom.txt;532;384;0;0;0;-1;
+[Data];data/world1/level_custom.txt;532;384;1;1;0;-1;
 [Data];data/world1/level2.txt;446;314;0;0;0;3;
 [Data];data/world1/level3.txt;338;314;0;0;2;4;
 [Data];data/world1/level4.txt;233;314;0;0;3;-1;

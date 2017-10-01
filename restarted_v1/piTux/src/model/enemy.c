@@ -2,25 +2,26 @@
 
 Enemy **initEnemyArray(char *p_path,int *p_resSize){
 // Load an array of enemies
-    FILE *file = fopen ( p_path, "r" );
-    int nbMaxElemPerLine = 10;
-    int lineSizeMax = 512;// Max size of a line from the opened file
-    char  **buff;
-    char line[lineSizeMax];
     int i;
+    FILE *file = fopen ( p_path, "r" );
+    int nbMaxElemPerLine = 10; // Max different values in one line of the file
+    char  **buff;
+    int buffSize1;
+    int buffSize2[nbMaxElemPerLine];
+    char line[LINE_SIZE_MAX];
     Enemy **res;
 
     if ( file != NULL ){
         while ( fgets ( line, sizeof(line), file ) != NULL){
-            buff = splitString(line, ';', lineSizeMax, nbMaxElemPerLine, lineSizeMax);
+            splitString(line, LINE_SIZE_MAX, ';', &buff, &buffSize1, buffSize2, nbMaxElemPerLine, LINE_SIZE_MAX);
 
-            if(strcmp(buff[0], "[Header]") == 0){
+            if(buffSize1 >= 2 && strcmp(buff[0], "[Header]") == 0){
                 *p_resSize = atoi(buff[1]);
                 res = malloc(*p_resSize * sizeof(Enemy *));
                 if(res == NULL){
                     reportErreur("Error malloc initEnemyArray():1");
                 }
-            }else if(strcmp(buff[0], "[Enemy]") == 0){
+            }else if(buffSize1 >= 3 && strcmp(buff[0], "[Enemy]") == 0){
                 res[atoi(buff[1])] = initEnemy(buff[2]);
             }
         }
@@ -28,22 +29,22 @@ Enemy **initEnemyArray(char *p_path,int *p_resSize){
     }else{
         perror ( p_path );
     }
-
-    for(i=0;i < nbMaxElemPerLine;i++){
+    for(i = 0; i < buffSize1; i++){
         free(buff[i]);
     }
     free(buff);
     return res;
-
 }//------------------------------------------------------------------------------------------------------------------------
+
 Enemy *initEnemy(char *p_path){
 // Load an enemy from file
-    FILE *file = fopen ( p_path, "r" );
-    int nbMaxElemPerLine = 10;
-    int lineSizeMax = 512;// Max size of a line from the opened file
-    char  **buff;
-    char line[lineSizeMax];
     int i;
+    FILE *file = fopen ( p_path, "r" );
+    int nbMaxElemPerLine = 10; // Max different values in one line of the file
+    char  **buff;
+    int buffSize1;
+    int buffSize2[nbMaxElemPerLine];
+    char line[LINE_SIZE_MAX];
     Enemy *res = malloc(sizeof(Enemy));
     int currentAction = 0;
 
@@ -53,9 +54,9 @@ Enemy *initEnemy(char *p_path){
 
     if ( file != NULL ){
         while ( fgets ( line, sizeof(line), file ) != NULL){
-            buff = splitString(line, ';', lineSizeMax, nbMaxElemPerLine, lineSizeMax);
+            splitString(line, LINE_SIZE_MAX, ';', &buff, &buffSize1, buffSize2, nbMaxElemPerLine, LINE_SIZE_MAX);
 
-            if(strcmp(buff[0], "[Header]") == 0){
+            if(buffSize1 >= 3 && strcmp(buff[0], "[Header]") == 0){
                 res->spritesSize1 = atoi(buff[1]);
                 res->sprites = malloc( res->spritesSize1 * sizeof(SDL_Surface **));
                 res->spritesSize2 = malloc( res->spritesSize1 * sizeof(int));
@@ -69,7 +70,7 @@ Enemy *initEnemy(char *p_path){
                    || res->actionColl == NULL){
                     reportErreur("Error malloc initEnemy():2");
                 }
-            }else if(strcmp(buff[0], "[Action]") == 0 && currentAction < res->spritesSize1){
+            }else if(buffSize1 >= 7 && strcmp(buff[0], "[Action]") == 0 && currentAction < res->spritesSize1){
                 currentAction = atoi(buff[1]);
                 res->spritesSize2[currentAction] = atoi(buff[2]);
                 res->spriteDuration[currentAction] = atoi(buff[3]);
@@ -80,7 +81,7 @@ Enemy *initEnemy(char *p_path){
                 if(res->sprites[currentAction] == NULL ){
                     reportErreur("Error malloc initEnemy():3");
                 }
-            }else if (strcmp(buff[0], "[Sprite]") == 0){
+            }else if (buffSize1 >= 3 && strcmp(buff[0], "[Sprite]") == 0){
                 res->sprites[currentAction][atoi(buff[1])] = loadImage(buff[2]);
             }
         }
@@ -88,16 +89,13 @@ Enemy *initEnemy(char *p_path){
     }else{
         perror ( p_path );
     }
-
-    for(i=0;i < nbMaxElemPerLine;i++){
+    for(i = 0; i < buffSize1; i++){
         free(buff[i]);
     }
     free(buff);
-
-
     return res;
-
 }//------------------------------------------------------------------------------------------------------------------------
+
 void destroyEnemy(Enemy *p_enemy){
 // Free enemy memory
     int i,j;

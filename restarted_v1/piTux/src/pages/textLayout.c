@@ -5,30 +5,32 @@ void setTextLayout(SDL_Window* p_window, char *p_text,int p_textSize,TTF_Font* p
 // Display text
     char endLine = '$';
     int jumpSize = 30;// Size between two lines
-    int maxLineWidth = 128;
-    int i, j;
+    int i;
     SDL_Surface *label;
-    int lastJumpCharIndex =- 1;// Id of the last end Line
-    char **buff;
+    char  **buff;
+    int buffSize1;
+    // Declared in bottom : int buffSize2[nbMaxElemPerLine];
     int nbLines = 0;
 
     // Line accounting
-    for(i = 0;i<p_textSize && p_text[i]!='\0'; i++){
+    for(i = 0; i < p_textSize && p_text[i] != '\0'; i++){
         if(p_text[i] == endLine){nbLines += 1;}
     }
     if(p_text[p_textSize-1] != endLine){nbLines += 1;}
+    int buffSize2[nbLines];
 
-    buff =splitString(p_text, endLine, p_textSize, nbLines, maxLineWidth);
+
+    splitString(p_text, p_textSize, '$', &buff, &buffSize1, buffSize2, nbLines, LINE_SIZE_MAX);
 
     // Print each line
-    for(i=0; i < nbLines; i++){
+    for(i = 0; i < buffSize1; i++){
         label = TTF_RenderText_Blended(p_font, buff[i], p_textColor);
         SDL_BlitSurface(label, NULL, SDL_GetWindowSurface(p_window), &p_textPos);
         SDL_FreeSurface(label);
 
         p_textPos.y += jumpSize;
     }
-    for(i = 0; i < nbLines; i++){
+    for(i = 0; i < buffSize1; i++){
         free(buff[i]);
     }
     free(buff);
@@ -37,18 +39,15 @@ void setTextLayout(SDL_Window* p_window, char *p_text,int p_textSize,TTF_Font* p
 char *setTimeLayout(int p_time, int p_wishedSize){
 // Put time from millisecondes to char
     int maxSize = 200;
-    char res[maxSize];
-    int i;
-    sprintf(res, "%d", p_time / 1000);
+    if(p_wishedSize <= 0 || p_wishedSize > maxSize){return "";}
+    char tempArray[maxSize];
+    char * res;
+    sprintf(tempArray, "%d", p_time / 1000);
 
-    // Put an end of line char
-    if(p_wishedSize < 0){
-        res[0] = '\0';
-    }else if(p_wishedSize >= maxSize){
-        res[maxSize - 1] = '\0';
-    }else{
-        res[p_wishedSize] = '\0';
-    }
+    res = malloc(p_wishedSize * sizeof(char));
+    if(res == NULL){reportErreur("Error page/setTimeLayout() malloc() failed");}
+
+    memcpy(res, tempArray, p_wishedSize * sizeof(char));
     return res;
 }
 

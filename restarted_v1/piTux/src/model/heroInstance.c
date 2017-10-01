@@ -114,7 +114,7 @@ void changeHerosAction(HeroInstance * p_herosInstance, int p_newAction, int p_ne
 
 void refreshHerosInstance(HeroInstance * p_herosInstance, Heros *p_heros, int p_currentTime, int p_loopTime){
 // Refresh hero's position and sprite
-    int movementX, movementY;
+    int movementY;
     float coeff = 1.5;
     p_herosInstance->currentTime += p_loopTime;
     p_herosInstance->timeBeforeNextShot -= p_loopTime;

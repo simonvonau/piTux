@@ -8,5 +8,5 @@
 #include "../model/block.h"
 
 int* initIntArray(int p_size,int p_defaultVal);
-char ** splitString(char* p_str,char p_separator,int p_sizeMax,int p_returnArrayMaxQty,int p_returnMaxSize);
+void splitString(char* p_str, int p_strMaxSize, char p_separator, char ***p_res, int *p_resSize1, int *p_resSize2, int p_resMaxSize1, int p_resMaxSize2);
 #endif

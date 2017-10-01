@@ -27,7 +27,6 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
     int herosToLeftScreenBorder = 200;
     int herosToBottomScreenBorder = 200;
     int exitStatut = 0;
-    int i;
     int cameraX = 0;
     int cameraY = 0;
     char temp_str[128];
@@ -40,6 +39,7 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
     int nbEnemiesAtStart = 0;
     int timeAtEnd = 0;
     int lifeTimeGameOverMessage = 5000;
+    char *displayedTime;
 
 
     // To display a red screen when time is running out
@@ -56,7 +56,6 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
     int lastTime = SDL_GetTicks();
     int currTime = lastTime;
     int loopTime;
-    int currFPS = 0;
     long sumTime = 0; // Sum of loopTime
     long sumLoopDone = 0; // Sum of each loop
     int averageFPSAtLevelEnd = -1;
@@ -144,7 +143,6 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
         currTime = SDL_GetTicks();
         loopTime = currTime - lastTime;
         lastTime = currTime;
-        currFPS = 1000 / loopTime;
         // Average fps process
         sumTime += loopTime;
         sumLoopDone +=1;
@@ -275,9 +273,13 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
         sprintf(temp_str, "%d", p_gameMgr->herosMgr->heroInstance->nbCoins);
         setTextLayout(p_window, temp_str, 5, font1, textColor, coinPosText);
         if(isLevelCleared || p_gameMgr->herosMgr->heroInstance->isDead){
-            setTextLayout(p_window, setTimeLayout(timeAtEnd, 4), 4, font1, timeLeftColor, timeLeftPosText);
+            displayedTime = setTimeLayout(timeAtEnd, 5);
+            setTextLayout(p_window, displayedTime, 4, font1, timeLeftColor, timeLeftPosText);
+            free(displayedTime);
         }else{
-            setTextLayout(p_window, setTimeLayout(p_gameMgr->levelManager->currLevel->timeLeft, 4), 4, font1, timeLeftColor, timeLeftPosText);
+            displayedTime = setTimeLayout(p_gameMgr->levelManager->currLevel->timeLeft, 5);
+            setTextLayout(p_window, displayedTime, 4, font1, timeLeftColor, timeLeftPosText);
+            free(displayedTime);
         }
 
         // Warning when time is running out
@@ -301,7 +303,9 @@ int displayGamePage(SDL_Window *p_window, char *p_levelPath, int p_levelPathSize
                         p_gameMgr->translaManager->allTranslations[37]->sentence[p_gameMgr->translaManager->currLanguageId],
                         p_gameMgr->translaManager->allTranslations[37]->sentenceSize, font1, textColor2, textPosTime);
             textPosTime.x += 180;
-            setTextLayout(p_window, setTimeLayout(timeAtEnd, 5), 8, font1, textColor2, textPosTime);
+            displayedTime = setTimeLayout(timeAtEnd, 5);
+            setTextLayout(p_window, displayedTime, 8, font1, textColor2, textPosTime);
+            free(displayedTime);
             textPosTime.x -= 180;
 
             // Killed enemies

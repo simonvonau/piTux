@@ -2,6 +2,7 @@
 #define __MUSICMANAGER_H__
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 #include <SDL2/SDL_mixer.h>
 

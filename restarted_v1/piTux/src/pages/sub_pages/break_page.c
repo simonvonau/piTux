@@ -31,25 +31,24 @@ int displayBreakSubPage(SDL_Window *p_window, GameManager *p_gameMgr){
 
     SDL_FlushEvent(SDL_KEYDOWN);
     while ( isFirstLoop || SDL_WaitEvent(&event) ){
-        isFirstLoop = 0;
         //--------------------------Events management-----------------------------------------------------------------------
-        if(event.type == SDL_QUIT){ // Leave the game
+        if(!isFirstLoop && event.type == SDL_QUIT){ // Leave the game
             exitStatut = 0;
             break;
         }
         // Go back in game
-        if( event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE){
+        if(!isFirstLoop && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE){
             exitStatut = 1000; // Keep playing
             break;
         }
-        if( event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_UP){// Change userChoice
+        if(!isFirstLoop && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_UP){// Change userChoice
             playSoundByID(currMusicManager, 13);
             userChoice -= 1;
-        }else if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_DOWN){// Change userChoice
+        }else if (!isFirstLoop && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_DOWN){// Change userChoice
             userChoice += 1;
             playSoundByID(currMusicManager, 13);
         }
-        if( event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_RETURN){// Validate userChoice
+        if(!isFirstLoop && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_RETURN){// Validate userChoice
             playSoundByID(currMusicManager, 14);
             switch(userChoice){
                 case 0:
@@ -107,6 +106,7 @@ int displayBreakSubPage(SDL_Window *p_window, GameManager *p_gameMgr){
 
         // Window refreshing
         SDL_UpdateWindowSurface(p_window);
+        isFirstLoop = 0;
     }
 
     //-------------------------------- Free memory--------------------------------------------

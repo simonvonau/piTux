@@ -208,7 +208,6 @@ int getNextAvailableColliderId(ColliderManager *p_colliderManager){
 void updateCollisions(ColliderManager *p_colliderManager, int p_leftLimit, int p_rightLimit, int p_bottomLimit, int p_topLimit){
 // Update all the collisions between each collider
     int i, j;
-    int temp;
     // Clearing previous Collisions
     if (p_colliderManager->allCollisions != NULL){
         for(i = 0; i < p_colliderManager->allCollisionsSize; i++){
@@ -285,5 +284,6 @@ void destroyColliderManager(ColliderManager *p_colliderManager){
         destroyCollision(p_colliderManager->allCollisions[i]);
     }
     free(p_colliderManager->allCollisions);
+    free(p_colliderManager);
 }//------------------------------------------------------------------------------------------------------------------------
 

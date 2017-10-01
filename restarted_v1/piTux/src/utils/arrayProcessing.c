@@ -12,37 +12,47 @@ int* initIntArray(int p_size,int p_defaultVal){
 }//--------------------------------------------------------------------------------------------------------------------
 
 
-char ** splitString(char* p_str,char p_separator,int p_sizeMax,int p_returnArrayMaxQty,int p_returnMaxSize){
+void splitString(char* p_str, int p_strMaxSize, char p_separator, char ***p_res, int *p_resSize1, int *p_resSize2, int p_resMaxSize1, int p_resMaxSize2){
 // Split a string into an 2D array
     int i;
-    char buff[p_returnMaxSize];
-    int buffIndex;
-    char **res = malloc(p_returnArrayMaxQty * sizeof(char *));
-    int resIndex;
+    int rowCounter = 0;
+    char buff[p_resMaxSize2];
+    int buffIndex = 0;
 
-    //  Memory allocation
-    for(i = 0; i < p_returnArrayMaxQty; i++){
-        res[i]=malloc(p_returnMaxSize * sizeof(char));
+
+
+    *p_res = malloc(p_resMaxSize1 * sizeof(char*));
+    for(i = 0; i < p_resMaxSize1; i++){
+        (*p_res)[i] = malloc(p_resMaxSize2 * sizeof(char));
     }
-    // Splitting
-    buffIndex = 0;
-    resIndex = 0;
-    for(i = 0;i < p_sizeMax && buffIndex < p_returnMaxSize && resIndex < p_returnArrayMaxQty; i++){
-        if(p_str[i] == p_separator || i == p_sizeMax - 1 || buffIndex == p_returnMaxSize - 1){
-            if(resIndex < p_returnArrayMaxQty){
-                strncpy(res[resIndex], buff, p_returnMaxSize);
-                res[resIndex][buffIndex] = '\0';
+
+    // Splitting p_str
+    for(i = 0; i < p_strMaxSize; i++){
+
+        if((p_str[i] == p_separator || buffIndex >= p_resMaxSize2 || i == p_strMaxSize-1 || p_str[i] == '\0') && rowCounter < p_resMaxSize1){
+            p_resSize2[rowCounter] = buffIndex;
+            if(p_resSize2[rowCounter] > p_resMaxSize2){
+                p_resSize2[rowCounter] = p_resMaxSize2;
             }
-            // Reinitialising  buffer
-            memset(buff, 0, sizeof(buff));
+
+            memcpy((*p_res)[rowCounter], buff, p_resSize2[rowCounter] * sizeof(char));
+
+            // Adding end of string character
+            if(p_resSize2[rowCounter] >= p_resMaxSize2){
+                (*p_res)[rowCounter][p_resMaxSize2 - 1] = '\0';
+            }else{
+                (*p_res)[rowCounter][p_resSize2[rowCounter]] = '\0';
+                p_resSize2[rowCounter] += 1;
+            }
+            rowCounter += 1;
             buffIndex = 0;
-            resIndex += 1;
-        }else{
+        }else if( buffIndex < p_resMaxSize2){
             buff[buffIndex] = p_str[i];
             buffIndex += 1;
         }
     }
-    return res;
+    *p_resSize1 = rowCounter;
 }//--------------------------------------------------------------------------------------------------------------------
+
 
 

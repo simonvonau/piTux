@@ -2,27 +2,28 @@
 
 Bonus ** initBonusArray(char *p_path, int *p_resSize){
 // Initialize a Bonus array
-    FILE *file = fopen ( p_path, "r" );
-    int nbMaxElemPerLine = 10;
-    int lineSizeMax = 512;// Max size of a line from the opened file
-    char  **buff;
-    char line[lineSizeMax];
     int i;
+    FILE *file = fopen ( p_path, "r" );
+    int nbMaxElemPerLine = 10; // Max different values in one line of the file
+    char  **buff;
+    int buffSize1;
+    int buffSize2[nbMaxElemPerLine];
+    char line[LINE_SIZE_MAX];
     Bonus **res = NULL;
     int resCurrIndex = 0;
 
     if ( file != NULL ){
         while ( fgets ( line, sizeof(line), file ) != NULL){
-            buff = splitString(line, ';', lineSizeMax, nbMaxElemPerLine, lineSizeMax);
+            splitString(line, LINE_SIZE_MAX, ';', &buff, &buffSize1, buffSize2, nbMaxElemPerLine, LINE_SIZE_MAX);
 
-            if(strcmp(buff[0], "[Header]") == 0){
+            if(buffSize1 >= 2 && strcmp(buff[0], "[Header]") == 0){
                 *p_resSize = atoi(buff[1]);
                 res = malloc(*p_resSize * sizeof(Bonus *));
                 if(res == NULL){
                     *p_resSize = 0;
                     reportErreur("Error malloc initBonus2()");
                 }
-            }else if(strcmp(buff[0], "[Bonus]") == 0 && resCurrIndex < *p_resSize){
+            }else if(buffSize1 >= 3 && strcmp(buff[0], "[Bonus]") == 0 && resCurrIndex < *p_resSize){
                 res[resCurrIndex] = initBonus(buff[2]);
                 resCurrIndex += 1;
             }
@@ -32,24 +33,23 @@ Bonus ** initBonusArray(char *p_path, int *p_resSize){
     }else{
         perror ( p_path );
     }
-
-    for(i=0;i < nbMaxElemPerLine;i++){
+    for(i = 0; i < buffSize1; i++){
         free(buff[i]);
     }
     free(buff);
-
     return res;
 
 }//------------------------------------------------------------------------------------------------------------------------
 
 Bonus * initBonus(char *p_path){
 // Initialize a Bonus
-    FILE *file = fopen ( p_path, "r" );
-    int nbMaxElemPerLine = 10;
-    int lineSizeMax = 512;// Max size of a line from the opened file
-    char  **buff;
-    char line[lineSizeMax];
     int i;
+    FILE *file = fopen ( p_path, "r" );
+    int nbMaxElemPerLine = 10; // Max different values in one line of the file
+    char  **buff;
+    int buffSize1;
+    int buffSize2[nbMaxElemPerLine];
+    char line[LINE_SIZE_MAX];
     Bonus *res = malloc(sizeof(Bonus));
     int currentAction = 0;
 
@@ -59,9 +59,9 @@ Bonus * initBonus(char *p_path){
 
     if ( file != NULL ){
         while ( fgets ( line, sizeof(line), file ) != NULL){
-            buff = splitString(line, ';', lineSizeMax, nbMaxElemPerLine, lineSizeMax);
+            splitString(line, LINE_SIZE_MAX, ';', &buff, &buffSize1, buffSize2, nbMaxElemPerLine, LINE_SIZE_MAX);
 
-            if(strcmp(buff[0], "[Header]") == 0){
+            if(buffSize1 >= 7 && strcmp(buff[0], "[Header]") == 0){
                 res->spritesSize1 = atoi(buff[1]);
                 res->bonusType = atoi(buff[2]);
                 res->sprites = malloc( res->spritesSize1 * sizeof(SDL_Surface **));
@@ -74,7 +74,7 @@ Bonus * initBonus(char *p_path){
                 if(res->sprites == NULL || res->spritesSize2 == NULL || res->spriteDuration == NULL){
                     reportErreur("Error malloc initBonus():1");
                 }
-            }else if(strcmp(buff[0], "[Action]") == 0 && currentAction < res->spritesSize1){
+            }else if(buffSize1 >= 4 && strcmp(buff[0], "[Action]") == 0 && currentAction < res->spritesSize1){
                 currentAction = atoi(buff[1]);
                 res->spritesSize2[currentAction] = atoi(buff[2]);
                 res->spriteDuration[currentAction] = atoi(buff[3]);
@@ -82,7 +82,7 @@ Bonus * initBonus(char *p_path){
                 if(res->sprites[currentAction] == NULL ){
                     reportErreur("Error malloc initBonus():2");
                 }
-            }else if (strcmp(buff[0], "[Sprite]") == 0){
+            }else if (buffSize1 >= 3 && strcmp(buff[0], "[Sprite]") == 0){
                 res->sprites[currentAction][atoi(buff[1])] = loadImage(buff[2]);
             }
         }
@@ -90,8 +90,7 @@ Bonus * initBonus(char *p_path){
     }else{
         perror ( p_path );
     }
-
-    for(i=0;i < nbMaxElemPerLine;i++){
+    for(i = 0; i < buffSize1; i++){
         free(buff[i]);
     }
     free(buff);

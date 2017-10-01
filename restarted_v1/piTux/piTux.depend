@@ -345,7 +345,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1506696162 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\collidermanager.c
+1506849236 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\collidermanager.c
 	"colliderManager.h"
 
 1506192300 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\collidermanager.h
@@ -411,7 +411,7 @@
 	"../model/enemy.h"
 	"../model/collider.h"
 
-1506685570 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\gamemanager.c
+1506849417 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\gamemanager.c
 	"gameManager.h"
 
 1506684706 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\gamemanager.h
@@ -506,7 +506,7 @@
 	"../controller/gameManager.h"
 	"../pages/textLayout.h"
 
-1506791405 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\global.h
+1506812532 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\global.h
 	<stdlib.h>
 	<stdio.h>
 	"musicManager.h"
@@ -520,7 +520,7 @@
 	"../global.h"
 	"../utils/arrayProcessing.h"
 
-1506199664 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\utils\arrayprocessing.h
+1506863094 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\utils\arrayprocessing.h
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -658,9 +658,10 @@
 	"../global.h"
 	"../utils/arrayProcessing.h"
 
-1506198955 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\levelselectionpage.h
+1506849537 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\levelselectionpage.h
 	<stdlib.h>
 	<stdio.h>
+	<math.h>
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
@@ -702,7 +703,7 @@
 	"../controller/gameManager.h"
 	"../pages/textLayout.h"
 
-1506778300 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\herosmanager.c
+1506849417 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\herosmanager.c
 	"herosManager.h"
 
 1506681374 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\herosmanager.h
@@ -721,25 +722,25 @@
 1506686621 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\leveliconmanager.c
 	"levelIconManager.h"
 
-1506779531 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\levelmanager.c
+1506849361 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\levelmanager.c
 	"levelManager.h"
 
 1506196386 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\translationmanager.c
 	"translationManager.h"
 
-1506463672 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\block.c
+1506868900 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\block.c
 	"block.h"
 
 1506446318 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\blockinstance.c
 	"blockInstance.h"
 
-1506510253 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\bonus.c
+1506868923 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\bonus.c
 	"bonus.h"
 
 1506459268 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\bonusinstance.c
 	"bonusInstance.h"
 
-1500828801 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\button.c
+1506869001 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\button.c
 	"button.h"
 
 1506446596 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\collider.c
@@ -748,49 +749,49 @@
 1506695464 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\collision.c
 	"collision.h"
 
-1506610754 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\enemy.c
+1506868948 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\enemy.c
 	"enemy.h"
 
 1500839385 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\enemyinstance.c
 	"enemyInstance.h"
 
-1506685088 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\game.c
+1506868956 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\game.c
 	"game.h"
 
-1506446754 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\heros.c
+1506868963 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\heros.c
 	"heros.h"
 
-1506609707 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\level.c
+1506869001 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\level.c
 	"level.h"
 
-1503426689 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\levelicon.c
+1506869001 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\levelicon.c
 	"levelIcon.h"
 
-1503427349 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\translation.c
+1506868988 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\translation.c
 	"translation.h"
 
-1506724766 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\creditspage.c
+1506871123 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\creditspage.c
 	"creditsPage.h"
 
-1506787358 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\gamepage.c
+1506871134 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\gamepage.c
 	"gamePage.h"
 
-1506724901 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\leveleditorpage.c
+1506871142 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\leveleditorpage.c
 	"levelEditorPage.h"
 
-1506778739 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\levelselectionpage.c
+1506872256 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\levelselectionpage.c
 	"levelSelectionPage.h"
 
-1506778747 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\mainpage.c
+1506871152 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\mainpage.c
 	"mainPage.h"
 
-1506778753 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\quitpage.c
+1506871156 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\quitpage.c
 	"quitPage.h"
 
-1506778763 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\settingspage.c
+1506871127 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\settingspage.c
 	"mainPage.h"
 
-1506778732 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\sub_pages\break_page.c
+1506872196 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\sub_pages\break_page.c
 	"break_page.h"
 
 1506198098 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\sub_pages\break_page.h
@@ -806,13 +807,13 @@
 	"../../controller/gameManager.h"
 	"../../model/button.h"
 
-1506198159 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\sub_pages\help_page.c
+1506871113 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\sub_pages\help_page.c
 	"help_page.h"
 
-1506199405 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\textlayout.c
+1506872070 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\pages\textlayout.c
 	"textLayout.h"
 
-1506199650 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\utils\arrayprocessing.c
+1506872084 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\utils\arrayprocessing.c
 	"arrayProcessing.h"
 
 1506199932 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\utils\reporting.c
@@ -1690,7 +1691,7 @@
 	"../model/enemyInstance.h"
 	"../controller/colliderManager.h"
 
-1506779025 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\enemybehaviour.c
+1506849445 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\enemybehaviour.c
 	"enemyBehaviour.h"
 
 1485783892 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\controller\enemybehaviour.c
@@ -1727,7 +1728,7 @@
 	"../global.h"
 	"../utils/arrayProcessing.h"
 
-1506778241 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\heroinstance.c
+1506849379 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\heroinstance.c
 	"heroInstance.h"
 
 1506509971 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\firebullet.h
@@ -1742,7 +1743,7 @@
 	"../model/collider.h"
 	"../utils/arrayProcessing.h"
 
-1506511500 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\firebullet.c
+1506868951 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\firebullet.c
 	"fireBullet.h"
 
 1506525820 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\firebulletinstance.c
@@ -1770,9 +1771,13 @@
 1506724878 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\global.c
 	"global.h"
 
-1506791392 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\musicmanager.h
+1506849415 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\musicmanager.h
 	<stdlib.h>
 	<stdio.h>
+	<string.h>
 	<SDL2/SDL_mixer.h>
 	"utils/reporting.h"
+
+1506791425 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\musicmanager.c
+	"musicManager.h"
 

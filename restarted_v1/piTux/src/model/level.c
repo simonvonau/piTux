@@ -2,20 +2,21 @@
 
 
 Level *initLevel(char *p_path, int p_pathSize){
-    FILE *file = fopen ( p_path, "r" );
-    int nbMaxElemPerLine = 10;
-    int lineSizeMax = 512;// Max size of a line from the opened file
-    char  **buff = malloc(nbMaxElemPerLine * sizeof(char *));
-    char line[lineSizeMax];
     int i;
+    FILE *file = fopen ( p_path, "r" );
+    int nbMaxElemPerLine = 15; // Max different values in one line of the file
+    char  **buff;
+    int buffSize1;
+    int buffSize2[nbMaxElemPerLine];
+    char line[LINE_SIZE_MAX];
     Level *res = malloc( sizeof(Level));
 
     strncpy(res->path, p_path, p_pathSize * sizeof(char));
 
     if ( file != NULL ){
         while ( fgets ( line, sizeof(line), file ) != NULL){
-            buff = splitString(line, ';', lineSizeMax, nbMaxElemPerLine, lineSizeMax);
-            if(strcmp(buff[0], "[Header]") == 0){
+            splitString(line, LINE_SIZE_MAX, ';', &buff, &buffSize1, buffSize2, nbMaxElemPerLine, LINE_SIZE_MAX);
+            if(buffSize1 >= 10 && strcmp(buff[0], "[Header]") == 0){
                 res->blockInstancesSize = atoi(buff[3]);
                 res->enemyInstancesSize = atoi(buff[4]);
                 res->bonusInstancesSize = atoi(buff[5]);
@@ -47,11 +48,11 @@ Level *initLevel(char *p_path, int p_pathSize){
                 res->fireBulletInstances = NULL;
                 res->fireBulletInstancesSize = 0;
 
-            }else if(strcmp(buff[0], "[Block]") == 0){
+            }else if(buffSize1 >= 6 && strcmp(buff[0], "[Block]") == 0){
                 res->blockInstances[atoi(buff[1])] = initBlockInstance(atoi(buff[2]), atoi(buff[5]), atoi(buff[3]), atoi(buff[4]), NULL);
-            }else if(strcmp(buff[0], "[Enemy]") == 0){
+            }else if(buffSize1 >= 5 && strcmp(buff[0], "[Enemy]") == 0){
                 res->enemyInstances[atoi(buff[1])] = initEnemyInstance(atoi(buff[2]), atoi(buff[3]), atoi(buff[4]), NULL, 0);
-            }else if(strcmp(buff[0], "[Bonus]") == 0){
+            }else if(buffSize1 >= 5 && strcmp(buff[0], "[Bonus]") == 0){
                 res->bonusInstances[atoi(buff[1])] = initBonusInstance(atoi(buff[2]), atoi(buff[3]), atoi(buff[4]), NULL);
             }
         }
@@ -60,12 +61,10 @@ Level *initLevel(char *p_path, int p_pathSize){
     }else{
         perror ( p_path );
     }
-
-    for(i=0;i < nbMaxElemPerLine;i++){
+    for(i = 0; i < buffSize1; i++){
         free(buff[i]);
     }
     free(buff);
-
     return res;
 }//------------------------------------------------------------------------------------------------------------------------
 void saveLevel(Level *p_level){

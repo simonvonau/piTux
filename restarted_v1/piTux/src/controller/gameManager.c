@@ -208,10 +208,8 @@ void refreshGameByGameManager(GameManager *p_gameMgr, int p_currentTime, int p_l
     2) Process the collisions
     3) Refresh each object according to its behaviour and the detected collisions
 */
-    int i;
     int leftLimit = p_deplaX - COLLIDER_MARGIN;
     int rightLimit = p_deplaX + COLLIDER_MARGIN + p_screenWidth;
-    EnemyInstance * currEnemyInstance;
 
     // Refresh the level (ie. enemy, bonus, blocks)
     refreshLevelByLevelManager(p_gameMgr->levelManager->currLevel, p_gameMgr->collMgr, p_loopTime

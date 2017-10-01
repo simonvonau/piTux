@@ -3,12 +3,13 @@
 
 FireBullet * initFireBullet( char *p_path){
 // Initialize a p_fireBullet
-    FILE *file = fopen ( p_path, "r" );
-    int nbMaxElemPerLine = 10;
-    int lineSizeMax = 512;// Max size of a line from the opened file
-    char  **buff;
-    char line[lineSizeMax];
     int i;
+    FILE *file = fopen ( p_path, "r" );
+    int nbMaxElemPerLine = 10; // Max different values in one line of the file
+    char  **buff;
+    int buffSize1;
+    int buffSize2[nbMaxElemPerLine];
+    char line[LINE_SIZE_MAX];
     FireBullet *res = malloc(sizeof(FireBullet));
 
     if(res == NULL){
@@ -17,22 +18,22 @@ FireBullet * initFireBullet( char *p_path){
 
     if ( file != NULL ){
         while ( fgets ( line, sizeof(line), file ) != NULL){
-            buff = splitString(line, ';', lineSizeMax, nbMaxElemPerLine, lineSizeMax);
+            splitString(line, LINE_SIZE_MAX, ';', &buff, &buffSize1, buffSize2, nbMaxElemPerLine, LINE_SIZE_MAX);
 
-            if(strcmp(buff[0], "[Header]") == 0){
+            if(buffSize1 >= 9 && strcmp(buff[0], "[Header]") == 0){
                 res->refColl = initNonRegisteredCollider(atoi(buff[3]),atoi(buff[4]), 0, 0, 1, atoi(buff[2]), state_normal);
                 res->speedX = atoi(buff[5]);
                 res->speedY = atoi(buff[6]);
                 res->maxLifeTime = atoi(buff[7]);
                 res->maxJumpHeight = atoi(buff[8]);
-            }else if(strcmp(buff[0], "[Action]") == 0){
+            }else if(buffSize1 >= 4 && strcmp(buff[0], "[Action]") == 0){
                 res->spritesSize1 = atoi(buff[2]);
                 res->spriteDuration = atoi(buff[3]);
                 res->sprites = malloc( res->spritesSize1 * sizeof(SDL_Surface *));
                 if(res->sprites == NULL){
                     reportErreur("Error malloc initFireBullet():1");
                 }
-            }else if (strcmp(buff[0], "[Sprite]") == 0){
+            }else if (buffSize1 >= 3 && strcmp(buff[0], "[Sprite]") == 0){
                 res->sprites[atoi(buff[1])] = loadImage(buff[2]);
             }
         }
@@ -40,8 +41,7 @@ FireBullet * initFireBullet( char *p_path){
     }else{
         perror ( p_path );
     }
-
-    for(i=0;i < nbMaxElemPerLine;i++){
+    for(i = 0; i < buffSize1; i++){
         free(buff[i]);
     }
     free(buff);
@@ -50,7 +50,7 @@ FireBullet * initFireBullet( char *p_path){
 
 void destroyFireBullet(FireBullet *p_fireBullet){
 // Free a fireBullet
-    int i,j;
+    int i;
     for( i = 0; i < p_fireBullet->spritesSize1; i++){
         SDL_FreeSurface(p_fireBullet->sprites[i]);
     }

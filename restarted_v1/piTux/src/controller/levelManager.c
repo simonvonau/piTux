@@ -295,6 +295,8 @@ void updateBonusAfterColliding(LevelManager* p_levMgr, ColliderManager *p_collMg
                             currBonusIns->wasGathered = 1;
                             currBonusIns->lifeTime = -1;
                             break;
+                        default:
+                            break;
                     }
                 }else if(contactPoints[j]->ownerTag == tag_block_mystery || contactPoints[j]->ownerTag == tag_block_strong || contactPoints[j]->ownerTag == tag_block_weak){
                     // Reaction of the bonus with its environment

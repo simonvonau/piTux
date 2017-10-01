@@ -5,12 +5,13 @@
 
 Heros *initHeros(char p_path[FILE_PATH_SIZE_MAX]){
 // Init a new Heros
-    FILE *file = fopen ( p_path, "r" );
-    int nbMaxElemPerLine = 10;
-    int lineSizeMax = 512;// Max size of a line from the opened file
-    char  **buff;
-    char line[lineSizeMax];
     int i;
+    FILE *file = fopen ( p_path, "r" );
+    int nbMaxElemPerLine = 10; // Max different values in one line of the file
+    char  **buff;
+    int buffSize1;
+    int buffSize2[nbMaxElemPerLine];
+    char line[LINE_SIZE_MAX];
     Heros *res = malloc(sizeof(Heros));
     int currentTuxState = 0;
     int currentTuxAction = 0;
@@ -20,9 +21,9 @@ Heros *initHeros(char p_path[FILE_PATH_SIZE_MAX]){
 
     if(file != NULL ){
         while(fgets(line, sizeof(line), file) != NULL){
-            buff = splitString(line, ';', lineSizeMax, nbMaxElemPerLine, lineSizeMax);
+            splitString(line, LINE_SIZE_MAX, ';', &buff, &buffSize1, buffSize2, nbMaxElemPerLine, LINE_SIZE_MAX);
 
-            if(strcmp(buff[0], "[Header]") == 0){
+            if(buffSize1 >= 6 && strcmp(buff[0], "[Header]") == 0){
                 res->id = atoi(buff[1]);
                 res->stateSize = atoi(buff[2]);
                 res->speed = atoi(buff[3]);
@@ -38,7 +39,7 @@ Heros *initHeros(char p_path[FILE_PATH_SIZE_MAX]){
                 if(res->sprites == NULL || res->herosColl == NULL || res->actionSize == NULL || res->spriteSize == NULL || res->spriteDuration == NULL){
                     reportErreur("initHeros(): error malloc() 2");
                 }
-            }else if(strcmp(buff[0], "[State]") == 0){
+            }else if(buffSize1 >= 3 && strcmp(buff[0], "[State]") == 0){
                 res->actionSize[atoi(buff[1])] = atoi(buff[2]);
 
                 res->sprites[atoi(buff[1])] = malloc(atoi(buff[2]) * sizeof(SDL_Surface **));
@@ -51,7 +52,7 @@ Heros *initHeros(char p_path[FILE_PATH_SIZE_MAX]){
                 }
                 currentTuxState += 1;
                 currentTuxAction = 0;
-            }else if(strcmp(buff[0], "[Action]") == 0){
+            }else if(buffSize1 >= 7 && strcmp(buff[0], "[Action]") == 0){
                 res->spriteDuration[currentTuxState - 1][atoi(buff[1])] = atoi(buff[3]);
                 res->spriteSize[currentTuxState - 1][atoi(buff[1])] = atoi(buff[2]);
                 res->herosColl[currentTuxState - 1][atoi(buff[1])] = initNonRegisteredCollider(atoi(buff[4]), atoi(buff[5]), 0, 0, 0, tag_tux, atoi(buff[6]));
@@ -69,30 +70,10 @@ Heros *initHeros(char p_path[FILE_PATH_SIZE_MAX]){
     }else{
         perror ( p_path );
     }
-
-    for(i=0;i < nbMaxElemPerLine;i++){
+    for(i = 0; i < buffSize1; i++){
         free(buff[i]);
     }
     free(buff);
-
-
-
-    /*res->currState = 0;
-    res->currAction = 0;
-    res->currSprite = 0;
-    res->isDead = 0;
-    res->lifesLeft = 2;
-    res->nbCoins = 0;
-    res->lastMovementTime = 0;
-    res->timeBeforeIdle = 2000;
-    res->isTouchingGround = 0;
-    res->jumpKeyPressed = 0;
-    res->jumpStartTime = 0;
-    res->posX = 100;
-    res->posY = 400;
-    res->lastX = 0;
-    res->lastY = 0;
-    res->currentTime = 0;*/
     return res;
 }//------------------------------------------------------------------------------------------------------------------------
 

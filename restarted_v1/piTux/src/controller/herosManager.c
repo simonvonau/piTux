@@ -6,7 +6,6 @@
 
 HerosManager *initHerosManager(char p_path[FILE_PATH_SIZE_MAX]){
 // Init a new HerosManager
-    int i;
     HerosManager *res = malloc(sizeof(HerosManager));
     strncpy(res->path, p_path, FILE_PATH_SIZE_MAX);
 

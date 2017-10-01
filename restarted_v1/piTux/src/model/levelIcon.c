@@ -2,28 +2,29 @@
 
 
 LevelIcon **initLevelIcons(char *p_path, int *p_resSize){
-    FILE *file = fopen ( p_path, "r" );
-    int nbMaxElemPerLine = 10;
-    int lineSizeMax = 512;// Max size of a line from the opened file
-    char  **buff = malloc(nbMaxElemPerLine * sizeof(char *));
-    char line[lineSizeMax];
     int i;
+    FILE *file = fopen ( p_path, "r" );
+    int nbMaxElemPerLine = 10; // Max different values in one line of the file
+    char  **buff;
+    int buffSize1;
+    int buffSize2[nbMaxElemPerLine];
+    char line[LINE_SIZE_MAX];
     LevelIcon **res = NULL;
     int resCurrIndex=0;
 
     if ( file != NULL ){
         while ( fgets ( line, sizeof(line), file ) != NULL){
-            buff = splitString(line, ';', lineSizeMax, nbMaxElemPerLine, lineSizeMax);
+            splitString(line, LINE_SIZE_MAX, ';', &buff, &buffSize1, buffSize2, nbMaxElemPerLine, LINE_SIZE_MAX);
 
-            if(strcmp(buff[0], "[Header]") == 0){
+            if(buffSize1 >= 2 && strcmp(buff[0], "[Header]") == 0){
                 *p_resSize = atoi(buff[1]);
                 res = malloc(*p_resSize * sizeof(LevelIcon *));
                 if(res == NULL){
                     *p_resSize = 0;
                     reportErreur("Error malloc initLevelIcon()");
                 }
-            }else if(strcmp(buff[0], "[Data]") == 0 && resCurrIndex < *p_resSize){
-                res[resCurrIndex] = initLevelIcon(lineSizeMax, 1, buff);
+            }else if(buffSize1 >= 1 && strcmp(buff[0], "[Data]") == 0 && resCurrIndex < *p_resSize){
+                res[resCurrIndex] = initLevelIcon(LINE_SIZE_MAX, 1, buff);
                 resCurrIndex += 1;
             }
         }
@@ -32,14 +33,11 @@ LevelIcon **initLevelIcons(char *p_path, int *p_resSize){
     }else{
         perror ( p_path );
     }
-
-    for(i=0;i < nbMaxElemPerLine; i++){
+    for(i = 0; i < buffSize1; i++){
         free(buff[i]);
     }
     free(buff);
-
     return res;
-
 }//--------------------------------------------------------------------------------------------------------------------
 
 LevelIcon *initLevelIcon(int p_lineSizeMax, int p_startIndex, char ** p_buff){

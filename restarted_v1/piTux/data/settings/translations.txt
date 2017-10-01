@@ -1,7 +1,7 @@
 [Header];2;41;English;Français;//(NbLangages;NbSentances;langages list)
 [Data];0;empty;vide;
 [Data];1;empty;vide;
-[Data];2;Play;Jouer;
+[Data];2;Play$;Jouer$;
 [Data];3;Level editor$;Editeur de niveaux$;
 [Data];4;Settings;Options;
 [Data];5;Credits;Crédits;

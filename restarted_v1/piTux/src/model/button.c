@@ -2,13 +2,14 @@
 
 Button *initButton(char *p_path){
 // Load a button from a file
-    FILE *file = fopen ( p_path, "r" );
-    int nbMaxElemPerLine = 4;
-    int lineSizeMax = 512;// Max size of a line from the opened file
-    char  **buff;
-    char line[lineSizeMax];
-    Button* res = malloc(sizeof(Button));
     int i;
+    FILE *file = fopen ( p_path, "r" );
+    int nbMaxElemPerLine = 10; // Max different values in one line of the file
+    char  **buff;
+    int buffSize1;
+    int buffSize2[nbMaxElemPerLine];
+    char line[LINE_SIZE_MAX];
+    Button* res = malloc(sizeof(Button));
 
     if(res == NULL){
         reportErreur("Error malloc initButton()");
@@ -16,9 +17,9 @@ Button *initButton(char *p_path){
 
     if ( file != NULL ){
         while ( fgets ( line, sizeof(line), file ) != NULL){
-            buff = splitString(line, ';', lineSizeMax, nbMaxElemPerLine, lineSizeMax);
+            splitString(line, LINE_SIZE_MAX, ';', &buff, &buffSize1, buffSize2, nbMaxElemPerLine, LINE_SIZE_MAX);
 
-            if(strcmp(buff[0], "[Header]") == 0){
+            if(buffSize1 >= 3 && strcmp(buff[0], "[Header]") == 0){
                 res->background = loadImage(buff[3]);
                 res->isEnabled = 1;
                 res->posX = 0;
@@ -31,8 +32,7 @@ Button *initButton(char *p_path){
     }else{
         perror ( p_path );
     }
-
-    for(i=0;i < nbMaxElemPerLine;i++){
+    for(i = 0; i < buffSize1; i++){
         free(buff[i]);
     }
     free(buff);
