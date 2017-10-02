@@ -6,7 +6,9 @@ To install & run the projet on Linux just open piTux.exe.
 This project is still in progress and can contains all kinds of bugs.
 
 
-1) Please make sur you already have gcc and g++ installed
+1) Please make sur you already have gcc and g++ installed otherwise type
+>>>sudo apt-get install gcc
+>>>sudo apt-get install g++
 
 2) Install the SDL2
 >>>sudo apt-get install libsdl2-dev
@@ -20,13 +22,38 @@ This project is still in progress and can contains all kinds of bugs.
 5) Install the SDL2 mixer
 >>>sudo apt-get install libsdl2-dev
 
-6) Install the game
->>>
+6) Install the git client
+>>>sudo apt-get install git
 
-6) You can now compile he project
+7) You can now compile he project
 >>>sh makefile
 
-7) Finally to run the game
+9) Finally to run the game
 >>>sh piTux_exe
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
