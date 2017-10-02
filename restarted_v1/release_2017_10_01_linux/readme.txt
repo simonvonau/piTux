@@ -24,7 +24,10 @@ This project is still in progress and can contains all kinds of bugs.
 6) Install the git client
 >>>sudo apt-get install git
 
-7) You can now compile he project
+7) Create a Debug directory
+>>>sudo mkdir Debug
+
+8) You can now compile he project
 >>>sh makefile
 
 9) Finally to run the game
