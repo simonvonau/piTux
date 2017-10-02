@@ -2,7 +2,6 @@
 							Welcome on the piTux project!
 
 
-To install & run the projet on Linux just open piTux.exe.
 This project is still in progress and can contains all kinds of bugs.
 
 
