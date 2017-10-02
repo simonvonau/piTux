@@ -28,7 +28,7 @@ This project is still in progress and can contains all kinds of bugs.
 >>>sh makefile
 
 9) Finally to run the game
->>>sh piTux_exe
+>>>./piTux_exe
 
 
 
