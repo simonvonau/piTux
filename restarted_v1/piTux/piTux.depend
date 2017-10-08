@@ -3,7 +3,7 @@
 	<stdio.h>
 	<stdlib.h>
 
-1506791417 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\main.c
+1507490484 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\main.c
 	<stdio.h>
 	<stdlib.h>
 	<SDL2/SDL.h>
@@ -345,7 +345,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1507119476 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\collidermanager.c
+1507490568 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\collidermanager.c
 	"colliderManager.h"
 
 1507119476 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\collidermanager.h
@@ -411,7 +411,7 @@
 	"../model/enemy.h"
 	"../model/collider.h"
 
-1507485943 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\gamemanager.c
+1507491231 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\gamemanager.c
 	"gameManager.h"
 
 1507119476 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\gamemanager.h
@@ -703,10 +703,10 @@
 	"../controller/gameManager.h"
 	"../pages/textLayout.h"
 
-1507119476 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\herosmanager.c
+1507491236 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\herosmanager.c
 	"herosManager.h"
 
-1507119476 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\herosmanager.h
+1507490360 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\herosmanager.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -1728,7 +1728,7 @@
 	"../global.h"
 	"../utils/arrayProcessing.h"
 
-1507119476 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\heroinstance.c
+1507486480 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\heroinstance.c
 	"heroInstance.h"
 
 1507293574 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\firebullet.h
