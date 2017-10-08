@@ -19,15 +19,18 @@ This project is still in progress and can contains all kinds of bugs.
 >>>sudo apt-get install libsdl2-image-dev
 
 5) Install the SDL2 mixer
->>>sudo apt-get install libsdl2-dev
+>>>sudo apt-get install libsdl2-mixer-dev
 
 6) Install the git client
 >>>sudo apt-get install git
 
-7) You can now compile he project
+7) Download the game
+>>>sudo wget  -O /home/ "https://github.com/simonvonau/piTux.git"
+
+8) You can now compile he project
 >>>sh makefile
 
-8) Finally to run the game
+9) Finally to run the game
 >>>./piTux_exe
 
 

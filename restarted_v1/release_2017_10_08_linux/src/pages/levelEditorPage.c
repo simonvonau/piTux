@@ -269,8 +269,6 @@ int displayLevelEditorPage(SDL_Window *p_window, GameManager *p_gameMgr){
     SDL_FreeSurface(background1);
     SDL_FreeSurface(toolbox);
     SDL_FreeSurface(cursor);
-    SDL_FreeSurface(leftArrow);
-    SDL_FreeSurface(rightArrow);
     SDL_FreeSurface(startLevelCursor);
     SDL_FreeSurface(endLevelCursor);
     TTF_CloseFont(font1);
