@@ -69,6 +69,8 @@ void destroyGame(Game *p_game){
     free(p_game->allEnemiesFile);
     free(p_game->allBonusFile);
     free(p_game->allHerosFile);
+    free(p_game->fireBulletFile);
+    free(p_game->allLevelIconsFile);
     free(p_game);
 }//--------------------------------------------------------------------------------------------------------------------
 

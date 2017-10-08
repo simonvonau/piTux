@@ -64,7 +64,7 @@ Bonus * initBonus(char *p_path){
             if(buffSize1 >= 7 && strcmp(buff[0], "[Header]") == 0){
                 res->spritesSize1 = atoi(buff[1]);
                 res->bonusType = atoi(buff[2]);
-                res->sprites = malloc( res->spritesSize1 * sizeof(SDL_Surface **));
+                res->sprites = malloc( res->spritesSize1 * sizeof(SDL_Surface *));
                 res->spritesSize2 = malloc( res->spritesSize1 * sizeof(int));
                 res->spriteDuration = malloc( res->spritesSize1 * sizeof(int));
                 res->refColl = initNonRegisteredCollider(atoi(buff[3]),atoi(buff[4]), 0, 0, 1, res->bonusType, state_normal);

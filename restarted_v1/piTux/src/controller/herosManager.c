@@ -125,7 +125,6 @@ void updateHeroBehaviourAfterCollisionDetection(HeroInstance *p_herosInstance, H
             }else{
                 // Small tux will die
                 heroInstanceDeath(p_herosInstance, p_heros, p_currentTime);
-                playSoundByID(currMusicManager, 9);
             }
         }
 

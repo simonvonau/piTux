@@ -30,9 +30,9 @@ Heros *initHeros(char p_path[FILE_PATH_SIZE_MAX]){
                 res->jumpSpeed = atoi(buff[4]);
                 res->jumpDuration = atoi(buff[5]);
 
-                res->sprites = malloc(res->stateSize * sizeof(SDL_Surface ***));
+                res->sprites = malloc(res->stateSize * sizeof(SDL_Surface *));
                 res->spriteDuration = malloc(res->stateSize * sizeof(int *));
-                res->herosColl = malloc(res->stateSize * sizeof(Collider **));
+                res->herosColl = malloc(res->stateSize * sizeof(Collider *));
                 res->actionSize = malloc(res->stateSize * sizeof(int));
                 res->spriteSize = malloc(res->stateSize * sizeof(int *));
 
@@ -42,7 +42,7 @@ Heros *initHeros(char p_path[FILE_PATH_SIZE_MAX]){
             }else if(buffSize1 >= 3 && strcmp(buff[0], "[State]") == 0){
                 res->actionSize[atoi(buff[1])] = atoi(buff[2]);
 
-                res->sprites[atoi(buff[1])] = malloc(atoi(buff[2]) * sizeof(SDL_Surface **));
+                res->sprites[atoi(buff[1])] = malloc(atoi(buff[2]) * sizeof(SDL_Surface *));
                 res->spriteDuration[atoi(buff[1])] = malloc(atoi(buff[2]) * sizeof(int));
                 res->herosColl[atoi(buff[1])] = malloc(atoi(buff[2]) * sizeof(Collider *));
                 res->spriteSize[atoi(buff[1])] = malloc(atoi(buff[2]) * sizeof(int));

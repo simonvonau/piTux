@@ -58,7 +58,7 @@ Enemy *initEnemy(char *p_path){
 
             if(buffSize1 >= 3 && strcmp(buff[0], "[Header]") == 0){
                 res->spritesSize1 = atoi(buff[1]);
-                res->sprites = malloc( res->spritesSize1 * sizeof(SDL_Surface **));
+                res->sprites = malloc( res->spritesSize1 * sizeof(SDL_Surface *));
                 res->spritesSize2 = malloc( res->spritesSize1 * sizeof(int));
                 res->spriteDuration = malloc( res->spritesSize1 * sizeof(int));
                 res->speed = malloc(res->spritesSize1 * sizeof(int));

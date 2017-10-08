@@ -279,6 +279,7 @@ void gatherCoin(HeroInstance *p_heroInstance){
 void heroInstanceDeath(HeroInstance *p_herosInstance, Heros *p_heros, int p_currentTime){
 // When tux dies
     int i;
+    playSoundByID(currMusicManager, 9);
     p_herosInstance->lifesLeft -= 1;
     p_herosInstance->isDead = 1;
     p_herosInstance->jumpDuration = 0;

@@ -89,7 +89,7 @@ void loadLevelByGameMgr(GameManager *p_gameMgr, char *p_path, int p_pathSize){
     }
 
     // Put collider on the HerosInstance
-    p_gameMgr->herosMgr->heroInstance->herosColl = malloc(sizeof(Collider **) * p_gameMgr->herosMgr->heros->stateSize);
+    p_gameMgr->herosMgr->heroInstance->herosColl = malloc(sizeof(Collider *) * p_gameMgr->herosMgr->heros->stateSize);
     if(p_gameMgr->herosMgr->heroInstance->herosColl == NULL) {reportErreur("GameManager.loadLevelByGameMgr():Cannot add collider to heroInstance");}
     for( i = 0; i < p_gameMgr->herosMgr->heros->stateSize; i++){
        p_gameMgr->herosMgr->heroInstance->herosColl[i] = colliderArrayDeepCopyByColliderManager(

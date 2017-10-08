@@ -21,7 +21,7 @@ FireBullet * initFireBullet( char *p_path){
             splitString(line, LINE_SIZE_MAX, ';', &buff, &buffSize1, buffSize2, nbMaxElemPerLine, LINE_SIZE_MAX);
 
             if(buffSize1 >= 9 && strcmp(buff[0], "[Header]") == 0){
-                res->refColl = initNonRegisteredCollider(atoi(buff[3]),atoi(buff[4]), 0, 0, 1, atoi(buff[2]), state_normal);
+                res->refColl = initNonRegisteredCollider(atoi(buff[3]), atoi(buff[4]), 0, 0, 1, atoi(buff[2]), state_normal);
                 res->speedX = atoi(buff[5]);
                 res->speedY = atoi(buff[6]);
                 res->maxLifeTime = atoi(buff[7]);

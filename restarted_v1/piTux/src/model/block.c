@@ -64,10 +64,10 @@ Block * initBlock(char *p_path){
             if(buffSize1 >= 6 && strcmp(buff[0], "[Header]") == 0){
                 res->spritesSize1 = atoi(buff[1]);
                 res->blockType = atoi(buff[2]);
-                res->sprites = malloc( res->spritesSize1 * sizeof(SDL_Surface **));
+                res->sprites = malloc( res->spritesSize1 * sizeof(SDL_Surface *));
                 res->spritesSize2 = malloc( res->spritesSize1 * sizeof(int));
                 res->spriteDuration = malloc( res->spritesSize1 * sizeof(int));
-                res->refColl = initNonRegisteredCollider(atoi(buff[3]),atoi(buff[4]), 0, 0, 1, res->blockType, state_normal);
+                res->refColl = initNonRegisteredCollider(atoi(buff[3]), atoi(buff[4]), 0, 0, 1, res->blockType, state_normal);
                 res->speedY = atoi(buff[5]);
 
                 if(res->sprites == NULL || res->spritesSize2 == NULL || res->spriteDuration == NULL){
