@@ -7,6 +7,8 @@
 
 MusicManager *currMusicManager;
 
+// To draw the collider
+#define COLL_DRAWING_ENABLED 1
 
 #define MUSIC_BUFFER_LENGTH 1024
 
@@ -33,6 +35,7 @@ MusicManager *currMusicManager;
 #define HEROS_DEFAULT_X 150
 #define HEROS_DEFAULT_Y 500
 #define HEROS_DEFAULT_LIFELEFT 2
+
 
 enum ObjectTag{
     tag_tux = 20,

@@ -34,6 +34,16 @@ void updateHeroBehaviourAfterCollisionDetection(HeroInstance *p_herosInstance, H
     int isAboveEnemy = 0;
     int isTouchingEnemy = 0;
 
+    int verticalCollSize = 100;
+    int verticalColl[verticalCollSize];
+    int verticalCollId = 0;
+
+    Collider *tux = p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction];
+    int leftWall = tux->posX - 2;
+    int rightWall = tux->posX + tux->width + 2;
+    int buffer;
+
+
     if(!p_herosInstance->isDead){
 
         // Collision detection: get all the colliders which are colliding with the heros
@@ -42,14 +52,9 @@ void updateHeroBehaviourAfterCollisionDetection(HeroInstance *p_herosInstance, H
         for (i = 0; i < contactPointsSize; i++){
             switch(contactPoints[i]->ownerTag){
                 case tag_bonus_coin:
-                    /* Coins can be gathered by hitting the block under so the coin account will be processed in the game manager
-                    using the wasGathered field of each coin and not here anymore
+                    /* Coins can be gathered by hitting the block under so the coin account will be incremented in the game manager
+                    using the wasGathered field of each coin (and not here anymore)
                     */
-                    /*p_herosInstance->nbCoins += 1;
-                    if(p_herosInstance->nbCoins >= 100){
-                        p_herosInstance->nbCoins -= 100;
-                        p_herosInstance->lifesLeft += 1;
-                    }*/
                     break;
                 case tag_bonus_egg:
                     playSoundByID(currMusicManager, 4);
@@ -73,38 +78,77 @@ void updateHeroBehaviourAfterCollisionDetection(HeroInstance *p_herosInstance, H
                     isTouchingEnemy = 1;
                     break;
                 default:
-                    // Testing if the hero is above the colliding object
-                    if( p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->lastPosY >= contactPoints[i]->posY + contactPoints[i]->height){
-                        p_herosInstance->posY = contactPoints[i]->posY + contactPoints[i]->height;
+                    // Testing if the heros is above the colliding object
+                    if( tux->lastPosY >= contactPoints[i]->posY + contactPoints[i]->height){
                         isAboveSomething = 1;
                         // Bouncing on an enemy
                         if(contactPoints[i]->ownerTag == tag_enemy_fluffy || contactPoints[i]->ownerTag == tag_enemy_bomb || contactPoints[i]->ownerTag == tag_enemy_iceblock){
                             isAboveEnemy = 1;
                         }
+                        // Storing each vertical collision
+                        if(verticalCollId < verticalCollSize){
+                            verticalColl[verticalCollId] = i;
+                            verticalCollId += 1;
+                        }
                     // Testing if the hero is under the colliding object
-                    }else if(p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->lastPosY + p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->height <= contactPoints[i]->posY){
-                        p_herosInstance->posY = contactPoints[i]->posY - p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->height;
-                        // Stop the jump
-                        p_herosInstance->jumpStartTime = -1;
-                        p_herosInstance->jumpDuration = -1;
+                    }else if(tux->lastPosY + tux->height <= contactPoints[i]->posY){
                         // Touching an enemy
                         if(contactPoints[i]->ownerTag == tag_enemy_fluffy || (contactPoints[i]->ownerTag == tag_enemy_bomb && contactPoints[i]->ownerState != state_bomb_primed) || contactPoints[i]->ownerTag == tag_enemy_iceblock){
                             isTouchingEnemy = 1;
                         }
+                        // Storing each vertical collision
+                        if(verticalCollId < verticalCollSize){
+                            verticalColl[verticalCollId] = i;
+                            verticalCollId += 1;
+                        }
                     }else{// Lateral collision
                         // If left touching
-                        if (p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->posX < contactPoints[i]->posX){
-                            p_herosInstance->posX = contactPoints[i]->posX - p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->width;
+                        if (tux->posX < contactPoints[i]->posX){
+                            buffer = contactPoints[i]->posX;
+                            if(buffer < rightWall){rightWall = buffer;}
                         }else{ // If right touching
-                            p_herosInstance->posX = contactPoints[i]->posX + contactPoints[i]->width;
+                            buffer = contactPoints[i]->posX + contactPoints[i]->width;
+                            if(buffer > leftWall){leftWall = buffer;}
                         }
+                        //printf("wall %d, %d, %d\n", leftWall, rightWall, contactPoints[i]->ownerTag);
                         // Touching an enemy
                         if(contactPoints[i]->ownerTag == tag_enemy_fluffy || (contactPoints[i]->ownerTag == tag_enemy_bomb && contactPoints[i]->ownerState != state_bomb_primed) || contactPoints[i]->ownerTag == tag_enemy_iceblock){
                             isTouchingEnemy = 1;
                         }
                     }
             }// End of switch
+
+            // Refresh tux variable
+            tux = p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction];
+        }// End for
+
+        // Right and left collisions
+        if(leftWall > tux->posX){ tux->posX = leftWall;}
+        if(rightWall < tux->posX + tux->width){ tux->posX = rightWall - tux->width;}
+
+        // Vertical collisions. There are some specific process because vertical collisions depend of lateral ones
+        for(i = 0; i < verticalCollId; i++){
+            if(contactPoints[verticalColl[i]]->posX + contactPoints[verticalColl[i]]->width > leftWall
+               && contactPoints[verticalColl[i]]->posX < rightWall){
+                if(contactPoints[verticalColl[i]]->posY < tux->posY){
+                    buffer = contactPoints[verticalColl[i]]->posY + contactPoints[verticalColl[i]]->height;
+                    if(buffer > tux->posY){
+                        tux->posY = buffer;
+                    }
+                }else{
+                    buffer = contactPoints[verticalColl[i]]->posY - tux->height;
+                    if(buffer < tux->posY){
+                        tux->posY = buffer;
+                    }
+                    // Stop the current tux's jump
+                    p_herosInstance->jumpStartTime = -1;
+                    p_herosInstance->jumpDuration = -1;
+                }
+
+            }
         }
+        // Updating tux sprite position using tux's collider position
+        updSpriteLocFromCollLoc(p_herosInstance, p_heros);
 
         // Tux dies if he fall under a given high
         if(p_herosInstance->posY <= DEAD_LIMIT_Y && !p_herosInstance->isDead){
@@ -133,11 +177,11 @@ void updateHeroBehaviourAfterCollisionDetection(HeroInstance *p_herosInstance, H
             p_herosInstance->hasReleaseFireKey = 0;
             playSoundByID(currMusicManager, 11);
             if(p_herosInstance->lastDirection == 'r'){
-                addBulletInstanceFromLevelMgr(p_collMgr, p_levMgr, p_herosInstance->posX + p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->width + 1
-                    , p_herosInstance->posY + p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->height / 2, p_fireBullet, 1);
+                addBulletInstanceFromLevelMgr(p_collMgr, p_levMgr, p_herosInstance->posX + tux->width + 1
+                    , p_herosInstance->posY + tux->height / 2, p_fireBullet, 1);
                 changeHerosAction(p_herosInstance, 7, 0);
             }else{
-                addBulletInstanceFromLevelMgr(p_collMgr, p_levMgr, p_herosInstance->posX - 1 - p_fireBullet->refColl->width, p_herosInstance->posY + p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->height / 2, p_fireBullet, -1);
+                addBulletInstanceFromLevelMgr(p_collMgr, p_levMgr, p_herosInstance->posX - 1 - p_fireBullet->refColl->width, p_herosInstance->posY + tux->height / 2, p_fireBullet, -1);
                 changeHerosAction(p_herosInstance, 8, 0);
             }
 
@@ -177,22 +221,36 @@ void updateHeroBehaviourAfterCollisionDetection(HeroInstance *p_herosInstance, H
             }
         }
 
-    }
-
-    // Update Collider position
-    p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->posX = p_herosInstance->posX;
-    p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->posY = p_herosInstance->posY;
+    } // end if tux is alive
 }//------------------------------------------------------------------------------------------------------------------------
 
 void displayHeros(HerosManager *p_herosMgr, SDL_Window *p_window, int p_displayedPosX, int p_displayedPosY){
 // Display the heros
     SDL_Rect objectPos = {0, 0, 0, 0};
-    objectPos.x = p_displayedPosX;
-    objectPos.y = SDL_GetWindowSurface(p_window)->h - p_displayedPosY
-        - p_herosMgr->heroInstance->herosColl[p_herosMgr->heroInstance->currState][p_herosMgr->heroInstance->currAction]->height;
+    Collider *tuxColl = p_herosMgr->heroInstance->herosColl[p_herosMgr->heroInstance->currState][p_herosMgr->heroInstance->currAction];
+    SDL_Surface *tuxSprite = p_herosMgr->heros->sprites[p_herosMgr->heroInstance->currState][p_herosMgr->heroInstance->currAction][p_herosMgr->heroInstance->currSprite];
+    int decalX;
+    int decalY;
 
-    SDL_BlitSurface(p_herosMgr->heros->sprites[p_herosMgr->heroInstance->currState][p_herosMgr->heroInstance->currAction][p_herosMgr->heroInstance->currSprite],
-                             NULL, SDL_GetWindowSurface(p_window), &objectPos);
+    objectPos.x = p_displayedPosX;
+    objectPos.y = SDL_GetWindowSurface(p_window)->h - p_displayedPosY - tuxColl->height;
+
+    SDL_BlitSurface(tuxSprite, NULL, SDL_GetWindowSurface(p_window), &objectPos);
+
+
+    // Display tux collider
+    if(COLL_DRAWING_ENABLED){
+        decalX = (tuxSprite->w - tuxColl->width) / 2;
+        decalY = tuxSprite->h - tuxColl->height;
+        SDL_Surface * collSurf = SDL_CreateRGBSurface(0, tuxColl->width, tuxColl->height, 32, 0, 0, 0, 0);
+        SDL_Rect pos = {0, 0, tuxColl->width, tuxColl->height};
+        //SDL_SetAlpha();
+        SDL_FillRect(collSurf, &pos, SDL_MapRGBA(collSurf->format, 0, 255, 0, 255));
+        SDL_Rect pos2 = {0, 0, 0, 0};
+        pos2.x = p_displayedPosX + decalX;
+        pos2.y = objectPos.y + decalY;
+        SDL_BlitSurface(collSurf, NULL, SDL_GetWindowSurface(p_window), &pos2);
+    }
 }//------------------------------------------------------------------------------------------------------------------------
 
 void destroyHerosManager(HerosManager *p_herosManager){

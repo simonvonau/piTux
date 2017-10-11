@@ -79,43 +79,54 @@ void resetHerosInstanceBetweenLevel(HeroInstance *p_herosInstance){
 
 void changeHerosState(HeroInstance * p_herosInstance,int p_newState, int p_newAction, int p_newSprite){
 // Change herosInstance state (big/small/fire)
+    Collider *oldColl =  p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction];
+    Collider *newColl = p_herosInstance->herosColl[p_newState][p_newAction];
 
     if(p_herosInstance->currState == p_newState){return;}
-    p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->isEnabled = 0;
+    oldColl->isEnabled = 0;
 
     // Put the old coordinate in the new enabled collider
-    p_herosInstance->herosColl[p_newState][p_newAction]->posX = p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->posX;
-    p_herosInstance->herosColl[p_newState][p_newAction]->posY = p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->posY;
-    p_herosInstance->herosColl[p_newState][p_newAction]->lastPosX = p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->lastPosX;
-    p_herosInstance->herosColl[p_newState][p_newAction]->lastPosY = p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->lastPosY;
+    newColl->posX = oldColl->posX;
+    newColl->posY = oldColl->posY;
+    newColl->lastPosX = oldColl->lastPosX;
+    newColl->lastPosY = oldColl->lastPosY;
 
     p_herosInstance->currState = p_newState;
     p_herosInstance->currAction = p_newAction;
     p_herosInstance->currSprite = p_newSprite;
-    p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->isEnabled = 1;
+    newColl->isEnabled = 1;
 }//------------------------------------------------------------------------------------------------------------------------
 
 void changeHerosAction(HeroInstance * p_herosInstance, int p_newAction, int p_newSprite){
 // Change the herosInstance current action
+    Collider *oldColl =  p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction];
+    Collider *newColl = p_herosInstance->herosColl[p_herosInstance->currState][p_newAction];
 
     if(p_herosInstance->currAction == p_newAction){return;}
-    p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->isEnabled = 0;
+    oldColl->isEnabled = 0;
 
     // Put the old coordinate in the new enabled collider
-    p_herosInstance->herosColl[p_herosInstance->currState][p_newAction]->posX = p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->posX;
-    p_herosInstance->herosColl[p_herosInstance->currState][p_newAction]->posY = p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->posY;
-    p_herosInstance->herosColl[p_herosInstance->currState][p_newAction]->lastPosX = p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->lastPosX;
-    p_herosInstance->herosColl[p_herosInstance->currState][p_newAction]->lastPosY = p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->lastPosY;
+    newColl->posX = oldColl->posX;
+    newColl->posY = oldColl->posY;
+    newColl->lastPosX = oldColl->lastPosX;
+    newColl->lastPosY = oldColl->lastPosY;
 
     p_herosInstance->currAction = p_newAction;
     p_herosInstance->currSprite = p_newSprite;
-    p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->isEnabled = 1;
+    newColl->isEnabled = 1;
 }//------------------------------------------------------------------------------------------------------------------------
 
 void refreshHerosInstance(HeroInstance * p_herosInstance, Heros *p_heros, int p_currentTime, int p_loopTime){
 // Refresh hero's position and sprite
     int movementY;
     float coeff = 1.5;
+    Collider *tuxColl = p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction];
+
+    // Update Collider position
+    tuxColl->lastPosX = tuxColl->posX;
+    tuxColl->lastPosY = tuxColl->posY;
+
+
     p_herosInstance->currentTime += p_loopTime;
     p_herosInstance->timeBeforeNextShot -= p_loopTime;
     if(p_herosInstance->godModeDuration > 0){
@@ -150,19 +161,13 @@ void refreshHerosInstance(HeroInstance * p_herosInstance, Heros *p_heros, int p_
             p_herosInstance->movementProgressY += p_loopTime / 1000.0 * p_heros->jumpSpeed * coeff;
             movementY = (int) p_herosInstance->movementProgressY;
             if(movementY >= 1 || movementY <= -1){
-                p_herosInstance->posY += movementY;
+                p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->posY += movementY;
                 p_herosInstance->movementProgressY -= movementY;
             }
         }
     }
-
+    updSpriteLocFromCollLoc(p_herosInstance, p_heros);
     updateCurrentSprite(p_herosInstance, p_heros);
-
-    // Update Collider position
-    p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->lastPosX = p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->posX;
-    p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->lastPosY = p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->posY;
-    p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->posX = p_herosInstance->posX;
-    p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->posY = p_herosInstance->posY;
 }//------------------------------------------------------------------------------------------------------------------------
 
 void applyGravity(HeroInstance *p_herosInstance, int p_loopTime){
@@ -172,7 +177,7 @@ void applyGravity(HeroInstance *p_herosInstance, int p_loopTime){
     p_herosInstance->movementProgressY -= p_loopTime / 1000.0 * GRAVITY_SPEED;
     movementY = (int) p_herosInstance->movementProgressY;
     if ( movementY >= 1 || movementY <= -1){
-        p_herosInstance->posY += movementY;
+        p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->posY += movementY;
         p_herosInstance->movementProgressY -= movementY;
     }
 }//------------------------------------------------------------------------------------------------------------------------
@@ -189,7 +194,7 @@ void movingRight(HeroInstance *p_herosInstance, Heros *p_heros, int p_loopTime){
         p_herosInstance->movementProgressX += p_loopTime / 1000.0 * p_heros->speed;
         movementX = (int) p_herosInstance->movementProgressX;
         if(movementX >= 1 || movementX <= -1){
-            p_herosInstance->posX += movementX;
+            p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->posX += movementX;
             p_herosInstance->movementProgressX -= movementX;
         }
     }
@@ -207,7 +212,7 @@ void movingLeft(HeroInstance *p_herosInstance, Heros *p_heros, int p_loopTime){
         p_herosInstance->movementProgressX -= p_loopTime / 1000.0 * p_heros->speed;
         movementX = (int) p_herosInstance->movementProgressX;
         if(movementX >= 1 || movementX <= -1){
-            p_herosInstance->posX += movementX;
+            p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->posX += movementX;
             p_herosInstance->movementProgressX -= movementX;
         }
     }
@@ -237,7 +242,7 @@ void jump(HeroInstance *p_herosInstance, Heros *p_heros, int p_loopTime){
         p_herosInstance->movementProgressY += p_loopTime / 1000.0 * p_heros->jumpSpeed;
         movementY = (int) p_herosInstance->movementProgressY;
         if(movementY >= 1 || movementY <= -1){
-            p_herosInstance->posY += movementY;
+            p_herosInstance->herosColl[p_herosInstance->currState][p_herosInstance->currAction]->posY += movementY;
             p_herosInstance->movementProgressY -= movementY;
         }
     }
@@ -263,6 +268,17 @@ void updateCurrentSprite(HeroInstance *p_heroInstance, Heros *p_heros){
         p_heroInstance->currSprite += 1;
         p_heroInstance->currSprite = p_heroInstance->currSprite % p_heros->spriteSize[p_heroInstance->currState][p_heroInstance->currAction];
     }
+}//------------------------------------------------------------------------------------------------------------------------
+
+void updSpriteLocFromCollLoc(HeroInstance *p_heroInstance, Heros *p_heros){
+// Update the herosInstance (=sprite) location according to the collider location
+    Collider *tuxColl = p_heroInstance->herosColl[p_heroInstance->currState][p_heroInstance->currAction];
+    SDL_Surface *tuxSprite = p_heros->sprites[p_heroInstance->currState][p_heroInstance->currAction][p_heroInstance->currSprite];
+    int decalX = (tuxSprite->w - tuxColl->width) / 2;
+    int decalY = tuxSprite->h - tuxColl->height;
+
+    p_heroInstance->posX = tuxColl->posX - decalX;
+    p_heroInstance->posY = tuxColl->posY + decalY;
 }//------------------------------------------------------------------------------------------------------------------------
 
 void gatherCoin(HeroInstance *p_heroInstance){
