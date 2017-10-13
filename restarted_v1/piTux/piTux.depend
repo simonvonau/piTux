@@ -401,7 +401,7 @@
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
 
-1507292334 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\enemyinstance.h
+1507725133 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\enemyinstance.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL2/SDL.h>
@@ -703,7 +703,7 @@
 	"../controller/gameManager.h"
 	"../pages/textLayout.h"
 
-1507723301 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\herosmanager.c
+1507726658 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\herosmanager.c
 	"herosManager.h"
 
 1507490360 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\controller\herosmanager.h
@@ -752,7 +752,7 @@
 1507292122 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\enemy.c
 	"enemy.h"
 
-1507119476 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\enemyinstance.c
+1507894986 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\enemyinstance.c
 	"enemyInstance.h"
 
 1507293930 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\game.c
@@ -1718,7 +1718,7 @@
 1490616618 source:c:\users\sivo\desktop\projets_de_pause\pitux\pitux\pitux\restarted_v1\pitux\src\model\heroinstance.c
 	"heroInstance.h"
 
-1507660676 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\heroinstance.h
+1507725026 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\heroinstance.h
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -1728,7 +1728,7 @@
 	"../global.h"
 	"../utils/arrayProcessing.h"
 
-1507661708 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\heroinstance.c
+1507726664 source:c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\heroinstance.c
 	"heroInstance.h"
 
 1507293574 c:\users\simon\desktop\my_git_projects\pitux\restarted_v1\pitux\src\model\firebullet.h

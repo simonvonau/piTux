@@ -166,7 +166,7 @@ void refreshHerosInstance(HeroInstance * p_herosInstance, Heros *p_heros, int p_
             }
         }
     }
-    updSpriteLocFromCollLoc(p_herosInstance, p_heros);
+    updTuxSpriteLocFromCollLoc(p_herosInstance, p_heros);
     updateCurrentSprite(p_herosInstance, p_heros);
 }//------------------------------------------------------------------------------------------------------------------------
 
@@ -270,7 +270,7 @@ void updateCurrentSprite(HeroInstance *p_heroInstance, Heros *p_heros){
     }
 }//------------------------------------------------------------------------------------------------------------------------
 
-void updSpriteLocFromCollLoc(HeroInstance *p_heroInstance, Heros *p_heros){
+void updTuxSpriteLocFromCollLoc(HeroInstance *p_heroInstance, Heros *p_heros){
 // Update the herosInstance (=sprite) location according to the collider location
     Collider *tuxColl = p_heroInstance->herosColl[p_heroInstance->currState][p_heroInstance->currAction];
     SDL_Surface *tuxSprite = p_heros->sprites[p_heroInstance->currState][p_heroInstance->currAction][p_heroInstance->currSprite];

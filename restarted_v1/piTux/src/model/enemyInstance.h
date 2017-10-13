@@ -34,6 +34,7 @@ typedef struct{
 EnemyInstance * initEnemyInstance(int p_idEnemy, int p_posX, int p_posY, Collider ** p_coll, int p_collSize);
 void changeEnemyAction(EnemyInstance * p_enemyInstance, int p_newAction, int p_newSprite);
 void refreshEnemyInstance(EnemyInstance *p_enemyInstance, int p_loopTime, Enemy p_enemy);
+void updEneSpriteLocFromCollLoc(EnemyInstance *p_enemyInstance, Enemy *p_enemy);
 void displayEnemyInstance(EnemyInstance *p_enemyInstance, Enemy p_enemy, SDL_Window *p_window, int p_deplaX, int p_deplaY);
 void destroyEnemyInstance(EnemyInstance *p_enemyInstance);
 

@@ -54,6 +54,11 @@ void refreshEnemyInstance(EnemyInstance *p_enemyInstance, int p_loopTime, Enemy 
 // Refresh an enemy
     int movementX, movementY;
 
+    Collider *eneColl = p_enemyInstance->coll[p_enemyInstance->currentActionId];
+
+    eneColl->lastPosX = eneColl->posX;
+    eneColl->lastPosY = eneColl->posY;
+
     p_enemyInstance->currentTime += p_loopTime;
     p_enemyInstance->lifeTime -= p_loopTime;
 
@@ -83,11 +88,26 @@ void refreshEnemyInstance(EnemyInstance *p_enemyInstance, int p_loopTime, Enemy 
         }
     }
 
+    //updEneSpriteLocFromCollLoc(p_enemyInstance, &p_enemy);
     // Update old Collider position
     p_enemyInstance->coll[p_enemyInstance->currentActionId]->lastPosX = p_enemyInstance->coll[p_enemyInstance->currentActionId]->posX;
     p_enemyInstance->coll[p_enemyInstance->currentActionId]->lastPosY = p_enemyInstance->coll[p_enemyInstance->currentActionId]->posY;
     p_enemyInstance->coll[p_enemyInstance->currentActionId]->posX = p_enemyInstance->posX;
     p_enemyInstance->coll[p_enemyInstance->currentActionId]->posY = p_enemyInstance->posY;
+
+}//--------------------------------------------------------------------------------------------------------------------
+
+void updEneSpriteLocFromCollLoc(EnemyInstance *p_enemyInstance, Enemy *p_enemy){
+// Update the enemy sprite location using its collider location
+    Collider *eneColl = p_enemyInstance->coll[p_enemyInstance->currentActionId];
+    SDL_Surface *eneSprite = p_enemy->sprites[p_enemyInstance->currentActionId][p_enemyInstance->currentSpriteId];
+
+    int decalX = (eneSprite->w - eneColl->width) / 2;
+    int decalY = eneSprite->h - eneColl->height;
+
+    p_enemyInstance->posX = eneColl->posX - decalX;
+    p_enemyInstance->posY = eneColl->posY + decalY;
+
 
 }//--------------------------------------------------------------------------------------------------------------------
 

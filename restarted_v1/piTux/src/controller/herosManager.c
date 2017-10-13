@@ -148,7 +148,7 @@ void updateHeroBehaviourAfterCollisionDetection(HeroInstance *p_herosInstance, H
             }
         }
         // Updating tux sprite position using tux's collider position
-        updSpriteLocFromCollLoc(p_herosInstance, p_heros);
+        updTuxSpriteLocFromCollLoc(p_herosInstance, p_heros);
 
         // Tux dies if he fall under a given high
         if(p_herosInstance->posY <= DEAD_LIMIT_Y && !p_herosInstance->isDead){
